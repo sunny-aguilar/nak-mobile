@@ -18,6 +18,19 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: "/",
       routes: routes,
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 196, 18, 48),
+          brightness: Brightness.light,
+        ),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+            fontSize: 72,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
