@@ -22,3 +22,14 @@ flutter:
     - assets/img/nak-letters.png
     - assets/img/rush_nak.png
 
+  fonts:
+    - family: TrajanPro
+      fonts:
+        - asset: assets/fonts/TrajanPro-Regular.ttf
+    - family: Futura
+      fonts:
+        - asset: assets/fonts/Futura Condensed Extra Bold.otf
+    - family: HelveticaNeue
+      fonts:
+        - asset: assets/fonts/HelveticaNeue Light.ttf
+

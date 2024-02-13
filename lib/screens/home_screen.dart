@@ -8,6 +8,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset("assets/img/nak-letters.png", height: 30.0,),
+        // backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: Drawer(
         child: ListView(
@@ -52,76 +53,201 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      body: ListView(
+        padding: const EdgeInsets.all(4),
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              Expanded(child: Image.asset("assets/img/rush_nak.png",)),
-              // Text(
-              //   "Home Page",
-              // ),
-            ],
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10.0),
+            child: Expanded(
+                child: Image.asset("assets/img/rush_nak.png",),
+            ),
           ),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "Home Page",
-              ),
-            ],
+          const SizedBox(
+            height: 8,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
+          // ColoredBox(
+          //   color: const Color.fromARGB(255, 200, 183, 131),
+          //   child: ListTile(
+          //     leading: Icon(Icons.favorite),
+          //     title: Text("ListTile Title"),
+          //     // subtitle:Text("This is the ListTile subtitle that should be three lines long."),
+          //     isThreeLine: false,
+          //     dense: false,
+          //     trailing: Icon(Icons.account_balance),
+          //     onTap: () => {},
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 8,
+          // ),
+          // ColoredBox(
+          //   color: const Color.fromARGB(255, 200, 183, 131),
+          //   child: ListTile(
+          //     leading: Icon(Icons.favorite),
+          //     title: Text("ListTile Title"),
+          //     subtitle:Text("This is the ListTile subtitle that should be three lines long."),
+          //     isThreeLine: false,
+          //     dense: false,
+          //     trailing: Icon(Icons.account_balance),
+          //     onTap: () => {},
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 8,
+          // ),
+          Card(
+            color: const Color.fromARGB(175, 196, 18, 48), 
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(Icons.album),
+                  title: RichText(
+                    text: TextSpan(
+                      // style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "President's Message",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize: 20,
+                            fontFamily: "HelveticaNeue",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  subtitle: Text(
+                    "Music by Julie Gable. Lyrics by Sidney Stein.",
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 14,
+                    ),
+                  ),
                 ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(15),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Image.asset(
-                            "assets/img/rush_nak.png",
-                            height: 100,
-                            width: 100,
-                            fit: BoxFit.cover,
-                          ),
-                          Container(width: 20.0,),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Container(height: 5.0,),
-                                const Text(
-                                  "Cards Title 1",
-                                ),
-                                Container(height: 5.0,),
-                                const Text(
-                                  "Sub title"
-                                ),
-                                Container(height: 10.0,),
-                                const Text(
-                                  "Another text"
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                    TextButton(
+                      onPressed: () => {}, 
+                      child: Text(
+                        "KEEP READING", 
+                        style: TextStyle(
+                          color: Colors.white.withAlpha(255),
+                        ),
+                      ),
+                    ),
+                    // const SizedBox(width: 8,),
+                    // TextButton(
+                    //   onPressed: () => {}, 
+                    //   child: Text(
+                    //     "LISTEN",
+                    //     style: TextStyle(
+                    //       color: Colors.white.withAlpha(255),
+                    //     )
+                    //   ),
+                    // ),
+                    const SizedBox(width: 8,),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Card(
+            color: const Color.fromARGB(175, 196, 18, 48),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.album),
+                  title: Text("The Enchanged Nightingale"),
+                  subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () => {}, 
+                      child: const Text("BUY TICKETS"),
+                    ),
+                    const SizedBox(width: 8,),
+                    TextButton(
+                      onPressed: () => {}, 
+                      child: const Text("LISTEN"),
+                    ),
+                    const SizedBox(width: 8,),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Card(
+            color: const Color.fromARGB(175, 196, 18, 48),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.album),
+                  title: Text("The Enchanged Nightingale"),
+                  subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () => {}, 
+                      child: const Text("BUY TICKETS"),
+                    ),
+                    const SizedBox(width: 8,),
+                    TextButton(
+                      onPressed: () => {}, 
+                      child: const Text("LISTEN"),
+                    ),
+                    const SizedBox(width: 8,),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Card(
+            color: Color.fromARGB(175, 196, 18, 48),
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 120,
+                  child: Text("SIZED BOX"),
+                ),
+              ],
+            ),
+          ),
+          Card(
+            color: Colors.amber,
+            child: Column(
+              children: <Widget>[
+                Stack(
+                  alignment: Alignment.bottomCenter,
+                  children: [
+                    Container(
+                      height: 130,
+                      color: const Color.fromARGB(0, 255, 255, 255),
+                    ),
+                    ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20.0),
+                        topRight: Radius.circular(20.0),
+                        bottomRight: Radius.circular(0),
+                        bottomLeft: Radius.circular(0),
+                      ),
+                      child: Container(
+                        height: 100,
+                        color: Colors.blue,
                       ),
                     ),
                   ],
-                ),
-              ),
-            ],
+                )
+              ],
+            ),
           ),
         ],
       ),

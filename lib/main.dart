@@ -24,9 +24,14 @@ class App extends StatelessWidget {
           seedColor: const Color.fromARGB(255, 196, 18, 48),
           brightness: Brightness.light,
         ),
-        textTheme: const TextTheme(
-          displayLarge: TextStyle(
+        textTheme: TextTheme(
+          displayLarge: const TextStyle(
             fontSize: 72,
+            fontWeight: FontWeight.bold,
+          ),
+          titleMedium: TextStyle(
+            color: Colors.white.withAlpha(50),
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -34,5 +39,3 @@ class App extends StatelessWidget {
     );
   }
 }
-
-
