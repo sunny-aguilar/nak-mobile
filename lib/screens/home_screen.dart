@@ -101,7 +101,10 @@ class HomeScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 ListTile(
-                  leading: const Icon(Icons.album),
+                  leading: Icon(
+                    Icons.stacked_bar_chart,
+                    color: Colors.white.withAlpha(255),
+                  ),
                   title: RichText(
                     text: TextSpan(
                       // style: DefaultTextStyle.of(context).style,
@@ -159,8 +162,11 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.album),
+                ListTile(
+                  leading: Icon(
+                    Icons.stacked_bar_chart,
+                    color: Colors.white.withAlpha(255),
+                  ),
                   title: Text("The Enchanged Nightingale"),
                   subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
                 ),
@@ -187,8 +193,11 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const ListTile(
-                  leading: Icon(Icons.album),
+                ListTile(
+                  leading: Icon(
+                    Icons.stacked_bar_chart,
+                    color: Colors.white.withAlpha(255),
+                  ),
                   title: Text("The Enchanged Nightingale"),
                   subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
                 ),
