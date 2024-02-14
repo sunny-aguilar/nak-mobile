@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nak_app/splash_screen.dart';
-import "screens/home_screen.dart";
-import "screens/chapters_screen.dart";
-import "screens/intro_screeen.dart";
+import 'screens/home_screen.dart';
+import 'screens/chapters_screen.dart';
+import 'screens/intro_screeen.dart';
 
 void main() => runApp(const App());
 
