@@ -19,13 +19,15 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/img/nak-letters.png
+    - assets/img/nak_letters.png
     - assets/img/rush_nak.png
+    - assets/img/nak_emblem.png
 
   fonts:
     - family: TrajanPro
       fonts:
         - asset: assets/fonts/TrajanPro-Regular.ttf
+        - asset: assets/fonts/TrajanPro-Bold.otf
     - family: Futura
       fonts:
         - asset: assets/fonts/Futura Condensed Extra Bold.otf

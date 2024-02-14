@@ -7,7 +7,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset("assets/img/nak-letters.png", height: 30.0,),
+        title: Image.asset("assets/img/nak_letters.png", height: 30.0,),
         // backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: Drawer(
@@ -19,11 +19,16 @@ class HomeScreen extends StatelessWidget {
                 color: Theme.of(context).colorScheme.primary,
               ),
               child: const Text(
-                "Drawer Header", 
+                "Drawer Header",
                 style: TextStyle(
                   color: Colors.white, fontSize: 24
                 )
               ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.stacked_bar_chart),
+              title: const Text("Intro Screen"),
+              onTap: () => Navigator.pushNamed(context, "/intro"),
             ),
             ListTile(
               leading: const Icon(Icons.message),
@@ -59,7 +64,7 @@ class HomeScreen extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10.0),
             child: Expanded(
-                child: Image.asset("assets/img/rush_nak.png",),
+                child: Image.asset("assets/img/rush_nak.png", fit: BoxFit.none, scale: 3.2, alignment: const Alignment(0, -0.9), height: 300,),
             ),
           ),
           const SizedBox(
@@ -96,7 +101,221 @@ class HomeScreen extends StatelessWidget {
           //   height: 8,
           // ),
           Card(
-            color: const Color.fromARGB(175, 196, 18, 48), 
+            // color: const Color.fromARGB(175, 196, 18, 48),
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                color: Color.fromARGB(175, 196, 18, 48), width: 3,
+              ),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(
+                    Icons.stacked_bar_chart,
+                    color: Color.fromARGB(175, 196, 18, 48),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      // style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "Red Card",
+                          style: TextStyle(
+                            color: Color.fromARGB(175, 196, 18, 48),
+                            fontSize: 20,
+                            fontFamily: "HelveticaNeue",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  subtitle: const Text(
+                    "Read the latest state of the fraternity union.",
+                    style: TextStyle(
+                      color: Color.fromARGB(175, 196, 18, 48),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () => {},
+                      child: const Text(
+                        "KEEP READING",
+                        style: TextStyle(
+                          color: Color.fromARGB(175, 196, 18, 48),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Card(
+            // color: const Color.fromARGB(175, 196, 18, 48),
+            shape: RoundedRectangleBorder(
+              side: const BorderSide(
+                color: Color.fromARGB(175, 196, 18, 48),
+              ),
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: const Icon(
+                    Icons.stacked_bar_chart,
+                    color: Color.fromARGB(175, 196, 18, 48),
+                  ),
+                  title: RichText(
+                    text: const TextSpan(
+                      // style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "Red Card",
+                          style: TextStyle(
+                            color: Color.fromARGB(175, 196, 18, 48),
+                            fontSize: 20,
+                            fontFamily: "HelveticaNeue",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  subtitle: const Text(
+                    "Read the latest state of the fraternity union.",
+                    style: TextStyle(
+                      color: Color.fromARGB(175, 196, 18, 48),
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    TextButton(
+                      onPressed: () => {},
+                      child: const Text(
+                        "KEEP READING",
+                        style: TextStyle(
+                          color: Color.fromARGB(175, 196, 18, 48),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const Card(
+            child:ListTile(
+              leading: Icon(
+                Icons.message_outlined,
+                color: Color.fromARGB(255, 103, 163, 177)
+              ),
+              title: Text("President's Message"),
+              subtitle: Text("Come read about the state of the fraternity."),
+              trailing: Icon(Icons.arrow_forward_ios_outlined),
+            ),
+          ),
+          const Card(
+            child:ListTile(
+              leading: Icon(
+                Icons.message_outlined,
+                color: Color.fromARGB(255, 103, 163, 177)
+              ),
+              title: Text("President's Message"),
+              subtitle: Text("Come read about the state of the fraternity."),
+              trailing: Icon(Icons.arrow_forward_ios_outlined),
+            ),
+          ),
+          const Card(
+            child:ListTile(
+              leading: Icon(
+                Icons.message_outlined,
+                color: Color.fromARGB(255, 103, 163, 177)
+              ),
+              title: Text("President's Message"),
+              subtitle: Text("Come read about the state of the fraternity."),
+              trailing: Icon(Icons.arrow_forward_ios_outlined),
+            ),
+          ),
+          Card(
+            child: ClipPath(
+              clipper: ShapeBorderClipper(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(3)
+                ),
+              ),
+              child: Container(
+                padding: const EdgeInsets.all(0),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    left: BorderSide(
+                      color: Color.fromARGB(255, 200, 183, 131), width: 8,
+                    ),
+                  ),
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: const Icon(
+                        Icons.stacked_bar_chart,
+                        color: Color.fromARGB(175, 196, 18, 48),
+                      ),
+                      title: RichText(
+                        text: const TextSpan(
+                          // style: DefaultTextStyle.of(context).style,
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "President's Message",
+                              style: TextStyle(
+                                color: Color.fromARGB(255, 200, 183, 131),
+                                fontSize: 20,
+                                fontFamily: "HelveticaNeue",
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      subtitle: const Text(
+                        "Read the latest state of the fraternity union.",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 200, 183, 131),
+                          fontSize: 14,
+                        ),
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        TextButton(
+                          onPressed: () => {},
+                          child: const Text(
+                            "KEEP READING",
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 200, 183, 131),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Card(
+            color: const Color.fromARGB(175, 196, 18, 48),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -133,25 +352,14 @@ class HomeScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     TextButton(
-                      onPressed: () => {}, 
+                      onPressed: () => {},
                       child: Text(
-                        "KEEP READING", 
+                        "KEEP READING",
                         style: TextStyle(
                           color: Colors.white.withAlpha(255),
                         ),
                       ),
                     ),
-                    // const SizedBox(width: 8,),
-                    // TextButton(
-                    //   onPressed: () => {}, 
-                    //   child: Text(
-                    //     "LISTEN",
-                    //     style: TextStyle(
-                    //       color: Colors.white.withAlpha(255),
-                    //     )
-                    //   ),
-                    // ),
-                    const SizedBox(width: 8,),
                   ],
                 ),
               ],
@@ -167,53 +375,42 @@ class HomeScreen extends StatelessWidget {
                     Icons.stacked_bar_chart,
                     color: Colors.white.withAlpha(255),
                   ),
-                  title: Text("The Enchanged Nightingale"),
-                  subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    TextButton(
-                      onPressed: () => {}, 
-                      child: const Text("BUY TICKETS"),
+                  title: RichText(
+                    text: TextSpan(
+                      // style: DefaultTextStyle.of(context).style,
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: "President's Message",
+                          style: TextStyle(
+                            color: Colors.white.withOpacity(0.9),
+                            fontSize: 20,
+                            fontFamily: "HelveticaNeue",
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
-                    const SizedBox(width: 8,),
-                    TextButton(
-                      onPressed: () => {}, 
-                      child: const Text("LISTEN"),
-                    ),
-                    const SizedBox(width: 8,),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Card(
-            color: const Color.fromARGB(175, 196, 18, 48),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(
-                    Icons.stacked_bar_chart,
-                    color: Colors.white.withAlpha(255),
                   ),
-                  title: Text("The Enchanged Nightingale"),
-                  subtitle: Text("Music by Julie Gable. Lyrics by Sidney Stein."),
+                  subtitle: Text(
+                    "Music by Julie Gable. Lyrics by Sidney Stein.",
+                    style: TextStyle(
+                      color: Colors.white.withOpacity(0.9),
+                      fontSize: 14,
+                    ),
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     TextButton(
-                      onPressed: () => {}, 
-                      child: const Text("BUY TICKETS"),
+                      onPressed: () => {},
+                      child: Text(
+                        "KEEP READING",
+                        style: TextStyle(
+                          color: Colors.white.withAlpha(255),
+                        ),
+                      ),
                     ),
-                    const SizedBox(width: 8,),
-                    TextButton(
-                      onPressed: () => {}, 
-                      child: const Text("LISTEN"),
-                    ),
-                    const SizedBox(width: 8,),
                   ],
                 ),
               ],

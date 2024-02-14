@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nak_app/splash_screen.dart';
 import "screens/home_screen.dart";
 import "screens/chapters_screen.dart";
+import "screens/intro_screeen.dart";
 
 void main() => runApp(const App());
 
@@ -10,14 +12,16 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       final routes = {
-        "/": (context) => const HomeScreen(),
+        // "/": (context) => const HomeScreen(),
         "/chapters": (context) => const ChapterScreen(),
+        "/intro": (context) => const IntroScreen(),
       };
 
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: "/",
+      // initialRoute: "/",
       routes: routes,
+      home: const SplashScreen(),
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
