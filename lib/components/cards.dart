@@ -554,6 +554,10 @@ class MiniCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 255, 255, 255),
         // color: const Color.fromARGB(255, 235, 181, 248),
+        border: Border.all(
+          width: 1,
+          color: const Color.fromARGB(255, 223, 223, 223)
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
@@ -615,43 +619,7 @@ class GridCards extends StatelessWidget {
             MiniCard(),
           ],
         ),
-        Row(
-          children: <Widget>[
-            SimpleCard(),
-          ],
-        ),
       ],
-    );
-  }
-}
-
-class SimpleCard extends StatelessWidget {
-  const SimpleCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 180,
-      width: 220,
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
-        // color: const Color.fromARGB(255, 235, 181, 248),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: const Offset(1, 1),
-          ),
-        ],
-      ),
-      child: Center(
-        child: Container(
-          color: Colors.red,
-          height: 100,
-          width: 100,
-        ),
-      ),
     );
   }
 }
