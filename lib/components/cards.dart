@@ -550,10 +550,12 @@ class MiniCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 210,
-      height: 160,
+      height: 180,
+      padding: const EdgeInsets.all(2),
       decoration: BoxDecoration(
         color: const Color.fromARGB(255, 255, 255, 255),
         // color: const Color.fromARGB(255, 235, 181, 248),
+        borderRadius: BorderRadius.circular(4),
         border: Border.all(
           width: 1,
           color: const Color.fromARGB(255, 223, 223, 223)
@@ -563,31 +565,42 @@ class MiniCard extends StatelessWidget {
             color: Colors.grey.withOpacity(0.3),
             spreadRadius: 1,
             blurRadius: 2,
-            offset: const Offset(1, 1),
+            offset: const Offset(0.8, 1),
           ),
         ],
       ),
       child: Center(
         child: Container(
           width: 180,
-          height: 140,
+          height: 160,
           color: const Color.fromARGB(255, 235, 181, 248),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Center(
-                child: Image.asset(
-                  "assets/img/image_wireframe2.png",
-                  height: 80,
-                  color: const Color.fromARGB(255, 213, 109, 235),
-                  colorBlendMode: BlendMode.modulate,
-                )
+              FittedBox(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: Center(
+                    child: Image.asset(
+                      "assets/img/image_wireframe2.png",
+                      height: 90,
+                      color: const Color.fromARGB(255, 213, 109, 235),
+                      colorBlendMode: BlendMode.modulate,
+                    ),
+                  ),
+                ),
               ),
               Text(
                 "Headline",
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
+              ),
+              Text(
+                "Here is a card description",
+                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                  color: Theme.of(context).colorScheme.onPrimary,
+                )
               ),
             ],
           ),

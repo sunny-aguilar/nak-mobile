@@ -46,6 +46,9 @@ class App extends StatelessWidget {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
+          bodySmall: const TextStyle(
+            fontSize: 14,
+          ),
         ),
       ),
     );
