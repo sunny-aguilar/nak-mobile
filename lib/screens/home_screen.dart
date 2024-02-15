@@ -9,8 +9,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         // backgroundColor: Color.fromARGB(255, 255, 54, 54),
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        // backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: Drawer(
         child: ListView(
@@ -82,7 +83,7 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const GridCards(),
+          // const GridCards(),
           const SizedBox(
             height: 8,
           ),
@@ -95,14 +96,6 @@ class HomeScreen extends StatelessWidget {
             height: 8,
           ),
           const LightGrayCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const LightGrayCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const WhiteRedAccentCard(),
           const SizedBox(
             height: 8,
           ),
@@ -118,47 +111,10 @@ class HomeScreen extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          const PurpleSquareCard(),
-          const SizedBox(
-            height: 8,
-          ),
           const PurpleCard(),
           const SizedBox(
-            height: 8,
+            height: 18,
           ),
-          const GradientCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const LargeGreyPictureCard(imageString: "assets/img/image_wireframe1.png",),
-          const SizedBox(
-            height: 8,
-          ),
-          const LargeGreyPictureCard(imageString: "assets/img/image_wireframe1.png",),
-          const SizedBox(
-            height: 8,
-          ),
-          const SolidBronzeCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const BlueGreyCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const LeftClippedCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const RedCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const RedOutlineCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const ClippedCard(),
         ],
       ),
     );

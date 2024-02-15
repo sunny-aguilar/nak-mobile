@@ -9,7 +9,7 @@ class RedOutlineCard extends StatelessWidget {
       // color: const Color.fromARGB(175, 196, 18, 48),
       shape: RoundedRectangleBorder(
         side: const BorderSide(
-          color: Color.fromARGB(175, 196, 18, 48), width: 3,
+          color: Color.fromARGB(175, 254, 58, 67), width: 3,
         ),
         borderRadius: BorderRadius.circular(12.0),
       ),
@@ -71,7 +71,7 @@ class RedCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromARGB(175, 196, 18, 48),
+      color: const Color.fromARGB(175, 254, 58, 67),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -314,7 +314,7 @@ class LargeGreyPictureCard extends StatelessWidget {
             children: [
               TextButton(
                 style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 103, 163, 177),
+                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
                   foregroundColor: Colors.white,
                 ),
                 onPressed: () {

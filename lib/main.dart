@@ -33,7 +33,7 @@ class App extends StatelessWidget {
         // ),
         // primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.grey,
           cardColor: const Color.fromARGB(255, 243, 243, 243)
         ),
         textTheme: TextTheme(
