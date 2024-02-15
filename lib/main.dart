@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nak_app/splash_screen.dart';
-import 'screens/home_screen.dart';
 import 'screens/chapters_screen.dart';
 import 'screens/intro_screeen.dart';
 
@@ -24,13 +23,22 @@ class App extends StatelessWidget {
       home: const SplashScreen(),
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 196, 18, 48),
-          brightness: Brightness.light,
+        scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        // primaryColor: const Color.fromARGB(255, 254, 58, 67),
+        // appBarTheme: const AppBarTheme(color: Color.fromARGB(255, 19, 19, 19)),
+        // colorScheme: ColorScheme.fromSeed(
+        //   seedColor: const Color.fromARGB(255, 255, 255, 255),
+        //   brightness: Brightness.light,
+        //   primary: Color.fromARGB(255, 254, 58, 67),
+        // ),
+        // primarySwatch: Colors.red,
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: Colors.red,
+          cardColor: const Color.fromARGB(255, 243, 243, 243)
         ),
         textTheme: TextTheme(
           displayLarge: const TextStyle(
-            fontSize: 72,
+            fontSize: 32,
             fontWeight: FontWeight.bold,
           ),
           titleMedium: TextStyle(

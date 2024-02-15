@@ -36,7 +36,7 @@ class MyWidget extends StatelessWidget {
             height: 60,
             color: const Color.fromARGB(255, 200, 183, 131),
           ),
-        ), 
+        ),
         Transform.rotate(
           angle: 0.4,
           // alignment: Alignment.topLeft,
@@ -45,7 +45,7 @@ class MyWidget extends StatelessWidget {
             height: 60,
             color: const Color.fromARGB(255, 241, 241, 241),
           ),
-        ), 
+        ),
         Transform.rotate(
           angle: 0.6,
           // alignment: Alignment.topLeft,

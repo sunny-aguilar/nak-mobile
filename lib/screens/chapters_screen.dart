@@ -15,7 +15,7 @@ class ChapterScreen extends StatelessWidget {
               child: Text("Chapters Screen"),
             ),
             ElevatedButton(
-              onPressed: () => Navigator.pop(context), 
+              onPressed: () => Navigator.pop(context),
               child: const Text("Go Back"),
             )
           ],

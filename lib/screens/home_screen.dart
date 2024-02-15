@@ -8,66 +8,133 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Image.asset("assets/img/nak_letters.png", height: 30.0,),
-        // backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
+        // backgroundColor: Color.fromARGB(255, 255, 54, 54),
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
+            const DrawerHeader(
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
+                color: Color.fromARGB(255, 254, 58, 67),
               ),
-              child: const Text(
-                "Drawer Header",
+              child: Text(
+                "Nu Alpha Kappa Fraternity",
                 style: TextStyle(
                   color: Colors.white, fontSize: 24
                 )
               ),
             ),
             ListTile(
-              leading: const Icon(Icons.stacked_bar_chart),
-              title: const Text("Intro Screen"),
-              onTap: () => Navigator.pushNamed(context, "/intro"),
-            ),
-            ListTile(
-              leading: const Icon(Icons.message),
+              leading: const Icon(Icons.holiday_village),
               title: const Text("Chapters"),
               onTap: () => Navigator.pushNamed(context, "/chapters"),
             ),
             const ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.attach_money),
               title: Text("Dues"),
             ),
             const ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.remember_me),
               title: Text("National Board"),
             ),
             const ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.shopping_cart),
               title: Text("NAKstore"),
             ),
             const ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.school),
               title: Text("Alumni Network"),
             ),
             const ListTile(
-              leading: Icon(Icons.message),
+              leading: Icon(Icons.public),
               title: Text("National Website"),
             )
           ],
         ),
       ),
       body: ListView(
-        padding: const EdgeInsets.all(4),
+        padding: const EdgeInsets.all(0),
         children: <Widget>[
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10.0),
-            child: Expanded(
-                child: Image.asset("assets/img/rush_nak.png", fit: BoxFit.none, scale: 3.2, alignment: const Alignment(0, -0.9), height: 300,),
+          FittedBox(
+            // borderRadius: BorderRadius.circular(0.0),
+            child: Image.asset(
+              "assets/img/image_wireframe1.png",
+              fit: BoxFit.fitHeight,
+              // scale: 2.0,
+              // alignment: const Alignment(0, -0.9),
+              // height: 300,
+              // color: Color.fromARGB(255, 255, 255, 255),
+              // colorBlendMode: BlendMode.modulate,
+              opacity: const AlwaysStoppedAnimation(.3),
             ),
           ),
+          // GridView.count(
+          //   crossAxisCount: 2,
+          //   children: List.generate(8, (index) {
+          //     return Center(
+          //       child: Text('Index $index'),
+          //     );
+          //   }),
+          // ),
+          const SizedBox(
+            height: 8,
+          ),
+          const GridCards(),
+          const SizedBox(
+            height: 8,
+          ),
+          const LargeGreyPictureCard(imageString: "assets/img/nak_letters_bw.png",),
+          const SizedBox(
+            height: 8,
+          ),
+          const LargeGreyPictureCard(imageString: "assets/img/nak_letters_bw.png",),
+          const SizedBox(
+            height: 8,
+          ),
+          const LightGrayCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const LightGrayCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const WhiteRedAccentCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const WhiteRedAccentCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const RedSquareCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const PurpleSquareCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const PurpleSquareCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const PurpleCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const GradientCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const LargeGreyPictureCard(imageString: "assets/img/image_wireframe1.png",),
+          const SizedBox(
+            height: 8,
+          ),
+          const LargeGreyPictureCard(imageString: "assets/img/image_wireframe1.png",),
           const SizedBox(
             height: 8,
           ),
@@ -76,37 +143,22 @@ class HomeScreen extends StatelessWidget {
             height: 8,
           ),
           const BlueGreyCard(),
-          const LeftClippedCard(),
-          const RedCard(),
-          const RedOutlineCard(),
-          Card(
-            color: Colors.amber,
-            child: Column(
-              children: <Widget>[
-                Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Container(
-                      height: 130,
-                      color: const Color.fromARGB(0, 255, 255, 255),
-                    ),
-                    ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20.0),
-                        topRight: Radius.circular(20.0),
-                        bottomRight: Radius.circular(0),
-                        bottomLeft: Radius.circular(0),
-                      ),
-                      child: Container(
-                        height: 100,
-                        color: Colors.blue,
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            ),
+          const SizedBox(
+            height: 8,
           ),
+          const LeftClippedCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const RedCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const RedOutlineCard(),
+          const SizedBox(
+            height: 8,
+          ),
+          const ClippedCard(),
         ],
       ),
     );

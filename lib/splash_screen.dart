@@ -34,42 +34,40 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       body: SafeArea(
         // child: CustomScaffold(),
-        child: Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Stack(
-                alignment: Alignment.topCenter,
-                children: <Widget>[
-                  ClipPath(
-                    clipper: BronzeBannerClipper(),
-                    child: Container(
-                      // width: 400,
-                      height: 600,
-                      color: const Color.fromARGB(255, 200, 183, 131),
-                      ),
-                  ),
-                  ClipPath(
-                    clipper: WhiteBannerClipper(),
-                    child: Container(
-                      // width: 400,
-                      height: 500,
-                      color: const Color.fromARGB(255, 241, 241, 241),
-                      ),
-                  ),
-                  ClipPath(
-                    clipper: RedBannerClipper(),
-                    child: Container(
-                      // width: 400,
-                      height: 400,
-                      color: const Color.fromARGB(255, 196, 18, 48),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Stack(
+              alignment: Alignment.topCenter,
+              children: <Widget>[
+                ClipPath(
+                  clipper: BronzeBannerClipper(),
+                  child: Container(
+                    // width: 400,
+                    height: 600,
+                    color: const Color.fromARGB(255, 200, 183, 131),
                     ),
+                ),
+                ClipPath(
+                  clipper: WhiteBannerClipper(),
+                  child: Container(
+                    // width: 400,
+                    height: 500,
+                    color: const Color.fromARGB(255, 241, 241, 241),
+                    ),
+                ),
+                ClipPath(
+                  clipper: RedBannerClipper(),
+                  child: Container(
+                    // width: 400,
+                    height: 400,
+                    color: const Color.fromARGB(255, 196, 18, 48),
                   ),
-                  Image.asset("assets/img/nak_letters.png", height: 130.0,),
-                ],
-              ),
-            ],
-          ),
+                ),
+                Image.asset("assets/img/nak_letters.png", height: 130.0,),
+              ],
+            ),
+          ],
         ),
       ),
     );

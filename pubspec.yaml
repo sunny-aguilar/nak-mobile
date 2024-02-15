@@ -20,8 +20,12 @@ flutter:
 
   assets:
     - assets/img/nak_letters.png
+    - assets/img/nak_letters_bw.png
     - assets/img/rush_nak.png
+    - assets/img/rush_nak_alt1.png
     - assets/img/nak_emblem.png
+    - assets/img/image_wireframe1.png
+    - assets/img/image_wireframe2.png
 
   fonts:
     - family: TrajanPro
