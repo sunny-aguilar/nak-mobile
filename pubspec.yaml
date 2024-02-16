@@ -26,6 +26,9 @@ flutter:
     - assets/img/nak_emblem.png
     - assets/img/image_wireframe1.png
     - assets/img/image_wireframe2.png
+    - assets/img/chapter_letters.png
+    - assets/img/chapters/
+    - assets/json/chapters.json
 
   fonts:
     - family: TrajanPro
@@ -38,4 +41,6 @@ flutter:
     - family: HelveticaNeue
       fonts:
         - asset: assets/fonts/HelveticaNeue Light.ttf
-
+    - family: College
+      fonts:
+        - asset: assets/fonts/college.ttf

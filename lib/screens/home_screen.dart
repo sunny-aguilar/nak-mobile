@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
                 color: Color.fromARGB(255, 254, 58, 67),
               ),
               child: Text(
-                "Nu Alpha Kappa Fraternity",
+                "Nu Alpha Kappa Fraternity, Inc.",
                 style: TextStyle(
                   color: Colors.white, fontSize: 24
                 )
@@ -30,28 +30,36 @@ class HomeScreen extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village),
-              title: const Text("Chapters"),
+              title: Text("Chapters", style: Theme.of(context).textTheme.titleLarge!),
               onTap: () => Navigator.pushNamed(context, "/chapters"),
             ),
-            const ListTile(
-              leading: Icon(Icons.attach_money),
-              title: Text("Dues"),
+            ListTile(
+              leading: const Icon(Icons.attach_money),
+              title: Text("Dues", style: Theme.of(context).textTheme.titleLarge!),
             ),
-            const ListTile(
-              leading: Icon(Icons.remember_me),
-              title: Text("National Board"),
+            ListTile(
+              leading: const Icon(Icons.remember_me),
+              title: Text("National Board", style: Theme.of(context).textTheme.titleLarge!),
             ),
-            const ListTile(
-              leading: Icon(Icons.shopping_cart),
-              title: Text("NAKstore"),
+            ListTile(
+              leading: const Icon(Icons.shopping_cart),
+              title: Text("NAKstore", style: Theme.of(context).textTheme.titleLarge!),
             ),
-            const ListTile(
-              leading: Icon(Icons.school),
-              title: Text("Alumni Network"),
+            ListTile(
+              leading: const Icon(Icons.local_library),
+              title: Text("Resources", style: Theme.of(context).textTheme.titleLarge!),
             ),
-            const ListTile(
-              leading: Icon(Icons.public),
-              title: Text("National Website"),
+            ListTile(
+              leading: const Icon(Icons.school),
+              title: Text("Alumni Network", style: Theme.of(context).textTheme.titleLarge!),
+            ),
+            ListTile(
+              leading: const Icon(Icons.public),
+              title: Text("National Website", style: Theme.of(context).textTheme.titleLarge!),
+            ),
+            ListTile(
+              leading: const Icon(Icons.email),
+              title: Text("Contact Us", style: Theme.of(context).textTheme.titleLarge!),
             )
           ],
         ),
@@ -59,7 +67,7 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(0),
         children: <Widget>[
-          FittedBox(
+          Container(
             // borderRadius: BorderRadius.circular(0.0),
             child: Image.asset(
               "assets/img/image_wireframe1.png",
@@ -72,16 +80,8 @@ class HomeScreen extends StatelessWidget {
               opacity: const AlwaysStoppedAnimation(.3),
             ),
           ),
-          // GridView.count(
-          //   crossAxisCount: 2,
-          //   children: List.generate(8, (index) {
-          //     return Center(
-          //       child: Text('Index $index'),
-          //     );
-          //   }),
-          // ),
           const SizedBox(
-            height: 8,
+            height: 4,
           ),
           // const GridCards(),
           const SizedBox(
@@ -108,10 +108,6 @@ class HomeScreen extends StatelessWidget {
             height: 8,
           ),
           const PurpleSquareCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const PurpleCard(),
           const SizedBox(
             height: 18,
           ),

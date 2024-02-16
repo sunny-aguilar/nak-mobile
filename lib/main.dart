@@ -46,8 +46,12 @@ class App extends StatelessWidget {
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
+          titleLarge: const TextStyle(
+            fontSize: 20,
+            fontFamily: "College",
+          ),
           bodySmall: const TextStyle(
-            fontSize: 14,
+            fontSize: 12,
           ),
         ),
       ),
