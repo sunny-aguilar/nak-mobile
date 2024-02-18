@@ -27,8 +27,16 @@ flutter:
     - assets/img/image_wireframe1.png
     - assets/img/image_wireframe2.png
     - assets/img/chapter_letters.png
+    - assets/img/dues_letters.png
+    - assets/img/board_letters.png
+    - assets/img/board_headshot.png
+    - assets/img/ad_dues.png
+    - assets/img/ep_dues.png
+    - assets/img/cd_dues.png
     - assets/img/chapters/
     - assets/json/chapters.json
+    - assets/json/dues.json
+    - assets/json/board_members.json
 
   fonts:
     - family: TrajanPro

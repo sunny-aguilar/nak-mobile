@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -636,3 +637,124 @@ class GridCards extends StatelessWidget {
     );
   }
 }
+
+// class DuesCard extends StatelessWidget {
+//   const DuesCard({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return const SizedBox(
+//       height: 220,
+//       child: Card(
+//         child:
+//       ),
+//     );
+//   }
+// }
+
+Card duesCard({required BuildContext context, required int index, required List dues}) {
+  var heading = '${dues[index]["name"]}';
+  var subheading = '${dues[index]["amount"]}';
+  var cardImage = '${dues[index]["url"]}';
+  var supportingText = '${dues[index]['description']}';
+  return Card(
+      elevation: 2.0,
+      child: Column(
+        children: [
+        //  ListTile(
+        //    title: Text(heading),
+        //    subtitle: Text(subheading),
+        //    trailing: Icon(Icons.favorite_outline),
+        //  ),
+          SizedBox(
+          height: 200.0,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              bottomLeft: Radius.circular(20.0),
+              bottomRight: Radius.circular(20.0),
+              topLeft: Radius.circular(20.0),
+              topRight: Radius.circular(20.0),
+            ),
+            child: Material(
+              child: Image.asset(
+                cardImage,
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          ),
+          ListTile(
+            title: Text(
+              heading,
+              style: Theme.of(context).textTheme.displayMedium,
+            ),
+            subtitle: Text(
+              subheading,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          //  trailing: Icon(Icons.favorite_outline),
+          ),
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            alignment: Alignment.centerLeft,
+            child: Text(supportingText),
+          ),
+          ButtonBar(
+            children: [
+              TextButton(
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+                  foregroundColor: Colors.white,
+                ),
+                child: const Text('PAY DUES'),
+                onPressed: () {/* ... */},
+              )
+            ],
+          )
+        ],
+      ));
+ }
+
+ Card boardCard({required BuildContext context, required int index, required List board}) {
+  var cardImage = 'assets/img/board_headshot.png';
+  var heading = '${board[index]["position"]}';
+  var subheading = '${board[index]["name"]}';
+  var supportingText = '${board[index]["email"]}';
+
+  return Card(
+    color: const Color.fromARGB(255, 255, 255, 255),
+    elevation: 2.0,
+    child: Column(
+      children: <Widget>[
+        SizedBox(
+          // height: 200,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(20)),
+            child: Image.asset(
+              cardImage,
+              fit: BoxFit.cover,
+              height: 180.0,
+            ),
+          ),
+        ),
+        ListTile(
+          minVerticalPadding: 0,
+          visualDensity: VisualDensity.compact,
+          dense: true,
+          title: Text(
+            heading,
+            style: Theme.of(context).textTheme.titleSmall,
+          ),
+          subtitle: Text(
+            subheading,
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+          // trailing: IconButton(
+          //   icon: const Icon(Icons.more_vert),
+          //   onPressed: () {/* ... */},
+          // ),
+        ),
+      ],
+    ),
+  );
+ }

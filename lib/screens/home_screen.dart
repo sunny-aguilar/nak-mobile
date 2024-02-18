@@ -36,10 +36,12 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.attach_money),
               title: Text("Dues", style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () => Navigator.pushNamed(context, "/dues"),
             ),
             ListTile(
               leading: const Icon(Icons.remember_me),
               title: Text("National Board", style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () => Navigator.pushNamed(context, "/board"),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_cart),

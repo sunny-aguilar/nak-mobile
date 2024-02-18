@@ -1,0 +1,25 @@
+{
+    "dues": [
+      {
+        "name": "Chapter Dues",
+        "description": "Dues paid annually by each chapter. Due at the beginning of the school year.",
+        "type": "CD",
+        "url": "assets/img/cd_dues.png",
+        "amount": "400.00"
+      },
+      {
+        "name": "Active Dues",
+        "description": "Active dues are assessed for each active brother of the chapter on a yearly basis.",
+        "type": "AD",
+        "url": "assets/img/ad_dues.png",
+        "amount": "200.00"
+      },
+      {
+        "name": "Education Process Dues",
+        "description": "Intake dues are assessed to prospects at the start of their education process.",
+        "type": "EP",
+        "url": "assets/img/ep_dues.png",
+        "amount": "200.00"
+      }
+    ]
+  }

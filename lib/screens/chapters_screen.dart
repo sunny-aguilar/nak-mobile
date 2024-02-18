@@ -41,7 +41,7 @@ class _ChapterScreensState extends State<ChapterScreens> {
   Widget build(BuildContext context) {
     int items = _chapters.length;
     return CustomScrollView(
-      slivers: [
+      slivers: <Widget>[
         SliverAppBar(
           title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
           backgroundColor: const Color.fromARGB(255, 254, 58, 67),
@@ -61,16 +61,16 @@ class _ChapterScreensState extends State<ChapterScreens> {
             ),
           ),
         ),
-        Cards(items: items, chapters: _chapters),
+        ChapterCards(items: items, chapters: _chapters),
       ],
     );
   }
 }
 
-class Cards extends StatelessWidget {
+class ChapterCards extends StatelessWidget {
   final int items;
   final List chapters;
-  const Cards({super.key, required this.items, required this.chapters});
+  const ChapterCards({super.key, required this.items, required this.chapters});
   @override
   Widget build(BuildContext context) {
     return SliverList(
@@ -94,11 +94,37 @@ class Cards extends StatelessWidget {
                   color: const Color.fromARGB(255, 45, 45, 45),
                 ),
               ),
-              trailing: const Icon(Icons.more_vert),
+              trailing: IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {
+                  showModalBottomSheet(
+                    showDragHandle: true,
+                    enableDrag: true,
+                    context: context,
+                    builder: (BuildContext context) {
+                      return SizedBox(
+                        height: 120,
+                        width: double.infinity,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            const Icon(Icons.email),
+                            Text(
+                              "${chapters[index]["contact"]}",
+                              style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                  );
+                },
+              ),
             )
           );
         },
-        childCount: 26,
+        childCount: items,
       ),
     );
   }

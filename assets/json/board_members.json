@@ -2,22 +2,22 @@
   "board": [
     {
       "position": "National President",
-      "name": "Jose R. Lara",
+      "name": "Jason Navarro",
       "email": "president@nakinc.org"
     },
     {
       "position": "VP of Business Ops",
-      "name": "Steven Valdez",
+      "name": "Jose R. Lara",
       "email": "nvp-business@nakinc.org"
     },
     {
       "position": "VP of Compliance",
-      "name": "Bryan Campos",
+      "name": "Carlos A. Mendoza",
       "email": "nvp-compliance.nakinc.org"
     },
     {
       "position": "Secretary",
-      "name": "Vacant",
+      "name": "Christopher S. Juarez",
       "email": "secretary@nakinc.org"
     },
     {
@@ -27,58 +27,78 @@
     },
     {
       "position": "Executive VP of Alumni Relations",
-      "name": "Sergio Beltran",
+      "name": "Sergio Andrade",
       "email": "naa@nakinc.org"
     },
     {
-      "position": "VP of Northern Chapter Compliance",
-      "name": "Vacant",
+        "position": "National Northern Regional Manager",
+        "name": "Vacant",
+        "email": "neb@nakinc.org"
+    },
+    {
+        "position": "National Eastern Regional Manager",
+        "name": "Vacant",
+        "email": "neb@nakinc.org"
+    },
+    {
+        "position": "National Southern Regional Manager",
+        "name": "Vacant",
+        "email": "neb@nakinc.org"
+    },
+    {
+      "position": "AVP of Northern Chapter Development",
+      "name": "Christian Martinez",
       "email": "north.chapterdev@nakinc.org"
     },
     {
-      "position": "VP of Marketing",
-      "name": "Diego Hurtado",
-      "email": "nakmarketing@nakinc.org"
-    },
-    {
-      "position": "VP of Northern Education",
-      "name": "Antonio Sanchez",
+      "position": "AVP of Southern Chapter Development",
+      "name": "Vacant",
       "email": "north.intake@nakinc.org"
     },
     {
-      "position": "VP of Southern Education",
-      "name": "Pedro Q. Valencia",
+      "position": "AVP of Marketing",
+      "name": "Andres Rojo",
+      "email": "nakmarketing@nakinc.org"
+    },
+    {
+      "position": "AVP of Northern Education",
+      "name": "Sean Lopez",
+      "email": "north.intake@nakinc.org"
+    },
+    {
+      "position": "AVP of Southern Education",
+      "name": "Brian Saldana",
       "email": "south.intake@nakinc.org"
     },
     {
-      "position": "VP of Programming",
-      "name": "Juan Aguilar",
+      "position": "AVP of Programming & Special Events",
+      "name": "Vacant",
       "email": "programs@nakinc.org"
     },
     {
-      "position": "VP of Expansion & Recruitment",
+      "position": "AVP of Expansion & Recruitment",
       "name": "Vacant",
       "email": "expansion@nakinc.org"
     },
     {
-      "position": "VP of Campus & Public Relations",
+      "position": "AVP of Campus & Public Relations",
       "name": "Vacant",
-      "email": "publicrelations@nakinc.org"
+      "email": "pr@nakinc.org"
     },
     {
-      "position": "VP of Communications",
+      "position": "AVP of Communications",
       "name": "Vacant",
-      "email": "communications@nakinc.org"
+      "email": "communication@nakinc.org"
     },
     {
-      "position": "VP of Northern DEI",
-      "name": "Vacant",
-      "email": "avp-north-dei@nakinc.org"
+        "position": "AVP of Northern DEI",
+        "name": "Jerson Zarate",
+        "email": "cavp-north-dei@nakinc.org"
     },
     {
-      "position": "VP of Sourthern DEI",
-      "name": "Armando Zaragoza",
-      "email": "abp-south-dei@nakinc.org"
+      "position": "AVP of Southern DEI",
+      "name": "Vacant",
+      "email": "avp-south-dei@nakinc.org"
     }
   ]
 }
