@@ -56,24 +56,6 @@ class _NationalBoardState extends State<NationalBoard> {
   }
 }
 
-// class BoardCardList extends StatelessWidget {
-//   final int qty;
-//   final List board;
-//   const BoardCardList({super.key, required this.qty, required this.board});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return SliverList(
-//       delegate: SliverChildBuilderDelegate(
-//         (BuildContext context, int index) {
-//           return boardCard(context: context, index: index, board: board);
-//         },
-//         childCount: qty,
-//       ),
-//     );
-//   }
-// }
-
 class BoardGridList extends StatelessWidget {
   final int count;
   final List board;

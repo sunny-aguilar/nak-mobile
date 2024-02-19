@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -638,24 +639,65 @@ class GridCards extends StatelessWidget {
   }
 }
 
-// class DuesCard extends StatelessWidget {
-//   const DuesCard({super.key});
+Card chapterCard({required BuildContext context, required int index, required List chapters}) {
+  var cardImage = 'assets/img/chapters/$index.png';
+  var heading = '${chapters[index]["name"]}';
+  var subheading = 'Established: ${chapters[index]["established"]}\nstatus: ${chapters[index]["status"]}';
+  var supportingText = '${chapters[index]["contact"]}';
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return const SizedBox(
-//       height: 220,
-//       child: Card(
-//         child:
-//       ),
-//     );
-//   }
-// }
+  return Card(
+    child: ListTile(
+      leading: Image.asset(
+        cardImage,
+        width: 60.0,
+      ),
+      title: Text(
+        heading,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+          color: const Color.fromARGB(255, 45, 45, 45),
+        ),
+      ),
+      subtitle: Text(
+        subheading,
+        style: Theme.of(context).textTheme.bodySmall!.copyWith(
+          color: const Color.fromARGB(255, 45, 45, 45),
+        ),
+      ),
+      trailing: IconButton(
+        icon: const Icon(Icons.more_vert),
+        onPressed: () {
+          showModalBottomSheet(
+            showDragHandle: true,
+            enableDrag: true,
+            context: context,
+            builder: (BuildContext context) {
+              return SizedBox(
+                height: 120,
+                width: double.infinity,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    const Icon(Icons.email),
+                    Text(
+                      supportingText,
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                    ),
+                  ],
+                ),
+              );
+            }
+          );
+        },
+      ),
+    )
+  );
+}
 
 Card duesCard({required BuildContext context, required int index, required List dues}) {
+  var cardImage = '${dues[index]["url"]}';
   var heading = '${dues[index]["name"]}';
   var subheading = '${dues[index]["amount"]}';
-  var cardImage = '${dues[index]["url"]}';
   var supportingText = '${dues[index]['description']}';
   return Card(
       elevation: 2.0,
