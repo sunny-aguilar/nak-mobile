@@ -84,10 +84,10 @@ class BoardGridList extends StatelessWidget {
     return SliverGrid(
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 8.0,
-        crossAxisSpacing: 8.0,
+        mainAxisSpacing: 4.0,
+        crossAxisSpacing: 4.0,
         childAspectRatio: 1.0,
-        mainAxisExtent: 270.0,
+        mainAxisExtent: 276.0,
       ),
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, index) {

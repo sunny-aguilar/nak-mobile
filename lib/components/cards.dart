@@ -738,6 +738,7 @@ Card duesCard({required BuildContext context, required int index, required List 
           ),
         ),
         ListTile(
+          contentPadding: const EdgeInsets.all(8.0),
           minVerticalPadding: 0,
           visualDensity: VisualDensity.compact,
           dense: true,
@@ -749,10 +750,33 @@ Card duesCard({required BuildContext context, required int index, required List 
             subheading,
             style: Theme.of(context).textTheme.bodySmall,
           ),
-          // trailing: IconButton(
-          //   icon: const Icon(Icons.more_vert),
-          //   onPressed: () {/* ... */},
-          // ),
+          trailing: IconButton(
+            icon: const Icon(Icons.more_vert),
+            onPressed: () {
+              showModalBottomSheet(
+                showDragHandle: true,
+                enableDrag: true,
+                context: context,
+                builder: (BuildContext context  ) {
+                  return SizedBox(
+                    height: 120,
+                    width: double.infinity,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        const Icon(Icons.email),
+                        Text(
+                          supportingText,
+                          style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              );
+            },
+          ),
         ),
       ],
     ),
