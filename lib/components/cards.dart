@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
 class RedOutlineCard extends StatelessWidget {
@@ -718,9 +721,30 @@ Card duesCard({required BuildContext context, required int index, required List 
               topRight: Radius.circular(20.0),
             ),
             child: Material(
-              child: Image.asset(
-                cardImage,
-                fit: BoxFit.cover,
+              child: ColorFiltered(
+                colorFilter: const ColorFilter.mode(
+                Colors.grey,
+                  // BlendMode.modulate,
+                  // BlendMode.screen,
+                  // BlendMode.overlay,
+                  // BlendMode.darken,
+                  // BlendMode.lighten,
+                  // BlendMode.colorDodge,
+                  // BlendMode.colorBurn,
+                  // BlendMode.hardLight,
+                  // BlendMode.softLight,
+                  // BlendMode.difference,
+                  // BlendMode.exclusion,
+                  // BlendMode.multiply,
+                  BlendMode.hue,
+                  // BlendMode.saturation,
+                  // BlendMode.color,
+                  // BlendMode.luminosity,
+                ),
+                child: Image.asset(
+                  cardImage,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),

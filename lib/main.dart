@@ -49,6 +49,11 @@ class App extends StatelessWidget {
             fontSize: 32,
             fontFamily: "College",
           ),
+          displaySmall: TextStyle(
+            color: Colors.white.withAlpha(255),
+            fontSize: 28,
+            fontFamily: 'College',
+          ),
           titleMedium: TextStyle(
             color: Colors.white.withAlpha(50),
             fontSize: 20,

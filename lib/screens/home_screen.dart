@@ -17,15 +17,13 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            const DrawerHeader(
-              decoration: BoxDecoration(
+            DrawerHeader(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 254, 58, 67),
               ),
               child: Text(
                 "Nu Alpha Kappa Fraternity, Inc.",
-                style: TextStyle(
-                  color: Colors.white, fontSize: 24
-                )
+                style: Theme.of(context).textTheme.displaySmall,
               ),
             ),
             ListTile(
