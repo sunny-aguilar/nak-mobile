@@ -851,13 +851,16 @@ Card duesCard({required BuildContext context, required int index, required List 
 
  class MasonryGridTile extends StatelessWidget {
   final String image;
-  const MasonryGridTile({super.key, required this.image});
+  final String title;
+  const MasonryGridTile({super.key, required this.image, required this.title});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0), color: Colors.white),
+        borderRadius: BorderRadius.circular(8.0),
+        // color: const Color(0xff534343), // adds background color to entire card
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -868,43 +871,121 @@ Card duesCard({required BuildContext context, required int index, required List 
               bottomLeft: Radius.circular(10.0),
               bottomRight: Radius.circular(10.0)
             ),
-            child: Image(
-              image: AssetImage(image),
-              // width: 186,
-            ),
+            // child: ColoredBox(
+              // color: Color(0xff534343),
+              child: Image(
+                image: AssetImage(image),
+                // width: 186,
+              ),
+            // ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       Row(
-          //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //         children: [
-          //           const Text(
-          //             "Name",
-          //             style: TextStyle(
-          //               fontWeight: FontWeight.bold,
-          //               fontSize: 17,
-          //               color: Color.fromRGBO(74, 74, 74, 1)),
-          //           ),
-          //           IconButton(
-          //             onPressed: () {},
-          //             icon: const Icon(
-          //               Icons.download,
-          //               color: Colors.teal,
-          //             )
-          //           )
-          //         ],
-          //       ),
-          //       const Text(
-          //         "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-          //         style: TextStyle(
-          //             fontSize: 12, color: Color.fromRGBO(133, 133, 133, 1)),
-          //       )
-          //     ],
-          //   ),
-          // )
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 17,
+                        color: Color.fromRGBO(74, 74, 74, 1)),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.download,
+                        color: Colors.teal,
+                      )
+                    )
+                  ],
+                ),
+                const Text(
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                  style: TextStyle(
+                      fontSize: 12, color: Color.fromRGBO(133, 133, 133, 1)),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class MasonryGridTileV2 extends StatelessWidget {
+  final String image;
+  final String title;
+  const MasonryGridTileV2({super.key, required this.image, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      // decoration: BoxDecoration(
+      //   borderRadius: BorderRadius.circular(8.0),
+      //   // color: const Color(0xff534343), // adds background color to entire card
+      // ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10.0),
+              topRight: Radius.circular(10.0),
+              bottomLeft: Radius.circular(10.0),
+              bottomRight: Radius.circular(10.0)
+            ),
+            // child: ColoredBox(
+              // color: Color(0xff534343),
+              child: Image(
+                image: AssetImage(image),
+                // width: 186,
+              ),
+            // ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       title,
+                //       style: const TextStyle(
+                //         fontWeight: FontWeight.bold,
+                //         fontSize: 16,
+                //         color: Color.fromRGBO(74, 74, 74, 1)),
+                //     ),
+                //     IconButton(
+                //       onPressed: () {},
+                //       icon: const Icon(
+                //         Icons.more_vert,
+                //         // color: Colors.teal,
+                //       )
+                //     ),
+                //   ],
+                // ),
+                ListTile(
+                  // contentPadding: EdgeInsets.all(0),
+                  title: Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Color.fromRGBO(74, 74, 74, 1)
+                    ),
+                  ),
+                  // trailing: const Icon(Icons.more_vert),
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

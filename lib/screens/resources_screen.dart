@@ -5,19 +5,34 @@ import '../components/cards.dart';
 class ResourcesScreen extends StatelessWidget {
   ResourcesScreen({super.key});
 
+  final List<String> titleList = [
+    'Conduct',
+    'Alcohol & Drug Policy',
+    'Anti-Hazing Policy',
+    'Crisis Mgmt Plan',
+    'Ethical Values',
+    'Good Samaritan Policy',
+    'Risk Management',
+    'Anti-Retaliation',
+    'Sexual Misconduct',
+    'Mental Health',
+    'Sexual Assault Prevention',
+    'Campux Title IX',
+  ];
+
   final List<String> imageList = [
-    "assets/img/square_240.png",
-    "assets/img/square_340.png",
-    "assets/img/square_240.png",
-    "assets/img/square_240.png",
-    "assets/img/square_340.png",
-    "assets/img/square_340.png",
-    "assets/img/square_240.png",
-    "assets/img/square_240.png",
-    "assets/img/square_340.png",
-    "assets/img/square_240.png",
-    "assets/img/square_240.png",
-    "assets/img/square_240.png",
+    'assets/img/square_240.png',
+    'assets/img/square_340.png',
+    'assets/img/square_240v2.png',
+    'assets/img/square_240.png',
+    'assets/img/square_340.png',
+    'assets/img/square_340.png',
+    'assets/img/square_240v2.png',
+    'assets/img/square_240.png',
+    'assets/img/square_340.png',
+    'assets/img/square_240.png',
+    'assets/img/square_240v2.png',
+    'assets/img/square_240.png',
   ];
 
   @override
@@ -37,7 +52,7 @@ class ResourcesScreen extends StatelessWidget {
           crossAxisSpacing: 8,
           itemCount: imageList.length,
           itemBuilder: (context, index) {
-            return MasonryGridTile(image: imageList[index]);
+            return MasonryGridTileV2(image: imageList[index], title: titleList[index]);
           },
         ),
       ),
