@@ -9,31 +9,18 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   uses-material-design: true
 
   assets:
-    - assets/img/nak_letters.png
-    - assets/img/nak_letters_bw.png
-    - assets/img/rush_nak.png
-    - assets/img/rush_nak_alt1.png
-    - assets/img/nak_emblem.png
-    - assets/img/image_wireframe1.png
-    - assets/img/image_wireframe2.png
-    - assets/img/chapter_letters.png
-    - assets/img/dues_letters.png
-    - assets/img/board_letters.png
-    - assets/img/board_headshot.png
-    - assets/img/ad_dues.png
-    - assets/img/ep_dues.png
-    - assets/img/cd_dues.png
-    - assets/img/chapters/
+    - assets/img/
     - assets/json/chapters.json
     - assets/json/dues.json
     - assets/json/board_members.json

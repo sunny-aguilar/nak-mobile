@@ -48,6 +48,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.local_library),
               title: Text("Resources", style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () => Navigator.pushNamed(context, "/resources"),
             ),
             ListTile(
               leading: const Icon(Icons.school),

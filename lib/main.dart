@@ -4,6 +4,7 @@ import 'package:nak_app/screens/chapters_screen.dart';
 import 'package:nak_app/screens/intro_screeen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/national_board.dart';
+import 'package:nak_app/screens/resources_screen.dart';
 
 void main() => runApp(const App());
 
@@ -18,6 +19,7 @@ class App extends StatelessWidget {
         "/chapters": (context) => const ChapterScreen(),
         "/dues": (context) => const DuesScreen(),
         "/board": (context) => const NationalBoard(),
+        "/resources": (context) => ResourcesScreen(),
       };
 
     return  MaterialApp(
