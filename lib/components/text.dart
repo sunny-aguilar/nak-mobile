@@ -1,5 +1,27 @@
 
-const Map<String, String> conductTxt = {
+const drugInfo = {
+  'title': 'Alcohol and Drugs Policy',
+  'overview': 'Overview',
+  'header': 'National Standing Policy adopted per NIC Policy 1/2020',
+  'summary': 'By September 1, 2019, NIC member organizations will evaluate their documents to determine if they are consistent with the following guidelines. As autonomous and self-governing entities, member organizations have the latitude to codify these guidelines in a way that is consistent with their organization\'s nomenclature, operations, programming, etc. Member organizations are responsible for enforcing their own policies; the NIC does not play a role in policy enforcement.',
+};
+const List<String> drugParagraphs =  [
+    'In any activity or event sponsored or endorsed by the chapter/organization, including those that occur on or off organizational/chapter premises:',
+    '1. The chapter/organization, members and guests must comply with all federal, state, provincial and local laws. No person under the legal drinking age may possess, consume, provide or be provided alcoholic beverages.',
+    '2. The chapter/organization, members and guests must follow the federal law regarding illegal drugs and controlled substances. No person may possess, use, provide, distribute, sell, and/or manufacture illegal drugs or other controlled substances while on chapter/organizational premises or at any activity or event sponsored or endorsed by the chapter/organization.',
+    '3. Alcoholic beverages must either be:',
+    '- Provided and sold on a per-drink basis by a licensed and insured third-party vendor (e.g., restaurant, bar, caterer, etc.); or',
+    '- Brought by individual members and guests through a bring your own beverage (“BYOB”) system. The presence of alcohol products above 15% alcohol by volume (“ABV”) is prohibited on any chapter/organization premises or at any event, except when served by a licensed and insured third party vendor.',
+    '4. Common sources of alcohol, including bulk quantities, which are not being served by a licensed and insured third party vendor, are prohibited (i.e., amounts of alcohol greater than what a reasonable person should consume over the duration of an event).',
+    '5. Alcoholic beverages must not be purchased with chapter/organizational funds or funds pooled by members or guests (e.g., admission fees, cover fees, collecting funds through digital apps, etc.).',
+    '6. A chapter/organization must not co-host or co-sponsor, or in any way participate in, an activity or event with another group or entity that purchases or provides alcohol.',
+    '7. A chapter/organization must not co-host or co-sponsor an event with a bar, event promoter, or alcohol distributor; however, a chapter/organization may rent a bar, restaurant, or other licensed and insured third-party vendor to host a chapter/organization event.',
+    '8. Attendance by non-members at any event where alcohol is present must be by invitation only, and the chapter/organization must utilize a guest list system. Attendance at events with alcohol is limited to a 3:1 maximum guest-to-member ratio, and must not exceed local fire or building code capacity of the chapter/organizational premises or host venue.',
+    '9. Any event or activity related to the new member joining process (e.g., recruitment, intake, rush, etc.) must be substance free. No alcohol or drugs may be present if the event or activity is related to new member activities, meetings, or initiation into an organization, including but not limited to “bid night,” “big/little” events or activities, “family” events or activities, and any ritual or ceremony.',
+    '10. The chapter/organization, members or guests must not permit, encourage, coerce, glorify or participate in any activities involving the rapid consumption of alcohol, such as drinking games.',
+  ];
+
+const conductTxt = {
   'title': 'Alcohol and Drugs Policy',
   'overview': 'Overview',
   'header': 'National Standing Policy adopted per NIC Policy 1/2020',

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../components/text_layouts.dart';
+import '../../components/text.dart';
+
 
 class AlcoholScreen extends StatelessWidget {
   const AlcoholScreen({super.key});
@@ -28,22 +30,22 @@ class AlcoholScreen extends StatelessWidget {
               ),
             ),
           ),
-          const ConductCardList(),
+          const AlcoholCardList(),
         ],
       ),
     );
   }
 }
 
-class ConductCardList extends StatelessWidget {
-  const ConductCardList({super.key});
+class AlcoholCardList extends StatelessWidget {
+  const AlcoholCardList({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index){
-          return ConductText();
+          return textLayout(context: context, txtInfo: drugInfo, paragraphs: drugParagraphs);
         },
         childCount: 1,
       ),

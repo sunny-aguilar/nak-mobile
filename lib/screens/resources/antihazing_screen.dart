@@ -22,7 +22,7 @@ class AntiHazingScreen extends StatelessWidget {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/conduct_letters.webp",
+                "assets/img/title_thumbnails/conduct_letters.webp",
                 fit: BoxFit.contain,
                 height: 100,
               ),
