@@ -21,6 +21,9 @@ flutter:
 
   assets:
     - assets/img/
+    - assets/img/chapters/
+    - assets/img/title_thumbnails/
+    - assets/img/resource_thumbnails/
     - assets/json/chapters.json
     - assets/json/dues.json
     - assets/json/board_members.json

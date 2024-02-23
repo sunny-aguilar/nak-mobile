@@ -40,7 +40,7 @@ class _NationalBoardState extends State<NationalBoard> {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/board_letters.png",
+                "assets/img/title_thumbnails/board_letters.png",
                 fit: BoxFit.contain,
                 height: 100,
               ),

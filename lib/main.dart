@@ -5,7 +5,8 @@ import 'package:nak_app/screens/intro_screeen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/national_board.dart';
 import 'package:nak_app/screens/resources_screen.dart';
-import 'package:nak_app/screens/resources/conduct_screen.dart';
+import 'package:nak_app/screens/resources/drug_screen.dart';
+import 'package:nak_app/screens/resources/antihazing_screen.dart';
 
 void main() => runApp(const App());
 
@@ -21,7 +22,7 @@ class App extends StatelessWidget {
         '/dues': (context) => const DuesScreen(),
         '/board': (context) => const NationalBoard(),
         '/resources': (context) => ResourcesScreen(),
-        '/conduct': (context) => const ConductScreen(),
+        '/drugs': (context) => const AlcoholScreen(),
         '/antihazing': (context) => const AntiHazingScreen(),
       };
 

@@ -6,7 +6,6 @@ class ResourcesScreen extends StatelessWidget {
   ResourcesScreen({super.key});
 
   final List<String> titleList = [
-    'Conduct',
     'Alcohol & Drug Policy',
     'Anti-Hazing Policy',
     'Crisis Mgmt Plan',
@@ -21,18 +20,31 @@ class ResourcesScreen extends StatelessWidget {
   ];
 
   final List<String> imageList = [
-    'assets/img/square_240.png',
-    'assets/img/square_340v4.png',
-    'assets/img/square_240v2.png',
-    'assets/img/square_240v3.png',
-    'assets/img/square_240v5.png',
-    'assets/img/square_240v8.png',
-    'assets/img/square_340v2.png',
-    'assets/img/square_340v3.png',
-    'assets/img/square_240v4.png',
-    'assets/img/square_240v6.png',
-    'assets/img/square_340.png',
-    'assets/img/square_240v7.png',
+    'assets/img/resource_thumbnails/drug_tn.png',
+    'assets/img/resource_thumbnails/antihazing_thumbnail.webp',
+    'assets/img/resource_thumbnails/crisismgmt_tn.png',
+    'assets/img/resource_thumbnails/ethics_tn.png',
+    'assets/img/resource_thumbnails/samaritan_tn.png',
+    'assets/img/resource_thumbnails/risk_tn.png',
+    'assets/img/resource_thumbnails/retaliation_tn.png',
+    'assets/img/resource_thumbnails/misconduct_tn.png',
+    'assets/img/resource_thumbnails/mentalhealth_tn.png',
+    'assets/img/resource_thumbnails/prevention_tn.png',
+    'assets/img/resource_thumbnails/titlex_tn.png',
+  ];
+
+  final List<String> resourceRoute = [
+    '/drugs',
+    '/antihazing',
+    '/antiretaliation',
+    '/crisismgmt',
+    '/ethics',
+    '/samaritan',
+    '/riskmgmt',
+    '/sexualmisconduct',
+    '/sexualmisconduct',
+    '/sexualmisconduct',
+    '/sexualmisconduct',
   ];
 
   @override
@@ -52,7 +64,7 @@ class ResourcesScreen extends StatelessWidget {
           crossAxisSpacing: 8,
           itemCount: imageList.length,
           itemBuilder: (context, index) {
-            return MasonryGridTileV2(image: imageList[index], title: titleList[index]);
+            return MasonryGridTileV2(image: imageList[index], title: titleList[index], route: resourceRoute[index]);
           },
         ),
       ),

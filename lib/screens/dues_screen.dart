@@ -40,7 +40,7 @@ class _DuesScreenState extends State<DuesScreen> {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/dues_letters.png",
+                "assets/img/title_thumbnails/dues_letters.png",
                 fit: BoxFit.contain,
                 height: 100,
               ),

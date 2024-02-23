@@ -42,7 +42,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/chapter_letters.png",
+                "assets/img/title_thumbnails/chapter_letters.png",
                 fit: BoxFit.contain,
                 height: 100,
               ),

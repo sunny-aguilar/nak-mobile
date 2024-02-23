@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../components/text_layouts.dart';
 
-class ConductScreen extends StatelessWidget {
-  const ConductScreen({super.key});
+class AlcoholScreen extends StatelessWidget {
+  const AlcoholScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class ConductScreen extends StatelessWidget {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/conduct_letters.webp",
+                "assets/img/title_thumbnails/drugs_letters.webp",
                 fit: BoxFit.contain,
                 height: 100,
               ),

@@ -920,12 +920,13 @@ Card duesCard({required BuildContext context, required int index, required List 
 class MasonryGridTileV2 extends StatelessWidget {
   final String image;
   final String title;
-  const MasonryGridTileV2({super.key, required this.image, required this.title});
+  final String route;
+  const MasonryGridTileV2({super.key, required this.image, required this.title, required this.route});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, '/conduct'),
+      onTap: () => Navigator.pushNamed(context, route),
       child: Card(
         // decoration: BoxDecoration(
         //   borderRadius: BorderRadius.circular(8.0),
