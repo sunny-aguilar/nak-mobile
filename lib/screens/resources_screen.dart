@@ -38,7 +38,7 @@ class ResourcesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int crossAxisCounter = MediaQuery.of(context).size.width ~/ 180;
-    print('CrossAxis Size: $crossAxisCounter');
+    // print('CrossAxis Size: $crossAxisCounter');
     return Scaffold(
       appBar: AppBar(
         title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),

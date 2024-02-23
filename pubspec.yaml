@@ -39,3 +39,12 @@ flutter:
     - family: College
       fonts:
         - asset: assets/fonts/college.ttf
+    - family: Clarendon
+      fonts:
+        - asset: assets/fonts/Clarendon LT Regular.ttf
+    - family: LuloClean
+      fonts:
+        - asset: assets/fonts/Lulo Clean One Bold.otf
+    - family: Georgia
+      fonts:
+        - asset: assets/fonts/Georgia.ttf

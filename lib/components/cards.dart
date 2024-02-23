@@ -925,7 +925,7 @@ class MasonryGridTileV2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () { /* ... */ },
+      onTap: () => Navigator.pushNamed(context, '/conduct'),
       child: Card(
         // decoration: BoxDecoration(
         //   borderRadius: BorderRadius.circular(8.0),
@@ -954,7 +954,7 @@ class MasonryGridTileV2 extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
+                  ListTile( // MIGHT BE BEST TO USE AN EXPANDED WIDGET TO HOLD THE TEXT
                     // contentPadding: EdgeInsets.all(0),
                     title: Text(
                       title,

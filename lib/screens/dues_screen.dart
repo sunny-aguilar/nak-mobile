@@ -66,7 +66,7 @@ class DuesCardList extends StatelessWidget {
           return duesCard(context: context, index: index, dues: dues);
         },
         childCount: items,
-      )
+      ),
     );
   }
 }
