@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Padding textLayout({required BuildContext context, required txtInfo, required List paragraphs}) {
+Padding textLayout({required BuildContext context, required Map txtInfo, required List paragraphs}) {
   const double spacer = 10.0;
   String title = txtInfo['overview'];
   String header = txtInfo['header'];
@@ -88,12 +88,43 @@ Padding textLayout({required BuildContext context, required txtInfo, required Li
     );
   }
 
+  // append final text
+  rows += [
+    const Divider(
+      color: Color.fromARGB(255, 174, 174, 174),
+    ),
+    const SizedBox(
+      height: spacer,
+    ),
+    const Row(
+      children: <Widget>[
+        Expanded(
+          child: Text(
+            "fin",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontFamily: 'Clarendon',
+              fontSize: 14,
+              color: Color.fromARGB(255, 49, 49, 49),
+            ),
+          ),
+        )
+      ],
+    )
+  ];
+
+  // return completed page text
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Column(
       children: rows,
     ),
   );
+
+
+
+
+
 
   // return Padding(
   //   padding: const EdgeInsets.all(8.0),
