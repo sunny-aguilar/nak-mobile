@@ -22,17 +22,17 @@ class ResourcesScreen extends StatelessWidget {
 
   final List<String> imageList = [
     'assets/img/square_240.png',
-    'assets/img/square_340.png',
+    'assets/img/square_340v4.png',
     'assets/img/square_240v2.png',
-    'assets/img/square_240.png',
+    'assets/img/square_240v3.png',
+    'assets/img/square_240v5.png',
+    'assets/img/square_240v8.png',
+    'assets/img/square_340v2.png',
+    'assets/img/square_340v3.png',
+    'assets/img/square_240v4.png',
+    'assets/img/square_240v6.png',
     'assets/img/square_340.png',
-    'assets/img/square_340.png',
-    'assets/img/square_240v2.png',
-    'assets/img/square_240.png',
-    'assets/img/square_340.png',
-    'assets/img/square_240.png',
-    'assets/img/square_240v2.png',
-    'assets/img/square_240.png',
+    'assets/img/square_240v7.png',
   ];
 
   @override

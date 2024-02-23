@@ -924,69 +924,52 @@ class MasonryGridTileV2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      // decoration: BoxDecoration(
-      //   borderRadius: BorderRadius.circular(8.0),
-      //   // color: const Color(0xff534343), // adds background color to entire card
-      // ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-              bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.circular(10.0)
-            ),
-            // child: ColoredBox(
-              // color: Color(0xff534343),
-              child: Image(
-                image: AssetImage(image),
-                // width: 186,
+    return GestureDetector(
+      onTap: () { /* ... */ },
+      child: Card(
+        // decoration: BoxDecoration(
+        //   borderRadius: BorderRadius.circular(8.0),
+        //   // color: const Color(0xff534343), // adds background color to entire card
+        // ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(10.0),
+                topRight: Radius.circular(10.0),
+                bottomLeft: Radius.circular(10.0),
+                bottomRight: Radius.circular(10.0)
               ),
-            // ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text(
-                //       title,
-                //       style: const TextStyle(
-                //         fontWeight: FontWeight.bold,
-                //         fontSize: 16,
-                //         color: Color.fromRGBO(74, 74, 74, 1)),
-                //     ),
-                //     IconButton(
-                //       onPressed: () {},
-                //       icon: const Icon(
-                //         Icons.more_vert,
-                //         // color: Colors.teal,
-                //       )
-                //     ),
-                //   ],
-                // ),
-                ListTile(
-                  // contentPadding: EdgeInsets.all(0),
-                  title: Text(
-                    title,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                      color: Color.fromRGBO(74, 74, 74, 1)
+              // child: ColoredBox(
+                // color: Color(0xff534343),
+                child: Image(
+                  image: AssetImage(image),
+                  // width: 186,
+                ),
+              // ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListTile(
+                    // contentPadding: EdgeInsets.all(0),
+                    title: Text(
+                      title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Color.fromRGBO(74, 74, 74, 1)
+                      ),
                     ),
                   ),
-                  // trailing: const Icon(Icons.more_vert),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
