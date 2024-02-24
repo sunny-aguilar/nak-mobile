@@ -14,9 +14,9 @@ class _ChapterScreensState extends State<ChapterScreen> {
   List _chapters = [];
   Future<void> readJson() async{
     // can JSON file be loaded from an online source?
-    final String response = await rootBundle.loadString("assets/json/chapters.json");
+    final String response = await rootBundle.loadString('assets/json/chapters.json');
     final data = await json.decode(response);
-    setState( () => _chapters = data["chapters"] );
+    setState( () => _chapters = data['chapters'] );
   }
   @override
   void initState() {
@@ -30,7 +30,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
+            title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
             backgroundColor: const Color.fromARGB(255, 254, 58, 67),
             pinned: true,
             floating: false,
@@ -42,7 +42,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/title_thumbnails/chapter_letters.png",
+                'assets/img/title_thumbnails/chapter_letters.png',
                 fit: BoxFit.contain,
                 height: 100,
               ),

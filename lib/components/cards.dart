@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -849,129 +848,153 @@ Card duesCard({required BuildContext context, required int index, required List 
   );
  }
 
- class MasonryGridTile extends StatelessWidget {
-  final String image;
-  final String title;
-  const MasonryGridTile({super.key, required this.image, required this.title});
+//  class MasonryGridTile extends StatelessWidget {
+//   final String image;
+//   final String title;
+//   const MasonryGridTile({super.key, required this.image, required this.title});
 
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.0),
-        // color: const Color(0xff534343), // adds background color to entire card
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10.0),
-              topRight: Radius.circular(10.0),
-              bottomLeft: Radius.circular(10.0),
-              bottomRight: Radius.circular(10.0)
-            ),
-            // child: ColoredBox(
-              // color: Color(0xff534343),
-              child: Image(
-                image: AssetImage(image),
-                // width: 186,
-              ),
-            // ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 17,
-                        color: Color.fromRGBO(74, 74, 74, 1)),
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.download,
-                        color: Colors.teal,
-                      )
-                    )
-                  ],
-                ),
-                const Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                  style: TextStyle(
-                      fontSize: 12, color: Color.fromRGBO(133, 133, 133, 1)),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         borderRadius: BorderRadius.circular(8.0),
+//         // color: const Color(0xff534343), // adds background color to entire card
+//       ),
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: [
+//           ClipRRect(
+//             borderRadius: const BorderRadius.only(
+//               topLeft: Radius.circular(10.0),
+//               topRight: Radius.circular(10.0),
+//               bottomLeft: Radius.circular(10.0),
+//               bottomRight: Radius.circular(10.0)
+//             ),
+//             // child: ColoredBox(
+//               // color: Color(0xff534343),
+//               child: Image(
+//                 image: AssetImage(image),
+//                 // width: 186,
+//               ),
+//             // ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 Row(
+//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                   children: [
+//                     Text(
+//                       title,
+//                       style: const TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 17,
+//                         color: Color.fromRGBO(74, 74, 74, 1)),
+//                     ),
+//                     IconButton(
+//                       onPressed: () {},
+//                       icon: const Icon(
+//                         Icons.download,
+//                         color: Colors.teal,
+//                       )
+//                     )
+//                   ],
+//                 ),
+//                 const Text(
+//                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+//                   style: TextStyle(
+//                       fontSize: 12, color: Color.fromRGBO(133, 133, 133, 1)),
+//                 )
+//               ],
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
 
-class MasonryGridTileV2 extends StatelessWidget {
-  final String image;
-  final String title;
-  final String route;
-  const MasonryGridTileV2({super.key, required this.image, required this.title, required this.route});
+// class ScreenArguments {
+//   final String title;
+//   final String lettersImg;
+//   final Map policyTxt;
+//   ScreenArguments({required this.title, required this.lettersImg, required this.policyTxt});
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, route),
-      child: Card(
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(8.0),
-        //   // color: const Color(0xff534343), // adds background color to entire card
-        // ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-                bottomLeft: Radius.circular(10.0),
-                bottomRight: Radius.circular(10.0)
-              ),
-              // child: ColoredBox(
-                // color: Color(0xff534343),
-                child: Image(
-                  image: AssetImage(image),
-                  // width: 186,
-                ),
-              // ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  ListTile( // MIGHT BE BEST TO USE AN EXPANDED WIDGET TO HOLD THE TEXT
-                    // contentPadding: EdgeInsets.all(0),
-                    title: Text(
-                      title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromRGBO(74, 74, 74, 1)
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
+// class MasonryGridTileV2 extends StatelessWidget {
+//   final String image;
+//   final String title;
+//   final String route;
+//   final String lettersImg;
+//   final Map policyTxt;
+//   const MasonryGridTileV2({
+//     super.key,
+//     required this.image,
+//     required this.title,
+//     required this.route,
+//     required this.lettersImg,
+//     required this.policyTxt
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return GestureDetector(
+//       onTap: () => Navigator.pushNamed(
+//         context,
+//         route,
+//         arguments: ScreenArguments(
+//           title: title,
+//           lettersImg: lettersImg,
+//           policyTxt: policyTxt,
+//         ),
+//       ),
+//       child: Card(
+//         // decoration: BoxDecoration(
+//         //   borderRadius: BorderRadius.circular(8.0),
+//         //   // color: const Color(0xff534343), // adds background color to entire card
+//         // ),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.stretch,
+//           children: [
+//             ClipRRect(
+//               borderRadius: const BorderRadius.only(
+//                 topLeft: Radius.circular(10.0),
+//                 topRight: Radius.circular(10.0),
+//                 bottomLeft: Radius.circular(10.0),
+//                 bottomRight: Radius.circular(10.0)
+//               ),
+//               // child: ColoredBox(
+//                 // color: Color(0xff534343),
+//                 child: Image(
+//                   image: AssetImage(image),
+//                   // width: 186,
+//                 ),
+//               // ),
+//             ),
+//             Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+//               child: Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   ListTile( // MIGHT BE BEST TO USE AN EXPANDED WIDGET TO HOLD THE TEXT
+//                     // contentPadding: EdgeInsets.all(0),
+//                     title: Text(
+//                       title,
+//                       style: const TextStyle(
+//                         fontWeight: FontWeight.bold,
+//                         fontSize: 20,
+//                         color: Color.fromRGBO(74, 74, 74, 1)
+//                       ),
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             )
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

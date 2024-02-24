@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import '../../components/text_layouts.dart';
-import '../../components/text.dart';
+import 'package:nak_app/components/resource_cards.dart';
+import '../components/text_layouts.dart';
 
-
-class AlcoholScreen extends StatelessWidget {
-  const AlcoholScreen({super.key});
+class ResourceScreen extends StatelessWidget {
+  const ResourceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final resource = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
+    final String lettersImg = resource.lettersImg;
+    final Map policyTxt = resource.policyTxt;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
+            title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
             backgroundColor: const Color.fromARGB(255, 254, 58, 67),
             pinned: true,
             floating: false,
@@ -24,28 +26,28 @@ class AlcoholScreen extends StatelessWidget {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/title_thumbnails/drugs_letters.webp",
+                lettersImg,
                 fit: BoxFit.contain,
                 height: 100,
               ),
             ),
           ),
-          const AlcoholCardList(),
+          ResourceCardList(policyTxt: policyTxt),
         ],
       ),
     );
   }
 }
 
-class AlcoholCardList extends StatelessWidget {
-  const AlcoholCardList({super.key});
-
+class ResourceCardList extends StatelessWidget {
+  final Map policyTxt;
+  const ResourceCardList({super.key, required this.policyTxt});
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index){
-          return textLayout(context: context, txtInfo: drugInfo, paragraphs: drugParagraphs);
+          return textLayout(context: context, policyTxt: policyTxt);
         },
         childCount: 1,
       ),

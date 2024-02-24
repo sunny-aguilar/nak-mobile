@@ -5,10 +5,14 @@ import 'package:nak_app/screens/intro_screeen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/national_board.dart';
 import 'package:nak_app/screens/resources_screen.dart';
-import 'package:nak_app/screens/resources/drug_screen.dart';
-import 'package:nak_app/screens/resources/antihazing_screen.dart';
+import 'package:nak_app/screens/resource_screen.dart';
 
 void main() => runApp(const App());
+
+class ScreenArguments {
+  final String title;
+  ScreenArguments(this.title);
+}
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -22,8 +26,17 @@ class App extends StatelessWidget {
         '/dues': (context) => const DuesScreen(),
         '/board': (context) => const NationalBoard(),
         '/resources': (context) => ResourcesScreen(),
-        '/drugs': (context) => const AlcoholScreen(),
-        '/antihazing': (context) => const AntiHazingScreen(),
+        '/drugs': (context) => const ResourceScreen(),
+        '/antihazing': (context) => const ResourceScreen(),
+        '/antiretaliation': (context) => const ResourceScreen(),
+        '/crisismgmt': (context) => const ResourceScreen(),
+        '/ethics': (context) => const ResourceScreen(),
+        '/samaritan': (context) => const ResourceScreen(),
+        '/riskmgmt': (context) => const ResourceScreen(),
+        '/sexualmisconduct': (context) => const ResourceScreen(),
+        '/mentalhealth': (context) => const ResourceScreen(),
+        '/prevention': (context) => const ResourceScreen(),
+        '/titleix': (context) => const ResourceScreen(),
       };
 
     return  MaterialApp(
@@ -53,7 +66,7 @@ class App extends StatelessWidget {
           ),
           displayMedium: const TextStyle(
             fontSize: 32,
-            fontFamily: "College",
+            fontFamily: 'College',
           ),
           displaySmall: TextStyle(
             color: Colors.white.withAlpha(255),
@@ -67,11 +80,11 @@ class App extends StatelessWidget {
           ),
           titleSmall: const TextStyle(
             fontSize: 14,
-            fontFamily: "College",
+            fontFamily: 'College',
           ),
           titleLarge: const TextStyle(
             fontSize: 20,
-            fontFamily: "College",
+            fontFamily: 'College',
           ),
           bodySmall: const TextStyle(
             fontSize: 12,

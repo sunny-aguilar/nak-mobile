@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
-Padding textLayout({required BuildContext context, required Map txtInfo, required List paragraphs}) {
+Padding textLayout({required BuildContext context, required Map policyTxt}) {
   const double spacer = 10.0;
-  String title = txtInfo['overview'];
-  String header = txtInfo['header'];
-  String summary = txtInfo['summary'];
+  String policyTitle = policyTxt['overview'];
+  String policyHeader = policyTxt['header'];
+  String summary = policyTxt['summary'];
+  List paragraphList = policyTxt['paragraphs'];
 
   // add text to row and append to Column widget
   List<Widget> rows = [];
@@ -14,7 +15,7 @@ Padding textLayout({required BuildContext context, required Map txtInfo, require
     Row(
       children: <Widget>[
         Text(
-          title,
+          policyTitle,
           style: const TextStyle(
             fontFamily: 'Clarendon',
             fontSize: 36,
@@ -30,7 +31,7 @@ Padding textLayout({required BuildContext context, required Map txtInfo, require
       children: <Widget>[
         Expanded(
           child: Text(
-            header,
+            policyHeader,
             style: const TextStyle(
               fontFamily: 'LuloClean',
               fontSize: 10,
@@ -63,7 +64,7 @@ Padding textLayout({required BuildContext context, required Map txtInfo, require
   ];
 
   // add all other paragraphs
-  for (final p in paragraphs) {
+  for (final p in paragraphList) {
     // print('P: $p');
     rows.add(
       Row(
