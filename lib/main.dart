@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nak_app/splash_screen.dart';
 import 'package:nak_app/screens/chapters_screen.dart';
 import 'package:nak_app/screens/intro_screeen.dart';
@@ -7,7 +8,11 @@ import 'package:nak_app/screens/national_board.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
 
-void main() => runApp(const App());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+    .then((value) => runApp(const App()));
+}
 
 class ScreenArguments {
   final String title;
