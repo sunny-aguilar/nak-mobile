@@ -7,6 +7,7 @@ import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/national_board.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
+import 'package:nak_app/screens/contact_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,6 +38,7 @@ class App extends StatelessWidget {
         '/mentalhealth': (context) => const ResourceScreen(),
         '/prevention': (context) => const ResourceScreen(),
         '/titleix': (context) => const ResourceScreen(),
+        '/contact': (context) => const ContactScreen(),
       };
 
     return  MaterialApp(
