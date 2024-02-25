@@ -14,11 +14,6 @@ void main() {
     .then((value) => runApp(const App()));
 }
 
-class ScreenArguments {
-  final String title;
-  ScreenArguments(this.title);
-}
-
 class App extends StatelessWidget {
   const App({super.key});
 
