@@ -61,6 +61,7 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.email),
               title: Text('Contact Us', style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () => Navigator.pushNamed(context, '/contact'),
             )
           ],
         ),
