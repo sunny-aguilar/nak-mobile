@@ -75,6 +75,7 @@ class _ContactFormState extends State<ContactScreen> {
                       return null;
                     },
                   ),
+                  const SizedBox(height: 18,),
                 ],
               ),
             ),
