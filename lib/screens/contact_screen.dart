@@ -9,6 +9,8 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactFormState extends State<ContactScreen> {
   final _formKey = GlobalKey<FormState>();
+  String? _selectedValue;
+  List<String> listOfValue = ['1', '2', '3', '4', '5'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,21 +63,47 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      labelText: 'Nature of Incident*',
-                      helperText: '*required',
-                      border: OutlineInputBorder(),
+                  DropdownButtonFormField(
+                    hint: const Text(
+                      'Select an Item',
+                      style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 16,
+                            fontFamily: 'Roboto'
+                          ),
                     ),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please select an incident type.';
-                      }
-                      return null;
-                    },
+                    onChanged: (val) {},
+                    decoration: const InputDecoration(
+                      labelText: 'Nature of Incident',
+                      hintText: '*required',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4.0)
+                        ),
+                      ),
+                    ),
+                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    items: <String>[
+                      'Chapter conduct matter',
+                      'Hazing matter',
+                      'Member conduct matter',
+                      'Member well-being concern',
+                      'Title IX',
+                      'Other concern',
+                    ]
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 14,
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
-                  const SizedBox(height: 18,),
                 ],
               ),
             ),
@@ -85,6 +113,3 @@ class _ContactFormState extends State<ContactScreen> {
     );
   }
 }
-
-String? selectedValue;
-List<String> listOfValue = ['1', '2', '3'];
