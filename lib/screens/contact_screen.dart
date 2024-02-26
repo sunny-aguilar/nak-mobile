@@ -122,7 +122,7 @@ class _ContactFormState extends State<ContactScreen> {
                     onChanged: (val) {},
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
-                      labelText: 'Nature of Incident',
+                      labelText: 'Urgency of Incident',
                       hintText: '*required',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
@@ -132,12 +132,8 @@ class _ContactFormState extends State<ContactScreen> {
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
-                      'Chapter conduct matter',
-                      'Hazing matter',
-                      'Member conduct matter',
-                      'Member well-being concern',
-                      'Title IX',
-                      'Other concern',
+                      'Urgen matter',
+                      'Normal concern',
                     ]
                     .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
@@ -154,6 +150,23 @@ class _ContactFormState extends State<ContactScreen> {
                       );
                     }).toList(),
                   ),
+                  const SizedBox(height: 18,),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_on_outlined),
+                      labelText: 'Location of Incident*',
+                      helperText: '*required',
+                      border: OutlineInputBorder(),
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a location';
+                      }
+                      return null;
+                    },
+                  ),
+                  const SizedBox(height: 18,),
+                  
                 ],
               ),
             ),
