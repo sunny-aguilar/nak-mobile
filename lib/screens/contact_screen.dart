@@ -69,11 +69,13 @@ class _ContactFormState extends State<ContactScreen> {
                       style: TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
                             fontSize: 16,
-                            fontFamily: 'Roboto'
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
                           ),
                     ),
                     onChanged: (val) {},
                     decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist),
                       labelText: 'Nature of Incident',
                       hintText: '*required',
                       border: OutlineInputBorder(
@@ -98,7 +100,55 @@ class _ContactFormState extends State<ContactScreen> {
                           value,
                           style: const TextStyle(
                             color: Color.fromARGB(255, 0, 0, 0),
-                            fontSize: 14,
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  const SizedBox(height: 18,),
+                  DropdownButtonFormField(
+                    hint: const Text(
+                      'Select an Item',
+                      style: TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
+                          ),
+                    ),
+                    onChanged: (val) {},
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.checklist),
+                      labelText: 'Nature of Incident',
+                      hintText: '*required',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(4.0)
+                        ),
+                      ),
+                    ),
+                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    items: <String>[
+                      'Chapter conduct matter',
+                      'Hazing matter',
+                      'Member conduct matter',
+                      'Member well-being concern',
+                      'Title IX',
+                      'Other concern',
+                    ]
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(
+                          value,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 0, 0, 0),
+                            fontSize: 16,
+                            fontFamily: 'Roboto',
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
                       );
