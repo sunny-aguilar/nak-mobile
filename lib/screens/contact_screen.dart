@@ -9,8 +9,8 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactFormState extends State<ContactScreen> {
   final _formKey = GlobalKey<FormState>();
-  String? _selectedValue;
-  List<String> listOfValue = ['1', '2', '3', '4', '5'];
+  // DATETIME CONTROLLER
+  TextEditingController dateCtl = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +77,7 @@ class _ContactFormState extends State<ContactScreen> {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Nature of Incident',
-                      hintText: '*required',
+                      helperText: '*required',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(4.0)
@@ -123,7 +123,7 @@ class _ContactFormState extends State<ContactScreen> {
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Urgency of Incident',
-                      hintText: '*required',
+                      helperText: '*required',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(4.0)
@@ -166,7 +166,28 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
-                  
+                  TextFormField(
+                    controller: dateCtl,
+                    decoration: const InputDecoration(
+                      labelText: 'Date of Incident',
+                      hintText: '*required',
+                      border: OutlineInputBorder(),
+                    ),
+                    onTap: () async {
+                      DateTime? date = DateTime.now();
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      date = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1988),
+                        lastDate: DateTime(2088),
+                      );
+                      date!.toIso8601String();
+                      String convertedDate = '${date.month.toString().padLeft(2,'0')}-${date.day.toString().padLeft(2,'0')}-${date.year.toString()}';
+
+                      dateCtl.text = convertedDate;
+                    },
+                  ),
                 ],
               ),
             ),
