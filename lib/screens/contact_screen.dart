@@ -8,21 +8,31 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactFormState extends State<ContactScreen> {
   final _formKey = GlobalKey<FormState>();
-  // CONTROLLERS
-  TextEditingController nameCtl = TextEditingController();
-  TextEditingController emailCtl = TextEditingController();
-  TextEditingController natureCtl = TextEditingController();
-  TextEditingController locationCtl = TextEditingController();
-  TextEditingController dateCtl = TextEditingController();
-  TextEditingController descCtl = TextEditingController();
-  TextEditingController uniCtl = TextEditingController();
-  TextEditingController policeCtl = TextEditingController();
-  TextEditingController followUpCtl = TextEditingController();
+  // Controllers
+  final TextEditingController _nameCtl = TextEditingController();
+  final TextEditingController _emailCtl = TextEditingController();
+  final TextEditingController _natureCtl = TextEditingController();
+  final TextEditingController _urgencyCtl = TextEditingController();
+  final TextEditingController _locationCtl = TextEditingController();
+  final TextEditingController _dateCtl = TextEditingController();
+  final TextEditingController _descCtl = TextEditingController();
+  final TextEditingController _uniCtl = TextEditingController();
+  final TextEditingController _policeCtl = TextEditingController();
+  final TextEditingController _followUpCtl = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed
-    dateCtl.dispose();
+    _nameCtl.dispose();
+    _emailCtl.dispose();
+    _natureCtl.dispose();
+    _urgencyCtl.dispose();
+    _locationCtl.dispose();
+    _dateCtl.dispose();
+    _descCtl.dispose();
+    _uniCtl.dispose();
+    _policeCtl.dispose();
+    _followUpCtl.dispose();
     super.dispose();
   }
 
@@ -66,7 +76,7 @@ class _ContactFormState extends State<ContactScreen> {
                     // onChanged: (text) {
                     //   print('Text Length: ${text.characters.length}');
                     // },
-                    controller: nameCtl,
+                    controller: _nameCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your name';
@@ -82,7 +92,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
-                    controller: emailCtl,
+                    controller: _emailCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
@@ -102,7 +112,7 @@ class _ContactFormState extends State<ContactScreen> {
                           ),
                     ),
                     onChanged: (val) {
-                      natureCtl.text = val!;
+                      _natureCtl.text = val!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -156,7 +166,7 @@ class _ContactFormState extends State<ContactScreen> {
                           ),
                     ),
                     onChanged: (val) {
-                      locationCtl.text = val!;
+                      _urgencyCtl.text = val!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -202,7 +212,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
-                    controller: locationCtl,
+                    controller: _locationCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a location';
@@ -218,7 +228,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
-                    controller: dateCtl,
+                    controller: _dateCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please select a date';
@@ -253,7 +263,7 @@ class _ContactFormState extends State<ContactScreen> {
                                              '${date.day.toString().padLeft(2,'0')}-'
                                              '${date.year.toString()}';
 
-                      dateCtl.text = convertedDate;
+                      _uniCtl.text = convertedDate;
                     }, // onTap
                   ),
                   const SizedBox(height: 18,),
@@ -265,7 +275,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
-                    controller: descCtl,
+                    controller: _descCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a description';
@@ -285,7 +295,7 @@ class _ContactFormState extends State<ContactScreen> {
                           ),
                     ),
                     onChanged: (val) {
-                      uniCtl.text = val!;
+                      _uniCtl.text = val!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -335,7 +345,7 @@ class _ContactFormState extends State<ContactScreen> {
                           ),
                     ),
                     onChanged: (val) {
-                      policeCtl.text = val!;
+                      _policeCtl.text = val!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -386,7 +396,7 @@ class _ContactFormState extends State<ContactScreen> {
                           ),
                     ),
                     onChanged: (val) {
-                      followUpCtl.text = val!;
+                      _followUpCtl.text = val!;
                     },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -449,7 +459,7 @@ class _ContactFormState extends State<ContactScreen> {
                         builder: (context) {
                           return AlertDialog(
                             content: Text(
-                              '${nameCtl.text}-${emailCtl.text}-${natureCtl.text}-${locationCtl.text}-${dateCtl.text}-${descCtl.text}-${uniCtl.text}-${policeCtl.text}-${followUpCtl.text}'
+                              '${_nameCtl.text}-${_emailCtl.text}-${_natureCtl.text}-${_urgencyCtl.text}-${_locationCtl.text}-${_dateCtl.text}-${_descCtl.text}-${_uniCtl.text}-${_policeCtl.text}-${_followUpCtl.text}'
                             ),
                           );
                         }
