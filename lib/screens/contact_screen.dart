@@ -8,8 +8,24 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactFormState extends State<ContactScreen> {
   final _formKey = GlobalKey<FormState>();
-  // DATETIME CONTROLLER
+  // CONTROLLERS
+  TextEditingController nameCtl = TextEditingController();
+  TextEditingController emailCtl = TextEditingController();
+  TextEditingController natureCtl = TextEditingController();
+  TextEditingController locationCtl = TextEditingController();
   TextEditingController dateCtl = TextEditingController();
+  TextEditingController descCtl = TextEditingController();
+  TextEditingController uniCtl = TextEditingController();
+  TextEditingController policeCtl = TextEditingController();
+  TextEditingController followUpCtl = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed
+    dateCtl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,15 +63,16 @@ class _ContactFormState extends State<ContactScreen> {
                       // contentPadding: EdgeInsets.all(20),
                       border: OutlineInputBorder(),
                     ),
+                    // onChanged: (text) {
+                    //   print('Text Length: ${text.characters.length}');
+                    // },
+                    controller: nameCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your name';
                       }
                       return null;
                     },
-                    // onChanged: (text) {
-                    //   print('Text Length: ${text.characters.length}');
-                    // },
                   ),
                   const SizedBox(height: 18,),
                   TextFormField(
@@ -65,9 +82,10 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
+                    controller: emailCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your name';
+                        return 'Please enter an email';
                       }
                       return null;
                     },
@@ -83,7 +101,15 @@ class _ContactFormState extends State<ContactScreen> {
                             fontWeight: FontWeight.normal,
                           ),
                     ),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      natureCtl.text = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a response';
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Nature of Incident',
@@ -129,7 +155,15 @@ class _ContactFormState extends State<ContactScreen> {
                             fontWeight: FontWeight.normal,
                           ),
                     ),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      locationCtl.text = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a response';
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Urgency of Incident',
@@ -142,7 +176,7 @@ class _ContactFormState extends State<ContactScreen> {
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
-                      'Urgen matter',
+                      'Urgent matter',
                       'Normal concern',
                     ]
                     .map<DropdownMenuItem<String>>((String value) {
@@ -168,6 +202,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
+                    controller: locationCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a location';
@@ -177,13 +212,19 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   TextFormField(
-                    controller: dateCtl,
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.event_outlined),
                       labelText: 'Date of Incident',
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
+                    controller: dateCtl,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a date';
+                      }
+                      return null;
+                    },
                     onTap: () async {
                       DateTime? date = DateTime.now();
                       FocusScope.of(context).requestFocus(FocusNode());
@@ -224,6 +265,7 @@ class _ContactFormState extends State<ContactScreen> {
                       helperText: '*required',
                       border: OutlineInputBorder(),
                     ),
+                    controller: descCtl,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a description';
@@ -242,7 +284,15 @@ class _ContactFormState extends State<ContactScreen> {
                             fontWeight: FontWeight.normal,
                           ),
                     ),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      uniCtl.text = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a response';
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Was a report filed with the University?',
@@ -284,7 +334,15 @@ class _ContactFormState extends State<ContactScreen> {
                             fontWeight: FontWeight.normal,
                           ),
                     ),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      policeCtl.text = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a response';
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Did police respond?',
@@ -327,7 +385,15 @@ class _ContactFormState extends State<ContactScreen> {
                             fontWeight: FontWeight.normal,
                           ),
                     ),
-                    onChanged: (val) {},
+                    onChanged: (val) {
+                      followUpCtl.text = val!;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please select a response';
+                      }
+                      return null;
+                    },
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Would you like to receive a follow-up?',
@@ -379,6 +445,15 @@ class _ContactFormState extends State<ContactScreen> {
                       ),
                     ),
                     onPressed: () {
+                      showDialog(context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            content: Text(
+                              '${nameCtl.text}-${emailCtl.text}-${natureCtl.text}-${locationCtl.text}-${dateCtl.text}-${descCtl.text}-${uniCtl.text}-${policeCtl.text}-${followUpCtl.text}'
+                            ),
+                          );
+                        }
+                      );
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Submitting report')),
