@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
-
   @override
   State<ContactScreen> createState() => _ContactFormState();
 }
@@ -362,7 +361,7 @@ class _ContactFormState extends State<ContactScreen> {
                   const SizedBox(height: 18,),
                   TextButton(
                     style: ButtonStyle(
-                      minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 50),),
+                      minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 60),),
                       foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
                       backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 0, 0)),
                       overlayColor: MaterialStateProperty.resolveWith<Color?>(
@@ -379,21 +378,16 @@ class _ContactFormState extends State<ContactScreen> {
                         ),
                       ),
                     ),
-                    onPressed: () { },
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Submitting report')),
+                        );
+                      }
+                    },
                     child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
                   ),
-                  const SizedBox(height: 18,),
-                  // OutlinedButton(
-                  //   style: OutlinedButton.styleFrom(
-                  //     minimumSize: const Size(400, 50),
-                  //     foregroundColor: const Color.fromARGB(255, 0, 0, 0),
-                  //     shape: RoundedRectangleBorder(
-                  //       borderRadius: BorderRadius.circular(4.0)
-                  //     ),
-                  //   ),
-                  //   child: const Text('Submit', style: TextStyle(fontSize: 20.0),),
-                  //   onPressed: (){},
-                  // ),
+                  const SizedBox(height: 58,),
                 ],
               ),
             ),
