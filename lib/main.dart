@@ -58,7 +58,7 @@ class App extends StatelessWidget {
         // ),
         // primarySwatch: Colors.red,
         colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.grey,
+          primarySwatch: Colors.grey, // change to another color? making text light grey
           cardColor: const Color.fromARGB(255, 243, 243, 243)
         ),
         textTheme: TextTheme(
