@@ -366,7 +366,7 @@ class _ContactFormState extends State<ContactScreen> {
                       return null;
                     },
                     decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.checklist),
+                      prefixIcon: Icon(Icons.local_police_outlined),
                       labelText: 'Did police respond?',
                       helperText: '*required',
                       border: OutlineInputBorder(
@@ -417,7 +417,7 @@ class _ContactFormState extends State<ContactScreen> {
                       return null;
                     },
                     decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.checklist),
+                      prefixIcon: Icon(Icons.local_phone_outlined),
                       labelText: 'Would you like to receive a follow-up?',
                       helperText: '*required',
                       border: OutlineInputBorder(
