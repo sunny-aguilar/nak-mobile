@@ -4,7 +4,6 @@ import 'package:nak_app/screens/home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -64,7 +63,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     color: const Color.fromARGB(255, 196, 18, 48),
                   ),
                 ),
-                Image.asset("assets/img/nak_letters.png", height: 130.0,),
+                Image.asset('assets/img/nak_letters.png', height: 130.0,),
               ],
             ),
           ],

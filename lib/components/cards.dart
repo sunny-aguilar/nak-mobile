@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -697,10 +698,11 @@ Card chapterCard({required BuildContext context, required int index, required Li
 }
 
 Card duesCard({required BuildContext context, required int index, required List dues}) {
-  var cardImage = '${dues[index]["url"]}';
+  var cardImage = '${dues[index]["picURL"]}';
   var heading = '${dues[index]["name"]}';
   var subheading = '${dues[index]["amount"]}';
   var supportingText = '${dues[index]['description']}';
+  var buttonLink = '${dues[index]['url']}';
   return Card(
       elevation: 2.0,
       child: Column(
@@ -714,10 +716,10 @@ Card duesCard({required BuildContext context, required int index, required List 
           height: 200.0,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(0.0),
+              topRight: Radius.circular(0.0),
               bottomLeft: Radius.circular(20.0),
               bottomRight: Radius.circular(20.0),
-              topLeft: Radius.circular(20.0),
-              topRight: Radius.circular(20.0),
             ),
             child: Material(
               child: ColorFiltered(
@@ -768,11 +770,25 @@ Card duesCard({required BuildContext context, required int index, required List 
             children: [
               TextButton(
                 style: TextButton.styleFrom(
+                  minimumSize: const Size(160, 46),
                   backgroundColor: const Color.fromARGB(255, 254, 58, 67),
                   foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  textStyle: const TextStyle(
+                    fontSize: 16,
+                  ),
                 ),
                 child: const Text('PAY DUES'),
-                onPressed: () {/* ... */},
+                onPressed: () {
+                  Future<void> launchUrlStart({required String url}) async {
+                    if (!await launchUrl(Uri.parse(url))) {
+                      throw 'Could not launch $url';
+                    }
+                  }
+                  launchUrlStart(url: buttonLink);
+                },
               )
             ],
           )

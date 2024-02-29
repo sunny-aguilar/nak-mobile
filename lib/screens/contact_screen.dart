@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nak_app/components/mailer.dart';
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -19,6 +20,17 @@ class _ContactFormState extends State<ContactScreen> {
   final TextEditingController _uniCtl = TextEditingController();
   final TextEditingController _policeCtl = TextEditingController();
   final TextEditingController _followUpCtl = TextEditingController();
+  final Map _formData = {
+    'name': '',
+    'email': '',
+    'nature': '',
+    'urgency': '',
+    'location': '',
+    'date': '',
+    'uni': '',
+    'police': '',
+    'followUp': '',
+  };
 
   @override
   void dispose() {
@@ -207,22 +219,6 @@ class _ContactFormState extends State<ContactScreen> {
                   const SizedBox(height: 18,),
                   TextFormField(
                     decoration: const InputDecoration(
-                      prefixIcon: Icon(Icons.location_on_outlined),
-                      labelText: 'Location of Incident*',
-                      helperText: '*required',
-                      border: OutlineInputBorder(),
-                    ),
-                    controller: _locationCtl,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Please enter a location';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 18,),
-                  TextFormField(
-                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.event_outlined),
                       labelText: 'Date of Incident',
                       helperText: '*required',
@@ -263,8 +259,24 @@ class _ContactFormState extends State<ContactScreen> {
                                              '${date.day.toString().padLeft(2,'0')}-'
                                              '${date.year.toString()}';
 
-                      _uniCtl.text = convertedDate;
+                      _dateCtl.text = convertedDate;
                     }, // onTap
+                  ),
+                  const SizedBox(height: 18,),
+                  TextFormField(
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.location_on_outlined),
+                      labelText: 'Location of Incident*',
+                      helperText: '*required',
+                      border: OutlineInputBorder(),
+                    ),
+                    controller: _locationCtl,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter a location';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(height: 18,),
                   TextFormField(
@@ -455,19 +467,24 @@ class _ContactFormState extends State<ContactScreen> {
                       ),
                     ),
                     onPressed: () {
-                      showDialog(context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: Text(
-                              '${_nameCtl.text}-${_emailCtl.text}-${_natureCtl.text}-${_urgencyCtl.text}-${_locationCtl.text}-${_dateCtl.text}-${_descCtl.text}-${_uniCtl.text}-${_policeCtl.text}-${_followUpCtl.text}'
-                            ),
-                          );
-                        }
-                      );
+                      // store form field data into MAP
+                      _formData['name'] = _nameCtl.text;
+                      _formData['email'] = _emailCtl.text;
+                      _formData['nature'] = _natureCtl.text;
+                      _formData['urgency'] = _urgencyCtl.text;
+                      _formData['date'] = _dateCtl.text;
+                      _formData['location'] = _locationCtl.text;
+                      _formData['desc'] = _descCtl.text;
+                      _formData['uni'] = _uniCtl.text;
+                      _formData['police'] = _policeCtl.text;
+                      _formData['followUp'] = _followUpCtl.text;
+
+                      // send email if validation passes
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Submitting report')),
+                          const SnackBar(content: Text('Submitting report...')),
                         );
+                        sendEmail(context, _formData);
                       }
                     },
                     child: const Text('Submit', style: TextStyle(fontSize: 20.0),)

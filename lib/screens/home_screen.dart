@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../components/cards.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -44,6 +45,15 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.shopping_cart),
               title: Text('NAKstore', style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () {
+                final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/');
+                Future<void> launchInWebView({required Uri url}) async {
+                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                    throw Exception('Could not launch $url');
+                  }
+                }
+                launchInWebView(url: toLaunch);
+              },
             ),
             ListTile(
               leading: const Icon(Icons.local_library),
@@ -53,10 +63,35 @@ class HomeScreen extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.school),
               title: Text('Alumni Network', style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () {
+                final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/alumni/');
+                Future<void> launchInWebView({required Uri url}) async {
+                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                    throw Exception('Could not launch $url');
+                  }
+                }
+                launchInWebView(url: toLaunch);
+              },
             ),
             ListTile(
               leading: const Icon(Icons.public),
               title: Text('National Website', style: Theme.of(context).textTheme.titleLarge!),
+              onTap: () {
+                // Future<void> launchUrlStart({required String url}) async {
+                //   if (!await launchUrl(Uri.parse(url))) {
+                //     throw 'Could not launch $url';
+                //   }
+                // }
+                // launchUrlStart(url: 'https://www.naknet.org/');
+                // -------------
+                final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/');
+                Future<void> launchInWebView({required Uri url}) async {
+                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                    throw Exception('Could not launch $url');
+                  }
+                }
+                launchInWebView(url: toLaunch);
+              },
             ),
             ListTile(
               leading: const Icon(Icons.email),

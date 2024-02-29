@@ -4,21 +4,24 @@
         "name": "Chapter Dues",
         "description": "Dues paid annually by each chapter. Due at the beginning of the school year.",
         "type": "CD",
-        "url": "assets/img/cd_dues.png",
+        "picURL": "assets/img/cd_dues.png",
+        "url": "https://naknet.org/store/#!/Chapter-Dues/p/26634692/category=72126034",
         "amount": "400.00"
       },
       {
         "name": "Active Dues",
         "description": "Active dues are assessed for each active brother of the chapter on a yearly basis.",
         "type": "AD",
-        "url": "assets/img/ad_dues.png",
+        "picURL": "assets/img/ad_dues.png",
+        "url": "https://naknet.org/store/#!/Active-Dues-2023-2024/p/377096030/category=72126034",
         "amount": "200.00"
       },
       {
         "name": "Education Process Dues",
         "description": "Intake dues are assessed to prospects at the start of their education process.",
         "type": "EP",
-        "url": "assets/img/ep_dues.png",
+        "picURL": "assets/img/ep_dues.png",
+        "url": "https://naknet.org/store/#!/Education-Process-Dues/p/28763881/category=72126034",
         "amount": "200.00"
       }
     ]
