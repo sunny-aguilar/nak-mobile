@@ -117,37 +117,21 @@ class HomeScreen extends StatelessWidget {
               opacity: const AlwaysStoppedAnimation(.3),
             ),
           ),
-          const SizedBox(
-            height: 4,
-          ),
+          const SizedBox(height: 4,),
           // const GridCards(),
-          const SizedBox(
-            height: 8,
-          ),
-          const LargeGreyPictureCard(imageString: 'assets/img/nak_letters_bw.png',),
-          const SizedBox(
-            height: 8,
-          ),
-          const LargeGreyPictureCard(imageString: 'assets/img/nak_letters_bw.png',),
-          const SizedBox(
-            height: 8,
-          ),
-          const LightGrayCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const WhiteRedAccentCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const RedSquareCard(),
-          const SizedBox(
-            height: 8,
-          ),
-          const PurpleSquareCard(),
-          const SizedBox(
-            height: 18,
-          ),
+          // const SizedBox(height: 8,),
+          // const LargeGreyPictureCard(imageString: 'assets/img/nak_letters_bw.png',),
+          // const SizedBox(height: 8,),
+          // const LargeGreyPictureCard(imageString: 'assets/img/nak_letters_bw.png',),
+          // const SizedBox(height: 8,),
+          // const LightGrayCard(),
+          // const SizedBox(height: 8,),
+          // const WhiteRedAccentCard(),
+          // const SizedBox(height: 8,),
+          // const RedSquareCard(),
+          // const SizedBox(height: 8,),
+          // const PurpleSquareCard(),
+          // const SizedBox(height: 18,),
         ],
       ),
     );
