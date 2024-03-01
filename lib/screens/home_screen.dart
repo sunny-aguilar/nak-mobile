@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../components/drawer.dart';
+import '../components/carousel.dart';
 import '../components/cards.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -19,19 +20,21 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(0),
         children: <Widget>[
-          Container(
-            // borderRadius: BorderRadius.circular(0.0),
-            child: Image.asset(
-              'assets/img/image_wireframe1.png',
-              fit: BoxFit.fitHeight,
-              // scale: 2.0,
-              // alignment: const Alignment(0, -0.9),
-              // height: 300,
-              // color: Color.fromARGB(255, 255, 255, 255),
-              // colorBlendMode: BlendMode.modulate,
-              opacity: const AlwaysStoppedAnimation(.3),
-            ),
-          ),
+          const CarouselComponent(),
+          const SizedBox(height: 4,),
+          // Container(
+          //   // borderRadius: BorderRadius.circular(0.0),
+          //   child: Image.asset(
+          //     'assets/img/image_wireframe1.png',
+          //     fit: BoxFit.fitHeight,
+          //     // scale: 2.0,
+          //     // alignment: const Alignment(0, -0.9),
+          //     // height: 300,
+          //     // color: Color.fromARGB(255, 255, 255, 255),
+          //     // colorBlendMode: BlendMode.modulate,
+          //     opacity: const AlwaysStoppedAnimation(.3),
+          //   ),
+          // ),
           const SizedBox(height: 4,),
           // const GridCards(),
           // const SizedBox(height: 8,),
