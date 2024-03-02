@@ -280,8 +280,19 @@ class ClippedCard extends StatelessWidget {
 }
 
 class LargeGreyPictureCard extends StatelessWidget {
-  final String imageString;
-  const LargeGreyPictureCard({super.key, required this.imageString});
+  final String userImage;
+  final String userName;
+  final String storyHeadline;
+  final String image;
+  final String date;
+  const LargeGreyPictureCard({
+    super.key,
+    required this.userImage,
+    required this.userName,
+    required this.storyHeadline,
+    required this.image,
+    required this.date,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -289,45 +300,38 @@ class LargeGreyPictureCard extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       color: const Color.fromARGB(255, 255, 255, 255),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            // leading: const Icon(Icons.more_vert),
-            title: const Text('Large Grey Image Card'),
+            leading: const CircleAvatar(child: Text('JN')),
+            title: Text(userName),
             subtitle: Text(
-              'January 13, 2024',
+              storyHeadline,
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
-            trailing: const Icon(Icons.more_vert),
+            trailing: IconButton(
+              icon: const Icon(Icons.more_vert),
+              onPressed: () {},
+            ),
           ),
-          Image.asset(
-            imageString,
-            fit: BoxFit.fill,
-            scale: 1,
-            // alignment: const Alignment(0, 0),
-            width: double.infinity,
-            height: 150,
+          SizedBox(
+            height: 220,
+            width: MediaQuery.of(context).size.width,
+            child: Image.asset(
+              image,
+              fit: BoxFit.cover,
+              scale: 1,
+              // alignment: const Alignment(0, 0),
+              width: double.infinity,
+              height: 150,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
             child: Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel congue enim, sed consequat dui.',
+              date,
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
-          ),
-          ButtonBar(
-            alignment: MainAxisAlignment.end,
-            children: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
-                  foregroundColor: Colors.white,
-                ),
-                onPressed: () {
-                  // Perform some action
-                },
-                child: const Text('KEEP READING'),
-              ),
-            ],
           ),
         ],
       ),

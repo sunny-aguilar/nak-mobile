@@ -26,6 +26,8 @@ flutter:
     - assets/img/
     - assets/img/chapters/
     - assets/img/carousel/
+    - assets/img/stories/
+    - assets/img/users/
     - assets/img/title_thumbnails/
     - assets/img/resource_thumbnails/
     - assets/json/chapters.json
@@ -55,3 +57,6 @@ flutter:
     - family: Georgia
       fonts:
         - asset: assets/fonts/Georgia.ttf
+    - family: LeagueSpartan
+      fonts:
+        - asset: assets/fonts/LeagueSpartan-VariableFont_wght.ttf
