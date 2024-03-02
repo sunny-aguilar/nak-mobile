@@ -1,5 +1,6 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -38,27 +39,29 @@ class _CarouselComponentState extends State<CarouselComponent> {
         ColoredBox(
           color: const Color.fromARGB(255, 239, 239, 239),
           child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.bottomLeft,
-                end: Alignment.topRight,
-                // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
-                colors: [
-                  // Color.fromARGB(255, 26, 26, 26),
-                  // Colors.red,
-                  // Color.fromARGB(255, 26, 26, 26),
-                  // Color(0xff67a3b2),
-                  Color.fromARGB(255, 196, 17, 47),
-                  Color(0xff242020),
-                  // Color(0xfff6cf35),
-                ],
-            ),
-              // image: DecorationImage(
-              //   image: AssetImage(
-              //     'assets/img/carousel/nak_letters.webp',
-              //   ),
-              //   fit: BoxFit.fill,
-              // ),
+            decoration: BoxDecoration(
+              color: randomColor(),
+            //   gradient: LinearGradient(
+            //     begin: Alignment.bottomLeft,
+            //     end: Alignment.topRight,
+            //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
+            //     colors: [
+            //       // Color.fromARGB(255, 26, 26, 26),
+            //       // Colors.red,
+            //       // Color.fromARGB(255, 26, 26, 26),
+            //       // Color(0xff67a3b2),
+            //       Color.fromARGB(255, 255, 255, 255),
+            //       Color.fromARGB(255, 0, 0, 0),
+            //       // Color(0xfff6cf35),
+            //     ],
+            // ),
+            // ------ Image BG ---------------------------
+              image: const DecorationImage(
+                image: AssetImage(
+                  'assets/img/nak_letters_bw.png',
+                ),
+                fit: BoxFit.contain,
+              ),
             ),
             child: SizedBox(
               height: 400,
@@ -125,4 +128,23 @@ List<Widget> indicators(imagesLength, currentIndex) {
       ),
     );
   });
+}
+
+Color randomColor() {
+    const List<Color> bgColors = [
+      Color(0xfffa5c58),  // light pink
+      Color(0xff25bcc0),  // agua
+      Color(0xffe17748),  // clay
+      Color(0xffc6b782),  // official bronze
+      Color(0xffbb8b65),  // mud
+      Color(0xff242020),  // black
+      Color(0xfff1f1f1),  // white
+      Color(0xff67a3b1),  // sky
+      Color(0xffA0C409),  // lime green
+      Color(0xffc3102f),  // official red
+      Color(0xfffef18e),  // light yellow
+  ];
+  Random random = Random();
+  int randomNumber = random.nextInt(bgColors.length);
+  return bgColors[randomNumber];
 }
