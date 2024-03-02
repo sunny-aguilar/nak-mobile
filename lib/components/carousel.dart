@@ -115,9 +115,12 @@ AnimatedContainer slider(context, images, pagePosition, active) {
         }
         launchUrlStart(url: 'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252');
       },
-      child: Image.asset(
-        images[pagePosition],
-        fit: BoxFit.cover,
+      child: Card.filled(
+        clipBehavior: Clip.hardEdge,
+        child: Image.asset(
+          images[pagePosition],
+          fit: BoxFit.cover,
+        ),
       ),
     ),
   );

@@ -303,7 +303,11 @@ class LargeGreyPictureCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ListTile(
-            leading: const CircleAvatar(child: Text('JN')),
+            leading: CircleAvatar(
+              // child: Text('JN')
+              backgroundImage: AssetImage(userImage),
+              backgroundColor: Colors.grey,
+            ),
             title: Text(userName),
             subtitle: Text(
               storyHeadline,

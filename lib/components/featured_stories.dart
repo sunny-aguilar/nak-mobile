@@ -10,36 +10,19 @@ class HomeScreenChildren extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(0),
+      controller: controller,
       children: childrenList(storyCardData),
-        // children: const <Widget>[
-        //   carousel.CarouselComponent(),
-        //   Padding(
-        //     padding: EdgeInsets.all(12.0),
-        //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
-        //   ),
-        //   SizedBox(height: 4,),
-        //   Text(
-        //     'FEATURED STORIES',
-        //     textAlign: TextAlign.center,
-        //     style: TextStyle(
-        //       fontFamily: 'LeagueSpartan',
-        //       fontSize: 36,
-        //       fontWeight: FontWeight.bold,
-        //     ),
-        //   ),
-        //   SizedBox(height: 4,),
-        //   card.LargeGreyPictureCard(imageString:'assets/img/journal.jpg'),
-        //   SizedBox(height: 10,),
-        //   card.LargeGreyPictureCard(imageString:'assets/img/journal.jpg'),
-        //   SizedBox(height: 20,),
-        //   Padding(
-        //     padding: EdgeInsets.all(12.0),
-        //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
-        //   ),
-        //   SizedBox(height: 20,),
-        // ],
     );
   }
+}
+
+final ScrollController controller = ScrollController();
+void scrollUp() {
+  controller.animateTo(
+    controller.position.minScrollExtent,
+    duration: const Duration(seconds: 1),
+    curve: Curves.fastOutSlowIn,
+  );
 }
 
 List<Widget> carouselItems = [
@@ -61,7 +44,6 @@ List<Widget> carouselItems = [
   const SizedBox(height: 4,),
 ];
 
-
 List<Widget> childrenList(cardData) {
   List<Widget> storyList= [];
   for (var data in storyCardData) {
@@ -82,32 +64,47 @@ List<Widget> childrenList(cardData) {
     ));
     storyList.add(const SizedBox(height: 15,));
   }
-  storyList.add();
+  // storyList.add(
+  //   const Padding(
+  //     padding: EdgeInsets.all(12.0),
+  //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
+  //   ),
+  // );
+  storyList.add(
+    Center(
+      child: IconButton(
+        icon: const Icon(Icons.arrow_circle_up),
+        onPressed: () {
+          scrollUp();
+        },
+      ),
+    ),
+  );
+  storyList.add(const SizedBox(height: 35,));
   List<Widget> allItems = carouselItems + storyList;
   return allItems;
 }
 
 const List storyCardData = [
   {
-    'userImage': 'JN',
+    'userImage': 'assets/img/users/jn_user.jpg',
     'userName': 'Jason Navarro',
     'storyHeadline': 'Transparency Matters',
     'image': 'assets/img/stories/journal_story.jpg',
     'date': 'March 2, 2024',
   },
   {
-    'userImage': 'CM',
+    'userImage': 'assets/img/users/sa_user.jpg',
     'userName': 'Carlos Mendoza',
     'storyHeadline': 'Leading By Example',
     'image': 'assets/img/stories/fork_story.png',
     'date': 'March 15, 2024',
   },
   {
-    'userImage': 'SA',
+    'userImage': 'assets/img/users/sa_user.jpg',
     'userName': 'Sandro Aguilar',
     'storyHeadline': 'Innovative Thinking',
     'image': 'assets/img/stories/compass_story.jpg',
     'date': 'April 15, 2024',
   },
 ];
-
