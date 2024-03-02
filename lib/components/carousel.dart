@@ -25,6 +25,12 @@ class _CarouselComponentState extends State<CarouselComponent> {
     'assets/img/carousel/nakfest_logo.webp',
     'assets/img/carousel/nakfest_logo.webp',
   ];
+  List<String> route = [
+    '',
+    '',
+    '',
+    '',
+  ];
 
   @override
   void initState() {
@@ -77,7 +83,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
                 },
                 itemBuilder: (context, pagePosition) {
                   bool active = pagePosition == activePage;
-                  return slider(imagesAssets, pagePosition, active);
+                  return slider(context, imagesAssets, pagePosition, active);
                 },
               ),
             ),
@@ -93,26 +99,27 @@ class _CarouselComponentState extends State<CarouselComponent> {
 }
 
 
-AnimatedContainer slider(images, pagePosition, active) {
+AnimatedContainer slider(context, images, pagePosition, active) {
   double margin = active ? 10 : 20;
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
     curve: Curves.easeInOutCubic,
     margin: EdgeInsets.all(margin),
-    child: Image.asset(
-      images[pagePosition],
-      fit: BoxFit.cover,
+    child: InkWell(
+      onTap: () {
+        // Navigator.pushNamed(context, '/chapters');
+        Future<void> launchUrlStart({required String url}) async {
+          if (!await launchUrl(Uri.parse(url))) {
+            throw 'Could not launch $url';
+          }
+        }
+        launchUrlStart(url: 'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252');
+      },
+      child: Image.asset(
+        images[pagePosition],
+        fit: BoxFit.cover,
+      ),
     ),
-    // decoration: BoxDecoration(
-    //     image: DecorationImage(
-    //       image: NetworkImage(images[pagePosition]),
-    //       fit: BoxFit.cover,
-    //     ),
-    //     // image: DecorationImage(
-    //     //   image: NetworkImage(images[pagePosition]),
-    //     //   fit: BoxFit.cover,
-    //     // ),
-    // ),
   );
 }
 
@@ -124,7 +131,7 @@ List<Widget> indicators(imagesLength, currentIndex) {
       height: 10,
       decoration: BoxDecoration(
         color: currentIndex == index ? Colors.black : Colors.black26,
-        shape: BoxShape.circle,
+        shape: BoxShape.rectangle,
       ),
     );
   });
