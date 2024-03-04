@@ -285,6 +285,7 @@ class LargeGreyPictureCard extends StatelessWidget {
   final String storyHeadline;
   final String image;
   final String date;
+  final String storyText;
   const LargeGreyPictureCard({
     super.key,
     required this.userImage,
@@ -292,11 +293,12 @@ class LargeGreyPictureCard extends StatelessWidget {
     required this.storyHeadline,
     required this.image,
     required this.date,
+    required this.storyText,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return Card.outlined(
       clipBehavior: Clip.antiAlias,
       color: const Color.fromARGB(255, 255, 255, 255),
       child: Column(
@@ -308,14 +310,64 @@ class LargeGreyPictureCard extends StatelessWidget {
               backgroundImage: AssetImage(userImage),
               backgroundColor: Colors.grey,
             ),
-            title: Text(userName),
+            title: Text(
+              userName,
+              style: const TextStyle(
+                fontFamily: 'College',
+                fontSize: 20,
+                // fontWeight: FontWeight.bold,
+              ),
+            ),
             subtitle: Text(
               storyHeadline,
               style: TextStyle(color: Colors.black.withOpacity(0.6)),
             ),
             trailing: IconButton(
               icon: const Icon(Icons.more_vert),
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet(
+                  context: context,
+                  showDragHandle: true,
+                  enableDrag: true,
+                  isScrollControlled: true,
+                  builder: (BuildContext context) {
+                    return SizedBox(
+                      // height: MediaQuery.of(context).size.height,
+                      width: double.infinity,
+                      child: FractionallySizedBox(
+                        heightFactor: 0.8,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            // cteate a class to hold a modal template
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Divider(color: Color.fromARGB(255, 174, 174, 174),),
+                            ),
+                            ListTile(
+                              leading: CircleAvatar(
+                                backgroundImage: AssetImage(userImage),
+                                backgroundColor: Colors.grey,
+                              ),
+                              title: Text(userName,),
+                              subtitle: Text(storyHeadline),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Divider(color: Color.fromARGB(255, 175, 175, 175),),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Text(storyText),
+                            ),
+                            const Text('BOTTOM MODAL SHEET'),
+                          ],
+                        ),
+                      ),
+                    );
+                  }
+                );
+              },
             ),
           ),
           SizedBox(

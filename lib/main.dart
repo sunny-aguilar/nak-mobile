@@ -4,7 +4,7 @@ import 'package:nak_app/splash_screen.dart';
 import 'package:nak_app/screens/chapters_screen.dart';
 import 'package:nak_app/screens/intro_screeen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
-import 'package:nak_app/screens/national_board.dart';
+import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
 import 'package:nak_app/screens/contact_screen.dart';
@@ -88,6 +88,10 @@ class App extends StatelessWidget {
             fontSize: 20,
             fontFamily: 'College',
           ),
+          // bodyMedium: const TextStyle(
+          //   fontSize: 18,
+          //   fontFamily: 'College',
+          // ),
           bodySmall: const TextStyle(
             fontSize: 12,
           ),

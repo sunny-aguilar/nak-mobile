@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,7 +26,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
     'assets/img/carousel/nakfest_logo.webp',
   ];
   List<String> route = [
-    '',
+    'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252',
     '',
     '',
     '',
@@ -35,7 +35,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8, initialPage: 1);
+    _pageController = PageController(viewportFraction: 0.8, initialPage: 0);
   }
 
   @override
