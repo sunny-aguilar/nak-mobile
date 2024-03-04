@@ -773,7 +773,7 @@ Card duesCard({required BuildContext context, required int index, required List 
         //    trailing: Icon(Icons.favorite_outline),
         //  ),
           SizedBox(
-          height: 200.0,
+          height: 180.0,
           child: ClipRRect(
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(0.0),

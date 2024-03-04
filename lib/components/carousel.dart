@@ -21,9 +21,9 @@ class _CarouselComponentState extends State<CarouselComponent> {
   ];
   List<String> imagesAssets = [
     'assets/img/carousel/nakfest_logo.webp',
-    'assets/img/carousel/nakfest_logo.webp',
-    'assets/img/carousel/nakfest_logo.webp',
-    'assets/img/carousel/nakfest_logo.webp',
+    'assets/img/carousel/nak_letters.webp',
+    'assets/img/carousel/template.webp',
+    'assets/img/carousel/template.webp',
   ];
   List<String> route = [
     'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252',
@@ -35,7 +35,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 0.8, initialPage: 0);
+    _pageController = PageController(viewportFraction: 1.0, initialPage: 0);
   }
 
   @override
@@ -150,7 +150,6 @@ Color randomColor() {
       Color(0xff242020),  // black
       Color(0xfff1f1f1),  // white
       Color(0xff67a3b1),  // sky
-      Color(0xffA0C409),  // lime green
       Color(0xffc3102f),  // official red
       Color(0xfffef18e),  // light yellow
   ];
