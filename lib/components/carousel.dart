@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 // import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter/widgets.dart';
 
 class CarouselComponent extends StatefulWidget {
   const CarouselComponent({super.key});
@@ -62,18 +63,18 @@ class _CarouselComponentState extends State<CarouselComponent> {
             //     ],
             // ),
             // ------ Image BG ---------------------------
-              image: const DecorationImage(
-                image: AssetImage(
-                  'assets/img/nak_letters_bw.png',
-                ),
-                fit: BoxFit.contain,
-              ),
+              // image: const DecorationImage(
+              //   image: AssetImage(
+              //     'assets/img/nak_letters_bw.png',
+              //   ),
+              //   fit: BoxFit.contain,
+              // ),
             ),
             child: SizedBox(
               height: 400,
               width: MediaQuery.of(context).size.width,
               child: PageView.builder(
-                itemCount: 4,
+                itemCount: images.length,
                 pageSnapping: true,
                 controller: _pageController,
                 onPageChanged: (page) {
@@ -89,9 +90,28 @@ class _CarouselComponentState extends State<CarouselComponent> {
             ),
           ),
         ),
+        // Row(
+        //   mainAxisAlignment: MainAxisAlignment.center,
+        //   children: indicators(imagesAssets.length, activePage),
+        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: indicators(imagesAssets.length, activePage),
+          children: <Widget>[
+            // ADD EFFECTS HERE
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: SmoothPageIndicator(
+                controller: _pageController,
+                count: images.length,
+                effect: const ExpandingDotsEffect(
+                  dotHeight: 12,
+                  dotWidth: 12,
+                  dotColor: Colors.grey,
+                  activeDotColor: Color.fromARGB(255, 216, 194, 136),
+                ),
+              ),
+            ),
+          ],
         ),
       ],
     );
@@ -116,6 +136,9 @@ AnimatedContainer slider(context, images, pagePosition, active) {
         launchUrlStart(url: 'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252');
       },
       child: Card.filled(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0)
+        ),
         clipBehavior: Clip.hardEdge,
         child: Image.asset(
           images[pagePosition],
@@ -142,16 +165,17 @@ List<Widget> indicators(imagesLength, currentIndex) {
 
 Color randomColor() {
     const List<Color> bgColors = [
-      Color(0xfffa5c58),  // light pink
-      Color(0xff25bcc0),  // agua
-      Color(0xffe17748),  // clay
-      Color(0xffc6b782),  // official bronze
-      Color(0xffbb8b65),  // mud
-      Color(0xff242020),  // black
-      Color(0xfff1f1f1),  // white
-      Color(0xff67a3b1),  // sky
-      Color(0xffc3102f),  // official red
-      Color(0xfffef18e),  // light yellow
+      // Color(0xfffa5c58),  // light pink
+      // Color(0xff25bcc0),  // agua
+      // Color(0xffe17748),  // clay
+      // Color(0xffc6b782),  // official bronze
+      // Color(0xffbb8b65),  // mud
+      // Color(0xff242020),  // black
+      // Color(0xfff1f1f1),  // white
+      Color.fromARGB(255, 230, 230, 230),  // white
+      // Color(0xff67a3b1),  // sky
+      // Color(0xffc3102f),  // official red
+      // Color(0xfffef18e),  // light yellow
   ];
   Random random = Random();
   int randomNumber = random.nextInt(bgColors.length);
