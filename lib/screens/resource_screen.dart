@@ -1,9 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:nak_app/components/resource_cards.dart';
-import '../components/text_layouts.dart';
+import '../components/text_layouts.dart' as text_layouts;
 
-class ResourceScreen extends StatelessWidget {
+class ResourceScreen extends StatefulWidget {
   const ResourceScreen({super.key});
+  @override
+  State<ResourceScreen> createState() => _ResourceScreenState();
+}
+
+class _ResourceScreenState extends State<ResourceScreen> {
+
+  final ScrollController _scrollController = ScrollController();
+  void scrollUp() {
+    _scrollController.animateTo(
+      _scrollController.position.minScrollExtent,
+      duration: const Duration(seconds: 1),
+      curve: Curves.fastOutSlowIn,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +26,7 @@ class ResourceScreen extends StatelessWidget {
     final Map policyTxt = resource.policyTxt;
     return Scaffold(
       body: CustomScrollView(
+        controller: _scrollController,  // ADD SCROLLING CONTROLLER HERE
         slivers: <Widget>[
           SliverAppBar(
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
@@ -32,7 +47,7 @@ class ResourceScreen extends StatelessWidget {
               ),
             ),
           ),
-          ResourceCardList(policyTxt: policyTxt),
+          ResourceCardList(policyTxt: policyTxt, scrollUp: scrollUp,),
         ],
       ),
     );
@@ -41,13 +56,14 @@ class ResourceScreen extends StatelessWidget {
 
 class ResourceCardList extends StatelessWidget {
   final Map policyTxt;
-  const ResourceCardList({super.key, required this.policyTxt});
+  final Function scrollUp;
+  const ResourceCardList({super.key, required this.policyTxt, required this.scrollUp});
   @override
   Widget build(BuildContext context) {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index){
-          return textLayout(context: context, policyTxt: policyTxt);
+          return text_layouts.textLayout(context: context, policyTxt: policyTxt, scrollUp: scrollUp);
         },
         childCount: 1,
       ),

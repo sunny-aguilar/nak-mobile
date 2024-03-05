@@ -371,7 +371,7 @@ class LargeGreyPictureCard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 220,
+            height: 200,
             width: MediaQuery.of(context).size.width,
             child: Image.asset(
               image,

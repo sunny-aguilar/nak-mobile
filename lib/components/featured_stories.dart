@@ -77,7 +77,7 @@ List<Widget> childrenList(cardData) {
   storyList.add(
     Center(
       child: IconButton(
-        icon: const Icon(Icons.arrow_circle_up),
+        icon: const Icon(Icons.arrow_circle_up, size: 30,),
         onPressed: () {
           scrollUp();
         },

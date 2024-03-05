@@ -18,6 +18,14 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.13.1
+
+# use <dart run flutter_launcher_icons> to generate
+# icons (from 1024x1024 image in image_path)
+flutter_launcher_icons:
+  android: false
+  ios: true
+  image_path: "assets/img/icons/nak_icon.webp"
 
 flutter:
   uses-material-design: true
