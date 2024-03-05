@@ -75,6 +75,7 @@ List<Widget> childrenList(cardData) {
   //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
   //   ),
   // );
+  storyList.add(const card.RevampedCard());
   storyList.add(
     Center(
       child: IconButton(
@@ -92,7 +93,6 @@ List<Widget> childrenList(cardData) {
 
 class GridCards extends StatelessWidget {
   const GridCards({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GridView.count(
@@ -109,11 +109,13 @@ class GridCards extends StatelessWidget {
 class HomeGridCards extends StatelessWidget {
   final int index;
   const HomeGridCards({super.key, required this.index});
-
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Item: $index'),
+    return Card(
+      color: Color.fromARGB(255, 251, 219, 255),
+      child: Center(
+        child: Text('Item: $index'),
+      ),
     );
   }
 }

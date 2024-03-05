@@ -924,6 +924,39 @@ Card duesCard({required BuildContext context, required int index, required List 
   );
  }
 
+
+class RevampedCard extends StatelessWidget {
+  const RevampedCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card.filled(
+      child: Column(
+        children: <Widget>[
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 220,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 73, 91, 120)
+            ),
+            child: const Text('TOP CONTAINER'),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 210,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 22, 22, 30),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)
+              ),
+            ),
+            child: const Text('BOTTOM CONTAINER'),
+          ),
+        ],
+      ),
+    );
+  }
+}
 //  class MasonryGridTile extends StatelessWidget {
 //   final String image;
 //   final String title;

@@ -22,4 +22,3 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
-

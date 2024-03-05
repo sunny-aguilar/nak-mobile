@@ -97,7 +97,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            // ADD EFFECTS HERE
+            /// ADD DOT INDICATOR EFFECTS HERE
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: SmoothPageIndicator(
@@ -106,8 +106,8 @@ class _CarouselComponentState extends State<CarouselComponent> {
                 effect: const ExpandingDotsEffect(
                   dotHeight: 12,
                   dotWidth: 12,
-                  dotColor: Colors.grey,
-                  activeDotColor: Color.fromARGB(255, 216, 194, 136),
+                  dotColor: Color.fromARGB(255, 230, 230, 230),
+                  activeDotColor: Colors.grey,
                 ),
               ),
             ),
@@ -149,19 +149,19 @@ AnimatedContainer slider(context, images, pagePosition, active) {
   );
 }
 
-List<Widget> indicators(imagesLength, currentIndex) {
-  return List<Widget>.generate(imagesLength, (index) {
-    return Container(
-      margin: const EdgeInsets.all(3),
-      width: 10,
-      height: 10,
-      decoration: BoxDecoration(
-        color: currentIndex == index ? Colors.black : Colors.black26,
-        shape: BoxShape.rectangle,
-      ),
-    );
-  });
-}
+// List<Widget> indicators(imagesLength, currentIndex) {
+//   return List<Widget>.generate(imagesLength, (index) {
+//     return Container(
+//       margin: const EdgeInsets.all(3),
+//       width: 10,
+//       height: 10,
+//       decoration: BoxDecoration(
+//         color: currentIndex == index ? Colors.black : Colors.black26,
+//         shape: BoxShape.rectangle,
+//       ),
+//     );
+//   });
+// }
 
 Color randomColor() {
     const List<Color> bgColors = [
