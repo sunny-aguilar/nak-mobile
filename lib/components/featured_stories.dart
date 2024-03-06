@@ -33,17 +33,17 @@ List<Widget> carouselItems = [
     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
   ),
   const SizedBox(height: 4,),
-  const Text(
-    'FEATURED STORIES',
-    textAlign: TextAlign.center,
-    style: TextStyle(
-      fontFamily: 'College',
-      fontSize: 34,
-      fontWeight: FontWeight.bold,
-    ),
-  ),
+  // const Text(
+  //   'FEATURED STORIES',
+  //   textAlign: TextAlign.center,
+  //   style: TextStyle(
+  //     fontFamily: 'College',
+  //     fontSize: 34,
+  //     fontWeight: FontWeight.bold,
+  //   ),
+  // ),
   const SizedBox(height: 4,),
-  const GridCards(),
+  // const GridCards(),
 ];
 
 // create final list of children
@@ -75,7 +75,7 @@ List<Widget> childrenList(cardData) {
   //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
   //   ),
   // );
-  storyList.add(const card.RevampedCard());
+  storyList.add(const card.NotificationCard());
   storyList.add(
     Center(
       child: IconButton(
@@ -91,31 +91,33 @@ List<Widget> childrenList(cardData) {
   return allItems;
 }
 
-class GridCards extends StatelessWidget {
-  const GridCards({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 2,
-      physics: const NeverScrollableScrollPhysics(),  // to disable GridView's scrolling
-      shrinkWrap: true, // You won't see infinite size error
-      children: List.generate(4, (index) {
-        return HomeGridCards(index: index);
-      }),
-    );
-  }
-}
+// class GridCards extends StatelessWidget {
+//   const GridCards({super.key});
+//   @override
+//   Widget build(BuildContext context) {
+//     return GridView.count(
+//       crossAxisCount: 2,
+//       mainAxisSpacing: 4,
+//       crossAxisSpacing: 4,
+//       physics: const NeverScrollableScrollPhysics(),  // to disable GridView's scrolling
+//       shrinkWrap: true, // You won't see infinite size error
+//       children: List.generate(4, (index) {
+//         return HomeGridCards(index: index);
+//       }),
+//     );
+//   }
+// }
 
-class HomeGridCards extends StatelessWidget {
-  final int index;
-  const HomeGridCards({super.key, required this.index});
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: Color.fromARGB(255, 251, 219, 255),
-      child: Center(
-        child: Text('Item: $index'),
-      ),
-    );
-  }
-}
+// class HomeGridCards extends StatelessWidget {
+//   final int index;
+//   const HomeGridCards({super.key, required this.index});
+//   @override
+//   Widget build(BuildContext context) {
+//     return Card.filled(
+//       color: Color.fromARGB(255, 251, 219, 255),
+//       child: Center(
+//         child: Text('Item: $index'),
+//       ),
+//     );
+//   }
+// }

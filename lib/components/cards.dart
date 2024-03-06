@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -320,7 +321,10 @@ class LargeGreyPictureCard extends StatelessWidget {
             ),
             subtitle: Text(
               storyHeadline,
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
+              style: TextStyle(
+                color: Colors.black.withOpacity(0.6),
+                fontSize: 16,
+              ),
             ),
             trailing: IconButton(
               icon: const Icon(Icons.more_vert),
@@ -951,6 +955,55 @@ class RevampedCard extends StatelessWidget {
               ),
             ),
             child: const Text('BOTTOM CONTAINER'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NotificationCard extends StatelessWidget {
+  const NotificationCard({super.key});
+  @override
+  Widget build(BuildContext context) {
+    String alertDate = DateFormat.yMMMMd('en_US').format(DateTime.now());
+
+    return Card.filled(
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20),
+                // width: MediaQuery.of(context).size.width,
+                // height: 220,
+                decoration: const BoxDecoration(
+                  color: Color(0xffff4667),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      alertDate,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Lato',
+                        color: Color.fromARGB(255, 255, 255, 255),
+                      ),
+                    ),
+                    const Text(
+                      'Today',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontFamily: 'Lato',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 255, 255, 255)
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

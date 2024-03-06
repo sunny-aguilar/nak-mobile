@@ -4,3 +4,9 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 
 ## Contributors
 ![Badge](https://img.shields.io/badge/Contributor-Sunny-blue)
+
+## Features Wishlist
+- GPS to find nearby brothers
+- Digital NAK ID
+- Calenar with upcoming chapter events
+

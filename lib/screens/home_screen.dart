@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nak_app/services/theme_service.dart' as service;
 // import 'package:url_launcher/url_launcher.dart';
 import '../components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
@@ -13,9 +14,18 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        // backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         // backgroundColor: Color.fromARGB(255, 255, 54, 54),
-        // backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.nightlight_outlined),
+            onPressed: () {
+              print('Dark Theme Button Clicked');
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
       ),
       drawer: const drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
