@@ -59,6 +59,8 @@ flutter:
     - family: College
       fonts:
         - asset: assets/fonts/college.ttf
+        - asset: assets/fonts/collegeb.ttf
+          weight: 700
     - family: Clarendon
       fonts:
         - asset: assets/fonts/Clarendon LT Regular.ttf

@@ -80,4 +80,22 @@ class CustomTheme {
 }
 
 /// Create theme data variables for text
-/// final myAppTheme = ThemeData(primaryColor: Colors.yellow);
+class TextThemes{
+  static TextStyle text(BuildContext context) {
+    return const TextStyle(
+      color: Color.fromARGB(255, 0, 0, 0),
+      fontFamily: 'College',
+      fontSize: 20,
+    );
+  }
+}
+
+class DrawerTitle{
+  static TextStyle text(BuildContext context) {
+    return const TextStyle(
+      color: Color.fromARGB(255, 0, 0, 0),
+      fontFamily: 'College',
+      fontSize: 26,
+    );
+  }
+}

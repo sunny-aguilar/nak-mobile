@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class DrawerComponent extends StatelessWidget {
   const DrawerComponent({super.key});
@@ -7,6 +8,7 @@ class DrawerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: theme.Themes.light.primaryColor,
       child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
@@ -16,27 +18,29 @@ class DrawerComponent extends StatelessWidget {
               ),
               child: Text(
                 'Nu Alpha Kappa Fraternity, Inc.',
-                style: Theme.of(context).textTheme.displaySmall,
+                style: theme.DrawerTitle.text(context),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village),
-              title: Text('Chapters', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('Chapters', style: theme.TextThemes.text(context),
+                // style: Theme.of(context).textTheme.titleLarge!
+              ),
               onTap: () => Navigator.pushNamed(context, '/chapters'),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money),
-              title: Text('Dues', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('Dues', style: theme.TextThemes.text(context)),
               onTap: () => Navigator.pushNamed(context, '/dues'),
             ),
             ListTile(
               leading: const Icon(Icons.remember_me),
-              title: Text('National Board', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('National Board', style: theme.TextThemes.text(context)),
               onTap: () => Navigator.pushNamed(context, '/board'),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_cart),
-              title: Text('NAKstore', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('NAKstore', style: theme.TextThemes.text(context)),
               onTap: () {
                 final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/');
                 Future<void> launchInWebView({required Uri url}) async {
@@ -49,12 +53,12 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.local_library),
-              title: Text('Resources', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('Resources', style: theme.TextThemes.text(context)),
               onTap: () => Navigator.pushNamed(context, '/resources'),
             ),
             ListTile(
               leading: const Icon(Icons.school),
-              title: Text('Alumni Network', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('Alumni Network', style: theme.TextThemes.text(context)),
               onTap: () {
                 final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/alumni/');
                 Future<void> launchInWebView({required Uri url}) async {
@@ -67,7 +71,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.public),
-              title: Text('National Website', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('National Website', style: theme.TextThemes.text(context)),
               onTap: () {
                 // Future<void> launchUrlStart({required String url}) async {
                 //   if (!await launchUrl(Uri.parse(url))) {
@@ -87,7 +91,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.email),
-              title: Text('Contact Us', style: Theme.of(context).textTheme.titleLarge!),
+              title: Text('Contact Us', style: theme.TextThemes.text(context)),
               onTap: () => Navigator.pushNamed(context, '/contact'),
             )
           ],
