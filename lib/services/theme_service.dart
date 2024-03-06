@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 /// Toggle Theme Mode Service
 class ThemeService{
-  final _box = GetStorage();
-  final _key = 'isDarkMode';
+  static final _box = GetStorage();
+  static const _key = 'isDarkMode';
 
   _saveThemeToBox (bool isDarkMode) => _box.write(_key, isDarkMode);
 
@@ -20,5 +20,10 @@ class ThemeService{
   void switchTheme() {
     Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
     _saveThemeToBox(!_loadThemeFromBox());
+  }
+
+  // called in HomeScreen to update the Appbar icon
+  static Icon getIcon() {
+    return (_box.read(_key) ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined));
   }
 }

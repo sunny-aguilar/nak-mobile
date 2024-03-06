@@ -80,22 +80,22 @@ class CustomTheme {
 }
 
 /// Create theme data variables for text
-class TextThemes{
+class DrawerTitle{
   static TextStyle text(BuildContext context) {
     return const TextStyle(
-      color: Color.fromARGB(255, 0, 0, 0),
+      color: Color.fromARGB(255, 255, 255, 255),
       fontFamily: 'College',
-      fontSize: 20,
+      fontSize: 26,
     );
   }
 }
 
-class DrawerTitle{
+class TextThemes{
   static TextStyle text(BuildContext context) {
     return const TextStyle(
-      color: Color.fromARGB(255, 0, 0, 0),
+      color: darkGreyClr,
       fontFamily: 'College',
-      fontSize: 26,
+      fontSize: 20,
     );
   }
 }
