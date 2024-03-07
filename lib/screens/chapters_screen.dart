@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import '../components/cards.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 
 class ChapterScreen extends StatefulWidget {
@@ -31,7 +32,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
         slivers: <Widget>[
           SliverAppBar(
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-            backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+            backgroundColor: theme.redClr,
             pinned: true,
             floating: false,
             snap: false,

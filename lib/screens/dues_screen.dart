@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-import '../components/cards.dart';
+import 'package:nak_app/components/cards.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class DuesScreen extends StatefulWidget {
   const DuesScreen({super.key});
@@ -29,7 +30,7 @@ class _DuesScreenState extends State<DuesScreen> {
         slivers: <Widget>[
           SliverAppBar(
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-            backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+            backgroundColor: theme.redClr,
             pinned: true,
             floating: false,
             snap: false,

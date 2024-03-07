@@ -1,10 +1,12 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -709,10 +711,11 @@ class GridCards extends StatelessWidget {
 Card chapterCard({required BuildContext context, required int index, required List chapters}) {
   var cardImage = 'assets/img/chapters/$index.png';
   var heading = '${chapters[index]["name"]}';
-  var subheading = 'Established: ${chapters[index]["established"]}\nstatus: ${chapters[index]["status"]}';
+  var subheading = 'Established: ${chapters[index]["established"]}\nStatus: ${chapters[index]["status"]}';
   var supportingText = '${chapters[index]["contact"]}';
 
   return Card(
+    color: Theme.of(context).primaryColor,
     child: ListTile(
       leading: Image.asset(
         cardImage,
@@ -720,20 +723,17 @@ Card chapterCard({required BuildContext context, required int index, required Li
       ),
       title: Text(
         heading,
-        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-          color: const Color.fromARGB(255, 45, 45, 45),
-        ),
+        style: theme.TextThemes.chapterCardTitle(context),
       ),
       subtitle: Text(
         subheading,
-        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-          color: const Color.fromARGB(255, 45, 45, 45),
-        ),
+        style: theme.TextThemes.headline(context),
       ),
       trailing: IconButton(
-        icon: const Icon(Icons.more_vert),
+        icon: const Icon(Icons.more_vert, color: theme.darkGreyClr),
         onPressed: () {
           showModalBottomSheet(
+            backgroundColor: theme.whiteClr,
             showDragHandle: true,
             enableDrag: true,
             context: context,
@@ -748,7 +748,7 @@ Card chapterCard({required BuildContext context, required int index, required Li
                     const Icon(Icons.email),
                     Text(
                       supportingText,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                      style: theme.TextThemes.modalText(context),
                     ),
                   ],
                 ),
@@ -768,6 +768,7 @@ Card duesCard({required BuildContext context, required int index, required List 
   var supportingText = '${dues[index]['description']}';
   var buttonLink = '${dues[index]['url']}';
   return Card(
+    color: Theme.of(context).primaryColor,
       elevation: 2.0,
       child: Column(
         children: [
@@ -791,7 +792,7 @@ Card duesCard({required BuildContext context, required int index, required List 
                 Colors.grey,
                   // BlendMode.modulate,
                   // BlendMode.screen,
-                  // BlendMode.overlay,
+                  BlendMode.overlay,
                   // BlendMode.darken,
                   // BlendMode.lighten,
                   // BlendMode.colorDodge,
@@ -801,7 +802,7 @@ Card duesCard({required BuildContext context, required int index, required List 
                   // BlendMode.difference,
                   // BlendMode.exclusion,
                   // BlendMode.multiply,
-                  BlendMode.hue,
+                  // BlendMode.hue,
                   // BlendMode.saturation,
                   // BlendMode.color,
                   // BlendMode.luminosity,
@@ -817,45 +818,43 @@ Card duesCard({required BuildContext context, required int index, required List 
           ListTile(
             title: Text(
               heading,
-              style: Theme.of(context).textTheme.displayMedium,
+              style: theme.TextThemes.duesTitle(context),
             ),
             subtitle: Text(
               subheading,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: theme.TextThemes.modalText(context),
             ),
           //  trailing: Icon(Icons.favorite_outline),
           ),
           Container(
             padding: const EdgeInsets.all(16.0),
             alignment: Alignment.centerLeft,
-            child: Text(supportingText),
+            child: Text(supportingText, style: theme.TextThemes.headline(context),),
           ),
-          ButtonBar(
-            children: [
-              TextButton(
-                style: TextButton.styleFrom(
-                  minimumSize: const Size(160, 46),
-                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(4.0),
-                  ),
-                  textStyle: const TextStyle(
-                    fontSize: 16,
-                  ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextButton(
+              style: TextButton.styleFrom(
+                minimumSize: const Size.fromHeight(50),
+                padding: const EdgeInsets.all(20),
+                backgroundColor: theme.redClr,
+                foregroundColor: theme.whiteClr,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0),
                 ),
-                child: const Text('PAY DUES'),
-                onPressed: () {
-                  Future<void> launchUrlStart({required String url}) async {
-                    if (!await launchUrl(Uri.parse(url))) {
-                      throw 'Could not launch $url';
-                    }
+                textStyle: theme.TextThemes.button1(context),
+              ),
+              child: const Text('PAY DUES'),
+              onPressed: () {
+                Future<void> launchUrlStart({required String url}) async {
+                  if (!await launchUrl(Uri.parse(url))) {
+                    throw 'Could not launch $url';
                   }
-                  launchUrlStart(url: buttonLink);
-                },
-              )
-            ],
-          )
+                }
+                launchUrlStart(url: buttonLink);
+              },
+            ),
+          ),
         ],
       ));
  }

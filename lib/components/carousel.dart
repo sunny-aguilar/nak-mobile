@@ -21,7 +21,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
     'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg',
   ];
   List<String> imagesAssets = [
-    'assets/img/carousel/nakfest_logo.webp',
+    'assets/img/carousel/nakfest_carousel.webp',
     'assets/img/carousel/nak_letters.webp',
     'assets/img/carousel/template.webp',
     'assets/img/carousel/template.webp',
@@ -36,7 +36,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 1.0, initialPage: 0);
+    _pageController = PageController(viewportFraction: 1.1, initialPage: 0);
   }
 
   @override

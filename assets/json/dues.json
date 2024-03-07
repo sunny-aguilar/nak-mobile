@@ -4,7 +4,7 @@
         "name": "Chapter Dues",
         "description": "Dues paid annually by each chapter. Due at the beginning of the school year.",
         "type": "CD",
-        "picURL": "assets/img/cd_dues.png",
+        "picURL": "assets/img/cd_dues.webp",
         "url": "https://naknet.org/store/#!/Chapter-Dues/p/26634692/category=72126034",
         "amount": "400.00"
       },
@@ -20,7 +20,7 @@
         "name": "Education Process Dues",
         "description": "Intake dues are assessed to prospects at the start of their education process.",
         "type": "EP",
-        "picURL": "assets/img/ep_dues.png",
+        "picURL": "assets/img/ep_dues.webp",
         "url": "https://naknet.org/store/#!/Education-Process-Dues/p/28763881/category=72126034",
         "amount": "200.00"
       }

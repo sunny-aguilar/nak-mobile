@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 const Color blueClr = Color(0xff4e5ae8);
 const Color pinkClr = Color(0xffff4667);
+const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 56, 56, 58);
 const Color whiteClr = Color(0xffffffff);
+const Color redOfficial = Color(0xffc41230);
+const Color bronzeOfficial = Color(0xffd8c288);
 const primaryClr = whiteClr;
 
 // only loads on hot restart
@@ -80,22 +83,58 @@ class CustomTheme {
 }
 
 /// Create theme data variables for text
-class DrawerTitle{
-  static TextStyle text(BuildContext context) {
+class TextThemes{
+  static TextStyle drawerTitle(BuildContext context) {
     return const TextStyle(
-      color: Color.fromARGB(255, 255, 255, 255),
+      color: whiteClr,
       fontFamily: 'College',
       fontSize: 26,
     );
   }
-}
 
-class TextThemes{
-  static TextStyle text(BuildContext context) {
+  static TextStyle chapterCardTitle(BuildContext context) {
+    return const TextStyle(
+      color: darkGreyClr,
+      fontFamily: 'College',
+      fontSize: 18,
+    );
+  }
+
+  static TextStyle drawerMenu(BuildContext context) {
     return const TextStyle(
       color: darkGreyClr,
       fontFamily: 'College',
       fontSize: 20,
+    );
+  }
+
+  static TextStyle duesTitle(BuildContext context) {
+    return const TextStyle(
+      color: darkGreyClr,
+      fontFamily: 'College',
+      fontSize: 28,
+    );
+  }
+
+  static TextStyle headline(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 14,
+    );
+  }
+
+  static TextStyle button1(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 16,
+    );
+  }
+
+  static TextStyle modalText(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 22,
+      color: darkGreyClr,
     );
   }
 }

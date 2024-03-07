@@ -18,29 +18,29 @@ class DrawerComponent extends StatelessWidget {
               ),
               child: Text(
                 'Nu Alpha Kappa Fraternity, Inc.',
-                style: theme.DrawerTitle.text(context),
+                style: theme.TextThemes.drawerTitle(context),
               ),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village, color: theme.darkGreyClr,),
-              title: Text('Chapters', style: theme.TextThemes.text(context),
+              title: Text('Chapters', style: theme.TextThemes.drawerMenu(context),
                 // style: Theme.of(context).textTheme.titleLarge!
               ),
               onTap: () => Navigator.pushNamed(context, '/chapters'),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money, color: theme.darkGreyClr,),
-              title: Text('Dues', style: theme.TextThemes.text(context)),
+              title: Text('Dues', style: theme.TextThemes.drawerMenu(context)),
               onTap: () => Navigator.pushNamed(context, '/dues'),
             ),
             ListTile(
               leading: const Icon(Icons.remember_me, color: theme.darkGreyClr,),
-              title: Text('National Board', style: theme.TextThemes.text(context)),
+              title: Text('National Board', style: theme.TextThemes.drawerMenu(context)),
               onTap: () => Navigator.pushNamed(context, '/board'),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_cart, color: theme.darkGreyClr,),
-              title: Text('NAKstore', style: theme.TextThemes.text(context)),
+              title: Text('NAKstore', style: theme.TextThemes.drawerMenu(context)),
               onTap: () {
                 final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/');
                 Future<void> launchInWebView({required Uri url}) async {
@@ -53,12 +53,12 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.local_library, color: theme.darkGreyClr,),
-              title: Text('Resources', style: theme.TextThemes.text(context)),
+              title: Text('Resources', style: theme.TextThemes.drawerMenu(context)),
               onTap: () => Navigator.pushNamed(context, '/resources'),
             ),
             ListTile(
               leading: const Icon(Icons.school, color: theme.darkGreyClr,),
-              title: Text('Alumni Network', style: theme.TextThemes.text(context)),
+              title: Text('Alumni Network', style: theme.TextThemes.drawerMenu(context)),
               onTap: () {
                 final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/alumni/');
                 Future<void> launchInWebView({required Uri url}) async {
@@ -71,7 +71,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.public, color: theme.darkGreyClr,),
-              title: Text('National Website', style: theme.TextThemes.text(context)),
+              title: Text('National Website', style: theme.TextThemes.drawerMenu(context)),
               onTap: () {
                 // Future<void> launchUrlStart({required String url}) async {
                 //   if (!await launchUrl(Uri.parse(url))) {
@@ -91,7 +91,7 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.email, color: theme.darkGreyClr,),
-              title: Text('Contact Us', style: theme.TextThemes.text(context)),
+              title: Text('Contact Us', style: theme.TextThemes.drawerMenu(context)),
               onTap: () => Navigator.pushNamed(context, '/contact'),
             )
           ],
