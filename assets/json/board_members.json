@@ -3,102 +3,122 @@
     {
       "position": "National President",
       "name": "Jason Navarro",
-      "email": "president@nakinc.org"
+      "email": "president@nakinc.org",
+      "image": "assets/img/users/jn_user.jpg"
     },
     {
       "position": "VP of Business Ops",
       "name": "Jose R. Lara",
-      "email": "nvp-business@nakinc.org"
+      "email": "nvp-business@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "VP of Compliance",
       "name": "Carlos A. Mendoza",
-      "email": "nvp-compliance.nakinc.org"
+      "email": "nvp-compliance@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "Secretary",
       "name": "Christopher S. Juarez",
-      "email": "secretary@nakinc.org"
+      "email": "secretary@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "Treasury Controller",
       "name": "Sandro Aguilar",
-      "email": "treasurer@nakinc.org"
+      "email": "treasurer@nakinc.org",
+      "image": "assets/img/users/sa_user.webp"
     },
     {
       "position": "EVP Alumni Relations",
       "name": "Sergio Andrade",
-      "email": "naa@nakinc.org"
+      "email": "naa@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
         "position": "N. Regional Manager",
         "name": "Vacant",
-        "email": "neb@nakinc.org"
+        "email": "neb@nakinc.org",
+        "image": "assets/img/users/board_headshot.png"
     },
     {
         "position": "E. Regional Manager",
         "name": "Vacant",
-        "email": "neb@nakinc.org"
+        "email": "neb@nakinc.org",
+        "image": "assets/img/users/board_headshot.png"
     },
     {
         "position": "S. Regional Manager",
         "name": "Vacant",
-        "email": "neb@nakinc.org"
+        "email": "neb@nakinc.org",
+        "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "N. Chapter Dev.",
       "name": "Christian Martinez",
-      "email": "north.chapterdev@nakinc.org"
+      "email": "north.chapterdev@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "S. Chapter Dev.",
       "name": "Vacant",
-      "email": "north.intake@nakinc.org"
+      "email": "north.intake@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Marketing",
       "name": "Andres Rojo",
-      "email": "nakmarketing@nakinc.org"
+      "email": "nakmarketing@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "Northern Education",
       "name": "Sean Lopez",
-      "email": "north.intake@nakinc.org"
+      "email": "north.intake@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "Southern Education",
       "name": "Brian Saldana",
-      "email": "south.intake@nakinc.org"
+      "email": "south.intake@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Programming",
       "name": "Vacant",
-      "email": "programs@nakinc.org"
+      "email": "programs@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Expansion",
       "name": "Vacant",
-      "email": "expansion@nakinc.org"
+      "email": "expansion@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Campus & PR",
       "name": "Vacant",
-      "email": "pr@nakinc.org"
+      "email": "pr@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Communications",
       "name": "Vacant",
-      "email": "communication@nakinc.org"
+      "email": "communication@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     },
     {
         "position": "AVP of Northern DEI",
         "name": "Jerson Zarate",
-        "email": "cavp-north-dei@nakinc.org"
+        "email": "cavp-north-dei@nakinc.org",
+        "image": "assets/img/users/board_headshot.png"
     },
     {
       "position": "AVP of Southern DEI",
       "name": "Vacant",
-      "email": "avp-south-dei@nakinc.org"
+      "email": "avp-south-dei@nakinc.org",
+      "image": "assets/img/users/board_headshot.png"
     }
   ]
 }

@@ -767,16 +767,12 @@ Card duesCard({required BuildContext context, required int index, required List 
   var subheading = '${dues[index]["amount"]}';
   var supportingText = '${dues[index]['description']}';
   var buttonLink = '${dues[index]['url']}';
-  return Card(
+  return Card.outlined(
     color: Theme.of(context).primaryColor,
+    // color: theme.offWhiteClr,
       elevation: 2.0,
       child: Column(
         children: [
-        //  ListTile(
-        //    title: Text(heading),
-        //    subtitle: Text(subheading),
-        //    trailing: Icon(Icons.favorite_outline),
-        //  ),
           SizedBox(
           height: 180.0,
           child: ClipRRect(
@@ -839,6 +835,7 @@ Card duesCard({required BuildContext context, required int index, required List 
                 padding: const EdgeInsets.all(20),
                 backgroundColor: theme.redClr,
                 foregroundColor: theme.whiteClr,
+                side: const BorderSide(color: theme.redClr),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                 ),
@@ -856,17 +853,18 @@ Card duesCard({required BuildContext context, required int index, required List 
             ),
           ),
         ],
-      ));
+      )
+    );
  }
 
  Card boardCard({required BuildContext context, required int index, required List board}) {
-  var cardImage = 'assets/img/board_headshot.png';
-  var heading = '${board[index]["position"]}';
-  var subheading = '${board[index]["name"]}';
-  var supportingText = '${board[index]["email"]}';
+  var cardImage = '${board[index]['image']}';
+  var heading = '${board[index]['position']}';
+  var subheading = '${board[index]['name']}';
+  var supportingText = '${board[index]['email']}';
 
   return Card(
-    color: const Color.fromARGB(255, 255, 255, 255),
+    color: theme.primaryClr,
     elevation: 2.0,
     child: Column(
       children: <Widget>[
@@ -898,6 +896,7 @@ Card duesCard({required BuildContext context, required int index, required List 
             icon: const Icon(Icons.more_vert),
             onPressed: () {
               showModalBottomSheet(
+                backgroundColor: theme.primaryClr,
                 showDragHandle: true,
                 enableDrag: true,
                 context: context,
@@ -912,7 +911,7 @@ Card duesCard({required BuildContext context, required int index, required List 
                         const Icon(Icons.email),
                         Text(
                           supportingText,
-                          style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+                          style: theme.TextThemes.modalText(context),
                         ),
                       ],
                     ),

@@ -5,6 +5,7 @@ const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 56, 56, 58);
 const Color whiteClr = Color(0xffffffff);
+const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
 const Color redOfficial = Color(0xffc41230);
 const Color bronzeOfficial = Color(0xffd8c288);
 const primaryClr = whiteClr;
@@ -113,6 +114,14 @@ class TextThemes{
       color: darkGreyClr,
       fontFamily: 'College',
       fontSize: 28,
+    );
+  }
+
+  static TextStyle headlineSmall(BuildContext context) {
+    return const TextStyle(
+      color: darkGreyClr,
+      fontFamily: 'College',
+      fontSize: 18,
     );
   }
 

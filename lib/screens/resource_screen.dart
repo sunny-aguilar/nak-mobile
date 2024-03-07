@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nak_app/components/resource_cards.dart';
-import '../components/text_layouts.dart' as text_layouts;
+import 'package:nak_app/components/text_layouts.dart' as text_layouts;
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class ResourceScreen extends StatefulWidget {
   const ResourceScreen({super.key});
@@ -30,7 +31,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
         slivers: <Widget>[
           SliverAppBar(
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-            backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+            backgroundColor: theme.redClr,
             pinned: true,
             floating: false,
             snap: false,

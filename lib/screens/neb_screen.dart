@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
-import '../components/cards.dart';
+import 'package:nak_app/components/cards.dart';
 
 class NationalBoard extends StatefulWidget {
   const NationalBoard({super.key});
@@ -12,9 +12,9 @@ class NationalBoard extends StatefulWidget {
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString("assets/json/board_members.json");
+    final String response = await rootBundle.loadString('assets/json/board_members.json');
     final data = await json.decode(response);
-    setState( () => _board = data["board"] );
+    setState( () => _board = data['board'] );
   }
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _NationalBoardState extends State<NationalBoard> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Image.asset("assets/img/nak_letters_bw.png", height: 30.0,),
+            title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
             backgroundColor: const Color.fromARGB(255, 254, 58, 67),
             pinned: true,
             floating: true,
@@ -40,7 +40,7 @@ class _NationalBoardState extends State<NationalBoard> {
                 StretchMode.blurBackground,
               ],
               background: Image.asset(
-                "assets/img/title_thumbnails/board_letters.png",
+                'assets/img/title_thumbnails/board_letters.png',
                 fit: BoxFit.contain,
                 height: 100,
               ),

@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             // icon: service.ThemeService.getIcon(),
-            icon: Get.isDarkMode ? const Icon(Icons.nightlight_outlined) : const Icon(Icons.wb_sunny_outlined),
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
             onPressed: () {
               // print('Dark Theme Button Clicked');
               service.ThemeService().switchTheme();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Adds the content to the resource screen (text)
 Padding textLayout({required BuildContext context, required Map policyTxt, required Function scrollUp}) {
   const double spacer = 10.0;
   String policyTitle = policyTxt['overview'];
@@ -126,7 +127,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
 
   // return completed page text
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(16.0),
     child: Column(
       children: rows,
     ),

@@ -32,7 +32,7 @@ class App extends StatelessWidget {
         '/chapters': (context) => const ChapterScreen(),
         '/dues': (context) => const DuesScreen(),
         '/board': (context) => const NationalBoard(),
-        '/resources': (context) => ResourcesScreen(),
+        '/resources': (context) => const ResourcesScreen(),
         '/drugs': (context) => const ResourceScreen(),
         '/antihazing': (context) => const ResourceScreen(),
         '/antiretaliation': (context) => const ResourceScreen(),

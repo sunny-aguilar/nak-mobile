@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nak_app/components/mailer.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -53,7 +54,7 @@ class _ContactFormState extends State<ContactScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        backgroundColor: theme.primaryClr,
       ),
       body: ListView(
         children: <Widget>[
@@ -72,8 +73,9 @@ class _ContactFormState extends State<ContactScreen> {
                       fontFamily: 'College',
                     ),
                   ),
-                  const Text(
-                    'If this is an emergency situation, please call 911 immediately.\n\nPlease use this form to report concerns related to a Nu Alpha Kappa chapter or member. The report can be filed anonymously by omitting the contact information portions. However, omitting the contact information may impede the Fraternity\'s Risk Management Review Committee\'s ability to investigate.\n\nWhile completing this form, please answer each question in as much detail as possible. If you do not have information regarding a question, please so indicate.\n\nIf you are in possession of any emails, text messages, pictures or social media posts (Snapchat, Twitter, Facebook, Instagram, etc) in connection with this report please send them to riskmanagement@nakinc.org with the subject line "Incident Report Form."'
+                  Text(
+                    'If this is an emergency situation, please call 911 immediately.\n\nPlease use this form to report concerns related to a Nu Alpha Kappa chapter or member. The report can be filed anonymously by omitting the contact information portions. However, omitting the contact information may impede the Fraternity\'s Risk Management Review Committee\'s ability to investigate.\n\nWhile completing this form, please answer each question in as much detail as possible. If you do not have information regarding a question, please so indicate.\n\nIf you are in possession of any emails, text messages, pictures or social media posts (Snapchat, Twitter, Facebook, Instagram, etc) in connection with this report please send them to riskmanagement@nakinc.org with the subject line "Incident Report Form."',
+                    style: theme.TextThemes.headline(context),
                   ),
                   const SizedBox(height: 18,),
                   TextFormField(

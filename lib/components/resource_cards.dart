@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 // Screen Arguments Extractor
 class ScreenArguments {
@@ -37,20 +38,12 @@ class MasonryGridTile extends StatelessWidget {
         ),
       ),
       child: Card(
-        // decoration: BoxDecoration(
-        //   borderRadius: BorderRadius.circular(8.0),
-        //   // color: const Color(0xff534343), // adds background color to entire card
-        // ),
+        color: theme.primaryClr,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ClipRRect(
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(10.0),
-                topRight: Radius.circular(10.0),
-                bottomLeft: Radius.circular(10.0),
-                bottomRight: Radius.circular(10.0)
-              ),
+              borderRadius: const BorderRadius.all(Radius.circular(6.0)),
               // child: ColoredBox(
                 // color: Color(0xff534343),
                 child: Image(
@@ -68,11 +61,12 @@ class MasonryGridTile extends StatelessWidget {
                     // contentPadding: EdgeInsets.all(0),
                     title: Text(
                       title,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Color.fromRGBO(74, 74, 74, 1)
-                      ),
+                      style: theme.TextThemes.headlineSmall(context)
+                      // style: const TextStyle(
+                      //   fontWeight: FontWeight.bold,
+                      //   fontSize: 20,
+                      //   color: Color.fromRGBO(74, 74, 74, 1)
+                      // ),
                     ),
                   ),
                 ],
