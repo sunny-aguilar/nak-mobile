@@ -43,33 +43,33 @@ class _CarouselComponentState extends State<CarouselComponent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ColoredBox(
-          color: const Color.fromARGB(255, 239, 239, 239),
+        Container(    // TODO - THIS CONTAINER CAN BE DELETED
+          // color: const Color.fromARGB(255, 239, 239, 239),
           child: Container(
-            decoration: BoxDecoration(
-              color: randomColor(),
-            //   gradient: LinearGradient(
-            //     begin: Alignment.bottomLeft,
-            //     end: Alignment.topRight,
-            //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
-            //     colors: [
-            //       // Color.fromARGB(255, 26, 26, 26),
-            //       // Colors.red,
-            //       // Color.fromARGB(255, 26, 26, 26),
-            //       // Color(0xff67a3b2),
-            //       Color.fromARGB(255, 255, 255, 255),
-            //       Color.fromARGB(255, 0, 0, 0),
-            //       // Color(0xfff6cf35),
-            //     ],
+            // decoration: BoxDecoration(
+            //   color: randomColor(),
+            // //   gradient: LinearGradient(
+            // //     begin: Alignment.bottomLeft,
+            // //     end: Alignment.topRight,
+            // //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
+            // //     colors: [
+            // //       // Color.fromARGB(255, 26, 26, 26),
+            // //       // Colors.red,
+            // //       // Color.fromARGB(255, 26, 26, 26),
+            // //       // Color(0xff67a3b2),
+            // //       Color.fromARGB(255, 255, 255, 255),
+            // //       Color.fromARGB(255, 0, 0, 0),
+            // //       // Color(0xfff6cf35),
+            // //     ],
+            // // ),
+            // // ------ Image BG ---------------------------
+            //   // image: const DecorationImage(
+            //   //   image: AssetImage(
+            //   //     'assets/img/nak_letters_bw.png',
+            //   //   ),
+            //   //   fit: BoxFit.contain,
+            //   // ),
             // ),
-            // ------ Image BG ---------------------------
-              // image: const DecorationImage(
-              //   image: AssetImage(
-              //     'assets/img/nak_letters_bw.png',
-              //   ),
-              //   fit: BoxFit.contain,
-              // ),
-            ),
             child: SizedBox(
               height: 400,
               width: MediaQuery.of(context).size.width,
@@ -99,7 +99,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
           children: <Widget>[
             /// ADD DOT INDICATOR EFFECTS HERE
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
+              padding: const EdgeInsets.symmetric(vertical: 4),
               child: SmoothPageIndicator(
                 controller: _pageController,
                 count: images.length,

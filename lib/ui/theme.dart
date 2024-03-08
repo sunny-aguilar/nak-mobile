@@ -28,23 +28,16 @@ class Themes{
       onError: Colors.grey,
     ),
 
-    // appBarTheme: const AppBarTheme(
-    //   color: Colors.amber,
-    // ),
-
+    // Input field theme
     inputDecorationTheme: const InputDecorationTheme(
       floatingLabelStyle: TextStyle(color: darkGreyClr),
-
       border: OutlineInputBorder(),
-
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: darkGreyClr),
       ),
-
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: darkGreyClr),
       ),
-
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
@@ -66,25 +59,16 @@ class Themes{
       onError: Colors.grey,
     ),
 
-    // textTheme: TextTheme(
-    //   bodySmall: const TextStyle(
-    //     color: whiteClr,
-    //   )
-    // ),
-
+    // Input field theme
     inputDecorationTheme: const InputDecorationTheme(
       floatingLabelStyle: TextStyle(color: primaryClr),
-
       border: OutlineInputBorder(),
-
       enabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: primaryClr),
       ),
-
       focusedBorder: OutlineInputBorder(
         borderSide: BorderSide(color: darkGreyClr),
       ),
-
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),

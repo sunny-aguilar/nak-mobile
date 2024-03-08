@@ -28,22 +28,9 @@ void scrollUp() {
 // list holding carousel children
 List<Widget> carouselItems = [
   const carousel.CarouselComponent(),
-  const Padding(
-    padding: EdgeInsets.all(12.0),
-    child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
-  ),
   const SizedBox(height: 4,),
-  // const Text(
-  //   'FEATURED STORIES',
-  //   textAlign: TextAlign.center,
-  //   style: TextStyle(
-  //     fontFamily: 'College',
-  //     fontSize: 34,
-  //     fontWeight: FontWeight.bold,
-  //   ),
-  // ),
   const SizedBox(height: 4,),
-  // const GridCards(),
+  // const GridCards(),   // FOR LATER DEVELOPMENT
 ];
 
 // create final list of children
