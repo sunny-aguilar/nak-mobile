@@ -48,7 +48,6 @@ class Themes{
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
-
     ),
   );
 
@@ -67,6 +66,12 @@ class Themes{
       onError: Colors.grey,
     ),
 
+    // textTheme: TextTheme(
+    //   bodySmall: const TextStyle(
+    //     color: whiteClr,
+    //   )
+    // ),
+
     inputDecorationTheme: const InputDecorationTheme(
       floatingLabelStyle: TextStyle(color: primaryClr),
 
@@ -83,10 +88,11 @@ class Themes{
       errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
-
     )
   );
 }
+
+
 
 // loads on hot reload (vs hot restart idkw)
 class CustomTheme {
@@ -175,19 +181,26 @@ class TextThemes{
     );
   }
 
-  static TextStyle chapterCardTitle(BuildContext context) {
-    return const TextStyle(
-      color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 18,
-    );
-  }
-
   static TextStyle drawerMenu(BuildContext context) {
     return const TextStyle(
       color: darkGreyClr,
       fontFamily: 'College',
       fontSize: 20,
+    );
+  }
+
+  static TextStyle drawerMenuNT(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 20,
+    );
+  }
+
+  static TextStyle chapterCardTitle(BuildContext context) {
+    return const TextStyle(
+      color: darkGreyClr,
+      fontFamily: 'College',
+      fontSize: 18,
     );
   }
 
