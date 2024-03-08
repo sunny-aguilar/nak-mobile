@@ -83,14 +83,9 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.person_2_outlined),
                       labelText: 'Your Name*',
                       helperText: '*required',
-                      // errorText: 'need a name!',
-                      // contentPadding: EdgeInsets.all(20),
-                      border: OutlineInputBorder(),
                     ),
-                    // onChanged: (text) {
-                    //   print('Text Length: ${text.characters.length}');
-                    // },
                     controller: _nameCtl,
+                    keyboardType: TextInputType.name,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your name';
@@ -104,9 +99,9 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.email_outlined),
                       labelText: 'Your Email*',
                       helperText: '*required',
-                      border: OutlineInputBorder(),
                     ),
                     controller: _emailCtl,
+                    keyboardType: TextInputType.emailAddress,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter an email';
@@ -138,11 +133,11 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Nature of Incident',
                       helperText: '*required',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0)
-                        ),
-                      ),
+                      // border: OutlineInputBorder(
+                      //   borderRadius: BorderRadius.all(
+                      //     Radius.circular(4.0)
+                      //   ),
+                      // ),
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
@@ -192,11 +187,11 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Urgency of Incident',
                       helperText: '*required',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0)
-                        ),
-                      ),
+                      // border: OutlineInputBorder(
+                      //   borderRadius: BorderRadius.all(
+                      //     Radius.circular(4.0)
+                      //   ),
+                      // ),
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
@@ -224,7 +219,6 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.event_outlined),
                       labelText: 'Date of Incident',
                       helperText: '*required',
-                      border: OutlineInputBorder(),
                     ),
                     controller: _dateCtl,
                     validator: (value) {
@@ -270,9 +264,9 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.location_on_outlined),
                       labelText: 'Location of Incident*',
                       helperText: '*required',
-                      border: OutlineInputBorder(),
                     ),
                     controller: _locationCtl,
+                    keyboardType: TextInputType.text,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a location';
@@ -287,9 +281,9 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.edit_note_outlined,),
                       labelText: 'Description of Incident*',
                       helperText: '*required',
-                      border: OutlineInputBorder(),
                     ),
                     controller: _descCtl,
+                    keyboardType: TextInputType.text,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter a description';
@@ -321,11 +315,6 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.checklist),
                       labelText: 'Was a report filed with the University?',
                       helperText: '*required',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0)
-                        ),
-                      ),
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
@@ -371,11 +360,6 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.local_police_outlined),
                       labelText: 'Did police respond?',
                       helperText: '*required',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0)
-                        ),
-                      ),
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[
@@ -422,11 +406,6 @@ class _ContactFormState extends State<ContactScreen> {
                       prefixIcon: Icon(Icons.local_phone_outlined),
                       labelText: 'Would you like to receive a follow-up?',
                       helperText: '*required',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(4.0)
-                        ),
-                      ),
                     ),
                     dropdownColor: const Color.fromARGB(255, 255, 255, 255),
                     items: <String>[

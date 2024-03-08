@@ -4,6 +4,7 @@ const Color blueClr = Color(0xff4e5ae8);
 const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 56, 56, 58);
+const Color greyClr = Colors.grey;
 const Color whiteClr = Color(0xffffffff);
 const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
 const Color redOfficial = Color(0xffc41230);
@@ -16,8 +17,8 @@ class Themes{
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: primaryClr,        // appbar color
-      onPrimary: Colors.grey,
-      secondary: Colors.grey,
+      onPrimary: greyClr,
+      secondary: greyClr,
       onSecondary: Colors.grey,
       background: primaryClr,     // main screen color
       onBackground: Colors.grey,
@@ -26,7 +27,31 @@ class Themes{
       error: Colors.grey,
       onError: Colors.grey,
     ),
+
+    // appBarTheme: const AppBarTheme(
+    //   color: Colors.amber,
+    // ),
+
+    inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: darkGreyClr),
+
+      border: OutlineInputBorder(),
+
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: darkGreyClr),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: darkGreyClr),
+      ),
+
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: redClr)
+      ),
+
+    ),
   );
+
   static final dark = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
@@ -41,6 +66,25 @@ class Themes{
       error: Colors.grey,
       onError: Colors.grey,
     ),
+
+    inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: primaryClr),
+
+      border: OutlineInputBorder(),
+
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: primaryClr),
+      ),
+
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: darkGreyClr),
+      ),
+
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: redClr)
+      ),
+
+    )
   );
 }
 
@@ -61,6 +105,25 @@ class CustomTheme {
         error: Colors.grey,
         onError: Colors.grey,
       ),
+
+      inputDecorationTheme: const InputDecorationTheme(
+        floatingLabelStyle: TextStyle(color: darkGreyClr),
+
+        border: OutlineInputBorder(),
+
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: darkGreyClr),
+        ),
+
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: darkGreyClr),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: redClr)
+        ),
+
+      ),
     );
   }
 
@@ -79,6 +142,25 @@ class CustomTheme {
         error: Colors.grey,
         onError: Colors.grey,
       ),
+
+      inputDecorationTheme: const InputDecorationTheme(
+        floatingLabelStyle: TextStyle(color: primaryClr),
+
+        border: OutlineInputBorder(),
+
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: primaryClr),
+        ),
+
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: darkGreyClr),
+        ),
+
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: redClr)
+        ),
+
+      )
     );
   }
 }

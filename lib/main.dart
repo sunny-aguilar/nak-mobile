@@ -62,6 +62,18 @@ class App extends StatelessWidget {
       //   primaryColor: Colors.red,  // appbar color
       //   brightness: Brightness.light, // text color
       //   useMaterial3: false,
+      //   inputDecorationTheme: const InputDecorationTheme(
+      //     floatingLabelStyle: TextStyle(color: theme.darkGreyClr),
+
+      //     enabledBorder: OutlineInputBorder(
+      //       borderSide: BorderSide(color: theme.redClr),
+      //     ),
+
+      //     focusedBorder: OutlineInputBorder(
+      //       borderSide: BorderSide(color: theme.blueClr),
+      //     )
+
+      //   ),
       // ),
 
       // darkTheme: theme.CustomTheme.darkThemeData(context),
