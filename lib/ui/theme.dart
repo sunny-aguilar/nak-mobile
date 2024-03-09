@@ -17,16 +17,16 @@ class Themes{
   static final light = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
-      primary: primaryClr,        // appbar color
+      primary: primaryClr,            // appbar color
       onPrimary: greyClr,
       secondary: greyClr,
-      onSecondary: Colors.grey,
-      background: primaryClr,     // main screen color
-      onBackground: Colors.grey,
-      surface: Colors.grey,
+      onSecondary: greyClr,
+      background: primaryClr,         // main screen color
+      onBackground: greyClr,
+      surface: greyClr,               // card color
       onSurface: Colors.black,      // font, icons color
-      error: Colors.grey,
-      onError: Colors.grey,
+      error: greyClr,
+      onError: greyClr,
     ),
 
     // Input field theme
@@ -48,16 +48,16 @@ class Themes{
   static final dark = ThemeData(
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
-      primary: darkGreyClr,     // appbar color
-      onPrimary: Colors.grey,
-      secondary: Colors.grey,
-      onSecondary: Colors.grey,
-      background: darkGreyClr,  // main screen color
-      onBackground: Colors.grey,
-      surface: Colors.grey,
-      onSurface: Colors.white,                      // font, icons color
-      error: Colors.grey,
-      onError: Colors.grey,
+      primary: darkGreyClr,                 // appbar color
+      onPrimary: greyClr,
+      secondary: greyClr,
+      onSecondary: greyClr,
+      background: darkGreyClr,              // main screen color
+      onBackground: greyClr,
+      surface: darkGreyClr,                 // card color
+      onSurface: Colors.white,            // font, icons color
+      error: greyClr,
+      onError: greyClr,
     ),
 
     // Input field theme
@@ -223,7 +223,7 @@ class TextThemes{
     return const TextStyle(
       fontFamily: 'College',
       fontSize: 22,
-      color: darkGreyClr,
+      // color: darkGreyClr,
     );
   }
 }

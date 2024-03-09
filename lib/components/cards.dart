@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class RedOutlineCard extends StatelessWidget {
@@ -299,7 +300,7 @@ class LargeGreyPictureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card.outlined(
       clipBehavior: Clip.antiAlias,
-      color: const Color.fromARGB(255, 255, 255, 255),
+      color: Theme.of(context).primaryColor,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -319,18 +320,18 @@ class LargeGreyPictureCard extends StatelessWidget {
             ),
             subtitle: Text(
               storyHeadline,
-              style: TextStyle(
-                color: Colors.black.withOpacity(0.6),
+              style: const TextStyle(
                 fontSize: 16,
               ),
             ),
             trailing: IconButton(
-              icon: const Icon(Icons.more_vert),
+              icon: const Icon(Icons.more_vert,),
               onPressed: () {
                 showModalBottomSheet(
-                  context: context,
+                  backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
                   showDragHandle: true,
                   enableDrag: true,
+                  context: context,
                   isScrollControlled: true,
                   builder: (BuildContext context) {
                     return SizedBox(
@@ -386,10 +387,7 @@ class LargeGreyPictureCard extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-            child: Text(
-              date,
-              style: TextStyle(color: Colors.black.withOpacity(0.6)),
-            ),
+            child: Text(date,),
           ),
         ],
       ),
@@ -729,7 +727,7 @@ Card chapterCard({required BuildContext context, required int index, required Li
         icon: const Icon(Icons.more_vert, color: theme.darkGreyClr),
         onPressed: () {
           showModalBottomSheet(
-            backgroundColor: theme.whiteClr,
+            backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
             showDragHandle: true,
             enableDrag: true,
             context: context,
@@ -1005,11 +1003,10 @@ class NotificationCard extends StatelessWidget {
 
 class CalendarWidget extends StatelessWidget {
   const CalendarWidget({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 8,),
       child: DatePicker(
         DateTime.now(),
         height: 100,

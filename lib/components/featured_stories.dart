@@ -9,7 +9,6 @@ class HomeScreenChildren extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.all(0),
       controller: controller,
       children: childrenList(home_db.storyCardData),
     );
