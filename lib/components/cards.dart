@@ -858,7 +858,7 @@ Card duesCard({required BuildContext context, required int index, required List 
   var supportingText = '${board[index]['email']}';
 
   return Card(
-    color: theme.primaryClr,
+    color: Theme.of(context).primaryColor,
     elevation: 2.0,
     child: Column(
       children: <Widget>[
