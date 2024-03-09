@@ -25,17 +25,32 @@ void scrollUp() {
   );
 }
 
-// list holding carousel children
-List<Widget> carouselItems = [
-  const carousel.CarouselComponent(),
-  const SizedBox(height: 4,),
-  const SizedBox(height: 4,),
-  // const GridCards(),   // FOR LATER DEVELOPMENT
-];
-
 // create final list of children
 List<Widget> childrenList(cardData) {
   List<Widget> storyList= [];
+  // add story components
+  storyList.add(const carousel.CarouselComponent());
+  storyList.add(const SizedBox(height: 4,));
+  storyList.add(const card.CalendarWidget());
+  storyList.add(const card.NotificationCard());
+  addStoryCards(home_db.storyCardData, storyList);
+  // add scroll up button
+  storyList.add(
+    Center(
+      child: IconButton(
+        icon: const Icon(Icons.arrow_circle_up, size: 30,),
+        onPressed: () {
+          scrollUp();
+        },
+      ),
+    ),
+  );
+  storyList.add(const SizedBox(height: 35,));
+  return storyList;
+}
+
+/// add story cards
+void addStoryCards(cardData, storyList) {
   for (var data in home_db.storyCardData) {
     var {
       'userImage': userImage,
@@ -56,28 +71,9 @@ List<Widget> childrenList(cardData) {
     ));
     storyList.add(const SizedBox(height: 15,));
   }
-  // storyList.add(
-  //   const Padding(
-  //     padding: EdgeInsets.all(12.0),
-  //     child: Divider(color: Color.fromARGB(255, 181, 181, 181),),
-  //   ),
-  // );
-  storyList.add(const card.NotificationCard());
-  storyList.add(
-    Center(
-      child: IconButton(
-        icon: const Icon(Icons.arrow_circle_up, size: 30,),
-        onPressed: () {
-          scrollUp();
-        },
-      ),
-    ),
-  );
-  storyList.add(const SizedBox(height: 35,));
-  List<Widget> allItems = carouselItems + storyList;
-  return allItems;
 }
 
+/// FOR LATER DEVELOPMENT
 // class GridCards extends StatelessWidget {
 //   const GridCards({super.key});
 //   @override

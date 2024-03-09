@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4e5ae8);
 const Color pinkClr = Color(0xffff4667);
@@ -225,4 +226,12 @@ class TextThemes{
       color: darkGreyClr,
     );
   }
+}
+
+// font that changes light/dark on theme
+TextStyle get dynamicText {
+  return TextStyle(
+    color: Get.isDarkMode ? primaryClr : darkGreyClr,
+    fontSize: 24
+  );
 }

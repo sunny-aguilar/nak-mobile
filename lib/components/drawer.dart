@@ -9,7 +9,7 @@ class DrawerComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
+      backgroundColor: Theme.of(context).colorScheme.primary,
       child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[

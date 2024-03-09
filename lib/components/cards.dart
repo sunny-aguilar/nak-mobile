@@ -1,11 +1,7 @@
-import 'dart:ui';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class RedOutlineCard extends StatelessWidget {
@@ -455,14 +451,14 @@ class PurpleCard extends StatelessWidget {
           color: Color.fromARGB(255, 255, 255, 255),
         ),
         title: Text(
-          "Purple Round Edge Card",
+          'Purple Round Edge Card',
           style: TextStyle(
 
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         subtitle: Text(
-          "Come read about the state of the fraternity.",
+          'Come read about the state of the fraternity.',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
           ),
@@ -489,14 +485,14 @@ class PurpleSquareCard extends StatelessWidget {
           color: Color.fromARGB(255, 255, 255, 255),
         ),
         title: Text(
-          "Purple Square Card",
+          'Purple Square Card',
           style: TextStyle(
 
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         subtitle: Text(
-          "Come read about the state of the fraternity.",
+          'Come read about the state of the fraternity.',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
           ),
@@ -524,14 +520,14 @@ class RedSquareCard extends StatelessWidget {
           color: Color.fromARGB(255, 255, 255, 255),
         ),
         title: Text(
-          "Red Square Card",
+          'Red Square Card',
           style: TextStyle(
 
             color: Color.fromARGB(255, 255, 255, 255),
           ),
         ),
         subtitle: Text(
-          "Come read about the state of the fraternity.",
+          'Come read about the state of the fraternity.',
           style: TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
           ),
@@ -559,13 +555,13 @@ class WhiteRedAccentCard extends StatelessWidget {
           color: Color.fromARGB(255, 254, 58, 67),
         ),
         title: Text(
-          "White Red Accent Card",
+          'White Red Accent Card',
           style: TextStyle(
             color: Color.fromARGB(255, 28, 28, 28),
           ),
         ),
         subtitle: Text(
-          "Come read about the state of the fraternity.",
+          'Come read about the state of the fraternity.',
           style: TextStyle(
             color: Color.fromARGB(255, 28, 28, 28),
           ),
@@ -594,13 +590,13 @@ class LightGrayCard extends StatelessWidget {
           color: Color.fromARGB(255, 254, 58, 67),
         ),
         title: Text(
-          "Light Gray Card",
+          'Light Gray Card',
           style: TextStyle(
             color: Color.fromARGB(255, 28, 28, 28),
           ),
         ),
         subtitle: Text(
-          "Come read about the state of the fraternity.",
+          'Come read about the state of the fraternity.',
           style: TextStyle(
             color: Color.fromARGB(255, 28, 28, 28),
           ),
@@ -653,7 +649,7 @@ class MiniCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   child: Center(
                     child: Image.asset(
-                      "assets/img/image_wireframe2.png",
+                      'assets/img/image_wireframe2.png',
                       height: 90,
                       color: const Color.fromARGB(255, 213, 109, 235),
                       colorBlendMode: BlendMode.modulate,
@@ -662,13 +658,13 @@ class MiniCard extends StatelessWidget {
                 ),
               ),
               Text(
-                "Headline",
+                'Headline',
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),
               Text(
-                "Here is a card description",
+                'Here is a card description',
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                   color: Theme.of(context).colorScheme.onPrimary,
                 )
@@ -966,40 +962,38 @@ class NotificationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     String alertDate = DateFormat.yMMMMd('en_US').format(DateTime.now());
 
-    return Card.filled(
+    return Container(
+      margin: const EdgeInsets.only(left: 4, right: 4, bottom: 8),
+      decoration: const BoxDecoration(
+        color: theme.blueClr,
+        borderRadius: BorderRadius.all(Radius.circular(4)),
+      ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Row(
             children: [
-              Container(
-                margin: const EdgeInsets.symmetric(horizontal: 20),
-                // width: MediaQuery.of(context).size.width,
-                // height: 220,
-                decoration: const BoxDecoration(
-                  color: Color(0xffff4667),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      alertDate,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                        color: Color.fromARGB(255, 255, 255, 255),
-                      ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    alertDate,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'Lato',
+                      color: Color.fromARGB(255, 255, 255, 255),
                     ),
-                    const Text(
-                      'Today',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: 'Lato',
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 255, 255)
-                      ),
+                  ),
+                  const Text(
+                    'Today',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontFamily: 'Lato',
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 255, 255, 255)
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           ),
@@ -1008,6 +1002,43 @@ class NotificationCard extends StatelessWidget {
     );
   }
 }
+
+class CalendarWidget extends StatelessWidget {
+  const CalendarWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: DatePicker(
+        DateTime.now(),
+        height: 100,
+        width: 80,
+        initialSelectedDate: DateTime.now(),
+        selectionColor: theme.greyClr,
+        dateTextStyle: const TextStyle(
+          fontFamily: 'Lato',
+          fontWeight: FontWeight.bold,
+          fontSize: 20,
+          // color: theme.darkGreyClr,
+        ),
+        monthTextStyle: const TextStyle(
+          fontFamily: 'Lato',
+          fontSize: 12,
+          // fontWeight: FontWeight.bold,
+        ),
+        dayTextStyle: const TextStyle(
+          fontFamily: 'Lato',
+          fontSize: 14,
+          // fontWeight: FontWeight.bold,
+          // color: theme.darkGreyClr,
+        ),
+      ),
+    );
+  }
+}
+
+
 //  class MasonryGridTile extends StatelessWidget {
 //   final String image;
 //   final String title;

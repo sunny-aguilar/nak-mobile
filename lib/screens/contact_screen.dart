@@ -54,7 +54,7 @@ class _ContactFormState extends State<ContactScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: theme.primaryClr,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: ListView(
         children: <Widget>[
