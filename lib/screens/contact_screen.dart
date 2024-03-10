@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/components/mailer.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -243,11 +244,7 @@ class _ContactFormState extends State<ContactScreen> {
                         confirmText: 'Confirm',
                         errorFormatText: 'Enter valid date',
                         builder: (BuildContext context, child) => Theme(
-                          data: ThemeData(
-                            colorScheme: const ColorScheme.light(
-                              primary: Colors.black,
-                            ),
-                          ),
+                          data: Get.isDarkMode ? theme.Themes.dark : theme.Themes.light,
                           child: child!,
                         ),
                       );
@@ -294,10 +291,10 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   DropdownButtonFormField(
-                    hint: const Text(
+                    hint: Text(
                       'Select an Item',
                       style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -317,7 +314,7 @@ class _ContactFormState extends State<ContactScreen> {
                       labelText: 'Was a report filed with the University?',
                       helperText: '*required',
                     ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     items: <String>[
                       'Yes',
                       'No',
@@ -327,8 +324,8 @@ class _ContactFormState extends State<ContactScreen> {
                         value: value,
                         child: Text(
                           value,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                          style: TextStyle(
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -339,10 +336,10 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   DropdownButtonFormField(
-                    hint: const Text(
+                    hint: Text(
                       'Select an Item',
                       style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -362,7 +359,7 @@ class _ContactFormState extends State<ContactScreen> {
                       labelText: 'Did police respond?',
                       helperText: '*required',
                     ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     items: <String>[
                       'Yes',
                       'No',
@@ -373,8 +370,8 @@ class _ContactFormState extends State<ContactScreen> {
                         value: value,
                         child: Text(
                           value,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                          style: TextStyle(
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -385,10 +382,10 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   DropdownButtonFormField(
-                    hint: const Text(
+                    hint: Text(
                       'Select an Item',
                       style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -408,7 +405,7 @@ class _ContactFormState extends State<ContactScreen> {
                       labelText: 'Would you like to receive a follow-up?',
                       helperText: '*required',
                     ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     items: <String>[
                       'Yes',
                       'No',
@@ -418,8 +415,8 @@ class _ContactFormState extends State<ContactScreen> {
                         value: value,
                         child: Text(
                           value,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                          style: TextStyle(
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -430,38 +427,11 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   TextButton(
-                    style: ButtonStyle(
-                      minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 60),),
-                      foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
-                      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 0, 0)),
-                      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-                        (Set<MaterialState> states) {
-                          if (states.contains(MaterialState.pressed)) {
-                            return Colors.white.withOpacity(0.3);
-                          }
-                          return null; // Defer to the widget's default.
-                        },
-                      ),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
-                      ),
-                    ),
+                    style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                    child: const Text('Submit'),
                     onPressed: () {
-                      // store form field data into MAP
-                      _formData['name'] = _nameCtl.text;
-                      _formData['email'] = _emailCtl.text;
-                      _formData['nature'] = _natureCtl.text;
-                      _formData['urgency'] = _urgencyCtl.text;
-                      _formData['date'] = _dateCtl.text;
-                      _formData['location'] = _locationCtl.text;
-                      _formData['desc'] = _descCtl.text;
-                      _formData['uni'] = _uniCtl.text;
-                      _formData['police'] = _policeCtl.text;
-                      _formData['followUp'] = _followUpCtl.text;
+                      submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
 
-                      // send email if validation passes
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Submitting report...')),
@@ -469,7 +439,6 @@ class _ContactFormState extends State<ContactScreen> {
                         sendEmail(context, _formData);
                       }
                     },
-                    child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
                   ),
                   const SizedBox(height: 58,),
                 ],
@@ -480,4 +449,18 @@ class _ContactFormState extends State<ContactScreen> {
       ),
     );
   }
+}
+
+void submitForm(formData, name, email, nature, urgency, date, location, desc, uni, pol, followup) {
+  // store form field data into MAP
+  formData['name'] = name;
+  formData['email'] = email;
+  formData['nature'] = nature;
+  formData['urgency'] = urgency;
+  formData['date'] = date;
+  formData['location'] = location;
+  formData['desc'] = desc;
+  formData['uni'] = uni;
+  formData['police'] = pol;
+  formData['followUp'] = followup;
 }

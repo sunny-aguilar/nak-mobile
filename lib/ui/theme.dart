@@ -5,6 +5,7 @@ const Color blueClr = Color(0xff4e5ae8);
 const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 56, 56, 58);
+const Color blackClr = Color.fromARGB(255, 0, 0, 0);
 const Color greyClr = Colors.grey;
 const Color whiteClr = Color(0xffffffff);
 const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
@@ -23,30 +24,31 @@ class Themes{
       onSecondary: greyClr,
       background: primaryClr,         // main screen color
       onBackground: greyClr,
-      surface: greyClr,               // card color
+      surface: primaryClr,            // card color
       onSurface: Colors.black,      // font, icons color
       error: greyClr,
       onError: greyClr,
     ),
 
     // Input field theme
-    inputDecorationTheme: InputDecorationTheme(
-      floatingLabelStyle: TextStyle(color: Get.isDarkMode ? primaryClr : darkGreyClr),
-      border: const OutlineInputBorder(),
+    inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: darkGreyClr),
+      border: OutlineInputBorder(),
 
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+        borderSide: BorderSide(color: darkGreyClr),
       ),
 
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+        borderSide: BorderSide(color: darkGreyClr),
       ),
 
-      errorBorder: const OutlineInputBorder(
+      errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
     ),
   );
+
 
   static final dark = ThemeData(
     colorScheme: const ColorScheme(
@@ -58,25 +60,25 @@ class Themes{
       background: darkGreyClr,              // main screen color
       onBackground: greyClr,
       surface: darkGreyClr,                 // card color
-      onSurface: Colors.white,            // font, icons color
+      onSurface: primaryClr,            // font, icons color
       error: greyClr,
       onError: greyClr,
     ),
 
     // Input field theme
-    inputDecorationTheme: InputDecorationTheme(
-      floatingLabelStyle: TextStyle(color: Get.isDarkMode ? primaryClr : darkGreyClr),
-      border: const OutlineInputBorder(),
+    inputDecorationTheme: const InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: primaryClr),
+      border: OutlineInputBorder(),
 
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+        borderSide: BorderSide(color: primaryClr),
       ),
 
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+        borderSide: BorderSide(color: primaryClr),
       ),
 
-      errorBorder: const OutlineInputBorder(
+      errorBorder: OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
     )
@@ -92,15 +94,15 @@ class CustomTheme {
       colorScheme: const ColorScheme(
         brightness: Brightness.light,
         primary: primaryClr,        // appbar color
-        onPrimary: Colors.grey,
-        secondary: Colors.grey,
-        onSecondary: Colors.grey,
+        onPrimary: greyClr,
+        secondary: greyClr,
+        onSecondary: greyClr,
         background: primaryClr,     // main screen color
-        onBackground: Colors.grey,
-        surface: Colors.grey,
+        onBackground: greyClr,
+        surface: greyClr,
         onSurface: Colors.black,      // font, icons color
-        error: Colors.grey,
-        onError: Colors.grey,
+        error: greyClr,
+        onError: greyClr,
       ),
 
       inputDecorationTheme: const InputDecorationTheme(
@@ -225,6 +227,13 @@ class TextThemes{
   }
 
   static TextStyle button1(BuildContext context) {
+    return const TextStyle(
+      // fontFamily: 'Lato',
+      fontSize: 20,
+    );
+  }
+
+  static TextStyle button2(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
       fontSize: 16,

@@ -67,3 +67,125 @@ class RedOutlineButton extends StatelessWidget {
     );
   }
 }
+
+
+class FormButtonLight extends StatelessWidget {
+  final String text;
+  final Function func;
+  const FormButtonLight({super.key, required this.text, required this.func});
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        minimumSize: const Size.fromHeight(60),
+        padding: const EdgeInsets.all(8),
+        backgroundColor: theme.blackClr,
+        foregroundColor: theme.primaryClr,
+        // side: const BorderSide(color: theme.darkGreyClr, width: 2.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        textStyle: theme.TextThemes.button1(context),
+      ),
+      child: Text(text),
+      onPressed: () => func(),
+    );
+  }
+}
+
+class FormButtonDark extends StatelessWidget {
+  final String text;
+  const FormButtonDark({super.key, required this.text});
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        minimumSize: const Size.fromHeight(60),
+        padding: const EdgeInsets.all(8),
+        backgroundColor: theme.darkGreyClr,
+        foregroundColor: theme.primaryClr,
+        side: const BorderSide(color: theme.primaryClr, width: 2.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        textStyle: theme.TextThemes.button1(context),
+      ),
+      child: Text(text),
+      onPressed: () => null,
+    );
+  }
+}
+
+ButtonStyle buttonStyleLight(BuildContext context) {
+  return TextButton.styleFrom(
+    minimumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.blackClr,
+    foregroundColor: theme.primaryClr,
+    // side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
+}
+
+ButtonStyle buttonStyleDark(BuildContext context) {
+  return TextButton.styleFrom(
+    minimumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.darkGreyClr,
+    foregroundColor: theme.primaryClr,
+    side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
+}
+
+TextButton materialButton() {
+  return TextButton(
+    style: ButtonStyle(
+      minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 60),),
+      foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
+      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 0, 0)),
+      overlayColor: MaterialStateProperty.resolveWith<Color?>(
+        (Set<MaterialState> states) {
+          if (states.contains(MaterialState.pressed)) {
+            return Colors.white.withOpacity(0.3);
+          }
+          return null; // Defer to the widget's default.
+        },
+      ),
+      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+      ),
+    ),
+    onPressed: () {
+      // store form field data into MAP
+      // _formData['name'] = _nameCtl.text;
+      // _formData['email'] = _emailCtl.text;
+      // _formData['nature'] = _natureCtl.text;
+      // _formData['urgency'] = _urgencyCtl.text;
+      // _formData['date'] = _dateCtl.text;
+      // _formData['location'] = _locationCtl.text;
+      // _formData['desc'] = _descCtl.text;
+      // _formData['uni'] = _uniCtl.text;
+      // _formData['police'] = _policeCtl.text;
+      // _formData['followUp'] = _followUpCtl.text;
+
+      // // send email if validation passes
+      // if (_formKey.currentState!.validate()) {
+      //   ScaffoldMessenger.of(context).showSnackBar(
+      //     const SnackBar(content: Text('Submitting report...')),
+      //   );
+      //   sendEmail(context, _formData);
+      // }
+    },
+    child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
+  );
+}
+
