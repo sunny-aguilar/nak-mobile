@@ -182,8 +182,8 @@ class TextThemes{
   }
 
   static TextStyle chapterCardTitle(BuildContext context) {
-    return const TextStyle(
-      color: darkGreyClr,
+    return TextStyle(
+      color: Get.isDarkMode ? primaryClr : darkGreyClr,
       fontFamily: 'College',
       fontSize: 18,
     );
@@ -191,9 +191,15 @@ class TextThemes{
 
   static TextStyle duesTitle(BuildContext context) {
     return const TextStyle(
-      color: darkGreyClr,
       fontFamily: 'College',
       fontSize: 28,
+    );
+  }
+
+  static TextStyle headlineMed(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 22,
     );
   }
 

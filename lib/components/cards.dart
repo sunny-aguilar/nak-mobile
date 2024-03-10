@@ -724,7 +724,7 @@ Card chapterCard({required BuildContext context, required int index, required Li
         style: theme.TextThemes.headline(context),
       ),
       trailing: IconButton(
-        icon: const Icon(Icons.more_vert, color: theme.darkGreyClr),
+        icon: Icon(Icons.more_vert, color: Get.isDarkMode ? theme.whiteClr : theme.darkGreyClr),
         onPressed: () {
           showModalBottomSheet(
             backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
@@ -812,7 +812,7 @@ Card duesCard({required BuildContext context, required int index, required List 
             ),
             subtitle: Text(
               subheading,
-              style: theme.TextThemes.modalText(context),
+              style: theme.TextThemes.headlineMed(context),
             ),
           //  trailing: Icon(Icons.favorite_outline),
           ),
@@ -971,27 +971,63 @@ class NotificationCard extends StatelessWidget {
         children: <Widget>[
           Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    alertDate,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontFamily: 'Lato',
-                      color: Color.fromARGB(255, 255, 255, 255),
-                    ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        alertDate,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontFamily: 'Lato',
+                          color: theme.primaryClr,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 12,
+                      ),
+                      const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(Icons.access_time_rounded, size: 18, color: theme.primaryClr,),
+                          SizedBox(width: 4,),
+                          Text(
+                            'Task to be done',
+                            style: TextStyle(fontSize: 13, color: theme.primaryClr),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12,),
+                      const Text(
+                        'A note to be taken.',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontFamily: 'Lato',
+                          color: theme.primaryClr,
+                        ),
+                      ),
+                    ],
                   ),
-                  const Text(
-                    'Today',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontFamily: 'Lato',
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 255, 255, 255)
-                    ),
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                height: 60,
+                width: 0.5,
+                color: Colors.grey[200]!.withOpacity(0.7),
+              ),
+              const RotatedBox(
+                quarterTurns: 3,
+                child: Text(
+                  'Task is complete',
+                  style: TextStyle(
+                    fontFamily: 'Lato',
+                    fontSize: 10,
+                    color: theme.primaryClr,
                   ),
-                ],
+                ),
               ),
             ],
           ),

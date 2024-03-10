@@ -30,8 +30,6 @@ List<Widget> childrenList(cardData) {
   // add story components
   storyList.add(const carousel.CarouselComponent());
   storyList.add(const SizedBox(height: 4,));
-  storyList.add(const card.CalendarWidget());
-  storyList.add(const card.NotificationCard());
   addStoryCards(home_db.storyCardData, storyList);
   // add scroll up button
   storyList.add(
