@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nak_app/components/resource_cards.dart';
 import 'package:nak_app/components/text.dart';
@@ -16,7 +17,7 @@ class ResourcesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: theme.primaryClr,
+        backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
       ),
       body: Padding(
         padding: const EdgeInsets.all(6),

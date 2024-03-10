@@ -10,7 +10,6 @@ class ResourceScreen extends StatefulWidget {
 }
 
 class _ResourceScreenState extends State<ResourceScreen> {
-
   final ScrollController _scrollController = ScrollController();
   void scrollUp() {
     _scrollController.animateTo(

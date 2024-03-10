@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 /// Adds the content to the resource screen (text)
 Padding textLayout({required BuildContext context, required Map policyTxt, required Function scrollUp}) {
@@ -17,11 +18,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
       children: <Widget>[
         Text(
           policyTitle,
-          style: const TextStyle(
-            fontFamily: 'Clarendon',
-            fontSize: 36,
-            color: Color.fromARGB(255, 49, 49, 49),
-          ),
+          style: theme.TextThemes.resourceTitle(context),
         ),
       ],
     ),
@@ -33,11 +30,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
         Expanded(
           child: Text(
             policyHeader,
-            style: const TextStyle(
-              fontFamily: 'LuloClean',
-              fontSize: 10,
-              color: Color.fromARGB(255, 49, 49, 49),
-            ),
+            style: theme.TextThemes.resourceHeadline(context),
           ),
         ),
       ],
@@ -50,11 +43,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
         Expanded(
           child: Text(
             summary,
-            style: const TextStyle(
-              fontFamily: 'Georgia',
-              fontSize: 14,
-              color: Color.fromARGB(255, 49, 49, 49),
-            ),
+            style: theme.TextThemes.resourceHeadline(context),
           ),
         ),
       ],
@@ -73,11 +62,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
             Expanded(
               child: Text(
                 p,
-                style: const TextStyle(
-                  fontFamily: 'Georgia',
-                  fontSize: 14,
-                  color: Color.fromARGB(255, 49, 49, 49),
-                ),
+                style: theme.TextThemes.resourceHeadline(context),
               ),
             ),
           ],
@@ -93,7 +78,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
   // append final text
   rows += [
     const Divider(
-      color: Color.fromARGB(255, 174, 174, 174),
+      color: theme.greyClr,
     ),
     const SizedBox(
       height: spacer,
@@ -110,15 +95,6 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
               },
             ),
           ),
-          // child: Text(
-          //   "fin",
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(
-          //     fontFamily: 'Clarendon',
-          //     fontSize: 14,
-          //     color: Color.fromARGB(255, 49, 49, 49),
-          //   ),
-          // ),
         ),
         const SizedBox(height: 70,),
       ],

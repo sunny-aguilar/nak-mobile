@@ -205,7 +205,7 @@ class TextThemes{
 
   static TextStyle headlineSmall(BuildContext context) {
     return const TextStyle(
-      color: darkGreyClr,
+      // color: darkGreyClr,
       fontFamily: 'College',
       fontSize: 18,
     );
@@ -232,7 +232,25 @@ class TextThemes{
       // color: darkGreyClr,
     );
   }
+
+  static TextStyle resourceTitle(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Clarendon',
+      fontSize: 36,
+      // color: darkGreyClr,
+    );
+  }
+
+  static TextStyle resourceHeadline(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Georgia',
+      fontSize: 14,
+      // color: darkGreyClr,
+    );
+  }
+
 }
+
 
 // font that changes light/dark on theme
 TextStyle get dynamicText {

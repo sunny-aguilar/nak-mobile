@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -31,11 +32,11 @@ class RedOutlineCard extends StatelessWidget {
                 // style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
                   TextSpan(
-                    text: "Red Outline Card",
+                    text: 'Red Outline Card',
                     style: TextStyle(
                       color: Color.fromARGB(175, 196, 18, 48),
                       fontSize: 20,
-                      fontFamily: "HelveticaNeue",
+                      fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -43,7 +44,7 @@ class RedOutlineCard extends StatelessWidget {
               ),
             ),
             subtitle: const Text(
-              "Read the latest state of the fraternity union.",
+              'Read the latest state of the fraternity union.',
               style: TextStyle(
                 color: Color.fromARGB(175, 196, 18, 48),
                 fontSize: 14,
@@ -56,7 +57,7 @@ class RedOutlineCard extends StatelessWidget {
               TextButton(
                 onPressed: () => {},
                 child: const Text(
-                  "KEEP READING",
+                  'KEEP READING',
                   style: TextStyle(
                     color: Color.fromARGB(175, 196, 18, 48),
                   ),
@@ -90,11 +91,11 @@ class RedCard extends StatelessWidget {
                 // style: DefaultTextStyle.of(context).style,
                 children: <TextSpan>[
                   TextSpan(
-                    text: "Red Solid Card",
+                    text: 'Red Solid Card',
                     style: TextStyle(
                       color: Colors.white.withOpacity(0.9),
                       fontSize: 20,
-                      fontFamily: "HelveticaNeue",
+                      fontFamily: 'HelveticaNeue',
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -102,7 +103,7 @@ class RedCard extends StatelessWidget {
               ),
             ),
             subtitle: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
               style: TextStyle(
                 color: Colors.white.withOpacity(0.9),
                 fontSize: 14,
@@ -115,7 +116,7 @@ class RedCard extends StatelessWidget {
               TextButton(
                 onPressed: () => {},
                 child: Text(
-                  "KEEP READING",
+                  'KEEP READING',
                   style: TextStyle(
                     color: Colors.white.withAlpha(255),
                   ),
@@ -163,11 +164,11 @@ class LeftClippedCard extends StatelessWidget {
                     // style: DefaultTextStyle.of(context).style,
                     children: <TextSpan>[
                       TextSpan(
-                        text: "Left Styled Card",
+                        text: 'Left Styled Card',
                         style: TextStyle(
                           color: Color.fromARGB(255, 200, 183, 131),
                           fontSize: 20,
-                          fontFamily: "HelveticaNeue",
+                          fontFamily: 'HelveticaNeue',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -175,7 +176,7 @@ class LeftClippedCard extends StatelessWidget {
                   ),
                 ),
                 subtitle: const Text(
-                  "Read the latest state of the fraternity union.",
+                  'Read the latest state of the fraternity union.',
                   style: TextStyle(
                     color: Color.fromARGB(255, 200, 183, 131),
                     fontSize: 14,
@@ -188,7 +189,7 @@ class LeftClippedCard extends StatelessWidget {
                   TextButton(
                     onPressed: () => {},
                     child: const Text(
-                      "KEEP READING",
+                      'KEEP READING',
                       style: TextStyle(
                         color: Color.fromARGB(255, 200, 183, 131),
                       ),
@@ -216,7 +217,7 @@ class BlueGreyCard extends StatelessWidget {
           color: Color.fromARGB(255, 103, 163, 177)
         ),
         title: Text("President's Message"),
-        subtitle: Text("Come read about the state of the fraternity."),
+        subtitle: Text('Come read about the state of the fraternity.'),
         trailing: Icon(Icons.arrow_forward_ios_outlined),
       ),
     );
@@ -232,8 +233,8 @@ class SolidBronzeCard extends StatelessWidget {
       color: const Color.fromARGB(255, 200, 183, 131),
       child: ListTile(
         leading: const Icon(Icons.favorite),
-        title: const Text("Solid Bronze Card"),
-        subtitle: const Text("This is the ListTile subtitle that should be three lines long."),
+        title: const Text('Solid Bronze Card'),
+        subtitle: const Text('This is the ListTile subtitle that should be three lines long.'),
         isThreeLine: false,
         dense: false,
         trailing: const Icon(Icons.account_balance),
@@ -760,7 +761,7 @@ Card duesCard({required BuildContext context, required int index, required List 
   var heading = '${dues[index]["name"]}';
   var subheading = '${dues[index]["amount"]}';
   var supportingText = '${dues[index]['description']}';
-  var buttonLink = '${dues[index]['url']}';
+  var url = '${dues[index]['url']}';
   return Card.outlined(
     color: Theme.of(context).primaryColor,
     // color: theme.offWhiteClr,
@@ -823,28 +824,7 @@ Card duesCard({required BuildContext context, required int index, required List 
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: TextButton(
-              style: TextButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
-                padding: const EdgeInsets.all(20),
-                backgroundColor: theme.redClr,
-                foregroundColor: theme.whiteClr,
-                side: const BorderSide(color: theme.redClr),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4.0),
-                ),
-                textStyle: theme.TextThemes.button1(context),
-              ),
-              child: const Text('PAY DUES'),
-              onPressed: () {
-                Future<void> launchUrlStart({required String url}) async {
-                  if (!await launchUrl(Uri.parse(url))) {
-                    throw 'Could not launch $url';
-                  }
-                }
-                launchUrlStart(url: buttonLink);
-              },
-            ),
+            child: Get.isDarkMode ? buttons.RedOutlineButton(text: 'PAY DUES', url: url) : buttons.RedButton(text: 'PAY DUES', url: url),
           ),
         ],
       )
@@ -864,6 +844,7 @@ Card duesCard({required BuildContext context, required int index, required List 
       children: <Widget>[
         SizedBox(
           // height: 200,
+          width: double.infinity,
           child: ClipRRect(
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             child: Image.asset(
@@ -890,7 +871,7 @@ Card duesCard({required BuildContext context, required int index, required List 
             icon: const Icon(Icons.more_vert),
             onPressed: () {
               showModalBottomSheet(
-                backgroundColor: theme.primaryClr,
+                backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
                 showDragHandle: true,
                 enableDrag: true,
                 context: context,

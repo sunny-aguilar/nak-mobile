@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 // Screen Arguments Extractor
@@ -38,7 +39,7 @@ class MasonryGridTile extends StatelessWidget {
         ),
       ),
       child: Card(
-        color: theme.primaryClr,
+        color: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
