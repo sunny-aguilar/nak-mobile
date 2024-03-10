@@ -243,6 +243,14 @@ class TextThemes{
 
   static TextStyle resourceHeadline(BuildContext context) {
     return const TextStyle(
+      fontFamily: 'LuloClean',
+      fontSize: 10,
+      // color: darkGreyClr,
+    );
+  }
+
+  static TextStyle resourceBody(BuildContext context) {
+    return const TextStyle(
       fontFamily: 'Georgia',
       fontSize: 14,
       // color: darkGreyClr,

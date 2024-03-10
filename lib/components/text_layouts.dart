@@ -43,7 +43,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
         Expanded(
           child: Text(
             summary,
-            style: theme.TextThemes.resourceHeadline(context),
+            style: theme.TextThemes.resourceBody(context),
           ),
         ),
       ],
@@ -62,7 +62,7 @@ Padding textLayout({required BuildContext context, required Map policyTxt, requi
             Expanded(
               child: Text(
                 p,
-                style: theme.TextThemes.resourceHeadline(context),
+                style: theme.TextThemes.resourceBody(context),
               ),
             ),
           ],
