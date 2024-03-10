@@ -30,16 +30,19 @@ class Themes{
     ),
 
     // Input field theme
-    inputDecorationTheme: const InputDecorationTheme(
-      floatingLabelStyle: TextStyle(color: darkGreyClr),
-      border: OutlineInputBorder(),
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+      border: const OutlineInputBorder(),
+
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: darkGreyClr),
+        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
       ),
+
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: darkGreyClr),
+        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
       ),
-      errorBorder: OutlineInputBorder(
+
+      errorBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
     ),
@@ -61,16 +64,19 @@ class Themes{
     ),
 
     // Input field theme
-    inputDecorationTheme: const InputDecorationTheme(
-      floatingLabelStyle: TextStyle(color: primaryClr),
-      border: OutlineInputBorder(),
+    inputDecorationTheme: InputDecorationTheme(
+      floatingLabelStyle: TextStyle(color: Get.isDarkMode ? primaryClr : darkGreyClr),
+      border: const OutlineInputBorder(),
+
       enabledBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: primaryClr),
+        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
       ),
+
       focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: darkGreyClr),
+        borderSide: BorderSide(color: Get.isDarkMode ? primaryClr : darkGreyClr),
       ),
-      errorBorder: OutlineInputBorder(
+
+      errorBorder: const OutlineInputBorder(
         borderSide: BorderSide(color: redClr)
       ),
     )

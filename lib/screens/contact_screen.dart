@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nak_app/components/mailer.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
@@ -111,10 +112,10 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   DropdownButtonFormField(
-                    hint: const Text(
+                    hint: Text(
                       'Select an Item',
                       style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -139,7 +140,7 @@ class _ContactFormState extends State<ContactScreen> {
                       //   ),
                       // ),
                     ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     items: <String>[
                       'Chapter conduct matter',
                       'Hazing matter',
@@ -153,8 +154,8 @@ class _ContactFormState extends State<ContactScreen> {
                         value: value,
                         child: Text(
                           value,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                          style: TextStyle(
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -165,10 +166,10 @@ class _ContactFormState extends State<ContactScreen> {
                   ),
                   const SizedBox(height: 18,),
                   DropdownButtonFormField(
-                    hint: const Text(
+                    hint: Text(
                       'Select an Item',
                       style: TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
@@ -193,7 +194,7 @@ class _ContactFormState extends State<ContactScreen> {
                       //   ),
                       // ),
                     ),
-                    dropdownColor: const Color.fromARGB(255, 255, 255, 255),
+                    dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     items: <String>[
                       'Urgent matter',
                       'Normal concern',
@@ -203,8 +204,8 @@ class _ContactFormState extends State<ContactScreen> {
                         value: value,
                         child: Text(
                           value,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                          style: TextStyle(
+                            color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                             fontSize: 16,
                             fontFamily: 'Roboto',
                             fontWeight: FontWeight.normal,
