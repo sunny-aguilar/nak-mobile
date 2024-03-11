@@ -39,7 +39,7 @@ class IntroScreen extends StatelessWidget {
                       color: const Color.fromARGB(255, 196, 18, 48),
                     ),
                   ),
-                  Image.asset("assets/img/nak_letters.png", height: 130.0,),
+                  Image.asset('assets/img/nak_letters.png', height: 130.0,),
                 ],
               ),
             ],
@@ -49,7 +49,7 @@ class IntroScreen extends StatelessWidget {
             //   mainAxisAlignment: MainAxisAlignment.center,
             //   children: <Widget>[
             //     ElevatedButton(
-            //       onPressed: () => Navigator.pop(context), 
+            //       onPressed: () => Navigator.pop(context),
             //       child: const Text(
             //         "Go Back",
             //         style: TextStyle(

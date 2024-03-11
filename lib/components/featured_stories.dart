@@ -48,6 +48,7 @@ List<Widget> childrenList(cardData) {
 
 /// add story cards
 void addStoryCards(cardData, storyList) {
+  storyList.add(const SizedBox(height: 4,));
   for (var data in home_db.storyCardData) {
     var {
       'userImage': userImage,
@@ -57,7 +58,6 @@ void addStoryCards(cardData, storyList) {
       'date': date,
       'storyText': storyText,
     } = data;
-    // print('userImage: $userImage | userName: $userName | headline: $storyHeadline');
     storyList.add(card.LargeGreyPictureCard(
       userImage: userImage,
       userName: userName,
