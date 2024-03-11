@@ -3,7 +3,7 @@ import 'dart:math';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:flutter/widgets.dart';
+// import 'package:flutter/widgets.dart';
 
 class CarouselComponent extends StatefulWidget {
   const CarouselComponent({super.key});
@@ -14,23 +14,18 @@ class CarouselComponent extends StatefulWidget {
 class _CarouselComponentState extends State<CarouselComponent> {
   late PageController _pageController;
   int activePage = 0;
-  List<String> images = [
-    'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg',
-    'https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg',
-    'https://images.pexels.com/photos/1714205/pexels-photo-1714205.jpeg',
-    'https://images.pexels.com/photos/2115257/pexels-photo-2115257.jpeg',
-  ];
-  List<String> imagesAssets = [
+
+  List<String> imagesArr = [
     'assets/img/carousel/nakfest_carousel.webp',
-    'assets/img/carousel/nak_letters.webp',
+    'assets/img/carousel/email_carousel.webp',
     'assets/img/carousel/template.webp',
     'assets/img/carousel/template.webp',
   ];
-  List<String> route = [
+  List<String> urlArr = [
     'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252',
-    '',
-    '',
-    '',
+    'https://naknet.org/newnakincaddress/',
+    'https://shopnualphakappa.com/',
+    'https://shopnualphakappa.com/',
   ];
 
   @override
@@ -43,50 +38,47 @@ class _CarouselComponentState extends State<CarouselComponent> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(    // TODO - THIS CONTAINER CAN BE DELETED
-          // color: const Color.fromARGB(255, 239, 239, 239),
-          child: Container(
-            // decoration: BoxDecoration(
-            //   color: randomColor(),
-            // //   gradient: LinearGradient(
-            // //     begin: Alignment.bottomLeft,
-            // //     end: Alignment.topRight,
-            // //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
-            // //     colors: [
-            // //       // Color.fromARGB(255, 26, 26, 26),
-            // //       // Colors.red,
-            // //       // Color.fromARGB(255, 26, 26, 26),
-            // //       // Color(0xff67a3b2),
-            // //       Color.fromARGB(255, 255, 255, 255),
-            // //       Color.fromARGB(255, 0, 0, 0),
-            // //       // Color(0xfff6cf35),
-            // //     ],
-            // // ),
-            // // ------ Image BG ---------------------------
-            //   // image: const DecorationImage(
-            //   //   image: AssetImage(
-            //   //     'assets/img/nak_letters_bw.png',
-            //   //   ),
-            //   //   fit: BoxFit.contain,
-            //   // ),
-            // ),
-            child: SizedBox(
-              height: 400,
-              width: MediaQuery.of(context).size.width,
-              child: PageView.builder(
-                itemCount: images.length,
-                pageSnapping: true,
-                controller: _pageController,
-                onPageChanged: (page) {
-                  setState(() {
-                    activePage = page;
-                  });
-                },
-                itemBuilder: (context, pagePosition) {
-                  bool active = pagePosition == activePage;
-                  return slider(context, imagesAssets, pagePosition, active);
-                },
-              ),
+        Container(
+          // decoration: BoxDecoration(
+          //   color: randomColor(),
+          // //   gradient: LinearGradient(
+          // //     begin: Alignment.bottomLeft,
+          // //     end: Alignment.topRight,
+          // //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
+          // //     colors: [
+          // //       // Color.fromARGB(255, 26, 26, 26),
+          // //       // Colors.red,
+          // //       // Color.fromARGB(255, 26, 26, 26),
+          // //       // Color(0xff67a3b2),
+          // //       Color.fromARGB(255, 255, 255, 255),
+          // //       Color.fromARGB(255, 0, 0, 0),
+          // //       // Color(0xfff6cf35),
+          // //     ],
+          // // ),
+          // // ------ Image BG ---------------------------
+          //   // image: const DecorationImage(
+          //   //   image: AssetImage(
+          //   //     'assets/img/nak_letters_bw.png',
+          //   //   ),
+          //   //   fit: BoxFit.contain,
+          //   // ),
+          // ),
+          child: SizedBox(
+            height: 400,
+            width: MediaQuery.of(context).size.width,
+            child: PageView.builder(
+              itemCount: imagesArr.length,
+              pageSnapping: true,
+              controller: _pageController,
+              onPageChanged: (page) {
+                setState(() {
+                  activePage = page;
+                });
+              },
+              itemBuilder: (context, pagePosition) {
+                bool active = pagePosition == activePage;
+                return slider(context, imagesArr, pagePosition, active, urlArr);
+              },
             ),
           ),
         ),
@@ -102,7 +94,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: SmoothPageIndicator(
                 controller: _pageController,
-                count: images.length,
+                count: imagesArr.length,
                 effect: const ExpandingDotsEffect(
                   dotHeight: 12,
                   dotWidth: 12,
@@ -119,7 +111,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
 }
 
 
-AnimatedContainer slider(context, images, pagePosition, active) {
+AnimatedContainer slider(context, imagesAssets, pagePosition, active, urlArr) {
   double margin = active ? 10 : 20;
   return AnimatedContainer(
     duration: const Duration(milliseconds: 500),
@@ -133,7 +125,7 @@ AnimatedContainer slider(context, images, pagePosition, active) {
             throw 'Could not launch $url';
           }
         }
-        launchUrlStart(url: 'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252');
+        launchUrlStart(url: urlArr[pagePosition]);
       },
       child: Card.filled(
         shape: RoundedRectangleBorder(
@@ -141,7 +133,7 @@ AnimatedContainer slider(context, images, pagePosition, active) {
         ),
         clipBehavior: Clip.hardEdge,
         child: Image.asset(
-          images[pagePosition],
+          imagesAssets[pagePosition],
           fit: BoxFit.cover,
         ),
       ),
