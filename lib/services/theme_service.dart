@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 class ThemeService{
   static final _box = GetStorage();
   static const _key = 'isDarkMode';
+  String quote = 'Puppy dogs';
 
   _saveThemeToBox (bool isDarkMode) => _box.write(_key, isDarkMode);
 
@@ -18,7 +19,6 @@ class ThemeService{
 
   // called in HomeScreen to toggle light or dark mode
   void switchTheme() {
-    print('Switching Theme');
     Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
     _saveThemeToBox(!_loadThemeFromBox());
   }

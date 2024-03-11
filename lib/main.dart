@@ -16,7 +16,6 @@ import 'package:nak_app/services/theme_service.dart' as service;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
-  WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
     .then((value) => runApp(const App()));
 }
@@ -85,8 +84,7 @@ class App extends StatelessWidget {
       // ),
 
       /// themeMode: changes the default theme settings (blue, light)
-      themeMode: ThemeMode.light,
-      // themeMode: service.ThemeService().theme,
+      themeMode: service.ThemeService().theme,
 
       // darkTheme: theme.Themes.dark,
       // theme: ThemeData(
