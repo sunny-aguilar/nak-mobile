@@ -42,7 +42,7 @@ List<Widget> childrenList(cardData) {
       ),
     ),
   );
-  storyList.add(const SizedBox(height: 35,));
+  storyList.add(const SizedBox(height: 20,));
   return storyList;
 }
 

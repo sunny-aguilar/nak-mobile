@@ -244,7 +244,7 @@ class _ContactFormState extends State<ContactScreen> {
                         confirmText: 'Confirm',
                         errorFormatText: 'Enter valid date',
                         builder: (BuildContext context, child) => Theme(
-                          data: Get.isDarkMode ? theme.Themes.dark : theme.Themes.light,
+                          data: Get.isDarkMode ? theme.Themes.calendarDark : theme.Themes.calendarLight,
                           child: child!,
                         ),
                       );

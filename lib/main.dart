@@ -57,7 +57,7 @@ class App extends StatelessWidget {
       // theme: theme.Themes.light,
 
       // theme: theme.CustomTheme.lightThemeData(context),
-      theme: theme.Themes.light,            /// theme: is the primary default values for light theme
+      theme: theme.CustomTheme.lightThemeData(context),            /// theme: is the primary default values for light theme
       // theme: ThemeData(
       //   primaryColor: Colors.red,  // appbar color
       //   brightness: Brightness.light, // text color
@@ -77,7 +77,7 @@ class App extends StatelessWidget {
       // ),
 
       // darkTheme: theme.CustomTheme.darkThemeData(context),
-      darkTheme: theme.Themes.dark,
+      darkTheme: theme.CustomTheme.darkThemeData(context),
       // darkTheme: ThemeData(                   /// darkTheme: primary default values for dark theme
       //   primaryColor: Colors.red,
       //   brightness: Brightness.dark,

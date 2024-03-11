@@ -18,6 +18,7 @@ class ThemeService{
 
   // called in HomeScreen to toggle light or dark mode
   void switchTheme() {
+    print('Switching Theme');
     Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
     _saveThemeToBox(!_loadThemeFromBox());
   }

@@ -25,9 +25,16 @@ class Themes{
       background: primaryClr,         // main screen color
       onBackground: greyClr,
       surface: primaryClr,            // card color
-      onSurface: Colors.black,      // font, icons color
+      onSurface: blackClr,      // font, icons color
       error: greyClr,
       onError: greyClr,
+    ),
+
+    // form calendar
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: darkGreyClr,
+      ),
     ),
 
     // Input field theme
@@ -65,6 +72,13 @@ class Themes{
       onError: greyClr,
     ),
 
+    // form calendar
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: primaryClr,
+      ),
+    ),
+
     // Input field theme
     inputDecorationTheme: const InputDecorationTheme(
       floatingLabelStyle: TextStyle(color: primaryClr),
@@ -83,31 +97,62 @@ class Themes{
       ),
     )
   );
+
+  static final calendarLight = ThemeData(
+    colorScheme: const ColorScheme(
+      brightness: Brightness.light,
+      primary: darkGreyClr,            // current day icon
+      onPrimary: primaryClr,
+      secondary: greyClr,
+      onSecondary: greyClr,
+      background: primaryClr,
+      onBackground: greyClr,
+      surface: primaryClr,
+      onSurface: Colors.black,
+      error: greyClr,
+      onError: greyClr,
+    ),
+  );
+
+  static final calendarDark = ThemeData(
+    colorScheme: const ColorScheme(
+      brightness: Brightness.dark,
+      primary: primaryClr,            // current day icon
+      onPrimary: darkGreyClr,
+      secondary: greyClr,
+      onSecondary: greyClr,
+      background: darkGreyClr,
+      onBackground: greyClr,
+      surface: darkGreyClr,
+      onSurface: primaryClr,
+      error: greyClr,
+      onError: greyClr,
+    ),
+  );
 }
 
 
 
-// loads on hot reload (vs hot restart idkw)
+/// loads on hot reload (vs hot restart idkw)
 class CustomTheme {
   static ThemeData lightThemeData(BuildContext context) {
     return ThemeData(
       colorScheme: const ColorScheme(
         brightness: Brightness.light,
-        primary: primaryClr,        // appbar color
+        primary: primaryClr,            // appbar color
         onPrimary: greyClr,
         secondary: greyClr,
         onSecondary: greyClr,
-        background: primaryClr,     // main screen color
+        background: primaryClr,         // main screen color
         onBackground: greyClr,
-        surface: greyClr,
-        onSurface: Colors.black,      // font, icons color
+        surface: primaryClr,            // card color
+        onSurface: blackClr,      // font, icons color
         error: greyClr,
         onError: greyClr,
       ),
 
       inputDecorationTheme: const InputDecorationTheme(
         floatingLabelStyle: TextStyle(color: darkGreyClr),
-
         border: OutlineInputBorder(),
 
         enabledBorder: OutlineInputBorder(
@@ -130,16 +175,16 @@ class CustomTheme {
     return ThemeData(
       colorScheme: const ColorScheme(
         brightness: Brightness.dark,
-        primary: darkGreyClr,     // appbar color
-        onPrimary: Colors.grey,
-        secondary: Colors.grey,
-        onSecondary: Colors.grey,
-        background: darkGreyClr,  // main screen color
-        onBackground: Colors.grey,
-        surface: Colors.grey,
-        onSurface: Colors.white,                      // font, icons color
-        error: Colors.grey,
-        onError: Colors.grey,
+        primary: darkGreyClr,                 // appbar color
+        onPrimary: greyClr,
+        secondary: greyClr,
+        onSecondary: greyClr,
+        background: darkGreyClr,              // main screen color
+        onBackground: greyClr,
+        surface: darkGreyClr,                 // card color
+        onSurface: primaryClr,            // font, icons color
+        error: greyClr,
+        onError: greyClr,
       ),
 
       inputDecorationTheme: const InputDecorationTheme(
@@ -152,7 +197,7 @@ class CustomTheme {
         ),
 
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: darkGreyClr),
+          borderSide: BorderSide(color: primaryClr),
         ),
 
         errorBorder: OutlineInputBorder(

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
-// import 'package:url_launcher/url_launcher.dart';
 import '../components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
-// import '../components/carousel.dart';
-// import '../components/cards.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
