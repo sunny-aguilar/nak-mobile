@@ -19,7 +19,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   List<String> imagesArr = [
     'assets/img/carousel/nakfest_carousel.webp',
     'assets/img/carousel/email_carousel.webp',
-    'assets/img/carousel/template.webp',
+    'assets/img/carousel/store_carousel.webp',
     'assets/img/carousel/template.webp',
   ];
   List<String> urlArr = [
@@ -32,7 +32,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 1.1, initialPage: 0);
+    _pageController = PageController(viewportFraction: 1.0, initialPage: 0);
   }
 
   @override
