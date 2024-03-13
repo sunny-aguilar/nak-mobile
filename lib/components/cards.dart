@@ -5,6 +5,7 @@ import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
+import 'package:nak_app/screens/neb_screen.dart';
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -831,11 +832,11 @@ Card duesCard({required BuildContext context, required int index, required List 
     );
  }
 
- Card boardCard({required BuildContext context, required int index, required List board}) {
-  var cardImage = '${board[index]['image']}';
-  var heading = '${board[index]['position']}';
-  var subheading = '${board[index]['name']}';
-  var supportingText = '${board[index]['email']}';
+ Card boardCard({required BuildContext context, required int index, required Boardmember board}) {
+  var cardImage = board.image;
+  var heading = board.position;
+  var subheading = board.name;
+  var supportingText = board.email;
 
   return Card(
     color: Theme.of(context).primaryColor,
@@ -900,7 +901,6 @@ Card duesCard({required BuildContext context, required int index, required List 
     ),
   );
  }
-
 
 class RevampedCard extends StatelessWidget {
   const RevampedCard({super.key});

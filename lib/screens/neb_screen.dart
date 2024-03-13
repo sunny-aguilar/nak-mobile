@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:nak_app/components/cards.dart';
 
 class NationalBoard extends StatefulWidget {
@@ -12,9 +13,20 @@ class NationalBoard extends StatefulWidget {
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/json/board_members.json');
-    final data = await json.decode(response);
-    setState( () => _board = data['board'] );
+    String url = 'https://drive.google.com/uc?export=view&id=1giKNa_tuQdJXJmyUUMMMOg_Fnurj1XLH';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final parsedJson = jsonDecode(response.body);
+      setState( () => _board = parsedJson );
+    }
+    else {
+      throw Exception('Failed to load NEB members.');
+    }
+
+    // loading board members from local JSON file
+    // final String response = await rootBundle.loadString('assets/json/board_members.json');
+    // final data = await json.decode(response);
+    // setState( () => _board = parsedJson );
   }
   @override
   void initState() {
@@ -46,9 +58,6 @@ class _NationalBoardState extends State<NationalBoard> {
               ),
             ),
           ),
-          // SliverList
-          // BoardCardList(items: (items), board: board)
-          // SliverGrid <<<<<< ad here
           BoardGridList(count: count, board: _board),
         ],
       )
@@ -74,10 +83,27 @@ class BoardGridList extends StatelessWidget {
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, index) {
           // return card here!
-          return boardCard(context: context, index: index, board: board);
+          // return boardCard(context: context, index: index, board: board);
+          return boardCard(context: context, index: index, board: Boardmember.fromJson(board[index]));
         },
         childCount: count,
       ),
     );
+  }
+}
+
+class Boardmember {
+  Boardmember({required this.position, required this.name, required this.email, required this.image});
+  final String position;
+  final String name;
+  final String email;
+  final String image;
+
+  factory Boardmember.fromJson(Map<String, dynamic> data) {
+    final position = data['position'] as String;
+    final name = data['name'] as String;
+    final email = data['email'] as String;
+    final image = data['image'] as String;
+    return Boardmember(position: position, name: name, email: email, image: image);
   }
 }
