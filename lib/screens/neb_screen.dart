@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/components/cards.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class NationalBoard extends StatefulWidget {
   const NationalBoard({super.key});
@@ -12,7 +13,9 @@ class NationalBoard extends StatefulWidget {
 
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
-  Future<void> readJson() async {
+  int count = 0;
+  late Future<String> download;
+  Future<String> readJson() async {
     String url = 'https://drive.google.com/uc?export=view&id=1giKNa_tuQdJXJmyUUMMMOg_Fnurj1XLH';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -22,7 +25,8 @@ class _NationalBoardState extends State<NationalBoard> {
     else {
       throw Exception('Failed to load NEB members.');
     }
-
+    count = _board.length;
+    return 'Data downloaded';
     // loading board members from local JSON file
     // final String response = await rootBundle.loadString('assets/json/board_members.json');
     // final data = await json.decode(response);
@@ -31,35 +35,50 @@ class _NationalBoardState extends State<NationalBoard> {
   @override
   void initState() {
     super.initState();
-    readJson();
+    download = readJson();
   }
   @override
   Widget build(BuildContext context) {
-    int count = _board.length;
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-            backgroundColor: const Color.fromARGB(255, 254, 58, 67),
-            pinned: true,
-            floating: true,
-            snap: true,
-            stretch: true,
-            expandedHeight: 200.0,
-            flexibleSpace: FlexibleSpaceBar(
-              stretchModes: const <StretchMode>[
-                StretchMode.blurBackground,
+      body: FutureBuilder<String>(
+        future: download,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return CustomScrollView(
+              slivers: <Widget>[
+                SliverAppBar(
+                  title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+                  pinned: true,
+                  floating: true,
+                  snap: true,
+                  stretch: true,
+                  expandedHeight: 200.0,
+                  flexibleSpace: FlexibleSpaceBar(
+                    stretchModes: const <StretchMode>[
+                      StretchMode.blurBackground,
+                    ],
+                    background: Image.asset(
+                      'assets/img/title_thumbnails/board_letters.png',
+                      fit: BoxFit.contain,
+                      height: 100,
+                    ),
+                  ),
+                ),
+                BoardGridList(count: count, board: _board),
               ],
-              background: Image.asset(
-                'assets/img/title_thumbnails/board_letters.png',
-                fit: BoxFit.contain,
-                height: 100,
-              ),
+            );
+          }
+          return Scaffold(
+            appBar: AppBar(
+              title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+              backgroundColor: theme.redClr,
             ),
-          ),
-          BoardGridList(count: count, board: _board),
-        ],
+            body: const Center(
+              child: CircularProgressIndicator(color: Colors.red,),
+            ),
+          );
+        },
       )
     );
   }
