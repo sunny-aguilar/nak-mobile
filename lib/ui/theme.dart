@@ -5,6 +5,7 @@ const Color blueClr = Color(0xff4e5ae8);
 const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 45, 45, 45);
+const Color carbonClr = Color.fromARGB(255, 20, 20, 20);
 const Color blackClr = Color.fromARGB(255, 0, 0, 0);
 const Color greyClr = Colors.grey;
 const Color whiteClr = Color(0xffffffff);

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nak_app/components/resource_cards.dart';
 import 'package:nak_app/components/text_layouts.dart' as text_layouts;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -30,7 +31,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
         slivers: <Widget>[
           SliverAppBar(
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-            backgroundColor: theme.redClr,
+            backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
             pinned: true,
             floating: false,
             snap: false,

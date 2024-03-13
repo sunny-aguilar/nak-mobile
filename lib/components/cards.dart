@@ -303,6 +303,13 @@ class LargeGreyPictureCard extends StatelessWidget {
     return Card.outlined(
       clipBehavior: Clip.antiAlias,
       color: Theme.of(context).primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(6.0),
+        side: const BorderSide(
+          width: 1.0,
+          color: theme.greyClr
+        ),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

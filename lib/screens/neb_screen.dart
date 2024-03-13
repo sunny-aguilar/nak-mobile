@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/components/cards.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -44,11 +44,12 @@ class _NationalBoardState extends State<NationalBoard> {
         future: download,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+            // results screen
             return CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
                   title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-                  backgroundColor: const Color.fromARGB(255, 254, 58, 67),
+                  backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
                   pinned: true,
                   floating: true,
                   snap: true,
@@ -69,13 +70,18 @@ class _NationalBoardState extends State<NationalBoard> {
               ],
             );
           }
+          // waiting screen
           return Scaffold(
             appBar: AppBar(
               title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-              backgroundColor: theme.redClr,
+              backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
             ),
-            body: const Center(
-              child: CircularProgressIndicator(color: Colors.red,),
+            body: Center(
+              child: SizedBox(
+                height: 60,
+                width: 60,
+                child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+              ),
             ),
           );
         },
@@ -97,7 +103,7 @@ class BoardGridList extends StatelessWidget {
         mainAxisSpacing: 8.0,
         crossAxisSpacing: 8.0,
         childAspectRatio: 1.0,
-        mainAxisExtent: 276.0,
+        mainAxisExtent: 292.0,
       ),
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, index) {
