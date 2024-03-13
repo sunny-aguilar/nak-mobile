@@ -17,10 +17,11 @@ class DrawerComponent extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
               ),
-              child: Text(
-                'Nu Alpha Kappa Fraternity, Inc.',
-                style: theme.TextThemes.drawerTitle(context),
-              ),
+              // child: Text(
+              //   'Nu Alpha Kappa Fraternity, Inc.',
+              //   style: theme.TextThemes.drawerTitle(context),
+              // ),
+              child: Image.asset(Get.isDarkMode ? 'assets/img/nak_letters_bw.png' : 'assets/img/nak_letters.png',),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village,),

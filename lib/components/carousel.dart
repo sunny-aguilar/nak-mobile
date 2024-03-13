@@ -20,77 +20,44 @@ class _CarouselComponentState extends State<CarouselComponent> {
     'assets/img/carousel/nakfest_carousel.webp',
     'assets/img/carousel/email_carousel.webp',
     'assets/img/carousel/store_carousel.webp',
-    'assets/img/carousel/template.webp',
   ];
   List<String> urlArr = [
     'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252',
     'https://naknet.org/newnakincaddress/',
-    'https://shopnualphakappa.com/',
     'https://shopnualphakappa.com/',
   ];
 
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(viewportFraction: 1.0, initialPage: 0);
+    _pageController = PageController(viewportFraction: 1.05, initialPage: 0);
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          // decoration: BoxDecoration(
-          //   color: randomColor(),
-          // //   gradient: LinearGradient(
-          // //     begin: Alignment.bottomLeft,
-          // //     end: Alignment.topRight,
-          // //     // stops: [0.1, 0.4, 0.6, 0.9],  // b,r,b
-          // //     colors: [
-          // //       // Color.fromARGB(255, 26, 26, 26),
-          // //       // Colors.red,
-          // //       // Color.fromARGB(255, 26, 26, 26),
-          // //       // Color(0xff67a3b2),
-          // //       Color.fromARGB(255, 255, 255, 255),
-          // //       Color.fromARGB(255, 0, 0, 0),
-          // //       // Color(0xfff6cf35),
-          // //     ],
-          // // ),
-          // // ------ Image BG ---------------------------
-          //   // image: const DecorationImage(
-          //   //   image: AssetImage(
-          //   //     'assets/img/nak_letters_bw.png',
-          //   //   ),
-          //   //   fit: BoxFit.contain,
-          //   // ),
-          // ),
-          child: SizedBox(
-            height: 400,
-            width: MediaQuery.of(context).size.width,
-            child: PageView.builder(
-              itemCount: imagesArr.length,
-              pageSnapping: true,
-              controller: _pageController,
-              onPageChanged: (page) {
-                setState(() {
-                  activePage = page;
-                });
-              },
-              itemBuilder: (context, pagePosition) {
-                bool active = pagePosition == activePage;
-                return slider(context, imagesArr, pagePosition, active, urlArr);
-              },
-            ),
+        SizedBox(
+          height: 400,
+          width: MediaQuery.of(context).size.width,
+          child: PageView.builder(
+            itemCount: imagesArr.length,
+            pageSnapping: true,
+            controller: _pageController,
+            onPageChanged: (page) {
+              setState(() {
+                activePage = page;
+              });
+            },
+            itemBuilder: (context, pagePosition) {
+              bool active = pagePosition == activePage;
+              return slider(context, imagesArr, pagePosition, active, urlArr);
+            },
           ),
         ),
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.center,
-        //   children: indicators(imagesAssets.length, activePage),
-        // ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            /// ADD DOT INDICATOR EFFECTS HERE
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: SmoothPageIndicator(
@@ -140,37 +107,4 @@ AnimatedContainer slider(context, imagesAssets, pagePosition, active, urlArr) {
       ),
     ),
   );
-}
-
-// List<Widget> indicators(imagesLength, currentIndex) {
-//   return List<Widget>.generate(imagesLength, (index) {
-//     return Container(
-//       margin: const EdgeInsets.all(3),
-//       width: 10,
-//       height: 10,
-//       decoration: BoxDecoration(
-//         color: currentIndex == index ? Colors.black : Colors.black26,
-//         shape: BoxShape.rectangle,
-//       ),
-//     );
-//   });
-// }
-
-Color randomColor() {
-    const List<Color> bgColors = [
-      // Color(0xfffa5c58),  // light pink
-      // Color(0xff25bcc0),  // agua
-      // Color(0xffe17748),  // clay
-      // Color(0xffc6b782),  // official bronze
-      // Color(0xffbb8b65),  // mud
-      // Color(0xff242020),  // black
-      // Color(0xfff1f1f1),  // white
-      Color.fromARGB(255, 230, 230, 230),  // white
-      // Color(0xff67a3b1),  // sky
-      // Color(0xffc3102f),  // official red
-      // Color(0xfffef18e),  // light yellow
-  ];
-  Random random = Random();
-  int randomNumber = random.nextInt(bgColors.length);
-  return bgColors[randomNumber];
 }
