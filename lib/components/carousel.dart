@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+// import 'dart:math';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:nak_app/db/carousel_db.dart';
+// import 'package:nak_app/db/carousel_db.dart';
 // import 'package:flutter/widgets.dart';
 
 class CarouselComponent extends StatefulWidget {

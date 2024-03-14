@@ -111,7 +111,7 @@ class FormButtonDark extends StatelessWidget {
         textStyle: theme.TextThemes.button1(context),
       ),
       child: Text(text),
-      onPressed: () => null,
+      onPressed: () {},
     );
   }
 }
