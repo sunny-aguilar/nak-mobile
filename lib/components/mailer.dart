@@ -14,7 +14,7 @@ sendEmail(BuildContext context, Map formCtl) async {
 
   final message = Message()
     ..from = Address(username, '${formCtl['name']}')
-    ..recipients.add('sandro.aguilar@nakinc.org')
+    // ..recipients.add('sandro.aguilar@nakinc.org')
     ..subject = 'INCIDENT REPORT FORM: ${formCtl['nature']}'
     ..text = 'Hello ${formCtl['name']}, all is working well!'
     ..html = '<h2>INCIDENT REPORT FORM</h2>'
@@ -36,10 +36,12 @@ sendEmail(BuildContext context, Map formCtl) async {
   try {
     // message sent
     await send(message, smtpServer);
-    ScaffoldMessenger.of(context)
+    if (context.mounted) {
+      ScaffoldMessenger.of(context)
       .showSnackBar(const SnackBar(
         content: Text('Report sent successfully!',)
       ));
+    }
   } on MailerException catch (e) {
     // Message not sent
     String msg = '';
@@ -47,9 +49,11 @@ sendEmail(BuildContext context, Map formCtl) async {
       // print('Problem: ${p.code}: ${p.msg}');
       msg += p.msg;
     }
-    ScaffoldMessenger.of(context)
+    if (context.mounted) {
+      ScaffoldMessenger.of(context)
       .showSnackBar(SnackBar(
         content: Text('Error: $msg',))
       );
+    }
   }
 }
