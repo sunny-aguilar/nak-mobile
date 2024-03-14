@@ -14,7 +14,7 @@ sendEmail(BuildContext context, Map formCtl) async {
 
   final message = Message()
     ..from = Address(username, '${formCtl['name']}')
-    // ..recipients.add('sandro.aguilar@nakinc.org')
+    ..recipients.add('sandro.aguilar@nakinc.org')
     ..subject = 'INCIDENT REPORT FORM: ${formCtl['nature']}'
     ..text = 'Hello ${formCtl['name']}, all is working well!'
     ..html = '<h2>INCIDENT REPORT FORM</h2>'
