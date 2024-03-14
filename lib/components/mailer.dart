@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 import 'package:mailer/smtp_server/gmail.dart';
-import '../../components/text.dart';
+import 'package:nak_app/components/text.dart';
 
 // Google NAK-App Password
 // xrcr lrvs bthe olnw
@@ -34,15 +34,22 @@ sendEmail(BuildContext context, Map formCtl) async {
     '$confidentiality';
 
   try {
-    final sendReport = await send(message, smtpServer);
-    print('Message sent: ' + sendReport.toString());
+    // message sent
+    await send(message, smtpServer);
     ScaffoldMessenger.of(context)
-      .showSnackBar(const SnackBar(content: Text('Report sent successfully!')));
+      .showSnackBar(const SnackBar(
+        content: Text('Report sent successfully!',)
+      ));
   } on MailerException catch (e) {
-    print('Message not sent.');
-    print(e.message);
+    // Message not sent
+    String msg = '';
     for (var p in e.problems) {
-      print('Problem: ${p.code}: ${p.msg}');
+      // print('Problem: ${p.code}: ${p.msg}');
+      msg += p.msg;
     }
+    ScaffoldMessenger.of(context)
+      .showSnackBar(SnackBar(
+        content: Text('Error: $msg',))
+      );
   }
 }

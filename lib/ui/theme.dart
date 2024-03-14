@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4e5ae8);
+const Color mintClr = Color(0xff9cfc97);
 const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color darkGreyClr = Color.fromARGB(255, 45, 45, 45);
