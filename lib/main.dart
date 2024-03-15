@@ -10,6 +10,8 @@ import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
 import 'package:nak_app/screens/contact_screen.dart';
+import 'package:nak_app/screens/digitalid.dart';
+import 'package:nak_app/screens/login_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -44,6 +46,8 @@ class App extends StatelessWidget {
         '/prevention': (context) => const ResourceScreen(),
         '/titleix': (context) => const ResourceScreen(),
         '/contact': (context) => const ContactScreen(),
+        '/id': (context) => const DigitalIDScreen(),
+        '/login': (context) => const LoginScreen(),
       };
 
     return  GetMaterialApp(
@@ -51,93 +55,10 @@ class App extends StatelessWidget {
       // initialRoute: "/",
       routes: routes,
       home: const SplashScreen(),
-      /// use these themes to change from light/dark mode once themes are better organized in
-      /// lib/components/theme.dart
-      // theme: theme.Themes.light,
-
-      // theme: theme.CustomTheme.lightThemeData(context),
-      theme: theme.CustomTheme.lightThemeData(context),            /// theme: is the primary default values for light theme
-      // theme: ThemeData(
-      //   primaryColor: Colors.red,  // appbar color
-      //   brightness: Brightness.light, // text color
-      //   useMaterial3: false,
-      //   inputDecorationTheme: const InputDecorationTheme(
-      //     floatingLabelStyle: TextStyle(color: theme.darkGreyClr),
-
-      //     enabledBorder: OutlineInputBorder(
-      //       borderSide: BorderSide(color: theme.redClr),
-      //     ),
-
-      //     focusedBorder: OutlineInputBorder(
-      //       borderSide: BorderSide(color: theme.blueClr),
-      //     )
-
-      //   ),
-      // ),
-
-      // darkTheme: theme.CustomTheme.darkThemeData(context),
-      darkTheme: theme.CustomTheme.darkThemeData(context),
-      // darkTheme: ThemeData(                   /// darkTheme: primary default values for dark theme
-      //   primaryColor: Colors.red,
-      //   brightness: Brightness.dark,
-      //   useMaterial3: false,
-      // ),
-
-      /// themeMode: changes the default theme settings (blue, light)
+      theme: theme.CustomTheme.lightThemeData(context),     // theme: is the primary default theme
+      darkTheme: theme.CustomTheme.darkThemeData(context),  // darkTheme: primary default dark theme
+      /// themeMode: changes the default theme settings (light, dark)
       themeMode: service.ThemeService().theme,
-
-      // darkTheme: theme.Themes.dark,
-      // theme: ThemeData(
-      //   useMaterial3: true,
-      //   scaffoldBackgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      //   // primaryColor: const Color.fromARGB(255, 254, 58, 67),
-      //   // appBarTheme: const AppBarTheme(color: Color.fromARGB(255, 19, 19, 19)),
-      //   // colorScheme: ColorScheme.fromSeed(
-      //   //   seedColor: const Color.fromARGB(255, 255, 255, 255),
-      //   //   brightness: Brightness.light,
-      //   //   primary: Color.fromARGB(255, 254, 58, 67),
-      //   // ),
-      //   // primarySwatch: Colors.red,
-      //   colorScheme: ColorScheme.fromSwatch(
-      //     primarySwatch: Colors.grey, // change to another color? making text light grey
-      //     cardColor: const Color.fromARGB(255, 243, 243, 243)
-      //   ),
-      //   textTheme: TextTheme(
-      //     displayLarge: const TextStyle(
-      //       fontSize: 32,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //     displayMedium: const TextStyle(
-      //       fontSize: 32,
-      //       fontFamily: 'College',
-      //     ),
-      //     displaySmall: TextStyle(
-      //       color: Colors.white.withAlpha(255),
-      //       fontSize: 28,
-      //       fontFamily: 'College',
-      //     ),
-      //     titleMedium: TextStyle(
-      //       color: Colors.white.withAlpha(50),
-      //       fontSize: 20,
-      //       fontWeight: FontWeight.bold,
-      //     ),
-      //     titleSmall: const TextStyle(
-      //       fontSize: 14,
-      //       fontFamily: 'College',
-      //     ),
-      //     titleLarge: const TextStyle(
-      //       fontSize: 20,
-      //       fontFamily: 'College',
-      //     ),
-      //     // bodyMedium: const TextStyle(
-      //     //   fontSize: 18,
-      //     //   fontFamily: 'College',
-      //     // ),
-      //     bodySmall: const TextStyle(
-      //       fontSize: 12,
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

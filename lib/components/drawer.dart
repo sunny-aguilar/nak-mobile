@@ -95,6 +95,16 @@ class DrawerComponent extends StatelessWidget {
               leading: const Icon(Icons.email,),
               title: Text('Contact Us', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/contact'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.qr_code),
+              title: Text('Digital ID', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/id'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.login),
+              title: Text('Login', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/login')
             )
           ],
         ),

@@ -77,7 +77,7 @@ class BirthDayCardClipper extends CustomClipper<Path> {
 
     //LEFT ARC
     path.quadraticBezierTo(
-        sideRadius, midPoint - sideRadius, 
+        sideRadius, midPoint - sideRadius,
         sideRadius, midPoint
     );
     path.quadraticBezierTo(

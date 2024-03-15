@@ -44,6 +44,7 @@ flutter:
     - assets/img/users/
     - assets/img/title_thumbnails/
     - assets/img/resource_thumbnails/
+    - assets/img/id/
     - assets/json/chapters.json
     - assets/json/dues.json
     - assets/json/board_members.json
@@ -75,9 +76,17 @@ flutter:
         - asset: assets/fonts/Georgia.ttf
     - family: LeagueSpartan
       fonts:
-        - asset: assets/fonts/LeagueSpartan-VariableFont_wght.ttf
+        - asset: assets/fonts/LeagueSpartan-Regular.ttf
+        - asset: assets/fonts/LeagueSpartan-Bold.ttf
+          weight: 700
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Regular.ttf
         - asset: assets/fonts/Lato-Bold.ttf
           weight: 700
+    - family: "Oswald"
+      fonts:
+        - asset: assets/fonts/Oswald-Regular.ttf
+        - asset: assets/fonts/Oswald-SemiBold.ttf
+          weight: 700
+        # - asset: assets/fonts/Oswald-Bold.ttf

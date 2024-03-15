@@ -5,10 +5,13 @@ const Color blueClr = Color(0xff4e5ae8);
 const Color mintClr = Color(0xff9cfc97);
 const Color pinkClr = Color(0xffff4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
+const Color lightGrey = Color.fromARGB(255, 218, 218, 218);
+const Color greyClr = Colors.grey;
+const Color shawdowClr = Color.fromARGB(255, 98, 98, 98);
+const Color charcoalClr = Color.fromARGB(255, 73, 73, 73);
 const Color darkGreyClr = Color.fromARGB(255, 45, 45, 45);
 const Color carbonClr = Color.fromARGB(255, 20, 20, 20);
 const Color blackClr = Color.fromARGB(255, 0, 0, 0);
-const Color greyClr = Colors.grey;
 const Color whiteClr = Color(0xffffffff);
 const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
 const Color redOfficial = Color(0xffc41230);
@@ -148,7 +151,7 @@ class CustomTheme {
         background: primaryClr,         // main screen color
         onBackground: greyClr,
         surface: primaryClr,            // card color
-        onSurface: blackClr,      // font, icons color
+        onSurface: blackClr,            // font, icons color
         error: greyClr,
         onError: greyClr,
       ),
@@ -168,7 +171,10 @@ class CustomTheme {
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: redClr)
         ),
+      ),
 
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: darkGreyClr,
       ),
     );
   }
@@ -205,8 +211,11 @@ class CustomTheme {
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: redClr)
         ),
+      ),
 
-      )
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: whiteClr,
+      ),
     );
   }
 }
@@ -248,6 +257,13 @@ class TextThemes{
     return const TextStyle(
       fontFamily: 'College',
       fontSize: 28,
+    );
+  }
+
+  static TextStyle headlineLarge(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 38,
     );
   }
 
@@ -316,6 +332,50 @@ class TextThemes{
       fontFamily: 'Georgia',
       fontSize: 14,
       // color: darkGreyClr,
+    );
+  }
+
+  static TextStyle idTitle(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'College',
+      fontSize: 20,
+      color: Get.isDarkMode ? primaryClr : primaryClr,
+    );
+  }
+
+  static TextStyle idUserName(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Oswald',
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
+      color: Get.isDarkMode ? primaryClr : primaryClr,
+    );
+  }
+
+  static TextStyle idLabel(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Oswald',
+      // fontWeight: FontWeight.bold,
+      fontSize: 15,
+      color: Get.isDarkMode ? primaryClr : primaryClr,
+    );
+  }
+
+  static TextStyle idBody(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Oswald',
+      fontWeight: FontWeight.bold,
+      fontSize: 14,
+      color: Get.isDarkMode ? primaryClr : primaryClr,
+    );
+  }
+
+  static TextStyle idImageTitle(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Oswald',
+      fontWeight: FontWeight.bold,
+      fontSize: 22,
+      color: Get.isDarkMode ? primaryClr : darkGreyClr,
     );
   }
 
