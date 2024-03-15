@@ -18,13 +18,13 @@ class _LoginScreenState extends State<LoginScreen> {
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           // welcome text
-          const SizedBox(height: 20,),
-          Text('Hello Again!', style: theme.TextThemes.headlineLarge(context)),
+          Text('Hello Again!', style: theme.TextThemes.loginTitle(context)),
           const SizedBox(height: 10,),
-          Text('Men of Mind...Men of Culture...Men of Pride...', textAlign: TextAlign.center, style: theme.TextThemes.headlineMed(context)),
-          const SizedBox(height: 40,),
+          Text('Men of Mind...Men of Culture...Men of Pride...', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
+          const SizedBox(height: 50,),
 
           // email textfield
           Padding(
@@ -63,9 +63,20 @@ class _LoginScreenState extends State<LoginScreen> {
               child: const Text('Submit'),
               onPressed: () {},
             ),
-          )
+          ),
+          const SizedBox(height: 25,),
 
           // not a member? register now
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('Not a member?', style: theme.TextThemes.loginBody(context),),
+              const SizedBox(width: 6,),
+              // Add a gesture detector to text to get to registration screen
+              Text('Register now', style: theme.TextThemes.loginRegisterBody(context),),
+            ],
+          ),
+
         ],
       ),
     );

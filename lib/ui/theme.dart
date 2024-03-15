@@ -379,6 +379,38 @@ class TextThemes{
     );
   }
 
+  static TextStyle loginTitle(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 44,
+    );
+  }
+
+
+  static TextStyle loginHeadline(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Bebas',
+      fontSize: 24,
+    );
+  }
+
+  static TextStyle loginBody(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+    );
+  }
+
+  static TextStyle loginRegisterBody(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Lato',
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: Get.isDarkMode ? bronzeOfficial : pinkClr,
+    );
+  }
+
 }
 
 
