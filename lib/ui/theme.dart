@@ -390,7 +390,7 @@ class TextThemes{
   static TextStyle loginHeadline(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Bebas',
-      fontSize: 24,
+      fontSize: 22,
     );
   }
 
