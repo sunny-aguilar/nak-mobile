@@ -1,17 +1,43 @@
 import 'package:flutter/material.dart';
-import '../components/carousel.dart' as carousel;
-import '../components/cards.dart' as card;
-import '../db/home_db.dart' as home_db;
+import 'package:nak_app/components/carousel.dart' as carousel;
+import 'package:nak_app/components/cards.dart' as card;
+import 'package:nak_app/db/home_db.dart' as home_db;
 
 /* This widget adds the featured stories in the home page */
-class HomeScreenChildren extends StatelessWidget {
+class HomeScreenChildren extends StatefulWidget {
   const HomeScreenChildren({super.key});
   @override
+  State<HomeScreenChildren> createState() => _HomeScreenChildrenState();
+}
+
+class _HomeScreenChildrenState extends State<HomeScreenChildren> {
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      controller: controller,
-      children: childrenList(home_db.storyCardData),
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      color: Colors.white,
+      backgroundColor: Colors.red,
+      child: ListView(
+        controller: controller,
+        children: childrenList(home_db.storyCardData),
+      ),
     );
+  }
+
+  Future<void> _handleRefresh() async {
+    try{
+      await Future.delayed(const Duration(seconds: 2));
+      setState(() {
+        // handle stuff that must be done when refreshing (i.e., http request to get JSON)
+      });
+    }
+    catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to refresh: $error'),
+        ),
+      );
+    }
   }
 }
 
@@ -69,6 +95,7 @@ void addStoryCards(cardData, storyList) {
     storyList.add(const SizedBox(height: 15,));
   }
 }
+
 
 /// FOR LATER DEVELOPMENT
 // class GridCards extends StatelessWidget {
