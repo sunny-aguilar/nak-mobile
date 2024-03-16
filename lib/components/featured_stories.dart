@@ -13,31 +13,10 @@ class HomeScreenChildren extends StatefulWidget {
 class _HomeScreenChildrenState extends State<HomeScreenChildren> {
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: _handleRefresh,
-      color: Colors.white,
-      backgroundColor: Colors.red,
-      child: ListView(
-        controller: controller,
-        children: childrenList(home_db.storyCardData),
-      ),
+    return ListView(
+      controller: controller,
+      children: childrenList(home_db.storyCardData),
     );
-  }
-
-  Future<void> _handleRefresh() async {
-    try{
-      await Future.delayed(const Duration(seconds: 2));
-      setState(() {
-        // handle stuff that must be done when refreshing (i.e., http request to get JSON)
-      });
-    }
-    catch (error) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Failed to refresh: $error'),
-        ),
-      );
-    }
   }
 }
 
