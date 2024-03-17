@@ -10,6 +10,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+
+  // text controllers
+  final TextEditingController _emailCtrl = TextEditingController();
+  final TextEditingController _passwordCtr = TextEditingController();
+
+  // sign in method
+  Future signIn() async {
+    // await FirebaseAuth.instance.signInWithEmailAndPassword(
+    //   email: _emailCtrl.text.trim(),
+    //   password: _passwordCtr.text.trim(),
+    // );
+  }
+
+  @override
+  void dispose() {
+    _emailCtrl.dispose();
+    _passwordCtr.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Email',
                   helperText: '*required'
                 ),
+                controller: _emailCtrl,
                 keyboardType: TextInputType.emailAddress,
               ),
             ),
@@ -52,6 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   labelText: 'Password',
                   helperText: '*required'
                 ),
+                controller: _passwordCtr,
                 obscureText: true,
                 keyboardType: TextInputType.name,
               ),
@@ -64,7 +86,9 @@ class _LoginScreenState extends State<LoginScreen> {
               child: TextButton(
                 style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                 child: const Text('Sign In'),
-                onPressed: () {},
+                onPressed: () {
+                  signIn();
+                },
               ),
             ),
             const SizedBox(height: 25,),
