@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/login_screen.dart';
 
+// this widget checks to see if a user is logged in. If logged in, they are
+// redirected to the home page. If not logged in, redirected to the login page.
 class AuthCheck extends StatelessWidget {
   const AuthCheck({super.key});
 
@@ -17,8 +19,6 @@ class AuthCheck extends StatelessWidget {
           }
           else {
             return const LoginScreen();
-            // Navigator.pushNamed(context, '/home');
-            // return Placeholder();
           }
         },
       ),
