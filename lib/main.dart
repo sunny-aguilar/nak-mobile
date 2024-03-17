@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:nak_app/components/auth_check.dart';
 import 'package:nak_app/firebase_options.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nak_app/splash_screen.dart';
+import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/chapters_screen.dart';
 import 'package:nak_app/screens/intro_screeen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
@@ -33,7 +35,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
       final routes = {
-        // "/": (context) => const HomeScreen(),
+        '/auth': (context) => const AuthCheck(),
+        '/home': (context) => const HomeScreen(),
         '/intro': (context) => const IntroScreen(),
         '/chapters': (context) => const ChapterScreen(),
         '/dues': (context) => const DuesScreen(),

@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class DrawerComponent extends StatelessWidget {
-  const DrawerComponent({super.key});
+  DrawerComponent({super.key});
+  final user = FirebaseAuth.instance.currentUser?.email;
 
   @override
   Widget build(BuildContext context) {
+    // print('${FirebaseAuth.instance.currentUser}');
     return Drawer(
       backgroundColor: Theme.of(context).colorScheme.primary,
       child: ListView(
@@ -17,11 +20,10 @@ class DrawerComponent extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
               ),
-              // child: Text(
-              //   'Nu Alpha Kappa Fraternity, Inc.',
-              //   style: theme.TextThemes.drawerTitle(context),
-              // ),
               child: Image.asset(Get.isDarkMode ? 'assets/img/nak_letters_bw.png' : 'assets/img/nak_letters.png',),
+            ),
+            ListTile(
+              title: Text('Signed in as: $user'),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village,),
@@ -103,8 +105,11 @@ class DrawerComponent extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.login),
-              title: Text('Login', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => Navigator.pushNamed(context, '/login')
+              title: Text('Logout', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () {
+                FirebaseAuth.instance.signOut();
+                Navigator.pushReplacementNamed(context, '/auth');
+              }
             )
           ],
         ),

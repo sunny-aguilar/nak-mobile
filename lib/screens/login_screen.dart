@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 
@@ -18,10 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // sign in method
   Future signIn() async {
-    // await FirebaseAuth.instance.signInWithEmailAndPassword(
-    //   email: _emailCtrl.text.trim(),
-    //   password: _passwordCtr.text.trim(),
-    // );
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailCtrl.text.trim(),
+      password: _passwordCtr.text.trim(),
+    );
   }
 
   @override
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 controller: _passwordCtr,
                 obscureText: true,
-                keyboardType: TextInputType.name,
+                keyboardType: TextInputType.text,
               ),
             ),
             const SizedBox(height: 20,),
