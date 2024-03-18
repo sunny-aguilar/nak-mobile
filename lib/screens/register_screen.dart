@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 
@@ -80,9 +80,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
+                  // onChanged: (value) {
+                  //   bool isValid;
+                  //   isValid = EmailValidator.validate(value);
+                  //   print('Char: ${value.characters.length}');
+                  //   if (!isValid) {
+                  //     print('Email invalid!');
+                  //   } else {
+                  //     print('Email valid!');
+                  //   }
+                  // },
                   validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Enter an email.';
+                    bool isValid = EmailValidator.validate(value!);
+                    if (!isValid) {
+                      return 'Enter a valid email.';
                     }
                     return null;
                   },
