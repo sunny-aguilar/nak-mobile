@@ -55,7 +55,7 @@ class App extends StatelessWidget {
         '/titleix': (context) => const ResourceScreen(),
         '/contact': (context) => const ContactScreen(),
         '/id': (context) => const DigitalIDScreen(),
-        '/login': (context) => const LoginScreen(),
+        // '/login': (context) => const LoginScreen(showRegisterPage: ,),
       };
 
     return  GetMaterialApp(

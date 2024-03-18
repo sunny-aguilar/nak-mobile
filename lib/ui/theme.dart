@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-const Color blueClr = Color(0xff4e5ae8);
-const Color mintClr = Color(0xff9cfc97);
-const Color pinkClr = Color(0xffff4667);
+const Color blueClr = Color(0xff4E5ae8);
+const Color saphireClr = Color(0xff0F52BA);
+const Color azureClr = Color(0xff0080FF);
+const Color mintClr = Color(0xff9CFC97);
+const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
 const Color lightGrey = Color.fromARGB(255, 218, 218, 218);
@@ -13,10 +15,10 @@ const Color charcoalClr = Color.fromARGB(255, 73, 73, 73);
 const Color darkGreyClr = Color.fromARGB(255, 45, 45, 45);
 const Color carbonClr = Color.fromARGB(255, 20, 20, 20);
 const Color blackClr = Color.fromARGB(255, 0, 0, 0);
-const Color whiteClr = Color(0xffffffff);
+const Color whiteClr = Color(0xffFFFFFF);
 const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
-const Color redOfficial = Color(0xffc41230);
-const Color bronzeOfficial = Color(0xffd8c288);
+const Color redOfficial = Color(0xffC41230);
+const Color bronzeOfficial = Color(0xffD8C288);
 const primaryClr = whiteClr;
 
 // only loads on hot restart
@@ -404,11 +406,11 @@ class TextThemes{
   }
 
   static TextStyle loginRegisterBody(BuildContext context) {
-    return TextStyle(
+    return const TextStyle(
       fontFamily: 'Lato',
       fontWeight: FontWeight.bold,
       fontSize: 18,
-      color: Get.isDarkMode ? bronzeOfficial : pinkClr,
+      color: azureClr,
     );
   }
 
