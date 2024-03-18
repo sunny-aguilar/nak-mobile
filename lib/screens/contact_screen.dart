@@ -12,6 +12,7 @@ class ContactScreen extends StatefulWidget {
 
 class _ContactFormState extends State<ContactScreen> {
   final _formKey = GlobalKey<FormState>();
+
   // Controllers
   final TextEditingController _nameCtl = TextEditingController();
   final TextEditingController _emailCtl = TextEditingController();
