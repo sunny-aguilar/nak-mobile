@@ -14,7 +14,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final _formKey = GlobalKey<FormState>();
+  final _formKeyRegistration = GlobalKey<FormState>();
 
   // text controllers
   final TextEditingController _emailCtrl = TextEditingController();
@@ -57,7 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ),
       body: SingleChildScrollView(
         child: Form(
-          key: _formKey,
+          key: _formKeyRegistration,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
@@ -80,6 +80,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Enter an email.';
+                    }
+                    return null;
+                  },
                 ),
               ),
               const SizedBox(height: 20,),
@@ -97,8 +103,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   obscureText: true,
                   keyboardType: TextInputType.text,
                   validator: (value) {
-                    if (value == null || value.length < 8) {
+                    if (value == null || value.isEmpty) {
                       return 'Please enter a password with at least 8 characters.';
+                    }
+                    if (value.length < 8) {
+                      return 'Password must be at least 8 characters.';
                     }
                     return null;
                   },
@@ -118,6 +127,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _confirmPwCtrl,
                   obscureText: true,
                   keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password with at least 8 characters.';
+                    }
+                    else if (value != _passwordCtrl.text.trim()) {
+                      return 'Make sure passwords match.';
+                    }
+                    return null;
+                  },
                 ),
               ),
               const SizedBox(height: 20,),
@@ -129,7 +147,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                   child: const Text('Sign Up'),
                   onPressed: () {
-                    signUp();
+                    if (_formKeyRegistration.currentState!.validate()) {
+                      // process data if form is valid
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Creating account...')),
+                      );
+                      signUp();
+                    }
                   },
                 ),
               ),
