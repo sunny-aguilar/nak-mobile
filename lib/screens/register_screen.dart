@@ -80,16 +80,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
-                  // onChanged: (value) {
-                  //   bool isValid;
-                  //   isValid = EmailValidator.validate(value);
-                  //   print('Char: ${value.characters.length}');
-                  //   if (!isValid) {
-                  //     print('Email invalid!');
-                  //   } else {
-                  //     print('Email valid!');
-                  //   }
-                  // },
                   validator: (value) {
                     bool isValid = EmailValidator.validate(value!);
                     if (!isValid) {

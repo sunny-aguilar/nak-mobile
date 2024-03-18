@@ -82,6 +82,19 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 20,),
 
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Forgot Password?',
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20,),
+
             // sign in button
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),

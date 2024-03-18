@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/components/auth_check.dart';
-// import 'package:nak_app/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
