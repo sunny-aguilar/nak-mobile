@@ -80,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 keyboardType: TextInputType.text,
               ),
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(height: 4,),
 
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 25.0),
