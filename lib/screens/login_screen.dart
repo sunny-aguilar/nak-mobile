@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
             // welcome section
             const Icon(Icons.phone_android, size: 100,),
             const SizedBox(height: 75,),
-            Text('Hello Again!', style: theme.TextThemes.loginTitle(context)),
+            Text('Welcome, Brother', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
             const SizedBox(height: 10,),
             Text('Men of Mind...Men of Culture...Men of Pride...', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
             const SizedBox(height: 50,),

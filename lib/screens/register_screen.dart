@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -26,7 +28,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   Future signUp() async {
     // sign up function
-
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: _emailCtrl.text.trim(),
+      password: _passwordCtr.text.trim(),
+    );
   }
 
   @override
@@ -43,9 +48,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
             // welcome section
             const Icon(Icons.phone_android, size: 100,),
             const SizedBox(height: 75,),
-            Text('Hello There,', style: theme.TextThemes.loginTitle(context)),
+            Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
             const SizedBox(height: 10,),
-            Text('Register below with your details.', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
+            Text('Sign up below with your details.', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
             const SizedBox(height: 50,),
 
             // email textfield
@@ -84,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: TextButton(
                 style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
-                child: const Text('Register'),
+                child: const Text('Sign Up'),
                 onPressed: () {
                   signUp();
                 },

@@ -34,11 +34,9 @@ class _AuthCheckState extends State<AuthCheck> {
           else {
             // return const LoginScreen();
             if (showLoginPage) {
-              print('Going to login screen: $showLoginPage');
               return LoginScreen(showRegisterPage: toggleScreens);
             }
             else {
-              print('Going to registration screen: $showLoginPage');
               return RegisterScreen(showLoginScreen: toggleScreens);
             }
           }
