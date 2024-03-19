@@ -33,11 +33,42 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Future signUp() async {
     if (passwordConfirmed()) {
       // sign up function
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailCtrl.text.trim(),
-        password: _passwordCtrl.text.trim(),
-      );
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailCtrl.text.trim(),
+          password: _passwordCtrl.text.trim(),
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'email-already-in-use') {
+          // print('The account already exists for that email.');
+          if (mounted) {
+            _dialogBuilder(context);
+          }
+        }
+      } catch (e) {
+        print(e);
+      }
     }
+  }
+
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text(
+            'The account already exists for that email.',
+            textAlign: TextAlign.center,
+            style: theme.TextThemes.loginHeadline(context),
+          ),
+          actions: <Widget>[
+            Get.isDarkMode ?
+            buttons.SmallFormButtonDark(text: 'Dismiss', func: () {return Navigator.of(context).pop(); }) :
+            buttons.SmallFormButtonLight(text: 'Dismiss', func: () {return Navigator.of(context).pop(); },),
+          ],
+        );
+      }
+    );
   }
 
   // makes sure passwords match each other
@@ -62,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               // welcome section
-              const Icon(Icons.phone_android, size: 100,),
+              const Icon(Icons.person_add, size: 100,),
               const SizedBox(height: 75,),
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
@@ -151,7 +182,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     if (_formKeyRegistration.currentState!.validate()) {
                       // process data if form is valid
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Creating account...')),
+                        const SnackBar(content: Text('Processing request...')),
                       );
                       signUp();
                     }
@@ -169,10 +200,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   // Add a gesture detector to text to get to registration screen
                   GestureDetector(
                     onTap: widget.showLoginScreen,
-                    child: Text('Login now', style: theme.TextThemes.loginRegisterBody(context),),
+                    child: Text('Login now', style: theme.TextThemes.linkBody(context),),
                   ),
                 ],
               ),
+              const SizedBox(height: 45,),
 
             ],
           ),

@@ -405,7 +405,7 @@ class TextThemes{
     );
   }
 
-  static TextStyle loginRegisterBody(BuildContext context) {
+  static TextStyle linkBody(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
       fontWeight: FontWeight.bold,

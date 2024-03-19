@@ -189,3 +189,51 @@ TextButton materialButton() {
   );
 }
 
+
+class SmallFormButtonLight extends StatelessWidget {
+  final String text;
+  final Function func;
+  const SmallFormButtonLight({super.key, required this.text, required this.func});
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        minimumSize: const Size.fromHeight(45),
+        padding: const EdgeInsets.all(8),
+        backgroundColor: theme.blackClr,
+        foregroundColor: theme.primaryClr,
+        // side: const BorderSide(color: theme.darkGreyClr, width: 2.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        textStyle: theme.TextThemes.button1(context),
+      ),
+      child: Text(text),
+      onPressed: () => func(),
+    );
+  }
+}
+
+class SmallFormButtonDark extends StatelessWidget {
+  final String text;
+  final Function func;
+  const SmallFormButtonDark({super.key, required this.text, required this.func});
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        minimumSize: const Size.fromHeight(45),
+        padding: const EdgeInsets.all(8),
+        backgroundColor: theme.primaryClr,
+        foregroundColor: theme.blackClr,
+        // side: const BorderSide(color: theme.darkGreyClr, width: 2.0),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+        textStyle: theme.TextThemes.button1(context),
+      ),
+      child: Text(text),
+      onPressed: () => func(),
+    );
+  }
+}
