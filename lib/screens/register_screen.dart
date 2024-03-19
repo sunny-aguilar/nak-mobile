@@ -20,6 +20,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
   final TextEditingController _confirmPwCtrl = TextEditingController();
+  final TextEditingController _firstNamePwCtrl = TextEditingController();
+  final TextEditingController _lastNamePwCtrl = TextEditingController();
+  final TextEditingController _chapterCtrl = TextEditingController();
+  final TextEditingController _lineNumberCtrl = TextEditingController();
+  final TextEditingController _statusCtrl = TextEditingController();
 
   @override
   void dispose() {
