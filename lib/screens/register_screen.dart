@@ -38,6 +38,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           email: _emailCtrl.text.trim(),
           password: _passwordCtrl.text.trim(),
         );
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(seconds: 5),
+              content: Text('Account successfully created.')
+            ),
+          );
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           // print('The account already exists for that email.');
@@ -182,7 +190,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     if (_formKeyRegistration.currentState!.validate()) {
                       // process data if form is valid
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Processing request...')),
+                        const SnackBar(
+                          duration: Duration(milliseconds: 1000),
+                          content: Text('Processing request...')
+                        ),
                       );
                       signUp();
                     }
