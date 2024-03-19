@@ -20,8 +20,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
   final TextEditingController _confirmPwCtrl = TextEditingController();
-  final TextEditingController _firstNamePwCtrl = TextEditingController();
-  final TextEditingController _lastNamePwCtrl = TextEditingController();
+  final TextEditingController _firstNameCtrl = TextEditingController();
+  final TextEditingController _lastNameCtrl = TextEditingController();
   final TextEditingController _chapterCtrl = TextEditingController();
   final TextEditingController _lineNumberCtrl = TextEditingController();
   final TextEditingController _statusCtrl = TextEditingController();
@@ -31,6 +31,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _emailCtrl.dispose();
     _passwordCtrl.dispose();
     _confirmPwCtrl.dispose();
+    _firstNameCtrl.dispose();
+    _lastNameCtrl.dispose();
+    _chapterCtrl.dispose();
+    _lineNumberCtrl.dispose();
+    _statusCtrl.dispose();
     super.dispose();
   }
 
@@ -113,12 +118,96 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text('Sign up below with your details.', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
               const SizedBox(height: 50,),
 
-              // email textfield
+              // first name textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
+                    labelText: 'First Name',
+                    helperText: '*required'
+                  ),
+                  controller: _firstNameCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // last name textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person),
+                    labelText: 'Last Name',
+                    helperText: '*required'
+                  ),
+                  controller: _lastNameCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your last name.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // chapter textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.house_outlined),
+                    labelText: 'Chapter',
+                    helperText: '*required'
+                  ),
+                  controller: _chapterCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your chapter.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // line number textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.numbers),
+                    labelText: 'Line Number',
+                    helperText: '*required'
+                  ),
+                  controller: _lineNumberCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your line number.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // email textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email_outlined),
                     labelText: 'Email',
                     helperText: '*required'
                   ),

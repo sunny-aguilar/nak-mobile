@@ -81,7 +81,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.email_outlined),
                     labelText: 'Email',
                     helperText: '*required'
                   ),
