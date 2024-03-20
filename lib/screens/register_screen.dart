@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,7 +43,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // create user
   Future signUp() async {
     if (passwordConfirmed()) {
-      // sign up function
+      // create user
       try {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailCtrl.text.trim(),
@@ -56,6 +57,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           );
         }
+
+        // add user details to firebase
+        addUserDetails(
+          _firstNameCtrl.text.trim(),
+          _lastNameCtrl.text.trim(),
+          _chapterCtrl.text.trim(),
+          int.parse( _lineNumberCtrl.text.trim() ),
+          _statusCtrl.text.trim(),
+          _emailCtrl.text.trim(),
+        );
+
+
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           // print('The account already exists for that email.');
@@ -97,6 +110,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return false;
   }
 
+  Future addUserDetails(String firstName, String lastName, String chapter, int lineNumber, String email, String status) async {
+    // to write to DB, you must chage rules
+    // to this: allow read, write: if request.auth != null;
+    // from this (this rule locks Firestore): allow read, write: if false;
+
+    // Security Rules:
+    // lock Firestore: allow read, write: if request.auth != null;
+    // open Firesetore: allow read, write: if request.auth != null;
+
+    final db = FirebaseFirestore.instance;
+    db.collection('users').add({
+      'fistName': firstName,
+      'lastName': lastName,
+      'chapter': chapter,
+      'lineNumber': lineNumber,
+      'email': email,
+      'status': status,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -111,7 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               // welcome section
-              const Icon(Icons.person_add, size: 100,),
+              const Icon(Icons.rocket_launch, size: 100,),
               const SizedBox(height: 75,),
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
@@ -123,7 +156,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.person_outline),
                     labelText: 'First Name',
                     helperText: '*required'
                   ),
@@ -144,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person),
+                    prefixIcon: Icon(Icons.person_outline),
                     labelText: 'Last Name',
                     helperText: '*required'
                   ),
@@ -195,6 +228,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your line number.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // status textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.school_outlined),
+                    labelText: 'undergrad or alumni',
+                    helperText: '*required'
+                  ),
+                  controller: _statusCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter undergrad or alumni.';
                     }
                     return null;
                   },
