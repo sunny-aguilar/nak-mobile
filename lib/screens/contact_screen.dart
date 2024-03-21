@@ -81,6 +81,8 @@ class _ContactFormState extends State<ContactScreen> {
                     style: theme.TextThemes.headline(context),
                   ),
                   const SizedBox(height: 18,),
+
+                  // name field
                   TextFormField(
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.person_2_outlined),
@@ -97,6 +99,8 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
+
+                  // email field
                   TextFormField(
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.email_outlined),
@@ -113,6 +117,8 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
+
+                  // nature dropdown field
                   DropdownButtonFormField(
                     hint: Text(
                       'Select an Item',
@@ -167,6 +173,8 @@ class _ContactFormState extends State<ContactScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 18,),
+
+                  // urgency dropdown field
                   DropdownButtonFormField(
                     hint: Text(
                       'Select an Item',
@@ -217,6 +225,8 @@ class _ContactFormState extends State<ContactScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 18,),
+
+                  // Date field
                   TextFormField(
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.event_outlined),
@@ -258,6 +268,8 @@ class _ContactFormState extends State<ContactScreen> {
                     }, // onTap
                   ),
                   const SizedBox(height: 18,),
+
+                  // location field
                   TextFormField(
                     decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.location_on_outlined),
@@ -274,6 +286,8 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
+
+                  // description field
                   TextFormField(
                     maxLines: 3,
                     decoration: const InputDecoration(
@@ -291,6 +305,8 @@ class _ContactFormState extends State<ContactScreen> {
                     },
                   ),
                   const SizedBox(height: 18,),
+
+                  // report dropdown field
                   DropdownButtonFormField(
                     hint: Text(
                       'Select an Item',
@@ -336,6 +352,8 @@ class _ContactFormState extends State<ContactScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 18,),
+
+                  // police dropdown field
                   DropdownButtonFormField(
                     hint: Text(
                       'Select an Item',
@@ -382,6 +400,8 @@ class _ContactFormState extends State<ContactScreen> {
                     }).toList(),
                   ),
                   const SizedBox(height: 18,),
+
+                  // follow up dropdown field
                   DropdownButtonFormField(
                     hint: Text(
                       'Select an Item',
@@ -426,6 +446,8 @@ class _ContactFormState extends State<ContactScreen> {
                       );
                     }).toList(),
                   ),
+
+                  // submit button
                   const SizedBox(height: 18,),
                   TextButton(
                     style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),

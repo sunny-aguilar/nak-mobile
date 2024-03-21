@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/db/db_ops.dart' as db;
 
 class DigitalIDScreen extends StatefulWidget {
   const DigitalIDScreen({super.key});
@@ -67,6 +68,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text('Sandro Aguilar', style: theme.TextThemes.idUserName(context),),
+                          // db.Users().getText(),
                           const Spacer(),
                           Text('Major', style: theme.TextThemes.idLabel(context),),
                           Text('Computer Science', style: theme.TextThemes.idBody(context),),

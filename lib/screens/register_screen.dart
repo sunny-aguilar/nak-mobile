@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -64,8 +65,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _lastNameCtrl.text.trim(),
           _chapterCtrl.text.trim(),
           int.parse( _lineNumberCtrl.text.trim() ),
-          _statusCtrl.text.trim(),
           _emailCtrl.text.trim(),
+          _statusCtrl.text.trim(),
         );
 
 
@@ -119,15 +120,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // lock Firestore: allow read, write: if request.auth != null;
     // open Firesetore: allow read, write: if request.auth != null;
 
+    // get user UID
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final userUID = auth.currentUser!.uid;
+
     final db = FirebaseFirestore.instance;
-    db.collection('users').add({
-      'fistName': firstName,
+    db.collection('users').doc(userUID).set({
+      'uid': userUID,
+      'firstName': firstName,
       'lastName': lastName,
       'chapter': chapter,
       'lineNumber': lineNumber,
       'email': email,
       'status': status,
     });
+    // db.collection('users').add({
+    //   'firstName': firstName,
+    //   'lastName': lastName,
+    //   'chapter': chapter,
+    //   'lineNumber': lineNumber,
+    //   'email': email,
+    //   'status': status,
+    // });
   }
 
   @override
@@ -193,26 +207,56 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 20,),
 
-              // chapter textfield
+              // chapter dropdown field
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.house_outlined),
-                    labelText: 'Chapter',
-                    helperText: '*required'
+                child: DropdownButtonFormField(
+                  hint: Text(
+                    'Select a chapter',
+                    style: TextStyle(
+                          color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                          fontSize: 16,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                        ),
                   ),
-                  controller: _chapterCtrl,
-                  keyboardType: TextInputType.text,
+                  onChanged: (val) {
+                    _chapterCtrl.text = val!;
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter your chapter.';
+                      return 'Please select a chapter';
                     }
                     return null;
                   },
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.house_outlined),
+                    labelText: 'Your chapter',
+                    helperText: '*required',
+                  ),
+                  dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                  items: <String>[
+                    'Founding', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta',
+                    'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi',
+                    'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi',
+                    'Psi', 'Alpha Alpha', 'Alpha Beta', 'Alpha Gamma', 'Alpha Delta',
+                  ]
+                  .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(
+                          color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                          fontSize: 16,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
-              const SizedBox(height: 20,),
 
               // line number textfield
               Padding(
@@ -224,7 +268,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     helperText: '*required'
                   ),
                   controller: _lineNumberCtrl,
-                  keyboardType: TextInputType.text,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your line number.';
@@ -238,23 +283,50 @@ class _RegisterScreenState extends State<RegisterScreen> {
               // status textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.school_outlined),
-                    labelText: 'undergrad or alumni',
-                    helperText: '*required'
+                child: DropdownButtonFormField(
+                  hint: Text(
+                    'Graduate status',
+                    style: TextStyle(
+                          color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                          fontSize: 16,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                        ),
                   ),
-                  controller: _statusCtrl,
-                  keyboardType: TextInputType.text,
+                  onChanged: (val) {
+                    _statusCtrl.text = val!;
+                  },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter undergrad or alumni.';
+                      return 'Please select your graduate status';
                     }
                     return null;
                   },
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.school_outlined),
+                    labelText: 'Your status',
+                    helperText: '*required',
+                  ),
+                  dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                  items: <String>[
+                    'Undergrad', 'Alumni', 'NA',
+                  ]
+                  .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(
+                        value,
+                        style: TextStyle(
+                          color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                          fontSize: 16,
+                          fontFamily: 'Roboto',
+                          fontWeight: FontWeight.normal,
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
               ),
-              const SizedBox(height: 20,),
 
               // email textfield
               Padding(
