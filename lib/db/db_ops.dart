@@ -4,7 +4,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 final FirebaseFirestore db = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
-final userUID = auth.currentUser!.uid;
+// final userUID = auth.currentUser!.uid;
+
+class UserService {
+  FirebaseFirestore? _instance;
+
+  Future<Map> getUsersFromFirebase() async {
+    _instance = FirebaseFirestore.instance;
+    String userUID = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference users = _instance!.collection('users');
+    DocumentSnapshot snapshot = await users.doc(userUID).get();
+    return snapshot.data() as Map;
+  }
+
+  Text someString() {
+    getUsersFromFirebase();
+    return Text('Testing');
+  }
+}
 
 class Users{
   Users({
@@ -96,6 +113,14 @@ class _GetUserDataState extends State<GetUserData> {
     // final FirebaseAuth auth = FirebaseAuth.instance;
 
     // READ OPERATIONS
+    // Future<User> getUsers() async {
+    //   CollectionReference users = db.collection('users');
+    //   DocumentSnapshot snapshot = await users.doc('uToicHpgAofoivUnqzQQxdNII5O2').get();
+    //   var data = snapshot.data() as Map;
+    //   print('Data: $data');
+    //   return Users(data);
+    // }
+
     Future<void> readID() async {
       final userUID = auth.currentUser!.uid;
 
