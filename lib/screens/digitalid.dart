@@ -169,8 +169,4 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
       ],
     );
   }
-  //       ),
-  //     ),
-  //   );
-  // }
 }

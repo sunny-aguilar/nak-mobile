@@ -16,11 +16,6 @@ class UserService {
     DocumentSnapshot snapshot = await users.doc(userUID).get();
     return snapshot.data() as Map;
   }
-
-  Text someString() {
-    getUsersFromFirebase();
-    return Text('Testing');
-  }
 }
 
 class Users{
@@ -95,10 +90,6 @@ class Users{
   //   }
   //   return '';
   // }
-
-  Widget getText() {
-    return Text('EMPTY');
-  }
 }
 
 class GetUserData extends StatefulWidget {
