@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 
+
 class DigitalIDScreen extends StatefulWidget {
   const DigitalIDScreen({super.key});
   @override
@@ -25,8 +26,13 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
-                child: CircularProgressIndicator(
-                  color: theme.azureClr
+                child: SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 10,
+                    color: theme.redClr
+                  ),
                 ),
               );
             }
@@ -44,8 +50,12 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
               }
             }
             return const Center(
-              child: CircularProgressIndicator(
-                color: theme.azureClr,
+              child: SizedBox(
+                height: 150,
+                  width: 150,
+                child: CircularProgressIndicator(
+                  color: theme.azureClr,
+                ),
               ),
             );
           },
@@ -54,6 +64,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
     );
   }
 
+  // ID Widget
   ListView buildID(data) {
     return ListView(
       children: <Widget>[

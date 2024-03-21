@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +6,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseFirestore db = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
 // final userUID = auth.currentUser!.uid;
+
+// userReference = db.collection('users');
+// query = userReference.doc(userUID).get();
 
 class UserService {
   FirebaseFirestore? _instance;
@@ -17,6 +19,7 @@ class UserService {
     CollectionReference users = _instance!.collection('users');
     DocumentSnapshot snapshot = await users.doc(userUID).get();
     await Future.delayed(const Duration(milliseconds: 500));
+    // print('User: ${snapshot.data() as Map}');
     return snapshot.data() as Map;
   }
 }
@@ -41,13 +44,13 @@ class Users{
 
   factory Users.fromJson(Map<String, dynamic> json) {
     return Users(
-      uid: json['uid'],
-      firstName: json['firstname'],
-      lastName: json['lastName'],
-      chapter: json['chapter'],
-      lineNumber: json['lineNumber'],
-      status: json['status'],
-      email: json['email'],
+      uid: json['uid'] as String,
+      firstName: json['firstname'] as String,
+      lastName: json['lastName'] as String,
+      chapter: json['chapter'] as String,
+      lineNumber: json['lineNumber'] as String,
+      status: json['status'] as String,
+      email: json['email'] as String,
     );
   }
 
