@@ -8,6 +8,7 @@ final userUID = auth.currentUser!.uid;
 
 class Users{
   Users({
+    required this.uid,
     required this.firstName,
     required this.lastName,
     required this.chapter,
@@ -15,6 +16,7 @@ class Users{
     required this.status,
     required this.email
   });
+  final String? uid;
   final String? firstName;
   final String? lastName;
   final String? chapter;
@@ -22,12 +24,25 @@ class Users{
   final String? status;
   final String? email;
 
+  factory Users.fromJson(Map<String, dynamic> json) {
+    return Users(
+      uid: json['uid'],
+      firstName: json['firstname'],
+      lastName: json['lastName'],
+      chapter: json['chapter'],
+      lineNumber: json['lineNumber'],
+      status: json['status'],
+      email: json['email'],
+    );
+  }
+
   factory Users.fromFireStore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
     return Users(
+      uid: data?['uid'],
       firstName: data?['firstname'],
       lastName: data?['lastName'],
       chapter: data?['chapter'],
@@ -35,26 +50,36 @@ class Users{
       status: data?['status'],
       email: data?['email'],
     );
-
   }
 
-  Future<String> getname() async {
-    final userRef = db.collection('users');
-    final docSnapshot = await userRef.doc(userUID).get();
-    if (docSnapshot.exists) {
-      // DBOps.fromJson(docSnapshot.data());
-      Map<String, dynamic>? data = docSnapshot.data();
-      var firstName = data?['firstName'];
-      var lastName = data?['lastName'];
-      // print('Name: $firstName $lastName');
-      print('Data: $data');
-      return '$firstName $lastName';
-    }
-    return '';
+  Map<String, dynamic> toFirestore() {
+    return {
+      if (uid != null) 'uid': uid,
+      if (firstName != null) 'firstName': firstName,
+      if (lastName != null) 'lastName': lastName,
+      if (chapter != null) 'chapter': chapter,
+      if (lineNumber != null) 'lineNumber': lineNumber,
+      if (status != null) 'status': status,
+      if (email != null) 'email': email,
+    };
   }
+
+  // Future<String> getname() async {
+  //   final userRef = db.collection('users');
+  //   final docSnapshot = await userRef.doc(userUID).get();
+  //   if (docSnapshot.exists) {
+  //     // DBOps.fromJson(docSnapshot.data());
+  //     Map<String, dynamic>? data = docSnapshot.data();
+  //     var firstName = data?['firstName'];
+  //     var lastName = data?['lastName'];
+  //     // print('Name: $firstName $lastName');
+  //     print('Data: $data');
+  //     return '$firstName $lastName';
+  //   }
+  //   return '';
+  // }
 
   Widget getText() {
-    getname();
     return Text('EMPTY');
   }
 }
