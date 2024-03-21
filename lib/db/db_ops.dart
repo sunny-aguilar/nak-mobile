@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +16,7 @@ class UserService {
     String userUID = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference users = _instance!.collection('users');
     DocumentSnapshot snapshot = await users.doc(userUID).get();
+    await Future.delayed(const Duration(milliseconds: 500));
     return snapshot.data() as Map;
   }
 }
