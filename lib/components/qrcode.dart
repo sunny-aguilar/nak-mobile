@@ -22,7 +22,8 @@ class GenerateQRCode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // print('Name: $name');
+    // edit this string to modify the naknet.org/id-badge-confirmation page
+    String siteURL = 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status&nakID=$nakID';
     return GestureDetector(
       onTap: () {
         Future<void> launchUrlStart({required String url}) async {
@@ -30,10 +31,10 @@ class GenerateQRCode extends StatelessWidget {
             throw 'Could not launch $url';
           }
         }
-        launchUrlStart(url: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status&nakID=$nakID');
+        launchUrlStart(url: siteURL);
       },
       child: QrImageView(
-        data: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status&nakID=$nakID',
+        data: siteURL,
         version: QrVersions.auto,
         gapless: true,
         backgroundColor: theme.primaryClr,
