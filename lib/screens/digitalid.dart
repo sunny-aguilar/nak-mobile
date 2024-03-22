@@ -115,7 +115,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text('${data['firstName']} ${data['lastName']}', style: theme.TextThemes.idUserName(context),),
-                      // Text(db.makeUser()),
+                      Text(db.makeUser()),
                       const Spacer(),
                       Text('Major', style: theme.TextThemes.idLabel(context),),
                       Text('Computer Science', style: theme.TextThemes.idBody(context),),

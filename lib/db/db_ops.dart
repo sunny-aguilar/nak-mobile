@@ -19,18 +19,13 @@ class UserService {
     CollectionReference users = _instance!.collection('users');
     DocumentSnapshot snapshot = await users.doc(userUID).get();
     await Future.delayed(const Duration(milliseconds: 500));
-
-    final ref = users.doc(userUID).withConverter(
-      fromFirestore: Users.fromFireStore,
-      toFirestore: (Users user, _) => user.toFirestore(),
-    );
-
-    final docSnap = await ref.get();
     return snapshot.data() as Map;
   }
 }
 
 String makeUser() {
+  var x = UserService().getUsersFromFirebase();
+  print('x: $x');
   final jsonData = '{ "uid": "randomstring", "firstName": "Sandro", "lastName": "Aguilar", "chapter": "Iota", "lineNumber": "33", "status": "Alumni", "email": "sunny@me.com" }';
   final parsedJson = jsonDecode(jsonData);
   final user = Users.fromJson(parsedJson);
@@ -44,7 +39,7 @@ class Users{
     required this.firstName,
     required this.lastName,
     required this.chapter,
-    // required this.lineNumber,
+    required this.lineNumber,
     required this.status,
     required this.email
   });
@@ -52,7 +47,7 @@ class Users{
   final String? firstName;
   final String? lastName;
   final String? chapter;
-  // final String? lineNumber;
+  final String? lineNumber;
   final String? status;
   final String? email;
 
@@ -61,11 +56,11 @@ class Users{
     final String firstName = json['firstName'];
     final String lastName = json['lastName'];
     final String chapter = json['chapter'];
-    // final String lineNumber = json['lineNumber'];
+    final String lineNumber = json['lineNumber'];
     final String status = json['status'];
     final String email = json['email'];
 
-    return Users(uid: uid, firstName: firstName, lastName: lastName, chapter: chapter, /*lineNumber: lineNumber, */status: status, email: email);
+    return Users(uid: uid, firstName: firstName, lastName: lastName, chapter: chapter, lineNumber: lineNumber, status: status, email: email);
     // return Users(
     //   uid: json['uid'] as String,
     //   firstName: json['firstname'] as String,
@@ -86,10 +81,10 @@ class Users{
     final String firstName = data?['firstName'];
     final String lastName = data?['lastName'];
     final String chapter = data?['chapter'];
-    // final String lineNumber = data?['lineNumber'];
+    final String lineNumber = data?['lineNumber'];
     final String status = data?['status'];
     final String email = data?['email'];
-    return Users(uid: uid, firstName: firstName, lastName: lastName, chapter: chapter, /*lineNumber: lineNumber, */status: status, email: email);
+    return Users(uid: uid, firstName: firstName, lastName: lastName, chapter: chapter, lineNumber: lineNumber, status: status, email: email);
   }
 
   Map<String, dynamic> toFirestore() {
@@ -98,7 +93,7 @@ class Users{
       if (firstName != null) 'firstName': firstName,
       if (lastName != null) 'lastName': lastName,
       if (chapter != null) 'chapter': chapter,
-      // if (lineNumber != null) 'lineNumber': lineNumber,
+      if (lineNumber != null) 'lineNumber': lineNumber,
       if (status != null) 'status': status,
       if (email != null) 'email': email,
     };
