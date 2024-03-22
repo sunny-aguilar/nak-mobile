@@ -5,13 +5,13 @@ final FirebaseFirestore db = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
 // final userUID = auth.currentUser!.uid;
 
-// userReference = db.collection('users');
-// query = userReference.doc(userUID).get();
+// userReference = db.collection('users');                <-- gets the collection
+// query = userReference.doc(userUID).get();              <-- gets the documents in each collection (async method)
 
 class UserService {
   FirebaseFirestore? _instance;
 
-  Future<Map> getUsersFromFirebase() async {
+  Future<Map> getData() async {
     _instance = FirebaseFirestore.instance;
     String userUID = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference users = _instance!.collection('users');

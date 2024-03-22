@@ -21,7 +21,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
       body: Padding(
         padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 0.0, bottom: 0.0),
         child: FutureBuilder(
-          future: db.UserService().getUsersFromFirebase(),
+          future: db.UserService().getData(),
           initialData: 'Initial data',
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
