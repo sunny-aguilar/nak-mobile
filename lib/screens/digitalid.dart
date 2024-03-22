@@ -170,11 +170,13 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
           ),
           child: Center(
-            // child: Image.asset(
-            //   'assets/img/id/qrcode.webp',
-            //   height: 220,
-            // ),
-            child: GenerateQRCode(name: data['firstName'], chapter: data['chapter'], idNumber: '1234', email: data['email'],),
+            child: GenerateQRCode(
+              firstName: '${data['firstName']}',
+              lastName: '${data['lastName']}',
+              chapter: '${data['chapter']}',
+              lineNumber: '${data['lineNumber']}',
+              status: '${data['status']}',
+            ),
           ),
         ),
 
