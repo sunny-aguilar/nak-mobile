@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nak_app/components/qrcode.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
-
 
 class DigitalIDScreen extends StatefulWidget {
   const DigitalIDScreen({super.key});
@@ -46,7 +46,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
               }
               else if(snapshot.hasData) {
                 final data = snapshot.data;
-                return buildID(data);
+                return buildIDCard(data);
               }
             }
             return const Center(
@@ -65,7 +65,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
   }
 
   // ID Widget
-  ListView buildID(data) {
+  ListView buildIDCard(data) {
     return ListView(
       children: <Widget>[
 
@@ -170,10 +170,11 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
           ),
           child: Center(
-            child: Image.asset(
-              'assets/img/id/qrcode.webp',
-              height: 220,
-            ),
+            // child: Image.asset(
+            //   'assets/img/id/qrcode.webp',
+            //   height: 220,
+            // ),
+            child: GenerateQRCode(name: data['firstName'], chapter: data['chapter'], idNumber: '1234', email: data['email'],),
           ),
         ),
 
