@@ -7,8 +7,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:nak_app/services/create_id_number.dart' as id;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
-import 'package:nak_app/db/db_ops.dart' as dbops;
-
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key, required this.showLoginScreen});

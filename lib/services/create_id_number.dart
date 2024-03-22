@@ -56,13 +56,3 @@ class GenerateID {
     return id;
   }
 }
-
-
-
-
-
-
-
-
-// chapter founding year, chapter #, class #, line #
-

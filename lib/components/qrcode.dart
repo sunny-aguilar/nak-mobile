@@ -36,7 +36,7 @@ class GenerateQRCode extends StatelessWidget {
       child: QrImageView(
         data: siteURL,
         version: QrVersions.auto,
-        gapless: true,
+        gapless: false,
         backgroundColor: theme.primaryClr,
         size: 220.0,
         errorStateBuilder: (cxt, err) {
