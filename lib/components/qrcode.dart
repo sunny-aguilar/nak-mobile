@@ -11,12 +11,14 @@ class GenerateQRCode extends StatelessWidget {
     required this.chapter,
     required this.lineNumber,
     required this.status,
+    required this.nakID,
   });
   final String firstName;
   final String lastName;
   final String chapter;
   final String lineNumber;
   final String status;
+  final String nakID;
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +30,10 @@ class GenerateQRCode extends StatelessWidget {
             throw 'Could not launch $url';
           }
         }
-        launchUrlStart(url: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status');
+        launchUrlStart(url: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status&nakID=$nakID');
       },
       child: QrImageView(
-        data: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status',
+        data: 'https://naknet.org/id-badge-confirmation?firstName=$firstName&lastName=$lastName&chapter=$chapter&lineNumber=$lineNumber&status=$status&nakID=$nakID',
         version: QrVersions.auto,
         gapless: true,
         backgroundColor: theme.primaryClr,
