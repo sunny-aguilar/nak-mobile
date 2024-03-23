@@ -30,6 +30,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
         controller: _scrollController,  // ADD SCROLLING CONTROLLER HERE
         slivers: <Widget>[
           SliverAppBar(
+            centerTitle: true,
             title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
             backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
             pinned: true,

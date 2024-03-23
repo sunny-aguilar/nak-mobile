@@ -48,6 +48,7 @@ class _NationalBoardState extends State<NationalBoard> {
             return CustomScrollView(
               slivers: <Widget>[
                 SliverAppBar(
+                  centerTitle: true,
                   title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
                   backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
                   pinned: true,
