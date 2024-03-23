@@ -34,8 +34,9 @@ dev_dependencies:
 # use <dart run flutter_launcher_icons> to generate
 # icons (from 1024x1024 image in image_path)
 flutter_launcher_icons:
-  android: false
+  android: true
   ios: true
+  remove_alpha_ios: true
   image_path: "assets/img/icons/nak_icon.webp"
 
 flutter:
