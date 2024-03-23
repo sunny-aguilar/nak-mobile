@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nak_app/components/auth_check.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     super.initState();
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
-    Future.delayed(const Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         // check if user is logged in
         builder: (_) => const AuthCheck(),
@@ -65,6 +66,19 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                   ),
                 ),
                 Image.asset('assets/img/nak_letters.png', height: 130.0,),
+                Align(
+                  alignment: Alignment.center,
+                  child: SizedBox(
+                    width: 150,
+                    height: 150,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 10,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        theme.darkGreyClr.withOpacity(0.5),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ],
