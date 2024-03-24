@@ -314,7 +314,6 @@ class LargeGreyPictureCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              // child: Text('JN')
               backgroundImage: AssetImage(userImage),
               backgroundColor: Colors.grey,
             ),
@@ -397,7 +396,6 @@ class LargeGreyPictureCard extends StatelessWidget {
               image,
               fit: BoxFit.cover,
               scale: 1,
-              // alignment: const Alignment(0, 0),
               width: double.infinity,
               height: 150,
             ),

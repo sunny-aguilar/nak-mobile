@@ -8,7 +8,7 @@ const List storyCardData = [
     'storyText': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat commodo sed egestas egestas fringilla phasellus faucibus scelerisque. Scelerisque felis imperdiet proin fermentum leo. Praesent semper feugiat nibh sed pulvinar proin gravida hendrerit. Aliquam faucibus purus in massa tempor nec feugiat nisl pretium. Mauris nunc congue nisi vitae suscipit tellus mauris a. Urna nunc id cursus metus aliquam eleifend mi. Praesent tristique magna sit amet. Sed elementum tempus egestas sed sed risus pretium quam. Nulla facilisi cras fermentum odio eu feugiat pretium nibh ipsum.',
   },
   {
-    'userImage': 'assets/img/users/sa_user.webp',
+    'userImage': 'assets/img/users/profile.webp',
     'userName': 'Carlos Mendoza',
     'storyHeadline': 'Leading By Example',
     'image': 'assets/img/stories/fork_story.png',
@@ -19,7 +19,7 @@ const List storyCardData = [
     'userImage': 'assets/img/users/sa_user.webp',
     'userName': 'Sandro Aguilar',
     'storyHeadline': 'What are NAK IDs?',
-    'image': 'assets/img/stories/compass_story.jpg',
+    'image': 'assets/img/stories/id_story.jpg',
     'date': 'April 15, 2024',
     'storyText': 'You may be wondering, why is the CFO talking about NAK ID\'s? Experience has shown that the traditional role of a CFO is not limited to overseeing the financial operations of an organization. Technology now plays a major role in finance so we have had to adapt to be more effective leaders.\n\nAlthough the idea of NAK IDs is not something new, we now have the ability to roll out the concept with the help of mobile technology. A NAK ID format comprises four groups of numbers-representaing:\n\n"Chapter founding year"\n"Chapter number"\n"Class number"\n"Line number"\n\nThe number format [0000-0000-0000-0000] will be implemented in your digila ID as well as in future events.\n\nYou will find yours under the the Digital ID section of the App. We will be be providing more info as we develop the IDs.',
   },
