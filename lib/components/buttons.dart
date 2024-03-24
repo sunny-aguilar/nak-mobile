@@ -237,3 +237,25 @@ class SmallFormButtonDark extends StatelessWidget {
     );
   }
 }
+
+class SmallFilledButton extends StatelessWidget {
+  const SmallFilledButton({super.key, required this.text});
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () {},
+      style: FilledButton.styleFrom(
+        // minimumSize: const Size.fromHeight(45),
+        padding: const EdgeInsets.symmetric(horizontal: 18),
+        backgroundColor: theme.primaryClr,
+        foregroundColor: theme.blackClr,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+      ),
+      child: const Text('Update Profile'),
+    );
+  }
+}

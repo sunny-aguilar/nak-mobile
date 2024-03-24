@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'dart:io';
+import 'package:nak_app/components/buttons.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 
@@ -169,18 +170,11 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              FilledButton(
-                onPressed: () {},
-                child: const Text('Update Profile'),
-              ),
-              const SizedBox( width: 20,),
-              FilledButton(
-                onPressed: () {},
-                child: const Text('Upload Photo'),
-              ),
+              SmallFilledButton(text: 'Updated Profile'),
+              SmallFilledButton(text: 'Upload Photo'),
             ],
           ),
         ),
