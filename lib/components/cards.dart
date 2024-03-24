@@ -354,7 +354,7 @@ class LargeGreyPictureCard extends StatelessWidget {
                               // cteate a class to hold a modal template
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Divider(color: Color.fromARGB(255, 174, 174, 174),),
+                                child: Divider(color: theme.dividerClr,),
                               ),
                               ListTile(
                                 leading: CircleAvatar(
@@ -366,11 +366,19 @@ class LargeGreyPictureCard extends StatelessWidget {
                               ),
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
-                                child: Divider(color: Color.fromARGB(255, 175, 175, 175),),
+                                child: Divider(color: theme.dividerClr,),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(storyText),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Divider(color: theme.dividerClr),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Icon(Icons.bookmark),
                               ),
                             ],
                           ),

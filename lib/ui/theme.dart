@@ -9,6 +9,7 @@ const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
 const Color lightGrey = Color.fromARGB(255, 218, 218, 218);
+const Color dividerClr = Color.fromARGB(255, 174, 174, 174);
 const Color greyClr = Colors.grey;
 const Color shawdowClr = Color.fromARGB(255, 98, 98, 98);
 const Color charcoalClr = Color.fromARGB(255, 73, 73, 73);
