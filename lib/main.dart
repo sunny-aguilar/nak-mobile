@@ -15,6 +15,7 @@ import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
 import 'package:nak_app/screens/contact_screen.dart';
 import 'package:nak_app/screens/digitalid_screen.dart';
+import 'package:nak_app/screens/my_profile.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -54,6 +55,7 @@ class App extends StatelessWidget {
         '/titleix': (context) => const ResourceScreen(),
         '/contact': (context) => const ContactScreen(),
         '/id': (context) => const DigitalIDScreen(),
+        '/profile': (context) => const MyProfileScreen(),
         // '/login': (context) => const LoginScreen(showRegisterPage: ,),
       };
 

@@ -104,6 +104,11 @@ class DrawerComponent extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, '/id'),
             ),
             ListTile(
+              leading: const Icon(Icons.settings),
+              title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/profile'),
+            ),
+            ListTile(
               leading: const Icon(Icons.login),
               title: Text('Logout', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () {

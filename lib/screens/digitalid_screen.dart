@@ -162,32 +162,32 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                 child: Container(
                   color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
                   padding: const EdgeInsets.only(right: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          _pickImageFromGallery();
-                        },
-                        child: _image != null ? Image.file(
+                  child: GestureDetector(
+                    onTap: () {
+                      _pickImageFromGallery();
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _image != null ? Image.file(
                           File(file!.path),
                           width: 150,
                           height: 180,
                           fit: BoxFit.cover,
                         ) : Image.asset('assets/img/users/profile.webp'),
-                      ),
-                      Container(
-                        width: 150,
-                        height: 48,
-                        color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-                        child: Center(
-                          child: Text(
-                            data['status'],
-                            style: theme.TextThemes.idImageTitle(context),
+                        Container(
+                          width: 150,
+                          height: 48,
+                          color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                          child: Center(
+                            child: Text(
+                              _image != null ? data['status'] : 'Add Image',
+                              style: theme.TextThemes.idImageTitle(context),
+                            )
                           )
-                        )
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
                 )
               ),
