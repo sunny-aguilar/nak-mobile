@@ -239,13 +239,18 @@ class SmallFormButtonDark extends StatelessWidget {
 }
 
 class SmallFilledButton extends StatelessWidget {
-  const SmallFilledButton({super.key, required this.text});
+  const SmallFilledButton({
+    super.key,
+    required this.text,
+    required Function func
+  }) : tapMe = func;
   final String text;
+  final Function tapMe;
 
   @override
   Widget build(BuildContext context) {
     return FilledButton(
-      onPressed: () {},
+      onPressed: () {tapMe();},
       style: FilledButton.styleFrom(
         // minimumSize: const Size.fromHeight(45),
         padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -255,7 +260,7 @@ class SmallFilledButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4.0),
         ),
       ),
-      child: const Text('Update Profile'),
+      child: Text(text),
     );
   }
 }

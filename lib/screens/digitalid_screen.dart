@@ -125,7 +125,6 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
           height: 300,
           decoration: BoxDecoration(
             color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
           ),
           child: Row(
             children: <Widget>[

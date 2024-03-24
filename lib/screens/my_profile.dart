@@ -163,6 +163,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             ],
           ),
         ),
+
+        // bottom container with buttons
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           height: 100,
@@ -170,16 +172,14 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
           ),
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              SmallFilledButton(text: 'Updated Profile'),
-              SmallFilledButton(text: 'Upload Photo'),
+              SmallFilledButton(text: 'Updated Profile', func: () {Navigator.pushNamed(context, '/uploadPhoto');}),
+              SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
             ],
           ),
         ),
-
-
       ],
     );
   }
