@@ -14,7 +14,7 @@ import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
 import 'package:nak_app/screens/contact_screen.dart';
-import 'package:nak_app/screens/digitalid.dart';
+import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
