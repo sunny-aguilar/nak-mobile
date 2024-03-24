@@ -347,32 +347,33 @@ class LargeGreyPictureCard extends StatelessWidget {
                       width: double.infinity,
                       child: FractionallySizedBox(
                         heightFactor: 0.8,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            // cteate a class to hold a modal template
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Divider(color: Color.fromARGB(255, 174, 174, 174),),
-                            ),
-                            ListTile(
-                              leading: CircleAvatar(
-                                backgroundImage: AssetImage(userImage),
-                                backgroundColor: Colors.grey,
+                        child: SingleChildScrollView(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              // cteate a class to hold a modal template
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Divider(color: Color.fromARGB(255, 174, 174, 174),),
                               ),
-                              title: Text(userName,),
-                              subtitle: Text(storyHeadline),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Divider(color: Color.fromARGB(255, 175, 175, 175),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(12.0),
-                              child: Text(storyText),
-                            ),
-                            const Text('BOTTOM MODAL SHEET'),
-                          ],
+                              ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage: AssetImage(userImage),
+                                  backgroundColor: Colors.grey,
+                                ),
+                                title: Text(userName,),
+                                subtitle: Text(storyHeadline),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Divider(color: Color.fromARGB(255, 175, 175, 175),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(storyText),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

@@ -18,10 +18,10 @@ const List storyCardData = [
   {
     'userImage': 'assets/img/users/sa_user.webp',
     'userName': 'Sandro Aguilar',
-    'storyHeadline': 'Innovative Thinking',
+    'storyHeadline': 'What are NAK IDs?',
     'image': 'assets/img/stories/compass_story.jpg',
     'date': 'April 15, 2024',
-    'storyText': 'Purus viverra accumsan in nisl nisi scelerisque eu ultrices vitae. Sed enim ut sem viverra aliquet eget sit amet tellus. Felis imperdiet proin fermentum leo vel. Curabitur gravida arcu ac tortor dignissim convallis aenean. At auctor urna nunc id cursus metus aliquam eleifend. Morbi tristique senectus et netus. Porttitor rhoncus dolor purus non enim. Orci ac auctor augue mauris augue neque gravida in. Ornare quam viverra orci sagittis eu volutpat odio. Amet porttitor eget dolor morbi non arcu risus quis. Ullamcorper morbi tincidunt ornare massa eget egestas. In cursus turpis massa tincidunt dui. Consectetur libero id faucibus nisl tincidunt. Vitae auctor eu augue ut lectus. Tempus urna et pharetra pharetra massa massa ultricies. Malesuada fames ac turpis egestas.',
+    'storyText': 'You may be wondering, why is the CFO talking about NAK ID\'s? Experience has shown that the traditional role of a CFO is not limited to overseeing the financial operations of an organization. Technology now plays a major role in finance so we have had to adapt to be more effective leaders.\n\nAlthough the idea of NAK IDs is not something new, we now have the ability to roll out the concept with the help of mobile technology. A NAK ID format comprises four groups of numbers-representaing:\n\n"Chapter founding year"\n"Chapter number"\n"Class number"\n"Line number"\n\nThe number format [0000-0000-0000-0000] will be implemented in your digila ID as well as in future events.\n\nYou will find yours under the the Digital ID section of the App. We will be be providing more info as we develop the IDs.',
   },
 ];
 
