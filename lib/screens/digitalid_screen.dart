@@ -165,7 +165,17 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.asset('assets/img/users/profile.webp'),
+                      GestureDetector(
+                        onTap: () {
+                          _pickImageFromGallery();
+                        },
+                        child: _image != null ? Image.file(
+                          File(file!.path),
+                          width: 150,
+                          height: 180,
+                          fit: BoxFit.cover,
+                        ) : Image.asset('assets/img/users/profile.webp'),
+                      ),
                       Container(
                         width: 150,
                         height: 48,
