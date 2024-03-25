@@ -315,6 +315,14 @@ class TextThemes{
     );
   }
 
+  static TextStyle modalBody(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 16,
+      // color: darkGreyClr,
+    );
+  }
+
   static TextStyle resourceTitle(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Clarendon',

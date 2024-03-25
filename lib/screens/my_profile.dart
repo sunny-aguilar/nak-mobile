@@ -15,21 +15,38 @@ class MyProfileScreen extends StatefulWidget {
 class _MyProfileScreenState extends State<MyProfileScreen> {
   // image file path
   final _box = GetStorage();
-  String _key = 'imagePath';
+  final String _key = 'imagePath';
   String _image = 'assets/img/users/sa_user.webp';
 
 
-
-  Widget getImageFromStorage() {
-    // _box.read('imagePath') != null ? Image.file(File(_box.read('imagePath')), fit: BoxFit.cover) : Image.asset('assets/img/users/profile.webp');
-    if (_box.read('imagePath') != null) {
-      setState(() {});
-      return Image.file(File(_box.read('imagePath')), fit: BoxFit.cover,);
-    }
-    else {
-      setState(() {});
-      return Image.asset('assets/img/users/profile.webp');
-    }
+  _showModal(String info) {
+    return showModalBottomSheet(
+      backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
+      showDragHandle: true,
+      enableDrag: true,
+      context: context,
+      builder: (BuildContext context) {
+        return SizedBox(
+          height: 120,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Icon(Icons.info_outline),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Text(
+                  info,
+                  textAlign: TextAlign.center,
+                  style: theme.TextThemes.modalBody(context),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    );
   }
 
   @override
@@ -86,6 +103,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
     );
   }
 
+  // pull down to refresh handler
   Future<void> _handleRefresh() async {
     setState(() => _image = _box.read('imagePath') );
   }
@@ -94,7 +112,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   RefreshIndicator buildIDCard(data) {
     return RefreshIndicator(
       onRefresh: _handleRefresh,
-      color: theme.primaryClr,
+      color: theme.darkGreyClr,
+      backgroundColor: theme.primaryClr,
       child: ListView(
         children: <Widget>[
 
@@ -197,21 +216,51 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           // bottom container with buttons
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            height: 100,
+            height: 200,
             decoration: BoxDecoration(
               color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
               borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: <Widget>[
-                SmallFilledButton(
-                  text: 'Updated Profile',
-                  func: () {
-                    // Navigator.pushNamed(context, '/uploadPhoto');
-                  }
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    SmallFilledButton(
+                      text: 'Update Profile',
+                      func: () {
+                        // Navigator.pushNamed(context, '/uploadPhoto');
+                      }
+                    ),
+                    SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
+                  ],
                 ),
-                SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
+                const SizedBox(height: 16,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    IconButton(
+                      iconSize: 30,
+                      color: theme.primaryClr,
+                      icon: const Icon(Icons.refresh),
+                      onPressed:
+                        () {
+                          _showModal('Pull down to refresh');
+                        },
+                    ),
+                    IconButton(
+                      iconSize: 30,
+                      color: theme.primaryClr,
+                      icon: const Icon(Icons.info_outline),
+                      onPressed:
+                        () {
+                          _showModal('Profile images are stored locally on your device');
+                        },
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10,),
               ],
             ),
           ),
