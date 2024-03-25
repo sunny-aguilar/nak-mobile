@@ -193,7 +193,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                           fit: BoxFit.cover,
                           height: 200,
                         ) :
-                        Image.asset('assets/img/users/profile.webp'),
+                        Image.asset(_image),
                         Container(
                           width: 150,
                           height: 48,
