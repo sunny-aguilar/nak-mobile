@@ -231,6 +231,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       text: 'Update Profile',
                       func: () {
                         // Navigator.pushNamed(context, '/uploadPhoto');
+
                       }
                     ),
                     SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
