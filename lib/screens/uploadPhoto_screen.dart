@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
@@ -10,6 +12,37 @@ class UploadPhotoScreen extends StatefulWidget {
 }
 
 class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
+  XFile? _image;
+  File? file;
+  dynamic _pickImageError;
+  final ImagePicker _imagePicker = ImagePicker();
+
+  Future<void> _pickImageFromGallery() async {
+    try {
+      final image = await _imagePicker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        _image = image;
+        file = File(image!.path);
+        print('PATH: $file');
+      });
+    } catch (e) {
+      setState(() { _pickImageError = e;});
+    }
+  }
+
+  Future<void> _pickImageFromCamera() async {
+    try {
+      final image = await _imagePicker.pickImage( source: ImageSource.camera);
+      setState(() {
+        _image = image;
+        file = File(image!.path);
+      });
+    } catch (e) {
+      setState(() { _pickImageError = e;});
+    }
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,11 +84,26 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
 
             // User Photo Container
             Container(
-              height: 300,
+              height: 400,
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
               ),
-              child: Center(child: Text('Photo')),
+              child: Column(
+                children: <Widget>[
+                  const SizedBox(height: 30,),
+                  Container(
+                    height: 250,
+                    width: 200,
+                    decoration: const BoxDecoration(
+                      color: theme.primaryClr,
+                    ),
+                    child: _image != null ? Image.file(
+                      File(file!.path),
+                      fit: BoxFit.cover,
+                    ) : Image.asset('assets/img/users/profile.webp'),
+                  ),
+                ],
+              ),
             ),
 
             // bottom container with buttons
@@ -69,7 +117,8 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  FilledButton(onPressed: () {}, child: Text('Choose Picture'))
+                  FilledButton(onPressed: () { _pickImageFromGallery(); }, child: const Text('Choose Picture')),
+                  FilledButton(onPressed: () { _pickImageFromCamera(); }, child: const Text('Camera Picture')),
                 ],
               ),
             ),
