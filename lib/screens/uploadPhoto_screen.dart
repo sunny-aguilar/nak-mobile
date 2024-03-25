@@ -30,7 +30,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
         _image = image;
         file = File(image!.path);
         _box.write(_key, image.path);
-        print('Box: ${_box.read(_key)}');
+        // print('Box: ${_box.read(_key)}');
       });
     } catch (e) {
       setState(() { _pickImageError = e;});

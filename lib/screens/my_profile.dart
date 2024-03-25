@@ -15,6 +15,7 @@ class MyProfileScreen extends StatefulWidget {
 class _MyProfileScreenState extends State<MyProfileScreen> {
   // image file path
   final _box = GetStorage();
+  String _key = 'imagePath';
   String _image = 'assets/img/users/sa_user.webp';
 
 
@@ -85,130 +86,137 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
     );
   }
 
+  Future<void> _handleRefresh() async {
+    setState(() => _image = _box.read('imagePath') );
+  }
+
   // ID Widget
-  ListView buildIDCard(data) {
-    return ListView(
-      children: <Widget>[
+  RefreshIndicator buildIDCard(data) {
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      color: theme.primaryClr,
+      child: ListView(
+        children: <Widget>[
 
-        // Chapter Identification Container
-        const SizedBox(height: 20,),
-        Container(
-          height: 65,
-          decoration: BoxDecoration(
-            color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  '${data['chapter']} Chapter'.toUpperCase(),
-                  style: theme.TextThemes.idTitle(context),
+          // Chapter Identification Container
+          const SizedBox(height: 20,),
+          Container(
+            height: 65,
+            decoration: BoxDecoration(
+              color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
+              borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    '${data['chapter']} Chapter'.toUpperCase(),
+                    style: theme.TextThemes.idTitle(context),
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.only(right: 20),
-                child: Image.asset('assets/img/nak_letters.png', width: 95,),
-              ),
-            ],
-          ),
-        ),
-
-        // User Data Container
-        Container(
-          height: 300,
-          decoration: BoxDecoration(
-            color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
-          ),
-          child: Row(
-            children: <Widget>[
-              Flexible(
-                flex: 3,
-                fit: FlexFit.tight,
-                child: Container(
-                  color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('${data['firstName']} ${data['lastName']}', style: theme.TextThemes.idUserName(context),),
-                      const Spacer(),
-                      Text('Line Number', style: theme.TextThemes.idLabel(context),),
-                      Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
-                      const Spacer(),
-                      Text('Line Number', style: theme.TextThemes.idLabel(context),),
-                      Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
-                      const Spacer(),
-                      Text('ID Number', style: theme.TextThemes.idLabel(context),),
-                      Text('${data['nakID']}', style: theme.TextThemes.idBody(context),),
-                      const Spacer(),
-                      Text('Email', style: theme.TextThemes.idLabel(context),),
-                      Text(data['email'], style: theme.TextThemes.idBody(context),),
-                    ],
-                  ),
-                )
-              ),
-              Flexible(
-                flex: 2,
-                fit: FlexFit.tight,
-                child: Container(
-                  color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
+                Container(
                   padding: const EdgeInsets.only(right: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _box.read('imagePath') != null ?
-                      Image.file(
-                        File(_box.read('imagePath')),
-                        fit: BoxFit.contain,
-                        height: 200,
-                      ) :
-                      Image.asset('assets/img/users/profile.webp'),
-                      Container(
-                        width: 150,
-                        height: 48,
-                        color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-                        child: Center(
-                          child: Text(
-                            '${data['status']}',
-                            style: theme.TextThemes.idImageTitle(context),
-                          )
-                        )
-                      ),
-                    ],
-                  ),
-                )
-              ),
-            ],
+                  child: Image.asset('assets/img/nak_letters.png', width: 95,),
+                ),
+              ],
+            ),
           ),
-        ),
 
-        // bottom container with buttons
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          height: 100,
-          decoration: BoxDecoration(
-            color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
-            borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+          // User Data Container
+          Container(
+            height: 300,
+            decoration: BoxDecoration(
+              color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
+            ),
+            child: Row(
+              children: <Widget>[
+                Flexible(
+                  flex: 3,
+                  fit: FlexFit.tight,
+                  child: Container(
+                    color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text('${data['firstName']} ${data['lastName']}', style: theme.TextThemes.idUserName(context),),
+                        const Spacer(),
+                        Text('Line Number', style: theme.TextThemes.idLabel(context),),
+                        Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
+                        const Spacer(),
+                        Text('Line Number', style: theme.TextThemes.idLabel(context),),
+                        Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
+                        const Spacer(),
+                        Text('ID Number', style: theme.TextThemes.idLabel(context),),
+                        Text('${data['nakID']}', style: theme.TextThemes.idBody(context),),
+                        const Spacer(),
+                        Text('Email', style: theme.TextThemes.idLabel(context),),
+                        Text(data['email'], style: theme.TextThemes.idBody(context),),
+                      ],
+                    ),
+                  )
+                ),
+                Flexible(
+                  flex: 2,
+                  fit: FlexFit.tight,
+                  child: Container(
+                    color: Get.isDarkMode ? theme.charcoalClr : theme.redOfficial,
+                    padding: const EdgeInsets.only(right: 20),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _box.read(_key) != null ?
+                        Image.file(
+                          File(_image),
+                          fit: BoxFit.cover,
+                          height: 200,
+                        ) :
+                        Image.asset('assets/img/users/profile.webp'),
+                        Container(
+                          width: 150,
+                          height: 48,
+                          color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                          child: Center(
+                            child: Text(
+                              '${data['status']}',
+                              style: theme.TextThemes.idImageTitle(context),
+                            )
+                          )
+                        ),
+                      ],
+                    ),
+                  )
+                ),
+              ],
+            ),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[
-              SmallFilledButton(
-                text: 'Updated Profile',
-                func: () {
-                  // Navigator.pushNamed(context, '/uploadPhoto');
-                }
-              ),
-              SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
-            ],
+
+          // bottom container with buttons
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            height: 100,
+            decoration: BoxDecoration(
+              color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
+              borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SmallFilledButton(
+                  text: 'Updated Profile',
+                  func: () {
+                    // Navigator.pushNamed(context, '/uploadPhoto');
+                  }
+                ),
+                SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
