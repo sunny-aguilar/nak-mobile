@@ -189,7 +189,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       children: <Widget>[
                         _box.read(_key) != null ?
                         Image.file(
-                          File(_image),
+                          File(_box.read(_key)),
                           fit: BoxFit.cover,
                           height: 200,
                         ) :
