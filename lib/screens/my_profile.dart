@@ -16,7 +16,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   // image file path
   final _box = GetStorage();
   final String _key = 'imagePath';
-  String _image = 'assets/img/users/sa_user.webp';
+  String _image = 'assets/img/users/profile.webp';
 
 
   _showModal(String info, IconData icon) {
