@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class UploadPhotoScreen extends StatefulWidget {
@@ -12,9 +12,15 @@ class UploadPhotoScreen extends StatefulWidget {
 }
 
 class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
+  // pick image variables
   XFile? _image;
   File? file;
   dynamic _pickImageError;
+
+  // get storage variables
+  final _box = GetStorage();
+  final _key = 'imagePath';
+
   final ImagePicker _imagePicker = ImagePicker();
 
   Future<void> _pickImageFromGallery() async {
@@ -23,7 +29,8 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
       setState(() {
         _image = image;
         file = File(image!.path);
-        print('PATH: $file');
+        _box.write(_key, image.path);
+        print('Box: ${_box.read(_key)}');
       });
     } catch (e) {
       setState(() { _pickImageError = e;});
@@ -36,6 +43,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
       setState(() {
         _image = image;
         file = File(image!.path);
+        _box.write(_key, image.path);
       });
     } catch (e) {
       setState(() { _pickImageError = e;});

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'dart:io';
-import 'package:image_picker/image_picker.dart';
 import 'package:nak_app/components/qrcode.dart';
+import 'package:get_storage/get_storage.dart';
+import 'dart:io';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 
@@ -13,6 +13,9 @@ class DigitalIDScreen extends StatefulWidget {
 }
 
 class _DigitalIDScreenState extends State<DigitalIDScreen> {
+  // image file path
+  final _box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -142,7 +145,13 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.asset('assets/img/users/profile.webp'),
+                      _box.read('imagePath') != null ?
+                        Image.file(
+                          File(_box.read('imagePath')),
+                          fit: BoxFit.cover,
+                          height: 200,
+                        ) :
+                        Image.asset('assets/img/users/profile.webp'),
                       Container(
                         width: 150,
                         height: 48,

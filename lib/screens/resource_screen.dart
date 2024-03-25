@@ -22,6 +22,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // screen arguments
     final resource = ModalRoute.of(context)!.settings.arguments as ScreenArguments;
     final String lettersImg = resource.lettersImg;
     final Map policyTxt = resource.policyTxt;

@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 class ThemeService{
   static final _box = GetStorage();
   static const _key = 'isDarkMode';
-  String quote = 'Puppy dogs';
 
   _saveThemeToBox (bool isDarkMode) => _box.write(_key, isDarkMode);
 

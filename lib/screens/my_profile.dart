@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'dart:io';
 import 'package:nak_app/components/buttons.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -12,7 +13,23 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-  File? _image;
+  // image file path
+  final _box = GetStorage();
+  String _image = 'assets/img/users/sa_user.webp';
+
+
+
+  Widget getImageFromStorage() {
+    // _box.read('imagePath') != null ? Image.file(File(_box.read('imagePath')), fit: BoxFit.cover) : Image.asset('assets/img/users/profile.webp');
+    if (_box.read('imagePath') != null) {
+      setState(() {});
+      return Image.file(File(_box.read('imagePath')), fit: BoxFit.cover,);
+    }
+    else {
+      setState(() {});
+      return Image.asset('assets/img/users/profile.webp');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +161,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      _box.read('imagePath') != null ?
+                      Image.file(
+                        File(_box.read('imagePath')),
+                        fit: BoxFit.contain,
+                        height: 200,
+                      ) :
                       Image.asset('assets/img/users/profile.webp'),
                       Container(
                         width: 150,
@@ -151,7 +174,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                         child: Center(
                           child: Text(
-                            _image != null ? data['status'] : 'Add Image',
+                            '${data['status']}',
                             style: theme.TextThemes.idImageTitle(context),
                           )
                         )
@@ -175,7 +198,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              SmallFilledButton(text: 'Updated Profile', func: () {Navigator.pushNamed(context, '/uploadPhoto');}),
+              SmallFilledButton(
+                text: 'Updated Profile',
+                func: () {
+                  // Navigator.pushNamed(context, '/uploadPhoto');
+                }
+              ),
               SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
             ],
           ),
