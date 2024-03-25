@@ -19,7 +19,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   String _image = 'assets/img/users/sa_user.webp';
 
 
-  _showModal(String info) {
+  _showModal(String info, IconData icon) {
     return showModalBottomSheet(
       backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
       showDragHandle: true,
@@ -33,7 +33,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              const Icon(Icons.info_outline),
+              Icon(icon),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Text(
@@ -246,7 +246,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       icon: const Icon(Icons.refresh),
                       onPressed:
                         () {
-                          _showModal('Pull down to refresh');
+                          _showModal('Pull down to refresh', Icons.refresh);
                         },
                     ),
                     IconButton(
@@ -255,7 +255,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       icon: const Icon(Icons.info_outline),
                       onPressed:
                         () {
-                          _showModal('Profile images are stored locally on your device');
+                          _showModal('Profile images are stored locally on your device', Icons.info_outline);
                         },
                     ),
                   ],
