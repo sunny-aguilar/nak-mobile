@@ -264,3 +264,34 @@ class SmallFilledButton extends StatelessWidget {
     );
   }
 }
+
+class CameraButton extends StatelessWidget {
+  const CameraButton({
+    super.key,
+    required this.icon,
+    required Function func
+  }) : tapMe = func;
+  final IconData icon;
+  final Function tapMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () {tapMe();},
+      style: FilledButton.styleFrom(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        minimumSize: const Size(90, 60),
+        foregroundColor: theme.blackClr,
+        backgroundColor: theme.primaryClr,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4.0),
+        ),
+      ),
+      child: Row(
+        children: <Widget>[
+          Icon(icon, size: 50,),
+        ],
+      ),
+    );
+  }
+}

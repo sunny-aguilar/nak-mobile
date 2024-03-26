@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/screens/forgot_pw_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
+import 'dart:async';
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback showRegisterPage;
@@ -21,6 +22,25 @@ class _LoginScreenState extends State<LoginScreen> {
 
   // sign in method
   Future signIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: SizedBox(
+            height: 90,
+            width: 90,
+            child: CircularProgressIndicator(
+              color: theme.primaryClr,
+            ),
+          ),
+        );
+      }
+    );
+
+    Timer(Duration(seconds: 2000), () {
+      print('nothing to Print');
+    });
+
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailCtrl.text.trim(),
@@ -46,6 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
         }
       }
     }
+
+    if (mounted) { Navigator.of(context).pop(); }
   }
 
   @override

@@ -109,7 +109,7 @@ class DrawerComponent extends StatelessWidget {
               onTap: () => Navigator.pushNamed(context, '/profile'),
             ),
             ListTile(
-              leading: const Icon(Icons.login),
+              leading: const Icon(Icons.logout),
               title: Text('Logout', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () {
                 FirebaseAuth.instance.signOut();

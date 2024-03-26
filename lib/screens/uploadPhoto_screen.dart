@@ -4,6 +4,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class UploadPhotoScreen extends StatefulWidget {
   const UploadPhotoScreen({super.key});
@@ -105,10 +106,12 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                     decoration: const BoxDecoration(
                       color: theme.primaryClr,
                     ),
-                    child: _image != null ? Image.file(
-                      File(file!.path),
+                    child: _box.read(_key) != null ?
+                    Image.file(
+                      File(_box.read(_key)),
                       fit: BoxFit.cover,
-                    ) : Image.asset('assets/img/users/profile.webp'),
+                    ) :
+                    Image.asset('assets/img/users/profile.webp'),
                   ),
                 ],
               ),
@@ -117,7 +120,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
             // bottom container with buttons
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              height: 100,
+              height: 120,
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
                 borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
@@ -125,8 +128,8 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  FilledButton(onPressed: () { _pickImageFromGallery(); }, child: const Text('Choose Picture')),
-                  FilledButton(onPressed: () { _pickImageFromCamera(); }, child: const Text('Camera Picture')),
+                  buttons.CameraButton(icon: Icons.camera_alt, func: _pickImageFromCamera,),
+                  buttons.CameraButton(icon: Icons.photo_rounded, func: _pickImageFromGallery,),
                 ],
               ),
             ),

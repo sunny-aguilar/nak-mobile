@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
-import '../components/drawer.dart' as drawer;
+import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,6 +28,12 @@ class HomeScreen extends StatelessWidget {
       ),
       drawer: drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        foregroundColor: theme.darkGreyClr,
+        backgroundColor: theme.redClr,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }

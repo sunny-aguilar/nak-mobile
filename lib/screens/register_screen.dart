@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _statusCtrl.text.trim(),
         );
 
-
+      // alert: account already exists
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           // print('The account already exists for that email.');
@@ -140,6 +140,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'lineNumber': lineNumber,
       'email': email,
       'status': status,
+      'isAdmin': false,
     });
 
     // db.collection('users').add({
@@ -481,7 +482,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
               const SizedBox(height: 25,),
 
-              // not a member? register now
+              // already a member? sign in now
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
