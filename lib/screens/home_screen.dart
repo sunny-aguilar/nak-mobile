@@ -26,6 +26,13 @@ class HomeScreen extends StatelessWidget {
       ),
       drawer: drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {},
+        foregroundColor: theme.primaryClr,
+        backgroundColor: theme.redClr,
+        label: const Text('Blog'),
+        icon: const Icon(Icons.add),
+      ),
     );
   }
 }
