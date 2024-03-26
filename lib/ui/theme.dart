@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 const Color blueClr = Color(0xff4E5ae8);
 const Color saphireClr = Color(0xff0F52BA);
 const Color azureClr = Color(0xff0080FF);
+const Color purpleClr = Color(0xff6200ea);
 const Color mintClr = Color(0xff9CFC97);
 const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);

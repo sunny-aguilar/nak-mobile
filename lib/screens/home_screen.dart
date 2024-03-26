@@ -17,10 +17,8 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
-            // icon: service.ThemeService.getIcon(),
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
             onPressed: () {
-              // print('Dark Theme Button Clicked');
               service.ThemeService().switchTheme();
             },
           ),
@@ -28,12 +26,6 @@ class HomeScreen extends StatelessWidget {
       ),
       drawer: drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        foregroundColor: theme.darkGreyClr,
-        backgroundColor: theme.redClr,
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
