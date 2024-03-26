@@ -37,10 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
       }
     );
 
-    Timer(Duration(seconds: 2000), () {
-      print('nothing to Print');
-    });
-
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailCtrl.text.trim(),
@@ -59,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
         else {
-          print(e);
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text('The supplied credential is invalid.')),
           );

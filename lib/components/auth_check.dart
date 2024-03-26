@@ -32,7 +32,6 @@ class _AuthCheckState extends State<AuthCheck> {
             return const HomeScreen();
           }
           else {
-            // return const LoginScreen();
             if (showLoginPage) {
               return LoginScreen(showRegisterPage: toggleScreens);
             }
