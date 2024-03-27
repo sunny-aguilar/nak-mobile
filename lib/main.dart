@@ -62,7 +62,6 @@ class App extends StatelessWidget {
         '/uploadPhoto': (context) => const UploadPhotoScreen(),
         '/newBlog': (context) => const NewBlogScreen(),
         '/previewBlog': (context) => const PreviewBlog(),
-        // '/login': (context) => const LoginScreen(showRegisterPage: ,),
       };
 
     return  GetMaterialApp(

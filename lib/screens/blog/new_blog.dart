@@ -58,7 +58,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
               // Text textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: form.FormField(ctrl: _bodyCtrl, label: 'Blog Title', vText: 'Please enter the blog text.',),
+                child: form.FormField(ctrl: _bodyCtrl, label: 'Blog Text', vText: 'Please enter the blog text.',),
               ),
               const SizedBox(height: 25,),
 
@@ -67,7 +67,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextButton(
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
-                  child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.create_rounded), Text(' Preview Post')],),
+                  child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.create_rounded), Text(' Preview Blog')],),
                   onPressed: () {
                     if (_blogKey.currentState!.validate()) {
                       // process data if form is valid
@@ -87,29 +87,6 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
               ),
               const SizedBox(height: 25,),
 
-               // post blog button
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: TextButton(
-                  style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
-                  child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.send), Text(' Post Blog')],),
-                  onPressed: () {
-                    if (_blogKey.currentState!.validate()) {
-                      // process data if form is valid
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          duration: Duration(milliseconds: 1400),
-                          content: Text('Posting blog post...')
-                        ),
-                      );
-                      // function that will prepare the blog preview
-                      // - have it take you to another page to show the preview
-                      // - after preview, either go back and edit or post and route to home page
-                      Navigator.pushNamed(context, '/previewBlog');
-                    }
-                  },
-                ),
-              ),
 
             ],
           ),
