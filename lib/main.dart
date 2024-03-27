@@ -17,6 +17,7 @@ import 'package:nak_app/screens/contact_screen.dart';
 import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/screens/my_profile.dart';
 import 'package:nak_app/screens/uploadPhoto_screen.dart';
+import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -58,6 +59,7 @@ class App extends StatelessWidget {
         '/id': (context) => const DigitalIDScreen(),
         '/profile': (context) => const MyProfileScreen(),
         '/uploadPhoto': (context) => const UploadPhotoScreen(),
+        '/newBlog': (context) => const NewBlogScreen(),
         // '/login': (context) => const LoginScreen(showRegisterPage: ,),
       };
 

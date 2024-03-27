@@ -33,9 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
-      floatingActionButton: FutureBuilder(
+      floatingActionButton: FutureBuilder<bool>(
         future: isAdmin,
-        builder: (context, snapshot) {
+        builder: (context, AsyncSnapshot<bool> snapshot) {
           if (snapshot.hasError) {
             return ScaffoldType().nonadminUser(context);
           }
@@ -70,7 +70,9 @@ class ScaffoldType {
 
   FloatingActionButton adminUser(context) {
     return FloatingActionButton.extended(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/newBlog');
+      },
       foregroundColor: theme.primaryClr,
       backgroundColor: theme.redClr,
       label: const Text('Blog'),
