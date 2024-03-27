@@ -29,6 +29,15 @@ class AuthCheck {
     _instance = FirebaseFirestore.instance;
     String userUID = FirebaseAuth.instance.currentUser!.uid;
     // add query to DB to get user's document & check if they are an admi
-    return ;
+    CollectionReference users = _instance!.collection('users');
+    DocumentSnapshot snapshot = await users.doc(userUID).get();
+    return snapshot.data() as Map;
+  }
+
+  Future<bool> isAdmin() async {
+    bool isAdmin = false;
+    Map<dynamic, dynamic> userData = await checkAuth();
+    isAdmin = userData['isAdmin'];
+    return isAdmin;
   }
 }
