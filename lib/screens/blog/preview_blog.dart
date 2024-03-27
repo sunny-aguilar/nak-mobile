@@ -74,7 +74,7 @@ class PreviewBlog extends StatelessWidget {
                     content: Text('Submitting blog...')
                   ),
                 );
-                // function that will prepare the blog preview 
+                // function that will prepare the blog preview
                 // - have it take you to another page to show the preview
                 // - after preview, either go back and edit or post and route to home page
                 // Navigator.pushReplacement(context, '/home');
