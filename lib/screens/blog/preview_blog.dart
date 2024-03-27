@@ -77,7 +77,7 @@ class PreviewBlog extends StatelessWidget {
                 // function that will prepare the blog preview
                 // - have it take you to another page to show the preview
                 // - after preview, either go back and edit or post and route to home page
-                // Navigator.pushReplacement(context, '/home');
+                // Navigator.pushReplacement(context, '/home'); 
                 Navigator.of(context, rootNavigator: false).pushReplacement(
                   MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
                 );
