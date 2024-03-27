@@ -17,90 +17,64 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: isAdmin,
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Scaffold(
-            appBar: AppBar(
-              centerTitle: true,
-              title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              actions: <Widget>[
-                IconButton(
-                  icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
-                  onPressed: () {
-                    service.ThemeService().switchTheme();
-                  },
-                ),
-              ],
-            ),
-            drawer: const drawer.DrawerComponent(),
-            body: const featured.HomeScreenChildren(),
-            floatingActionButton: null,
-          );
-        }
-        else if (snapshot.hasData) {
-          if (snapshot.data == true) {
-            return ScaffoldType().adminUser(context);
-          }
-          else {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      drawer: const drawer.DrawerComponent(),
+      body: const featured.HomeScreenChildren(),
+      floatingActionButton: FutureBuilder(
+        future: isAdmin,
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
             return ScaffoldType().nonadminUser(context);
           }
-        }
-        else {
-          return const CircularProgressIndicator();
-        }
-      },
+          else if (snapshot.hasData) {
+            if (snapshot.data == true) {
+              return ScaffoldType().adminUser(context);
+            }
+            else {
+              return ScaffoldType().nonadminUser(context);
+            }
+          }
+          else {
+            return const SizedBox(
+              height: 50,
+              width: 50,
+              child: CircularProgressIndicator(
+                strokeWidth: 10,
+              ),
+            );
+          }
+        },
+      ),
     );
   }
 }
 
+// return a floating action button for users who are admins
 class ScaffoldType {
-  Scaffold nonadminUser(context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
-          ),
-        ],
-      ),
-      drawer: const drawer.DrawerComponent(),
-      body: const featured.HomeScreenChildren(),
-    );
+  SizedBox nonadminUser(context) {
+    return const SizedBox.shrink();
   }
 
-  Scaffold adminUser(context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
-          ),
-        ],
-      ),
-      drawer: const drawer.DrawerComponent(),
-      body: const featured.HomeScreenChildren(),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
-        foregroundColor: theme.primaryClr,
-        backgroundColor: theme.redClr,
-        label: const Text('Blog'),
-        icon: const Icon(Icons.add),
-      ),
+  FloatingActionButton adminUser(context) {
+    return FloatingActionButton.extended(
+      onPressed: () {},
+      foregroundColor: theme.primaryClr,
+      backgroundColor: theme.redClr,
+      label: const Text('Blog'),
+      icon: const Icon(Icons.add),
     );
   }
 }
