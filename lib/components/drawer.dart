@@ -3,14 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/screen_args.dart' as screenArgs;
 
 class DrawerComponent extends StatelessWidget {
   DrawerComponent({super.key});
   final user = FirebaseAuth.instance.currentUser?.email;
 
+  // add code to pass screenARgs to page that needs it
+  
+
   @override
-  Widget build(BuildContext context) {
-    // print('${FirebaseAuth.instance.currentUser}');
+  Widget build(BuildContext context) {;
     return Drawer(
       backgroundColor: Theme.of(context).colorScheme.primary,
       child: ListView(
