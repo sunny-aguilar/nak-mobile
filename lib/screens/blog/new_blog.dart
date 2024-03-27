@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/form_fields.dart' as form;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class NewBlogScreen extends StatefulWidget {
   const NewBlogScreen({super.key});
@@ -27,7 +28,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.nightlight_outlined),
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {
               service.ThemeService().switchTheme();
             },
@@ -40,8 +41,9 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
               // new blog section
-              const Icon(Icons.create_rounded, size: 50,),
+              const Icon(Icons.edit_note, size: 50,),
               const SizedBox(height: 20,),
               Text('New Blog', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
@@ -57,6 +59,56 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: form.FormField(ctrl: _bodyCtrl, label: 'Blog Title', vText: 'Please enter the blog text.',),
+              ),
+              const SizedBox(height: 25,),
+
+              // preview blog button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextButton(
+                  style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                  child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.create_rounded), Text(' Preview Post')],),
+                  onPressed: () {
+                    if (_blogKey.currentState!.validate()) {
+                      // process data if form is valid
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(milliseconds: 1400),
+                          content: Text('Prepping blog post preview...')
+                        ),
+                      );
+                      // function that will prepare the blog preview
+                      // - have it take you to another page to show the preview
+                      // - after preview, either go back and edit or post and route to home page
+                      Navigator.pushNamed(context, '/previewBlog');
+                    }
+                  },
+                ),
+              ),
+              const SizedBox(height: 25,),
+
+               // post blog button
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextButton(
+                  style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                  child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.send), Text(' Post Blog')],),
+                  onPressed: () {
+                    if (_blogKey.currentState!.validate()) {
+                      // process data if form is valid
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(milliseconds: 1400),
+                          content: Text('Posting blog post...')
+                        ),
+                      );
+                      // function that will prepare the blog preview
+                      // - have it take you to another page to show the preview
+                      // - after preview, either go back and edit or post and route to home page
+                      Navigator.pushNamed(context, '/previewBlog');
+                    }
+                  },
+                ),
               ),
 
             ],
