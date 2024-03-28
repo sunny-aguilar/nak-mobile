@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/cards.dart' as  cards;
 import 'package:nak_app/components/buttons.dart' as buttons;
-import 'package:nak_app/screens/home_screen.dart';
+import 'package:nak_app/components/screen_args.dart' as screenArgs;
 
 class PreviewBlog extends StatelessWidget {
   const PreviewBlog({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    // extract the args from the current route
+    final args = ModalRoute.of(context)!.settings.arguments as screenArgs.BlogArgs;
+
+    String getCurrentDate() {
+      String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
+      return date;
+    }
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -27,13 +38,13 @@ class PreviewBlog extends StatelessWidget {
       body: Column(
         children: <Widget>[
           const SizedBox(height: 20),
-          const cards.LargeGreyPictureCard(
+          cards.LargeGreyPictureCard(
             userImage: 'assets/img/users/profile.webp',
             userName: 'Sandro Aguilar',
-            storyHeadline: 'Test Headline',
+            storyHeadline: args.title,
             image: 'assets/img/stories/compass_story.jpg',
-            date: 'March 2, 2024',
-            storyText: 'Sample story text will go here. These are just a few sentencses that are required to fill up the space in the card to make it seem as if it is a real blog.',
+            date: getCurrentDate(),
+            storyText: args.body,
           ),
           const SizedBox(height: 25,),
 

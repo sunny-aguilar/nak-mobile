@@ -4,6 +4,7 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/form_fields.dart' as form;
 import 'package:nak_app/components/buttons.dart' as buttons;
+import 'package:nak_app/components/screen_args.dart' as args;
 
 class NewBlogScreen extends StatefulWidget {
   const NewBlogScreen({super.key});
@@ -80,7 +81,14 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
                       // function that will prepare the blog preview
                       // - have it take you to another page to show the preview
                       // - after preview, either go back and edit or post and route to home page
-                      Navigator.pushNamed(context, '/previewBlog');
+                      Navigator.pushNamed(
+                        context,
+                        '/previewBlog',
+                        arguments: args.BlogArgs(
+                          title: 'A Title',
+                          body: 'Sample body text for the blog. This should appear in the preview blog.'
+                        ),
+                      );
                     }
                   },
                 ),
