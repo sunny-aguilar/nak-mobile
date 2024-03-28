@@ -51,14 +51,14 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
               // blog title textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: form.FormField(ctrl: _titleCtrl, label: 'Blog Title', vText: 'Please enter the title.',),
+                child: form.SmallFormField(ctrl: _titleCtrl, label: 'Blog Title', vText: 'Please enter the title.',),
               ),
               const SizedBox(height: 20,),
 
               // Text textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: form.FormField(ctrl: _bodyCtrl, label: 'Blog Text', vText: 'Please enter the blog text.',),
+                child: form.ParagraphFormField(ctrl: _bodyCtrl, label: 'Blog Text', vText: 'Please enter the blog text.',),
               ),
               const SizedBox(height: 25,),
 
