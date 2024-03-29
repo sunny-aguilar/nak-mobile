@@ -57,10 +57,8 @@ class _PreviewBlogState extends State<PreviewBlog> {
   }
 
   void saveBlogtoFirestore(screenArgs) async {
-      // name, title, body, date, url, userUID
       // get user name
       final userData = await db.UserService().getData();
-      // print('UserData: ${userData['firstName']} ${userData['lastName']}');
       String userName = '${userData['firstName']} ${userData['lastName']}';
 
       // get user UID
@@ -81,7 +79,18 @@ class _PreviewBlogState extends State<PreviewBlog> {
       };
 
       // add the data to Firestore
-      reference.add(dataToSend);
+      var docRef = await reference.add(dataToSend);
+
+      // get the doc ID just added to Firestore
+      String docID = docRef.id;
+
+      // add ID to map
+      dataToSend = {
+        'docID': docID,
+      };
+
+      // add to specific doc & append (merge = true)
+      await reference.doc(docID).set(dataToSend, SetOptions(merge: true));
   }
 
 

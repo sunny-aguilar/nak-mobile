@@ -130,6 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     print('NAKID: $nakID');
 
     final db = FirebaseFirestore.instance;
+    // doc().set() allows to specify a document name
     db.collection('users').doc(userUID).set({
       'uid': userUID,
       // 'nakID': '0000 0000 0000 0000',
@@ -143,6 +144,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'isAdmin': false,
     });
 
+    // add() auto-creates a document name
     // db.collection('users').add({
     //   'firstName': firstName,
     //   'lastName': lastName,
