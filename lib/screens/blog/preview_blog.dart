@@ -34,7 +34,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     Reference imageReference = storageRef.child('/blog');
 
     // create a ref for the image to be stored (make sure you use unique file name)
-    Reference referenceImageToUpload = imageReference.child('${uniqueFileName}_blog_img');
+    Reference referenceImageToUpload = imageReference.child('${uniqueFileName}_blogImg');
 
     // store image to firestore
     String filePath = path;
@@ -59,25 +59,29 @@ class _PreviewBlogState extends State<PreviewBlog> {
   void saveBlogtoFirestore(screenArgs) async {
       // name, title, body, date, url, userUID
       // get user name
-      final userData = db.UserService().getData() as Map;
-      print('UserData: $userData');
+      final userData = await db.UserService().getData();
+      // print('UserData: ${userData['firstName']} ${userData['lastName']}');
+      String userName = '${userData['firstName']} ${userData['lastName']}';
 
       // get user UID
       final FirebaseAuth auth = FirebaseAuth.instance;
       final userUID = auth.currentUser!.uid;
 
-      // get Firebase instance
-      final fb = FirebaseFirestore.instance;
+      // get Firebase instance & reference to collection
+      final reference = FirebaseFirestore.instance.collection('blog');
 
       // create a map to send
       Map<String, String> dataToSend = {
-        'name': '',
+        'name': userName,
         'title': screenArgs.title,
         'url': _imageUrl,
         'body': screenArgs.body,
         'date': screenArgs.date,
         'userUID': userUID,
       };
+
+      // add the data to Firestore
+      reference.add(dataToSend);
   }
 
 
