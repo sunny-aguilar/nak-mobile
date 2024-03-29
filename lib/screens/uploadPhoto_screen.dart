@@ -14,6 +14,7 @@ class UploadPhotoScreen extends StatefulWidget {
 
 class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   // pick image variables
+  final ImagePicker _imagePicker = ImagePicker();
   XFile? _image;
   File? file;
   dynamic _pickImageError;
@@ -22,7 +23,6 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   final _box = GetStorage();
   final _key = 'imagePath';
 
-  final ImagePicker _imagePicker = ImagePicker();
 
   Future<void> _pickImageFromGallery() async {
     try {

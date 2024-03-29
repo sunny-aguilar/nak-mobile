@@ -16,7 +16,7 @@ import 'package:nak_app/screens/resource_screen.dart';
 import 'package:nak_app/screens/contact_screen.dart';
 import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/screens/my_profile.dart';
-import 'package:nak_app/screens/uploadPhoto_screen.dart';
+import 'package:nak_app/screens/uploadphoto_screen.dart';
 import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/screens/blog/preview_blog.dart';
 import 'package:nak_app/ui/theme.dart' as theme;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
@@ -292,6 +293,46 @@ class CameraButton extends StatelessWidget {
           Icon(icon, size: 50,),
         ],
       ),
+    );
+  }
+}
+
+class BlogOutlineCameraButton extends StatelessWidget {
+  const BlogOutlineCameraButton({super.key, required this.text, required this.icon,});
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return OutlinedButton(
+      onPressed: () => {},
+      style: OutlinedButton.styleFrom(
+        fixedSize: const Size.fromHeight(70),
+        side: BorderSide(width: 1, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+        foregroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+      ),
+      child: Icon(icon, size: 50),
+    );
+  }
+}
+
+class BlogFilledCameraButton extends StatelessWidget {
+  const BlogFilledCameraButton({super.key, required this.text, required this.icon,});
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: () => {},
+      style: FilledButton.styleFrom(
+        fixedSize: const Size.fromHeight(70),
+        foregroundColor: Get.isDarkMode ?theme.darkGreyClr : theme.primaryClr,
+        backgroundColor: Get.isDarkMode ?theme.primaryClr : theme.darkGreyClr,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+      ),
+      child: Icon(icon, size: 50,),
     );
   }
 }
