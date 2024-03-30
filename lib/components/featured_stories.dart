@@ -101,19 +101,27 @@ class _BlogStreamState extends State<BlogStream> {
   ListView buildBlogList(snapshot) {
     QuerySnapshot querySnapshot = snapshot.data;
     List<QueryDocumentSnapshot> documents = querySnapshot.docs;
-    // List<Map> items = documents.map((e) => e.data as Map).toList();
-    // documents.map( (doc) => print('Doc: ${doc['name']}') );
     final List<DocumentSnapshot> docu = snapshot.data.docs;
     // final x = docs.map( (doc) => print(doc['name']) );
-
-    print('snapshot.data.docs[0]: ${docu[0]}');    // _JsonQueryDocumentShot
     var items = snapshot.data.docs[0];
-    print('items: $items');                     // instance of _JsonQueryDocumentShot
-    // print('items as Map: ${items as Map}');                     // instance of _JsonQueryDocumentShot
-    print('items Type: ${items.runtimeType}');  // _JsonQueryDocumentShot
 
 
-    // DELETE ME
+    var list = ListView(
+      children: snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
+        Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+        return cards.StoryCardNetwork(
+          userImage: 'assets/img/users/profile.webp',
+          userName: data['name'],
+          storyHeadline: data['title'],
+          image: data['url'],
+          storyText: data['body'],
+          date: data['date'],
+        );
+    })
+    .toList());
+
+    print('List: $list');
+
     return ListView(children: snapshot.data!.docs.
     map<Widget>( (DocumentSnapshot document) {
       Map<String, dynamic> data =
@@ -128,22 +136,8 @@ class _BlogStreamState extends State<BlogStream> {
       );
     })
     .toList());
-    // .cast());
 
-    // print('X: $x');
 
-    // this works but glitches out >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    var blogList = docu.map( (doc) => cards.StoryCardNetwork(
-      userImage: 'assets/img/users/profile.webp',
-      userName: doc['name'],
-      storyHeadline: doc['title'],
-      image: doc['url'],
-      storyText: doc['body'],
-      date: doc['date'],
-    )).toList();
-
-    print('blogList Type: ${blogList.runtimeType}');
-    print('blogList Length: ${blogList.length}');
 
     // for (var blog in blogList) {
     //   widget.storyList.add(blog);

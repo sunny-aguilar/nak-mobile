@@ -104,9 +104,12 @@ class _PreviewBlogState extends State<PreviewBlog> {
     // extract the args from the current route
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
+    print('Image Path: ${args.path}');
 
     return Column(
       children: <Widget>[
+
+        // show Card with data
         const SizedBox(height: 20),
         cards.LargeGreyPictureCard(
           userImage: 'assets/img/users/profile.webp',

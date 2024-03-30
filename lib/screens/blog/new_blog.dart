@@ -38,6 +38,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
         _image = image;
         file = File(image!.path);
         path = image.path;
+        print('Path in _pickImage: $path');
       });
     } catch (e) {
       setState(() { _pickImageError = e;});
