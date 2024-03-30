@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:nak_app/components/carousel.dart' as carousel;
 import 'package:nak_app/components/cards.dart' as cards;
 import 'package:nak_app/db/home_db.dart' as home_db;
@@ -101,93 +102,41 @@ class _BlogStreamState extends State<BlogStream> {
   ListView buildBlogList(snapshot) {
     QuerySnapshot querySnapshot = snapshot.data;
     List<QueryDocumentSnapshot> documents = querySnapshot.docs;
-    final List<DocumentSnapshot> docu = snapshot.data.docs;
+    final List<DocumentSnapshot> queryDocuments = snapshot.data.docs;
     // final x = docs.map( (doc) => print(doc['name']) );
-    var items = snapshot.data.docs[0];
+    // var items = snapshot.data.docs[0];
 
+    List<Widget> carouselList = [
+      const carousel.CarouselComponent(),
+      const SizedBox(height: 4,),
+    ];
 
-    var list = ListView(
-      children: snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
+    // get blog data, create card templates, save to list
+    List<Widget> blogList = snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
         Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-        return cards.StoryCardNetwork(
-          userImage: 'assets/img/users/profile.webp',
-          userName: data['name'],
-          storyHeadline: data['title'],
-          image: data['url'],
-          storyText: data['body'],
-          date: data['date'],
+        return GestureDetector(
+          onTap: () { /* go to page */},
+          child: cards.StoryCardNetwork(
+            userImage: 'assets/img/users/profile.webp',
+            userName: data['name'],
+            storyHeadline: data['title'],
+            image: data['url'],
+            storyText: data['body'],
+            date: data['date'],
+          ),
         );
-    })
-    .toList());
+    }).toList();
 
-    print('List: $list');
+    // combine the lists
+    List<Widget> finalList = carouselList + blogList;
 
-    return ListView(children: snapshot.data!.docs.
-    map<Widget>( (DocumentSnapshot document) {
-      Map<String, dynamic> data =
-          document.data()! as Map<String, dynamic>;
-      return cards.StoryCardNetwork(
-        userImage: 'assets/img/users/profile.webp',
-        userName: data['name'],
-        storyHeadline: data['title'],
-        image: data['url'],
-        storyText: data['body'],
-        date: data['date'],
-      );
-    })
-    .toList());
+    // create a listview for the list
+    ListView myList = ListView(
+      children: finalList,
+    );
 
-
-
-    // for (var blog in blogList) {
-    //   widget.storyList.add(blog);
-    // }
-    // above works but glitches out >>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-    // return Column(
-    //   children: <Widget>[
-    //     // add carousel here
-    //     ListView.builder(
-    //       itemCount: blogList.length,
-    //       itemBuilder: (BuildContext context, int index) {
-    //         Map thisItem = items[index];
-    //         return cards.StoryCardNetwork(
-    //           userImage: 'assets/img/users/profile.webp',
-    //           userName: thisItem['name'],
-    //           storyHeadline: thisItem['title'],
-    //           image: thisItem['url'],
-    //           storyText: thisItem['body'],
-    //           date: thisItem['date'],
-    //         );
-    //       }
-    //     ),
-    //   ],
-    // );
-
-    // return ListView(
-      // itemCount: items.length,
-      // itemCount: 3,
-      // itemBuilder: (BuildContext context, int index) {
-        // get the item at this index
-        // Map thisItem = items[index];
-        // print('Items: $thisItem');
-        // children: [Container(
-        //   height: 10,
-        //   child: Text('Box'),
-        // )],
-
-        // return the item at this index
-        // return cards.LargeGreyPictureCard(
-        //   userImage: thisItem['user'],
-        //   userName: thisItem['name'],
-        //   storyHeadline: ,
-        //   image: ,
-        //   storyText: ,
-        //   date: ,
-        // );
-      // }
-    // );
+    // return the list
+    return myList;
   }
 
   @override
