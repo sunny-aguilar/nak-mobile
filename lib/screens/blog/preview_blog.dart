@@ -22,8 +22,10 @@ class PreviewBlog extends StatefulWidget {
 class _PreviewBlogState extends State<PreviewBlog> {
   String _imageUrl = '';
 
-  // upload images to Firebase storage
+
   void uploadImages(screenArgs, path) async {
+    /* This function uploads images to Firebase Storage */
+
     // used to create a unique file name
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
 
@@ -56,41 +58,44 @@ class _PreviewBlogState extends State<PreviewBlog> {
     saveBlogtoFirestore(screenArgs);
   }
 
+
   void saveBlogtoFirestore(screenArgs) async {
-      // get user name
-      final userData = await db.UserService().getData();
-      String userName = '${userData['firstName']} ${userData['lastName']}';
+    /* This function saves the blog data to the Firestore */
 
-      // get user UID
-      final FirebaseAuth auth = FirebaseAuth.instance;
-      final userUID = auth.currentUser!.uid;
+    // get user name
+    final userData = await db.UserService().getData();
+    String userName = '${userData['firstName']} ${userData['lastName']}';
 
-      // get Firebase instance & reference to collection
-      final reference = FirebaseFirestore.instance.collection('blog');
+    // get user UID
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final userUID = auth.currentUser!.uid;
 
-      // create a map to send
-      Map<String, String> dataToSend = {
-        'name': userName,
-        'title': screenArgs.title,
-        'url': _imageUrl,
-        'body': screenArgs.body,
-        'date': screenArgs.date,
-        'userUID': userUID,
-      };
+    // get Firebase instance & reference to collection
+    final reference = FirebaseFirestore.instance.collection('blog');
 
-      // add the data to Firestore
-      var docRef = await reference.add(dataToSend);
+    // create a map to send
+    Map<String, String> dataToSend = {
+      'name': userName,
+      'title': screenArgs.title,
+      'url': _imageUrl,
+      'body': screenArgs.body,
+      'date': screenArgs.date,
+      'userUID': userUID,
+    };
 
-      // get the doc ID just added to Firestore
-      String docID = docRef.id;
+    // add the data to Firestore
+    var docRef = await reference.add(dataToSend);
 
-      // add ID to map
-      dataToSend = {
-        'docID': docID,
-      };
+    // get the doc ID just added to Firestore
+    String docID = docRef.id;
 
-      // add to specific doc & append (merge = true)
-      await reference.doc(docID).set(dataToSend, SetOptions(merge: true));
+    // add ID to map
+    dataToSend = {
+      'docID': docID,
+    };
+
+    // append doc ID (merge = true) to Firestore doc
+    await reference.doc(docID).set(dataToSend, SetOptions(merge: true));
   }
 
 

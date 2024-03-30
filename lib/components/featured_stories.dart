@@ -1,24 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nak_app/components/carousel.dart' as carousel;
-import 'package:nak_app/components/cards.dart' as card;
+import 'package:nak_app/components/cards.dart' as cards;
 import 'package:nak_app/db/home_db.dart' as home_db;
+import 'package:nak_app/ui/theme.dart' as theme;
 
 /* This widget adds the featured stories in the home page */
-class HomeScreenChildren extends StatefulWidget {
+
+class HomeScreenChildren extends StatelessWidget {
   const HomeScreenChildren({super.key});
   @override
-  State<HomeScreenChildren> createState() => _HomeScreenChildrenState();
-}
-
-class _HomeScreenChildrenState extends State<HomeScreenChildren> {
-  @override
   Widget build(BuildContext context) {
-    return ListView(
-      controller: controller,
-      children: childrenList(home_db.storyCardData),
-    );
+    return BlogStream();
+    // return ListView(
+    //   controller: controller,
+    //   // children: childrenList(home_db.storyCardData),
+    //   children: BlogStream(),
+    // );
   }
 }
+
 
 final ScrollController controller = ScrollController();
 void scrollUp() {
@@ -63,47 +64,155 @@ void addStoryCards(cardData, storyList) {
       'date': date,
       'storyText': storyText,
     } = data;
-    storyList.add(card.LargeGreyPictureCard(
-      userImage: userImage,
-      userName: userName,
-      storyHeadline: storyHeadline,
-      image: image,
-      date: date,
-      storyText: storyText,
-    ));
-    storyList.add(const SizedBox(height: 15,));
+    // storyList.add(card.LargeGreyPictureCard(
+    //   userImage: userImage,
+    //   userName: userName,
+    //   storyHeadline: storyHeadline,
+    //   image: image,
+    //   date: date,
+    //   storyText: storyText,
+    // ));
+    // storyList.add(const SizedBox(height: 15,));
   }
+
+  // storyList.add(BlogStream(storyList: storyList));
 }
 
 
-/// FOR LATER DEVELOPMENT
-// class GridCards extends StatelessWidget {
-//   const GridCards({super.key});
-//   @override
-//   Widget build(BuildContext context) {
-//     return GridView.count(
-//       crossAxisCount: 2,
-//       mainAxisSpacing: 4,
-//       crossAxisSpacing: 4,
-//       physics: const NeverScrollableScrollPhysics(),  // to disable GridView's scrolling
-//       shrinkWrap: true, // You won't see infinite size error
-//       children: List.generate(4, (index) {
-//         return HomeGridCards(index: index);
-//       }),
-//     );
-//   }
-// }
 
-// class HomeGridCards extends StatelessWidget {
-//   final int index;
-//   const HomeGridCards({super.key, required this.index});
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card.filled(
-//       color: Color.fromARGB(255, 251, 219, 255),
-//       child: Center(
-//         child: Text('Item: $index'),
-//       ),
-//     );
-//   }
-// }
+class BlogStream extends StatefulWidget {
+  const BlogStream({super.key});
+  // final List<Widget> storyList;
+  @override
+  State<BlogStream> createState() => _BlogStreamState();
+}
+
+class _BlogStreamState extends State<BlogStream> {
+  final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('blog').snapshots();
+
+  CircularProgressIndicator circularProgress() {
+    return const CircularProgressIndicator(
+      strokeWidth: 5,
+      color: theme.azureClr,
+      backgroundColor: theme.greyClr,
+    );
+  }
+
+  ListView buildBlogList(snapshot) {
+    QuerySnapshot querySnapshot = snapshot.data;
+    List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+    // List<Map> items = documents.map((e) => e.data as Map).toList();
+    // documents.map( (doc) => print('Doc: ${doc['name']}') );
+    final List<DocumentSnapshot> docu = snapshot.data.docs;
+    // final x = docs.map( (doc) => print(doc['name']) );
+
+    print('snapshot.data.docs[0]: ${docu[0]}');    // _JsonQueryDocumentShot
+    var items = snapshot.data.docs[0];
+    print('items: $items');                     // instance of _JsonQueryDocumentShot
+    // print('items as Map: ${items as Map}');                     // instance of _JsonQueryDocumentShot
+    print('items Type: ${items.runtimeType}');  // _JsonQueryDocumentShot
+
+
+    // DELETE ME
+    return ListView(children: snapshot.data!.docs.
+    map<Widget>( (DocumentSnapshot document) {
+      Map<String, dynamic> data =
+          document.data()! as Map<String, dynamic>;
+      return cards.StoryCardNetwork(
+        userImage: 'assets/img/users/profile.webp',
+        userName: data['name'],
+        storyHeadline: data['title'],
+        image: data['url'],
+        storyText: data['body'],
+        date: data['date'],
+      );
+    })
+    .toList());
+    // .cast());
+
+    // print('X: $x');
+
+    // this works but glitches out >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    var blogList = docu.map( (doc) => cards.StoryCardNetwork(
+      userImage: 'assets/img/users/profile.webp',
+      userName: doc['name'],
+      storyHeadline: doc['title'],
+      image: doc['url'],
+      storyText: doc['body'],
+      date: doc['date'],
+    )).toList();
+
+    print('blogList Type: ${blogList.runtimeType}');
+    print('blogList Length: ${blogList.length}');
+
+    // for (var blog in blogList) {
+    //   widget.storyList.add(blog);
+    // }
+    // above works but glitches out >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+    // return Column(
+    //   children: <Widget>[
+    //     // add carousel here
+    //     ListView.builder(
+    //       itemCount: blogList.length,
+    //       itemBuilder: (BuildContext context, int index) {
+    //         Map thisItem = items[index];
+    //         return cards.StoryCardNetwork(
+    //           userImage: 'assets/img/users/profile.webp',
+    //           userName: thisItem['name'],
+    //           storyHeadline: thisItem['title'],
+    //           image: thisItem['url'],
+    //           storyText: thisItem['body'],
+    //           date: thisItem['date'],
+    //         );
+    //       }
+    //     ),
+    //   ],
+    // );
+
+    // return ListView(
+      // itemCount: items.length,
+      // itemCount: 3,
+      // itemBuilder: (BuildContext context, int index) {
+        // get the item at this index
+        // Map thisItem = items[index];
+        // print('Items: $thisItem');
+        // children: [Container(
+        //   height: 10,
+        //   child: Text('Box'),
+        // )],
+
+        // return the item at this index
+        // return cards.LargeGreyPictureCard(
+        //   userImage: thisItem['user'],
+        //   userName: thisItem['name'],
+        //   storyHeadline: ,
+        //   image: ,
+        //   storyText: ,
+        //   date: ,
+        // );
+      // }
+    // );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _stream,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        // check for errors
+        switch (snapshot.connectionState) {
+          case ConnectionState.waiting:
+          case ConnectionState.none:
+            return circularProgress();
+          case ConnectionState.active:
+            return buildBlogList(snapshot);
+          case ConnectionState.done:
+            return const Placeholder();
+        }
+
+      }
+    );
+  }
+}
