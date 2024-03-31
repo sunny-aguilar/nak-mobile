@@ -104,7 +104,14 @@ class _BlogStreamState extends State<BlogStream> {
     // get blog data, create card templates, save to list
     List<Widget> blogList = snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
       String defaultUserImg = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
+
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
+
+
+      // get blog uid
+      db.BlogDB(docID: data['docID']).getBlogUserImgURL();
+
+
       return GestureDetector(
         onTap: () { 
           /* go to page */
@@ -120,6 +127,7 @@ class _BlogStreamState extends State<BlogStream> {
         ),
       );
     }).toList();
+
 
     // combine the lists
     List<Widget> combinedList = carouselList + blogList;
