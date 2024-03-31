@@ -279,7 +279,7 @@ class StoryCardNetwork extends StatelessWidget {
                               ),
                               ListTile(
                                 leading: CircleAvatar(
-                                  backgroundImage: AssetImage(userImage),
+                                  backgroundImage: NetworkImage(userImage),
                                   backgroundColor: Colors.grey,
                                 ),
                                 title: Text(userName,),
