@@ -56,30 +56,11 @@ class BlogDB {
     final blog = _instance!.collection('blog');
     DocumentSnapshot snapshot = await blog.doc(docID).get();
     return snapshot.data() as Map<String, dynamic>;
-    // blog.get().then(
-    //   (DocumentSnapshot doc) {
-    //     final data = doc.data() as Map<String, dynamic>;
-    //     print('Doc Data: ${data['userUID']}');
-    //     return userID;
-    //   },
-    // );
-  }
-
-  Future<Map> getBlogUserData() async {
-    final userData = await UserService().getData();
-    // final blogData = await getBlog();
-
-    // print('userData: ${userData}');
-    // print('blogData ${blogData}');
-
-    return userData;
   }
 
   Future<Map> getBlogUser() async {
-    String userSelfie = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
-    // get userUID from blog
+    // get blog with blog docID
     final docs = await getBlog();
-    // print('String: ${docs['userUID']}');
 
     // get user data from blog UID
     _instance = FirebaseFirestore.instance;
