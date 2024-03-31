@@ -21,12 +21,12 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   final ImagePicker _imagePicker = ImagePicker();
   XFile? _image;
   File? file;
-  String path = '';
+  String? path;
   dynamic _pickImageError;
 
   // get storage variables
-  final _box = GetStorage();
-  final _key = 'imagePath';
+  // final _box = GetStorage();
+  // final _key = 'imagePath';
 
 
   Future<void> _pickImageFromGallery() async {
@@ -36,7 +36,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
         _image = image;
         file = File(image!.path);
         path = image.path;
-        _box.write(_key, image.path);
+        // _box.write(_key, image.path);
         // print('Box: ${_box.read(_key)}');
       });
     } catch (e) {
@@ -51,7 +51,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
         _image = image;
         file = File(image!.path);
         path = image.path;
-        _box.write(_key, image.path);
+        // _box.write(_key, image.path);
       });
     } catch (e) {
       setState(() { _pickImageError = e;});
@@ -59,7 +59,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   }
 
   Future<void> _uploadSelfie() async {
-    String _imageUrl = '';
+    String imageUrl = '';
 
     // used to create a unique file name
     String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
@@ -74,14 +74,14 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
     Reference referenceImageToUpload = imageReference.child('selfies_$uniqueFileName');
 
     // store image to firestore
-    String filePath = path;
+    String filePath = path!;
     File file = File(filePath);
     try {
       // upload
       await referenceImageToUpload.putFile(file);
 
       // get image URL
-      _imageUrl = await referenceImageToUpload.getDownloadURL();
+      imageUrl = await referenceImageToUpload.getDownloadURL();
       // print('Img URL: $imageUrl');
 
     } catch (e) {
@@ -99,7 +99,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
 
     // create a map to send
     Map<String, String> dataToSend = {
-      'selfie': _imageUrl,
+      'selfie': imageUrl,
     };
 
     // append the selfie URL to Firestore doc

@@ -136,9 +136,9 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      _box.read('imagePath') != null ?
-                        Image.file(
-                          File(_box.read('imagePath')),
+                      data['selfie'] != null ?
+                        Image.network(
+                          data['selfie'],
                           fit: BoxFit.cover,
                           height: 200,
                         ) :

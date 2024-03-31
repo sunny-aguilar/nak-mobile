@@ -188,8 +188,8 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         _box.read(_key) != null ?
-                        Image.file(
-                          File(_box.read(_key)),
+                        Image.network(
+                          data['selfie'],
                           fit: BoxFit.cover,
                           height: 200,
                         ) :
@@ -242,21 +242,12 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     IconButton(
-                      iconSize: 30,
+                      iconSize: 40,
                       color: theme.primaryClr,
                       icon: const Icon(Icons.refresh),
                       onPressed:
                         () {
                           _showModal('Pull down to refresh', Icons.refresh);
-                        },
-                    ),
-                    IconButton(
-                      iconSize: 30,
-                      color: theme.primaryClr,
-                      icon: const Icon(Icons.info_outline),
-                      onPressed:
-                        () {
-                          _showModal('Profile images are stored locally on your device', Icons.info_outline);
                         },
                     ),
                   ],
