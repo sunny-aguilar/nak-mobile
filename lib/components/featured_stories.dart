@@ -105,11 +105,14 @@ class _BlogStreamState extends State<BlogStream> {
     List<Widget> blogList = snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
       String defaultUserImg = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
 
+      // get data from blog snapshot
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
 
-      // get blog uid
-      db.BlogDB(docID: data['docID']).getBlogUserImgURL();
+      // get blog uid **********EXPERIMANTAL: POSSIBLY DELETE*******
+      final userData = db.BlogDB(docID: data['docID']).getBlogUser();
+      print('AllData: $userData');
+      // * * * * * * * * * * * * * * * * * * * * * * *
 
 
       return GestureDetector(
@@ -117,14 +120,71 @@ class _BlogStreamState extends State<BlogStream> {
           /* go to page */
           /* might want to add edit/delete options */
         },
-        child: cards.StoryCardNetwork(
-          userImage: userData['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
-          userName: data['name'],
-          storyHeadline: data['title'],
-          image: data['url'],
-          storyText: data['body'],
-          date: data['date'],
+
+        child: FutureBuilder(
+          future: db.BlogDB(docID: data['docID']).getBlogUser(),
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.hasError) {
+              return Text('Error building home screen');
+            }
+            else if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text(
+                    'An ${snapshot.error} occurred'
+                  ),
+                );
+              }
+              else if (snapshot.hasData) {
+                // return the listview holding the homepage elements
+                final dataforUser = snapshot.data;
+                return cards.StoryCardNetwork(
+                  userImage: dataforUser!['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
+                  userName: data['name'],
+                  storyHeadline: data['title'],
+                  image: data['url'],
+                  storyText: data['body'],
+                  date: data['date'],
+                );
+              }
+            }
+            else {
+              return const Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 10,
+                  ),
+                ),
+              );
+            }
+            // display default value
+            return const Center(
+              child: SizedBox(
+                height: 150,
+                  width: 150,
+                child: CircularProgressIndicator(
+                  color: theme.azureClr,
+                ),
+              ),
+            );
+
+
+
+
+          },
         ),
+
+        // WORKING CODE BELOW!!! UNCOMMENT TO GO BACK TO WORKING CODE
+        // child: cards.StoryCardNetwork(
+        //   userImage: userData['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
+        //   userName: data['name'],
+        //   storyHeadline: data['title'],
+        //   image: data['url'],
+        //   storyText: data['body'],
+        //   date: data['date'],
+        // ),
       );
     }).toList();
 
