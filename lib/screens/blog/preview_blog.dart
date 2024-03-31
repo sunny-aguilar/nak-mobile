@@ -36,7 +36,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     Reference imageReference = storageRef.child('/blog');
 
     // create a ref for the image to be stored (make sure you use unique file name)
-    Reference referenceImageToUpload = imageReference.child('${uniqueFileName}_blogImg');
+    Reference referenceImageToUpload = imageReference.child('blog_$uniqueFileName');
 
     // store image to firestore
     String filePath = path;
@@ -66,7 +66,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     final userData = await db.UserService().getData();
     String userName = '${userData['firstName']} ${userData['lastName']}';
 
-    // get user UID
+    // get user UID | USER ID ALREADY IN userData!!!!!!!!!! No need to this, just use userData['uid']
     final FirebaseAuth auth = FirebaseAuth.instance;
     final userUID = auth.currentUser!.uid;
 
@@ -105,6 +105,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
     print('Image Path: ${args.path}');
+    print('Selfie: ${data['selfie']}');
 
     return Column(
       children: <Widget>[
@@ -112,7 +113,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
         // show Card with data
         const SizedBox(height: 20),
         cards.LargeGreyPictureCard(
-          userImage: 'assets/img/users/profile.webp',
+          userImage: '${data['selfie']}',
           userName: '${data['firstName']} ${data['lastName']}',
           storyHeadline: args.title,
           image: args.path,

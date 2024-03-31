@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 
@@ -17,6 +21,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
   final ImagePicker _imagePicker = ImagePicker();
   XFile? _image;
   File? file;
+  String path = '';
   dynamic _pickImageError;
 
   // get storage variables
@@ -30,6 +35,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
       setState(() {
         _image = image;
         file = File(image!.path);
+        path = image.path;
         _box.write(_key, image.path);
         // print('Box: ${_box.read(_key)}');
       });
@@ -44,6 +50,7 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
       setState(() {
         _image = image;
         file = File(image!.path);
+        path = image.path;
         _box.write(_key, image.path);
       });
     } catch (e) {
@@ -51,6 +58,58 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
     }
   }
 
+  Future<void> _uploadSelfie() async {
+    String _imageUrl = '';
+
+    // used to create a unique file name
+    String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+    // create a reference to root directory
+    final storageRef = FirebaseStorage.instance.ref();
+
+    // upload image and save image url in Firebase storage
+    Reference imageReference = storageRef.child('/selfies');
+
+    // create a ref for the image to be stored (make sure you use unique file name)
+    Reference referenceImageToUpload = imageReference.child('selfies_$uniqueFileName');
+
+    // store image to firestore
+    String filePath = path;
+    File file = File(filePath);
+    try {
+      // upload
+      await referenceImageToUpload.putFile(file);
+
+      // get image URL
+      _imageUrl = await referenceImageToUpload.getDownloadURL();
+      // print('Img URL: $imageUrl');
+
+    } catch (e) {
+      // some error occurred
+      print('File Upload Error: $e');
+    }
+
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
+    // save Selfie URL to user
+    final userData = await db.UserService().getData();
+
+    // get a reference to Firestore and the doc
+    final reference = FirebaseFirestore.instance.collection('users').doc(userData['uid']);
+
+    // create a map to send
+    Map<String, String> dataToSend = {
+      'selfie': _imageUrl,
+    };
+
+    // append the selfie URL to Firestore doc
+    await reference.set(dataToSend, SetOptions(merge: true));
+
+    // navigate back to prior screen
+    if (mounted) {
+      Navigator.pop(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -106,9 +165,9 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                     decoration: const BoxDecoration(
                       color: theme.primaryClr,
                     ),
-                    child: _box.read(_key) != null ?
+                    child: path != null ?
                     Image.file(
-                      File(_box.read(_key)),
+                      File(path!),
                       fit: BoxFit.cover,
                     ) :
                     Image.asset('assets/img/users/profile.webp'),
@@ -123,7 +182,6 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
               height: 120,
               decoration: BoxDecoration(
                 color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
-                borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -133,6 +191,118 @@ class _UploadPhotoScreenState extends State<UploadPhotoScreen> {
                 ],
               ),
             ),
+
+            // Upload Button
+            Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                height: 90,
+                decoration: BoxDecoration(
+                color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12)),
+                ),
+                child: FilledButton(
+                  // style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleMinLight(context),
+                  style: FilledButton.styleFrom(
+                    backgroundColor: theme.primaryClr,
+                    maximumSize: Size.fromHeight(50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                  ),
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [Icon(Icons.create_rounded), Text('Upload Photo')],
+                  ),
+                  onPressed: () async {
+
+                    // upload selfie to Firebase Storage & safe URL in Firestore
+                    _uploadSelfie();
+
+                    String _imageUrl = '';
+
+                    // used to create a unique file name
+                    // String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+
+                    // // create a reference to root directory
+                    // final storageRef = FirebaseStorage.instance.ref();
+
+                    // // upload image and save image url in Firebase storage
+                    // Reference imageReference = storageRef.child('/selfies');
+
+                    // // create a ref for the image to be stored (make sure you use unique file name)
+                    // Reference referenceImageToUpload = imageReference.child('selfies_$uniqueFileName');
+
+                  //   // store image to firestore
+                  //   String filePath = path;
+                  //   File file = File(filePath);
+                  //   try {
+                  //     // upload
+                  //     await referenceImageToUpload.putFile(file);
+
+                  //     // get image URL
+                  //     _imageUrl = await referenceImageToUpload.getDownloadURL();
+                  //     // print('Img URL: $imageUrl');
+
+                  //   } catch (e) {
+                  //     // some error occurred
+                  //     print('File Upload Error: $e');
+                  //   }
+
+                  // // save Selfie URL to user
+                  // final userData = await db.UserService().getData();
+
+                  // print('Data: ${userData['firstName']}');
+                  // print('UID: ${userData['uid']}');
+
+
+                  // // get a reference to Firestore and the doc
+                  // final reference = FirebaseFirestore.instance.collection('users').doc(userData['uid']);
+
+                  // // create a map to send
+                  // Map<String, String> dataToSend = {
+                  //   'selfie': _imageUrl,
+                  // };
+
+                  // // append the selfie URL to Firestore doc
+                  // await reference.set(dataToSend, SetOptions(merge: true));
+
+                  // if (mounted) {
+                  //   Navigator.of(context).pop();
+                  // }
+                    // if (_blogKey.currentState!.validate()) {
+                      // process data if form is valid
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(
+                      //     duration: Duration(milliseconds: 1400),
+                      //     content: Text('Prepping blog post preview...')
+                      //   ),
+                      // );
+
+
+                      // function that will prepare the blog preview
+                      // - have it take you to another page to show the preview
+                      // - after preview, either go back and edit or post and route to home page
+                      // TODO: FIX BUG WHERE USER DOES NOT UPLOAD A PHOTO, ERROR IS CAUSED BY FIRESTORE STORAGE
+                      // TODO: FIX line 'path: path ?? 'path/to/img.png',
+                      // String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   '/previewBlog',
+                      //   arguments: args.BlogArgs(
+                      //     title: _titleCtrl.text.trim(),
+                      //     body: _bodyCtrl.text.trim(),
+                      //     date: date,
+                      //     path: path ?? 'assets/img/stories/default_blog_image.png',
+                      //   ),
+                      // );
+
+
+                    // }
+                  },
+                ),
+              ),
 
           ],
         ),

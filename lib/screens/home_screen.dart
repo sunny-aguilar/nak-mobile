@@ -33,6 +33,9 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
+      // body: FutureBuilder(
+      //   future:
+      // ),
       floatingActionButton: FutureBuilder<bool>(
         future: isAdmin,
         builder: (context, AsyncSnapshot<bool> snapshot) {

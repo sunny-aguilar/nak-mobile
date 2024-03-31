@@ -145,6 +145,34 @@ ButtonStyle buttonStyleDark(BuildContext context) {
   );
 }
 
+ButtonStyle buttonStyleMinLight(BuildContext context) {
+  return TextButton.styleFrom(
+    maximumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.blackClr,
+    foregroundColor: theme.primaryClr,
+    // side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
+}
+
+ButtonStyle buttonStyleMinDark(BuildContext context) {
+  return TextButton.styleFrom(
+    maximumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.darkGreyClr,
+    foregroundColor: theme.primaryClr,
+    side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
+}
+
 TextButton materialButton() {
   return TextButton(
     style: ButtonStyle(

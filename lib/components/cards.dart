@@ -105,7 +105,7 @@ class LargeGreyPictureCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(userImage),
+              backgroundImage: NetworkImage(userImage),
               backgroundColor: Colors.grey,
             ),
             title: Text(
@@ -236,7 +236,7 @@ class StoryCardNetwork extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: AssetImage(userImage),
+              backgroundImage: NetworkImage(userImage),
               backgroundColor: Colors.grey,
             ),
             title: Text(
