@@ -109,12 +109,6 @@ class _BlogStreamState extends State<BlogStream> {
       Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
 
-      // get blog uid **********EXPERIMANTAL: POSSIBLY DELETE*******
-      final userData = db.BlogDB(docID: data['docID']).getBlogUser();
-      print('AllData: $userData');
-      // * * * * * * * * * * * * * * * * * * * * * * *
-
-
       return GestureDetector(
         onTap: () { 
           /* go to page */

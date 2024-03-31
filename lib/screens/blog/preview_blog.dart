@@ -104,8 +104,6 @@ class _PreviewBlogState extends State<PreviewBlog> {
     // extract the args from the current route
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
-    print('Image Path: ${args.path}');
-    print('Selfie: ${data['selfie']}');
 
     return Column(
       children: <Widget>[
