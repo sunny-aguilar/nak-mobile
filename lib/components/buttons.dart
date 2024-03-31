@@ -309,9 +309,9 @@ class CameraButton extends StatelessWidget {
       onPressed: () {tapMe();},
       style: FilledButton.styleFrom(
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        minimumSize: const Size(90, 60),
-        foregroundColor: theme.blackClr,
-        backgroundColor: theme.primaryClr,
+        minimumSize: const Size(140, 60),
+        foregroundColor: theme.primaryClr,
+        backgroundColor: theme.darkGreyClr,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4.0),
         ),
@@ -323,6 +323,20 @@ class CameraButton extends StatelessWidget {
       ),
     );
   }
+}
+
+ButtonStyle profileUploadButton(BuildContext context) {
+  return FilledButton.styleFrom(
+    maximumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.darkGreyClr,
+    foregroundColor: theme.primaryClr,
+    side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
 }
 
 class BlogOutlineCameraButton extends StatelessWidget {

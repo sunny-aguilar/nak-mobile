@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'dart:io';
+import 'package:http/http.dart' as http;
 import 'package:nak_app/components/buttons.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
@@ -16,8 +17,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
   // image file path
   final _box = GetStorage();
   final String _key = 'imagePath';
-  String _image = 'assets/img/users/profile.webp';
-
+  final String _image = 'assets/img/users/profile.webp';
 
   _showModal(String info, IconData icon) {
     return showModalBottomSheet(
@@ -61,7 +61,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 0.0, bottom: 0.0),
         child: FutureBuilder(
           future: db.UserService().getData(),
-          initialData: 'Initial data',
+          initialData: Text('Initial data'),
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(
@@ -105,7 +105,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
 
   // pull down to refresh handler
   Future<void> _handleRefresh() async {
-    setState(() => _image = _box.read('imagePath') );
+    setState(() {} );
   }
 
   // ID Widget
@@ -166,9 +166,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         Text('Line Number', style: theme.TextThemes.idLabel(context),),
                         Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
                         const Spacer(),
-                        Text('Line Number', style: theme.TextThemes.idLabel(context),),
-                        Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
-                        const Spacer(),
                         Text('ID Number', style: theme.TextThemes.idLabel(context),),
                         Text('${data['nakID']}', style: theme.TextThemes.idBody(context),),
                         const Spacer(),
@@ -187,13 +184,39 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        _box.read(_key) != null ?
-                        Image.network(
-                          data['selfie'],
-                          fit: BoxFit.cover,
-                          height: 200,
-                        ) :
-                        Image.asset(_image),
+                        // data['selfie'] != null ?
+                        // Image.network(
+                        //   data['selfie'],
+                        //   fit: BoxFit.cover,
+                        //   height: 200,
+                        // ) :
+                        // Image.asset(_image),
+                        FutureBuilder(
+                          future: http.get(Uri.parse(data['selfie'])),
+                          builder: (BuildContext context, AsyncSnapshot<http.Response> snapshot) {
+                            switch (snapshot.connectionState) {
+                              case ConnectionState.none:
+                                return const  SizedBox(height: 120, child: Text('Loading Photo'),);
+                              case ConnectionState.active:
+                              case ConnectionState.waiting:
+                                return const SizedBox(
+                                  height: 150,
+                                  child: Center(
+                                    child: SizedBox(
+                                      height: 75,
+                                      width: 75,
+                                      child: CircularProgressIndicator(color: theme.primaryClr,),
+                                    ),
+                                  ),
+                                );
+                              case ConnectionState.done:
+                                if (snapshot.hasError) {
+                                  return Image.asset(_image);
+                                }
+                                return Image.memory(snapshot.data!.bodyBytes, fit: BoxFit.cover, height: 200,);
+                            }
+                          }
+                        ),
                         Container(
                           width: 150,
                           height: 48,
