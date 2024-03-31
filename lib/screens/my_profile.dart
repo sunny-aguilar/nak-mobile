@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/components/buttons.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -14,11 +12,7 @@ class MyProfileScreen extends StatefulWidget {
 }
 
 class _MyProfileScreenState extends State<MyProfileScreen> {
-  // image file path
-  final _box = GetStorage();
-  final String _key = 'imagePath';
-  final String _image = 'assets/img/users/profile.webp';
-
+  // bottomsheet modal
   _showModal(String info, IconData icon) {
     return showModalBottomSheet(
       backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
@@ -211,7 +205,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                                 );
                               case ConnectionState.done:
                                 if (snapshot.hasError) {
-                                  return Image.asset(_image);
+                                  return Image.asset('assets/img/users/profile.webp');
                                 }
                                 return Image.memory(snapshot.data!.bodyBytes, fit: BoxFit.cover, height: 200,);
                             }
