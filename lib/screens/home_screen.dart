@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<bool> isAdmin = db.AuthCheck().isAdmin();
+  Future<bool> isAdmin = db.AuthCheck().isAdmin('admin');
 
   @override
   Widget build(BuildContext context) {

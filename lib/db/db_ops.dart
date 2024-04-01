@@ -23,6 +23,7 @@ class UserService {
 
 
 // check if a user is an Admin
+// String parameter to check the type of admin
 class AuthCheck {
   FirebaseFirestore? _instance;
 
@@ -35,11 +36,11 @@ class AuthCheck {
     return snapshot.data() as Map;
   }
 
-  Future<bool> isAdmin() async {
+  Future<bool> isAdmin(String adminType) async {
     bool isAdmin = false;
     Map<dynamic, dynamic> userData = await checkAuth();
     List adminList = userData['isAdmin'];
-    isAdmin = adminList.contains('admin');
+    isAdmin = adminList.contains(adminType);
     // isAdmin = userData['isAdmin'].contains('admin');
     return isAdmin;
   }
