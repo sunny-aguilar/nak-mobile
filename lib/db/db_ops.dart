@@ -38,7 +38,9 @@ class AuthCheck {
   Future<bool> isAdmin() async {
     bool isAdmin = false;
     Map<dynamic, dynamic> userData = await checkAuth();
-    isAdmin = userData['isAdmin'];
+    List adminList = userData['isAdmin'];
+    isAdmin = adminList.contains('admin');
+    // isAdmin = userData['isAdmin'].contains('admin');
     return isAdmin;
   }
 }

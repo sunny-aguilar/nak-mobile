@@ -13,9 +13,9 @@ class NationalBoard extends StatefulWidget {
 
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
-  int count = 0;
+  int _count = 0;
   late Future<String> download;
-  Future<String> readJson() async {
+  Future<String> _readJson() async {
     String url = 'https://drive.google.com/uc?export=view&id=1giKNa_tuQdJXJmyUUMMMOg_Fnurj1XLH';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
@@ -25,7 +25,7 @@ class _NationalBoardState extends State<NationalBoard> {
     else {
       throw Exception('Failed to load NEB members.');
     }
-    count = _board.length;
+    _count = _board.length;
     return 'Data downloaded';
     // loading board members from local JSON file
     // final String response = await rootBundle.loadString('assets/json/board_members.json');
@@ -35,7 +35,7 @@ class _NationalBoardState extends State<NationalBoard> {
   @override
   void initState() {
     super.initState();
-    download = readJson();
+    download = _readJson();
   }
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class _NationalBoardState extends State<NationalBoard> {
                     ),
                   ),
                 ),
-                BoardGridList(count: count, board: _board),
+                BoardGridList(count: _count, board: _board),
               ],
             );
           }
