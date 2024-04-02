@@ -115,6 +115,16 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
   bool enabledNEB = false;
   bool enabledAdmin = false;
   bool enabledSuperAdmin = false;
+
+  final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.check);
+      }
+      return const Icon(Icons.close);
+    }
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -143,6 +153,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               onTap: () {},
               title: const Text('Make NEB Member:'),
               trailing: Switch(
+                thumbIcon: thumbIcon,
                 value: enabledNEB,
                 activeColor: theme.mintClr,
                 onChanged: (bool value) {
@@ -156,6 +167,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               onTap: () {},
               title: const Text('Make Admin:'),
               trailing: Switch(
+                thumbIcon: thumbIcon,
                 value: enabledAdmin,
                 activeColor: theme.mintClr,
                 onChanged: (bool value) {
@@ -169,6 +181,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               onTap: () {},
               title: const Text('Make Super Admin:'),
               trailing: Switch(
+                thumbIcon: thumbIcon,
                 value: enabledSuperAdmin,
                 activeColor: theme.mintClr,
                 onChanged: (bool value) {
