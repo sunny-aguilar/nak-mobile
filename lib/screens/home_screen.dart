@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<bool> isAdmin = db.AuthCheck().isAdmin('admin');
+  Future<String> isAdmin = db.AuthCheck().isAdminOrSuperAdmin('superAdmin');
 
   @override
   Widget build(BuildContext context) {
@@ -33,21 +35,23 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
-      // body: FutureBuilder(
-      //   future:
-      // ),
-      floatingActionButton: FutureBuilder<bool>(
+      floatingActionButton: FutureBuilder<String>(
         future: isAdmin,
-        builder: (context, AsyncSnapshot<bool> snapshot) {
+        builder: (context, AsyncSnapshot<String> snapshot) {
           if (snapshot.hasError) {
-            return ScaffoldType().nonadminUser(context);
+            return scaffolds.ScaffoldType().nonadminUser(context);
           }
           else if (snapshot.hasData) {
-            if (snapshot.data == true) {
-              return ScaffoldType().adminUser(context);
+            if (snapshot.data == 'superAdmin') {
+              //return superAdmin floating action button
+              return const scaffolds.SpeedDialButton();
+            }
+            else if (snapshot.data == 'admin') {
+              //return admin floating action button
+              return scaffolds.ScaffoldType().adminUser(context);
             }
             else {
-              return ScaffoldType().nonadminUser(context);
+              return scaffolds.ScaffoldType().nonadminUser(context);
             }
           }
           else {
@@ -61,25 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
           }
         },
       ),
-    );
-  }
-}
-
-// return a floating action button for users who are admins
-class ScaffoldType {
-  SizedBox nonadminUser(context) {
-    return const SizedBox.shrink();
-  }
-
-  FloatingActionButton adminUser(context) {
-    return FloatingActionButton.extended(
-      onPressed: () {
-        Navigator.pushNamed(context, '/newBlog');
-      },
-      foregroundColor: theme.primaryClr,
-      backgroundColor: theme.redClr,
-      label: const Text('Blog'),
-      icon: const Icon(Icons.add),
     );
   }
 }

@@ -9,6 +9,10 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 - GPS to find nearby brothers
 - Digital NAK ID
 - Calenar with upcoming chapter events
+- User profiles
+- NEB admins & super admins
+- User roles
+- Role dependent features
 
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:
