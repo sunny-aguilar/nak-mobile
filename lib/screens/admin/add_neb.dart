@@ -62,7 +62,14 @@ class _UserListBodyState extends State<UserListBody> {
       ),
       itemBuilder: (context, index) {
         return ListTile(
-          onTap: () {},
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                return const NebSettingsScreen();
+              }),
+            );
+          },
           // tileColor: theme.greyClr,
           leading: CircleAvatar(
             backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
@@ -70,7 +77,7 @@ class _UserListBodyState extends State<UserListBody> {
           ),
           title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
           subtitle: Text('${data[index].data()['chapter']} chapter'),
-          trailing: const Icon(Icons.arrow_circle_right),
+          trailing: const Icon(Icons.arrow_forward_ios),
         );
       }
     );
@@ -93,6 +100,87 @@ class _UserListBodyState extends State<UserListBody> {
           return _circularProgress();
         }
       }
+    );
+  }
+}
+
+
+class NebSettingsScreen extends StatefulWidget {
+  const NebSettingsScreen({super.key});
+  @override
+  State<NebSettingsScreen> createState() => _NebSettingsScreenState();
+}
+
+class _NebSettingsScreenState extends State<NebSettingsScreen> {
+  bool enabledNEB = false;
+  bool enabledAdmin = false;
+  bool enabledSuperAdmin = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenu(context),),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make NEB Member:'),
+              trailing: Switch(
+                value: enabledNEB,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledNEB = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make Admin:'),
+              trailing: Switch(
+                value: enabledAdmin,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledAdmin = value;
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make Super Admin:'),
+              trailing: Switch(
+                value: enabledSuperAdmin,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledSuperAdmin = value;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
