@@ -53,6 +53,18 @@ class SpeedDialButton extends StatelessWidget {
           // backgroundColor: theme.primaryClr,
           label: 'Admin'
         ),
+        SpeedDialChild(
+          child: const Icon(Icons.tune),
+          onTap: () {},
+          // backgroundColor: theme.primaryClr,
+          label: 'Settings'
+        ),
+        SpeedDialChild(
+          child: const Icon(Icons.person_add),
+          onTap: () {},
+          // backgroundColor: theme.primaryClr,
+          label: 'Add NEB'
+        ),
       ],
     );
   }
