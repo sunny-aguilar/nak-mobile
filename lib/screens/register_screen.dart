@@ -127,9 +127,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final userUID = auth.currentUser!.uid;
 
     final String nakID = id.GenerateID(chapter: chapter, className: className, lineNumber: lineNumber).generateID();
-    print('NAKID: $nakID');
 
     final db = FirebaseFirestore.instance;
+
     // doc().set() allows to specify a document name
     db.collection('users').doc(userUID).set({
       'uid': userUID,
@@ -141,7 +141,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'lineNumber': lineNumber,
       'email': email,
       'status': status,
-      'isAdmin': false,
+      'isAdmin': [],
+      'isNEB': false
     });
 
     // add() auto-creates a document name
