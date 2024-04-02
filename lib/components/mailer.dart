@@ -7,14 +7,15 @@ import 'package:nak_app/components/text.dart';
 // Google NAK-App Password
 // xrcr lrvs bthe olnw
 sendEmail(BuildContext context, Map formCtl) async {
-  String username = 'sandro.aguilar@nakinc.org';
-  String password = 'xrcr lrvs bthe olnw';
+  String username = 'incidentreport@nakinc.org';
+  String password = 'safb ndlq kapy uiya';
+  // String password = 'xrcr lrvs bthe olnw';
 
   final smtpServer = gmail(username, password);
 
   final message = Message()
     ..from = Address(username, '${formCtl['name']}')
-    ..recipients.add('sandro.aguilar@nakinc.org')
+    ..recipients.add('incidentreport@nakinc.org')
     ..subject = 'INCIDENT REPORT FORM: ${formCtl['nature']}'
     ..text = 'Hello ${formCtl['name']}, all is working well!'
     ..html = '<h2>INCIDENT REPORT FORM</h2>'
