@@ -84,3 +84,14 @@ class BlogDB {
     return snapshot.data() as Map;
   }
 }
+
+class GetUsers {
+  FirebaseFirestore? _instance;
+
+  Future getAllUsers() async {
+    _instance = FirebaseFirestore.instance;
+    CollectionReference users = _instance!.collection('users');
+    QuerySnapshot snapshot = await users.get();
+    return snapshot;
+  }
+}

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
-import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 

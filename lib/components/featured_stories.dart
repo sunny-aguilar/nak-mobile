@@ -16,14 +16,12 @@ class HomeScreenChildren extends StatelessWidget {
       future: db.UserService().getData(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasError) {
-          return Text('Error building home screen');
+          return const Center(child:Text('Error building home screen'));
         }
         else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
             return Center(
-              child: Text(
-                'An ${snapshot.error} occurred'
-              ),
+              child: Text('An ${snapshot.error} occurred'),
             );
           }
           else if (snapshot.hasData) {
@@ -110,7 +108,7 @@ class _BlogStreamState extends State<BlogStream> {
 
 
       return GestureDetector(
-        onTap: () { 
+        onTap: () {
           /* go to page */
           /* might want to add edit/delete options */
         },
@@ -208,7 +206,7 @@ class _BlogStreamState extends State<BlogStream> {
           case ConnectionState.active:
             return buildBlogList(snapshot);
           case ConnectionState.done:
-            return const Placeholder();
+            return const Center(child: Text('Oh no! An error occurred!'),);
         }
       }
     );
