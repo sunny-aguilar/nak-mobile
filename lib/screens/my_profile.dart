@@ -244,6 +244,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
+                    // uncomment once edits are ready
                     // SmallFilledButton(
                     //   text: 'Update Profile',
                     //   func: () {
