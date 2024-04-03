@@ -72,7 +72,7 @@ class BlogStream extends StatefulWidget {
 }
 
 class _BlogStreamState extends State<BlogStream> {
-  final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('blog').snapshots();
+  final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('blog').orderBy('date', descending: true).snapshots();
 
   CircularProgressIndicator circularProgress() {
     return const CircularProgressIndicator(
