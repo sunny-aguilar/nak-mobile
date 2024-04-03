@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class DrawerComponent extends StatefulWidget {
@@ -119,7 +120,54 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 FirebaseAuth.instance.signOut();
                 Navigator.pushReplacementNamed(context, '/auth');
               }
-            )
+            ),
+            const SizedBox(height: 35,),
+            ListTile(
+              title: Text('Follow us on:', style: theme.TextThemes.drawerMenuNT(context),),
+              subtitle: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  IconButton(
+                    onPressed: () {
+                      // this method is used to launch app links
+                      launchUrl(
+                        Uri.parse('https://www.instagram.com/nualphakappa/'),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    icon:  const FaIcon(FontAwesomeIcons.facebook, size: 38.0,),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse('https://www.instagram.com/nualphakappa/'),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    icon:  const FaIcon(FontAwesomeIcons.instagram, size: 38.0,),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse('https://www.youtube.com/1988NAKOS'),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    icon:  const FaIcon(FontAwesomeIcons.youtube, size: 38.0,),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      launchUrl(
+                        Uri.parse('https://x.com/nualphakappa?s=21&t=FoEIq1vlgmsd5V20-ZQP1w'),
+                        mode: LaunchMode.externalApplication,
+                      );
+                    },
+                    icon:  const FaIcon(FontAwesomeIcons.xTwitter, size: 38.0,),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 20,),
           ],
         ),
     );
