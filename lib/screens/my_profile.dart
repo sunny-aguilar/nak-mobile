@@ -244,13 +244,13 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
-                    SmallFilledButton(
-                      text: 'Update Profile',
-                      func: () {
-                        // Navigator.pushNamed(context, '/uploadPhoto');
+                    // SmallFilledButton(
+                    //   text: 'Update Profile',
+                    //   func: () {
+                    //     // Navigator.pushNamed(context, '/uploadPhoto');
 
-                      }
-                    ),
+                    //   }
+                    // ),
                     SmallFilledButton(text: 'Upload Photo', func: () {Navigator.pushNamed(context, '/uploadPhoto');},),
                   ],
                 ),
