@@ -141,6 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'lineNumber': lineNumber,
       'email': email,
       'status': status,
+      'selfie': '',
       'isAdmin': [],
       'isNEB': false
     });
