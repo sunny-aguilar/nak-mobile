@@ -36,7 +36,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     Reference imageReference = storageRef.child('/blog');
 
     // create a ref for the image to be stored (make sure you use unique file name)
-    Reference referenceImageToUpload = imageReference.child('blog_$uniqueFileName');
+    Reference referenceImageToUpload = imageReference.child('blog_$uniqueFileName.jpeg');
 
     // store image to firestore
     String filePath = path;
