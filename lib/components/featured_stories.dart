@@ -11,7 +11,6 @@ class HomeScreenChildren extends StatelessWidget {
   const HomeScreenChildren({super.key});
   @override
   Widget build(BuildContext context) {
-    // return const BlogStream();
     return FutureBuilder(
       future: db.UserService().getData(),
       builder: (BuildContext context, snapshot) {
@@ -26,7 +25,7 @@ class HomeScreenChildren extends StatelessWidget {
           }
           else if (snapshot.hasData) {
             // return the listview holding the homepage elements
-            return BlogStream(snapshot: snapshot);
+            return const BlogStream();
           }
         }
         else {
@@ -67,8 +66,7 @@ void scrollUp() {
 
 
 class BlogStream extends StatefulWidget {
-  const BlogStream({super.key, required this.snapshot});
-  final AsyncSnapshot snapshot;
+  const BlogStream({super.key});
   @override
   State<BlogStream> createState() => _BlogStreamState();
 }
@@ -85,14 +83,6 @@ class _BlogStreamState extends State<BlogStream> {
   }
 
   ListView buildBlogList(snapshot) {
-    // User snapshot
-    final userData = widget.snapshot.data;
-
-    // Blog snapshot
-    QuerySnapshot querySnapshot = snapshot.data;
-    List<QueryDocumentSnapshot> documents = querySnapshot.docs;
-    final List<DocumentSnapshot> queryDocuments = snapshot.data.docs;
-
     // list to hold carousel
     List<Widget> carouselList = [
       const carousel.CarouselComponent(),
@@ -117,7 +107,7 @@ class _BlogStreamState extends State<BlogStream> {
           future: db.BlogDB(docID: data['docID']).getBlogUser(),
           builder: (BuildContext context, snapshot) {
             if (snapshot.hasError) {
-              return Text('Error building home screen');
+              return const Center(child: Text('Error building home screen'),);
             }
             else if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
@@ -163,20 +153,8 @@ class _BlogStreamState extends State<BlogStream> {
             );
 
 
-
-
           },
         ),
-
-        // WORKING CODE BELOW!!! UNCOMMENT TO GO BACK TO WORKING CODE
-        // child: cards.StoryCardNetwork(
-        //   userImage: userData['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
-        //   userName: data['name'],
-        //   storyHeadline: data['title'],
-        //   image: data['url'],
-        //   storyText: data['body'],
-        //   date: data['date'],
-        // ),
       );
     }).toList();
 

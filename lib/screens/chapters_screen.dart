@@ -4,7 +4,6 @@ import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:nak_app/components/cards.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
-import 'package:nak_app/services/theme_service.dart' as service;
 
 
 class ChapterScreen extends StatefulWidget {
