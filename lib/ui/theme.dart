@@ -272,6 +272,13 @@ class TextThemes{
     );
   }
 
+  static TextStyle headlineMedLarge(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 26,
+    );
+  }
+
   static TextStyle headlineMed(BuildContext context) {
     return const TextStyle(
       fontFamily: 'College',
@@ -421,6 +428,24 @@ class TextThemes{
       fontWeight: FontWeight.bold,
       fontSize: 18,
       color: azureClr,
+    );
+  }
+
+  static TextStyle bodyLarge(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 18,
+    );
+  }
+
+  static TextStyle bodyMedLarge(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 15,
+    );
+  }
+
+  static TextStyle bodyMed(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 12,
     );
   }
 

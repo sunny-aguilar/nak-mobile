@@ -95,3 +95,39 @@ class GetUsers {
     return snapshot;
   }
 }
+
+class DeactivateUserData {
+  FirebaseFirestore? _instance;
+  String userUID = FirebaseAuth.instance.currentUser!.uid;
+
+  void deactivate() async {
+    // get users reference
+    final reference = _instance!.collection('users');
+
+    // add bool field "isactive"
+    Map<String, bool> dataToSend = {'isactive': false};
+
+    // save field on user's data
+    await reference.doc(userUID).set(dataToSend, SetOptions(merge: true));
+  }
+}
+
+class SignOutUser {
+  FirebaseAuth? _instance;
+
+  void signOut() {
+    _instance?.signOut();
+  }
+}
+
+class DeleteAuthUser {
+  final user = FirebaseAuth.instance.currentUser;
+
+  void delete() async {
+    await user?.delete();
+  }
+
+  void deleteSignout() async {
+    await user?.delete().then((val) => SignOutUser().signOut());
+  }
+}

@@ -20,3 +20,7 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - firebase projects:list (view projects)
 - curl -sL https://firebase.tools | upgrade=true bash (update Firebase CLI)
 
+## iOS Build System Notes
+- 
+
+## Android Build System Notes

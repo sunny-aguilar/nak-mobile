@@ -109,9 +109,14 @@ class _DrawerComponentState extends State<DrawerComponent> {
               onTap: () => Navigator.pushNamed(context, '/id'),
             ),
             ListTile(
-              leading: const Icon(Icons.settings),
+              leading: const Icon(Icons.person),
               title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/profile'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: Text('My Account', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/account'),
             ),
             ListTile(
               leading: const Icon(Icons.logout),
