@@ -113,7 +113,7 @@ class _BlogStreamState extends State<BlogStream> {
               if (snapshot.hasError) {
                 return Center(
                   child: Text(
-                    'An ${snapshot.error} occurred'
+                    'An ${snapshot.error} occurred. Please notify us at developer@nakinc.org.'
                   ),
                 );
               }
