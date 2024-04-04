@@ -21,6 +21,7 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - curl -sL https://firebase.tools | upgrade=true bash (update Firebase CLI)
 
 ## iOS Build System Notes
-- 
+### Info.plist
+- Update the purpose strings for both the camera and photo album to describe what the app is using them for and why
 
 ## Android Build System Notes
