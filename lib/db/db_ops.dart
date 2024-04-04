@@ -101,11 +101,14 @@ class DeactivateUserData {
   String userUID = FirebaseAuth.instance.currentUser!.uid;
 
   void deactivate() async {
+    // get Firestore instance
+    _instance = FirebaseFirestore.instance;
+
     // get users reference
     final reference = _instance!.collection('users');
 
     // add bool field "isactive"
-    Map<String, bool> dataToSend = {'isactive': false};
+    Map<String, bool> dataToSend = {'isactive': true};
 
     // save field on user's data
     await reference.doc(userUID).set(dataToSend, SetOptions(merge: true));
@@ -116,6 +119,7 @@ class SignOutUser {
   FirebaseAuth? _instance;
 
   void signOut() {
+    _instance = FirebaseAuth.instance;
     _instance?.signOut();
   }
 }

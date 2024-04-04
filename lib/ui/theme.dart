@@ -422,6 +422,14 @@ class TextThemes{
     );
   }
 
+  static TextStyle loginDescription(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontWeight: FontWeight.bold,
+      fontSize: 15,
+    );
+  }
+
   static TextStyle linkBody(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
@@ -448,7 +456,6 @@ class TextThemes{
       fontSize: 12,
     );
   }
-
 }
 
 

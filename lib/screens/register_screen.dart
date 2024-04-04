@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/create_id_number.dart' as id;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
@@ -176,8 +177,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 75,),
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
-              Text('Sign up below with your details.', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
-              const SizedBox(height: 50,),
+              Text('Sign up below with your details', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
+              const SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Members of the community will also be able to access and learn more about Nu Alpha Kappa Fraternity, Inc. Our App Privacy Policy can be found in the link below.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
+              ),
+              const SizedBox(height: 10,),
+              TextButton(
+                onPressed: () async {
+                Future<void> launchUrlStart({required String url}) async {
+                  if (!await launchUrl(Uri.parse(url))) {
+                    throw 'Could not launch $url';
+                  }
+                }
+                launchUrlStart(url: 'https://www.naknet.org/nak-app-privacy-policy/');
+              },
+                child: Text('NAK App Privacy Policy',
+                style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
+              ),
+              const SizedBox(height: 25,),
 
               // first name textfield
               Padding(
