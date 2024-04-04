@@ -183,7 +183,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Members of the community will also be able to access and learn more about Nu Alpha Kappa Fraternity, Inc. Our App Privacy Policy can be found in the link below.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
               ),
-              const SizedBox(height: 10,),
               TextButton(
                 onPressed: () async {
                 Future<void> launchUrlStart({required String url}) async {
