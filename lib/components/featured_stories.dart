@@ -9,6 +9,21 @@ import 'package:nak_app/db/db_ops.dart' as db;
 
 class HomeScreenChildren extends StatelessWidget {
   const HomeScreenChildren({super.key});
+
+  Center circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 150,
+        width: 150,
+        child: CircularProgressIndicator(
+          strokeWidth: 10,
+          color: theme.redClr,
+          backgroundColor: theme.bronzeOfficial,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -17,30 +32,23 @@ class HomeScreenChildren extends StatelessWidget {
         if (snapshot.hasError) {
           return const Center(child:Text('Error building home screen'));
         }
+        else if (snapshot.data == null) { print('Future snapshot.data == null triggered'); return circularProgress(); }
         else if (snapshot.connectionState == ConnectionState.done) {
           if (snapshot.hasError) {
-            print('snapshot.hasError 1');
+            print('Future snapshot.hasError triggered');
             return Center(
               child: Text('An ${snapshot.error} occurred'),
             );
           }
           else if (snapshot.hasData) {
             // return the listview holding the homepage elements
-            print('snapshot.hasError 2');
+            print('Future snapshot.hasError triggered');
             return const BlogStream();
           }
         }
         else {
-          print('snapshot.hasError 3');
-          return const Center(
-            child: SizedBox(
-              height: 50,
-              width: 50,
-              child: CircularProgressIndicator(
-                strokeWidth: 10,
-              ),
-            ),
-          );
+          print('Future outside of if/else triggered');
+          return circularProgress();
         }
         // display default value
         print('snapshot.hasError 4');
@@ -79,11 +87,17 @@ class BlogStream extends StatefulWidget {
 class _BlogStreamState extends State<BlogStream> {
   final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('blog').orderBy('date', descending: true).snapshots();
 
-  CircularProgressIndicator circularProgress() {
-    return const CircularProgressIndicator(
-      strokeWidth: 5,
-      color: theme.azureClr,
-      backgroundColor: theme.greyClr,
+  Center circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 150,
+        width: 150,
+        child: CircularProgressIndicator(
+          strokeWidth: 5,
+          color: theme.bronzeOfficial,
+          backgroundColor: theme.azureClr,
+        ),
+      ),
     );
   }
 
@@ -136,26 +150,11 @@ class _BlogStreamState extends State<BlogStream> {
               }
             }
             else {
-              return const Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 10,
-                  ),
-                ),
-              );
+              return circularProgress();
             }
             // display default value
-            return const Center(
-              child: SizedBox(
-                height: 150,
-                  width: 150,
-                child: CircularProgressIndicator(
-                  color: theme.azureClr,
-                ),
-              ),
-            );
+            print('Return from FutureBuilder: outside of if/else');
+            return circularProgress();
 
 
           },
@@ -202,10 +201,13 @@ class _BlogStreamState extends State<BlogStream> {
         switch (snapshot.connectionState) {
           case ConnectionState.none:
           case ConnectionState.waiting:
+            if (snapshot.data == null) { return circularProgress(); }
             return circularProgress();
           case ConnectionState.active:
+            if (snapshot.data == null) { return circularProgress(); }
             return buildBlogList(snapshot);
           case ConnectionState.done:
+            if (snapshot.data == null) { return circularProgress(); }
             return const Center(child: Text('Oh no! An error occurred!'),);
         }
       }
@@ -216,8 +218,21 @@ class _BlogStreamState extends State<BlogStream> {
 class BuildBlog extends StatelessWidget {
   const BuildBlog({super.key});
 
+  Center circularProgress() {
+      return const Center(
+        child: SizedBox(
+          height: 150,
+          width: 150,
+          child: CircularProgressIndicator(
+            strokeWidth: 5,
+            color: theme.bronzeOfficial,
+            backgroundColor: theme.azureClr,
+          ),
+        ),
+      );
+    }
 
-ListView buildBlogList(snapshot) {
+  ListView buildBlogList(snapshot) {
     // list to hold carousel
     List<Widget> carouselList = [
       const carousel.CarouselComponent(),
@@ -242,10 +257,12 @@ ListView buildBlogList(snapshot) {
           future: db.BlogDB(docID: data['docID']).getBlogUser(),
           builder: (BuildContext context, snapshot) {
             if (snapshot.hasError) {
+              print('ListView Future: snapshot.hasError triggered');
               return const Center(child: Text('Error building home screen'),);
             }
             else if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
+                print('ListView Future: snapshot.connectionState snapshot.hasError triggered');
                 return Center(
                   child: Text(
                     'An ${snapshot.error} occurred. Please notify us at developer@nakinc.org.'
@@ -254,6 +271,7 @@ ListView buildBlogList(snapshot) {
               }
               else if (snapshot.hasData) {
                 // return the listview holding the homepage elements
+                print('ListView Future: snapshot.hasData triggered');
                 final dataforUser = snapshot.data;
                 return cards.StoryCardNetwork(
                   userImage: dataforUser!['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
@@ -266,26 +284,12 @@ ListView buildBlogList(snapshot) {
               }
             }
             else {
-              return const Center(
-                child: SizedBox(
-                  height: 50,
-                  width: 50,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 10,
-                  ),
-                ),
-              );
+              print('ListView Future: else triggered');
+              return circularProgress();
             }
             // display default value
-            return const Center(
-              child: SizedBox(
-                height: 150,
-                  width: 150,
-                child: CircularProgressIndicator(
-                  color: theme.azureClr,
-                ),
-              ),
-            );
+            print('ListView Future: outside if/else triggered');
+            return circularProgress();
 
 
           },
