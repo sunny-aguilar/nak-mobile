@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -17,14 +16,12 @@ class _ChapterScreensState extends State<ChapterScreen> {
   List _chapters = [];
   late Future<String> _download;
   Future<String> _readJson() async{
-    // json loaded externally on G drive
+    // json loaded externally from G drive, developer@nakinc.org
     String url = 'https://drive.google.com/uc?export=view&id=1TO7ucgL_lg_ipfW8KUniRzevlRU3vd5F';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final parsedJson = jsonDecode(response.body);
-      // print('Parsed JSON: $parsedJson');
       setState(() => _chapters = parsedJson['chapters'] );
-      print('status 200');
     }
     else {
       throw Exception('Failed to load chapter data');

@@ -14,13 +14,13 @@ class NationalBoard extends StatefulWidget {
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
   int _count = 0;
-  late Future<String> download;
+  late Future<String> _download;
   Future<String> _readJson() async {
-    String url = 'https://drive.google.com/uc?export=view&id=1giKNa_tuQdJXJmyUUMMMOg_Fnurj1XLH';
+    String url = 'https://drive.google.com/uc?export=view&id=1r5B70c-bj4DDRYXB-WF4SsDzwtHXEB3q';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       final parsedJson = jsonDecode(response.body);
-      setState( () => _board = parsedJson );
+      setState( () => _board = parsedJson['board'] );
     }
     else {
       throw Exception('Failed to load NEB members.');
@@ -35,42 +35,64 @@ class _NationalBoardState extends State<NationalBoard> {
   @override
   void initState() {
     super.initState();
-    download = _readJson();
+    _download = _readJson();
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<String>(
-        future: download,
+        future: _download,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            // results screen
-            return CustomScrollView(
-              slivers: <Widget>[
-                SliverAppBar(
-                  centerTitle: true,
+
+          // views when data is fetched but two outcomes possible
+          if (snapshot.connectionState == ConnectionState.done) {
+
+            // view if error fetching data
+            if (snapshot.hasError) {
+              return Scaffold(
+                appBar: AppBar(
                   title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
                   backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
-                  pinned: true,
-                  floating: true,
-                  snap: true,
-                  stretch: true,
-                  expandedHeight: 200.0,
-                  flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: const <StretchMode>[
-                      StretchMode.blurBackground,
-                    ],
-                    background: Image.asset(
-                      'assets/img/title_thumbnails/board_letters.png',
-                      fit: BoxFit.contain,
-                      height: 100,
-                    ),
+                ),
+                body: Center(
+                  child: SizedBox(
+                    height: 60,
+                    width: 60,
+                    child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
                   ),
                 ),
-                BoardGridList(count: _count, board: _board),
-              ],
-            );
+              );
+            }
+            // view if data is fetched and no errors occurred
+            else if (snapshot.hasData) {
+              return CustomScrollView(
+                slivers: <Widget>[
+                  SliverAppBar(
+                    centerTitle: true,
+                    title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+                    backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
+                    pinned: true,
+                    floating: true,
+                    snap: true,
+                    stretch: true,
+                    expandedHeight: 200.0,
+                    flexibleSpace: FlexibleSpaceBar(
+                      stretchModes: const <StretchMode>[
+                        StretchMode.blurBackground,
+                      ],
+                      background: Image.asset(
+                        'assets/img/title_thumbnails/board_letters.png',
+                        fit: BoxFit.contain,
+                        height: 100,
+                      ),
+                    ),
+                  ),
+                  BoardGridList(count: _count, board: _board),
+                ],
+              );
+            }
           }
+
           // waiting screen
           return Scaffold(
             appBar: AppBar(
