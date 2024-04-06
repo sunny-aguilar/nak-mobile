@@ -129,6 +129,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
             style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
             child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.arrow_back_ios), Text('Back to Edits')],),
             onPressed: () {
+
               // process data if form is valid
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
