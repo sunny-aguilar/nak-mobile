@@ -136,9 +136,8 @@ class _PreviewBlogState extends State<PreviewBlog> {
                   content: Text('Back to edit screen...')
                 ),
               );
-              // function that will prepare the blog preview
-              // - have it take you to another page to show the preview
-              // - after preview, either go back and edit or post and route to home page
+
+              // go back to prior screen to continue blog edits
               Navigator.pop(context);
             },
           ),
@@ -164,6 +163,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
               // Future used to upload file to storage
               uploadImages(args, args.path);
 
+              // navigate back to the home screen
               Navigator.of(context, rootNavigator: false).pushReplacement(
                 MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
               );
