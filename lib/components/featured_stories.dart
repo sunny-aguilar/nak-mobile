@@ -42,7 +42,6 @@ class _BlogStreamState extends State<BlogStream> {
 
   @override
   Widget build(BuildContext context) {
-    // db.GetBlogUserSelfie().getBlogUserUID();
     return StreamBuilder<QuerySnapshot>(
       stream: _stream,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
