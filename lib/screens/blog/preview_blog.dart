@@ -82,7 +82,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
       'body': screenArgs.body,
       'date': screenArgs.date,
       'userUID': userUID,
-      // 'userSelfie': 
+      // 'userSelfie':   // only add if absolutely necessary
     };
 
     // add the data to Firestore
