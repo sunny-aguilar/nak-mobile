@@ -162,63 +162,11 @@ class _PreviewBlogState extends State<PreviewBlog> {
               );
 
               // Future used to upload file to storage
-              // Future<String> upload() async {
-                uploadImages(args, args.path);
-              //   return 'blog possted';
-              // }
+              uploadImages(args, args.path);
 
-              // timer to allow some time for blog to post
-              // Timer(Duration(milliseconds: 3000), () {
-              //   // navigate back home after posting image
-
-                Navigator.of(context, rootNavigator: false).pushReplacement(
-                  MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
-                );
-              // });
-
-              // FutureBuilder(
-              //   future: upload(),
-              //   builder: (BuildContext context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.waiting) {
-              //       return const Center(
-              //         child: SizedBox(
-              //           height: 150,
-              //           width: 150,
-              //           child: CircularProgressIndicator(
-              //             strokeWidth: 10,
-              //             color: theme.redClr
-              //           ),
-              //         ),
-              //       );
-              //     }
-              //     if (snapshot.connectionState == ConnectionState.done) {
-              //       if (snapshot.hasError) {
-              //         return Center(
-              //           child: Text(
-              //             'An ${snapshot.error} occurred'
-              //           ),
-              //         );
-              //       }
-              //       else if(snapshot.hasData) {
-              //         print('Future: ${snapshot.data}');
-              //         Navigator.of(context, rootNavigator: false).pushReplacement(
-              //           MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
-              //         );
-              //       }
-              //     }
-              //     // display default value
-              //     return const Center(
-              //       child: SizedBox(
-              //         height: 150,
-              //           width: 150,
-              //         child: CircularProgressIndicator(
-              //           color: theme.azureClr,
-              //         ),
-              //       ),
-              //     );
-
-              //   },
-              // );
+              Navigator.of(context, rootNavigator: false).pushReplacement(
+                MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
+              );
 
             },
           ),
