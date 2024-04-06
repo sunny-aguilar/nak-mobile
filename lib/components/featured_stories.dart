@@ -13,8 +13,8 @@ class HomeScreenChildren extends StatelessWidget {
   Center circularProgress() {
     return const Center(
       child: SizedBox(
-        height: 150,
-        width: 150,
+        height: 75,
+        width: 75,
         child: CircularProgressIndicator(
           strokeWidth: 10,
           color: theme.redClr,
@@ -26,54 +26,8 @@ class HomeScreenChildren extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: db.UserService().getData(),
-      builder: (BuildContext context, snapshot) {
-        if (snapshot.hasError) {
-          return const Center(child:Text('Error building home screen'));
-        }
-        else if (snapshot.data == null) { print('Future snapshot.data == null triggered'); return circularProgress(); }
-        else if (snapshot.connectionState == ConnectionState.done) {
-          if (snapshot.hasError) {
-            print('Future snapshot.hasError triggered');
-            return Center(
-              child: Text('An ${snapshot.error} occurred'),
-            );
-          }
-          else if (snapshot.hasData) {
-            // return the listview holding the homepage elements
-            print('Future snapshot.hasError triggered');
-            return const BlogStream();
-          }
-        }
-        else {
-          print('Future outside of if/else triggered');
-          return circularProgress();
-        }
-        // display default value
-        print('snapshot.hasError 4');
-        return const Center(
-          child: SizedBox(
-            height: 150,
-              width: 150,
-            child: CircularProgressIndicator(
-              color: theme.azureClr,
-            ),
-          ),
-        );
-      },
-    );
+    return const BlogStream();
   }
-}
-
-
-final ScrollController controller = ScrollController();
-void scrollUp() {
-  controller.animateTo(
-    controller.position.minScrollExtent,
-    duration: const Duration(seconds: 1),
-    curve: Curves.fastOutSlowIn,
-  );
 }
 
 
@@ -89,230 +43,109 @@ class _BlogStreamState extends State<BlogStream> {
 
   Center circularProgress() {
     return const Center(
-      child: SizedBox(
-        height: 150,
-        width: 150,
-        child: CircularProgressIndicator(
-          strokeWidth: 5,
-          color: theme.bronzeOfficial,
-          backgroundColor: theme.azureClr,
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical:  60.0),
+        child: SizedBox(
+          height: 50,
+          width: 50,
+          child: CircularProgressIndicator(
+            strokeWidth: 7,
+            color: theme.redClr,
+            backgroundColor: theme.bronzeOfficial,
+          ),
         ),
       ),
     );
-  }
-
-  ListView buildBlogList(snapshot) {
-    // list to hold carousel
-    List<Widget> carouselList = [
-      const carousel.CarouselComponent(),
-      const SizedBox(height: 4,),
-    ];
-
-    // get blog data, create card templates, save to list
-    List<Widget> blogList = snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
-      String defaultUserImg = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
-
-      // get data from blog snapshot
-      Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-
-
-      return GestureDetector(
-        onTap: () {
-          /* go to page */
-          /* might want to add edit/delete options */
-        },
-
-        child: FutureBuilder(
-          future: db.BlogDB(docID: data['docID']).getBlogUser(),
-          builder: (BuildContext context, snapshot) {
-            if (snapshot.hasError) {
-              return const Center(child: Text('Error building home screen'),);
-            }
-            else if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text(
-                    'An ${snapshot.error} occurred. Please notify us at developer@nakinc.org.'
-                  ),
-                );
-              }
-              else if (snapshot.hasData) {
-                // return the listview holding the homepage elements
-                final dataforUser = snapshot.data;
-                return cards.StoryCardNetwork(
-                  userImage: dataforUser!['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
-                  userName: data['name'],
-                  storyHeadline: data['title'],
-                  image: data['url'],
-                  storyText: data['body'],
-                  date: data['date'],
-                );
-              }
-            }
-            else {
-              return circularProgress();
-            }
-            // display default value
-            print('Return from FutureBuilder: outside of if/else');
-            return circularProgress();
-
-
-          },
-        ),
-      );
-    }).toList();
-
-
-    // combine the lists
-    List<Widget> combinedList = carouselList + blogList;
-
-    // create a listview for the list
-    ListView myList = ListView(
-      children: combinedList,
-    );
-
-    // return the list
-    return myList;
   }
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _stream,
-      // initialData: 'string',
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        // check for errors
-        // if (snapshot.connectionState == ConnectionState.waiting) {
-        //   return circularProgress();
-        // }
-        // else if (snapshot.connectionState == ConnectionState.active) {
-        //   if (snapshot.hasError) {
-        //     return const Center(child: Text('Oh no! An error occurred!'),);
-        //   }
-        //   else if (!snapshot.hasData) {
-        //     return circularProgress();
-        //   }
-        //   else if (snapshot.hasData) {
-        //     return buildBlogList(snapshot);
-        //   }
-        // }
-        // return Text('State: ${snapshot.connectionState}');
 
-        switch (snapshot.connectionState) {
-          case ConnectionState.none:
-          case ConnectionState.waiting:
-            if (snapshot.data == null) { return circularProgress(); }
-            return circularProgress();
-          case ConnectionState.active:
-            if (snapshot.data == null) { return circularProgress(); }
-            return buildBlogList(snapshot);
-          case ConnectionState.done:
-            if (snapshot.data == null) { return circularProgress(); }
-            return const Center(child: Text('Oh no! An error occurred!'),);
+        // list to for ListView (will hold all home screen widgets (carousel + blog))
+        List<Widget> clientWidgets = [];
+
+        // add carousel Widgetto list
+        List<Widget> carouselList = [
+          const carousel.CarouselComponent(),
+          const SizedBox(height: 4,),
+        ];
+
+        clientWidgets += carouselList;
+
+        if (snapshot.data == null) { return circularProgress(); }
+
+        if (!snapshot.hasData) { return circularProgress(); }
+
+        if (snapshot.hasData) {
+
+          // list holding each blog
+          final blogs = snapshot.data.docs.toList();
+
+          // create a card widget for each blog
+          for(var blog in blogs) {
+
+            // seems to work- obtains selfie url using the Futurebuilder
+            // if glitche found, you can delete FutureBuilder and uncomment the working code below
+            final clientWidget =
+              FutureBuilder(
+                future: db.GetBlogUserSelfie().getBlogUserUID(),
+                builder: (BuildContext context, snapshot) {
+                  if (!snapshot.hasData) {return circularProgress(); }
+
+                  else if (snapshot.data == null) { circularProgress(); }
+
+                  else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+
+                    // obtain selfie URL from Future snapshot or assign default image if none exists
+                    Map<String, String> urlMap = snapshot.data!;
+                    String userSelfie;
+                    if (urlMap.containsKey(blog['userUID'])) {
+                      userSelfie = urlMap[blog['userUID']]!;
+                    }
+                    else {
+                      userSelfie = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
+                    }
+
+                    // assign Card to clientWidget
+                    return cards.StoryCardNetwork(
+                            userImage: userSelfie,
+                            userName: blog['name'],
+                            storyHeadline: blog['title'],
+                            image: blog['url'],
+                            storyText: blog['body'],
+                            date: blog['date'],
+                          );
+                  }
+                  return circularProgress();
+                },
+              );
+
+
+            // this works in plce of the futurebuilder but it requires adding selfie URL to the blog data
+            // final clientWidget =
+            //     cards.StoryCardNetwork(
+            //       // userImage: defaultUserImg,
+            //       userImage: defaultUserImg,      // userData is comes from FutureBuilder
+            //       userName: blog['name'],
+            //       storyHeadline: blog['title'],
+            //       image: blog['url'],
+            //       storyText: blog['body'],
+            //       date: blog['date'],
+            //     );
+
+            // add cards to list
+            clientWidgets.add(clientWidget);
+          }
         }
+
+        // return listview to to be displayed
+        return ListView(
+          children: clientWidgets,
+        );
       }
     );
-  }
-}
-
-class BuildBlog extends StatelessWidget {
-  const BuildBlog({super.key});
-
-  Center circularProgress() {
-      return const Center(
-        child: SizedBox(
-          height: 150,
-          width: 150,
-          child: CircularProgressIndicator(
-            strokeWidth: 5,
-            color: theme.bronzeOfficial,
-            backgroundColor: theme.azureClr,
-          ),
-        ),
-      );
-    }
-
-  ListView buildBlogList(snapshot) {
-    // list to hold carousel
-    List<Widget> carouselList = [
-      const carousel.CarouselComponent(),
-      const SizedBox(height: 4,),
-    ];
-
-    // get blog data, create card templates, save to list
-    List<Widget> blogList = snapshot.data!.docs.map<Widget>( (DocumentSnapshot document) {
-      String defaultUserImg = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fprofile.webp?alt=media&token=9a3346e1-069e-4878-aa43-54394a368a5e';
-
-      // get data from blog snapshot
-      Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
-
-
-      return GestureDetector(
-        onTap: () {
-          /* go to page */
-          /* might want to add edit/delete options */
-        },
-
-        child: FutureBuilder(
-          future: db.BlogDB(docID: data['docID']).getBlogUser(),
-          builder: (BuildContext context, snapshot) {
-            if (snapshot.hasError) {
-              print('ListView Future: snapshot.hasError triggered');
-              return const Center(child: Text('Error building home screen'),);
-            }
-            else if (snapshot.connectionState == ConnectionState.done) {
-              if (snapshot.hasError) {
-                print('ListView Future: snapshot.connectionState snapshot.hasError triggered');
-                return Center(
-                  child: Text(
-                    'An ${snapshot.error} occurred. Please notify us at developer@nakinc.org.'
-                  ),
-                );
-              }
-              else if (snapshot.hasData) {
-                // return the listview holding the homepage elements
-                print('ListView Future: snapshot.hasData triggered');
-                final dataforUser = snapshot.data;
-                return cards.StoryCardNetwork(
-                  userImage: dataforUser!['selfie'] ?? defaultUserImg,      // userData is comes from FutureBuilder
-                  userName: data['name'],
-                  storyHeadline: data['title'],
-                  image: data['url'],
-                  storyText: data['body'],
-                  date: data['date'],
-                );
-              }
-            }
-            else {
-              print('ListView Future: else triggered');
-              return circularProgress();
-            }
-            // display default value
-            print('ListView Future: outside if/else triggered');
-            return circularProgress();
-
-
-          },
-        ),
-      );
-    }).toList();
-
-
-    // combine the lists
-    List<Widget> combinedList = carouselList + blogList;
-
-    // create a listview for the list
-    ListView myList = ListView(
-      children: combinedList,
-    );
-
-    // return the list
-    return myList;
-  }
-
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
   }
 }

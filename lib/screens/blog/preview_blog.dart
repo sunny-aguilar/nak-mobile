@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -81,6 +82,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
       'body': screenArgs.body,
       'date': screenArgs.date,
       'userUID': userUID,
+      // 'userSelfie':   // only add if absolutely necessary
     };
 
     // add the data to Firestore
@@ -127,6 +129,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
             style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
             child: const Row(mainAxisAlignment: MainAxisAlignment.center, children: [Icon(Icons.arrow_back_ios), Text('Back to Edits')],),
             onPressed: () {
+
               // process data if form is valid
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
@@ -134,9 +137,8 @@ class _PreviewBlogState extends State<PreviewBlog> {
                   content: Text('Back to edit screen...')
                 ),
               );
-              // function that will prepare the blog preview
-              // - have it take you to another page to show the preview
-              // - after preview, either go back and edit or post and route to home page
+
+              // go back to prior screen to continue blog edits
               Navigator.pop(context);
             },
           ),
@@ -162,7 +164,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
               // Future used to upload file to storage
               uploadImages(args, args.path);
 
-              // navigate back home after posting image
+              // navigate back to the home screen
               Navigator.of(context, rootNavigator: false).pushReplacement(
                 MaterialPageRoute(builder: (BuildContext context) => const HomeScreen()),
               );
