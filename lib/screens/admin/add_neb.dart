@@ -40,11 +40,17 @@ class UserListBody extends StatefulWidget {
 
 class _UserListBodyState extends State<UserListBody> {
 
-  CircularProgressIndicator _circularProgress() {
-    return const CircularProgressIndicator(
-      strokeWidth: 5,
-      color: theme.redClr,
-      backgroundColor: theme.greyClr,
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 75,
+        width: 75,
+        child: CircularProgressIndicator(
+          strokeWidth: 5,
+          color: theme.redClr,
+          backgroundColor: theme.greyClr,
+        ),
+      ),
     );
   }
 
@@ -58,17 +64,24 @@ class _UserListBodyState extends State<UserListBody> {
       itemCount: data.length,
       prototypeItem: ListTile(
         title: Text(data[0].data()['chapter']),
-        subtitle: const Text('Subtitle'),
+        subtitle: const Text('User Subtitle', ),
       ),
       itemBuilder: (context, index) {
         return ListTile(
           onTap: () {
+
+
+            // pass screen arguments to next page
             Navigator.push(
               context,
-              MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                return const NebSettingsScreen();
-              }),
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext context) {
+                  return NebSettingsScreen(uid: data[index].data()['uid'],);
+                },
+              ),
             );
+
+
           },
           // tileColor: theme.greyClr,
           leading: CircleAvatar(
@@ -76,7 +89,7 @@ class _UserListBodyState extends State<UserListBody> {
             child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
           ),
           title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
-          subtitle: Text('${data[index].data()['chapter']} chapter'),
+          subtitle: Text('${data[index].data()['chapter']} chapter}'),
           trailing: const Icon(Icons.arrow_forward_ios),
         );
       }
@@ -105,8 +118,10 @@ class _UserListBodyState extends State<UserListBody> {
 }
 
 
+// Route that displays switches for the user
 class NebSettingsScreen extends StatefulWidget {
-  const NebSettingsScreen({super.key});
+  const NebSettingsScreen({super.key, required this.uid});
+  final String uid;
   @override
   State<NebSettingsScreen> createState() => _NebSettingsScreenState();
 }
@@ -149,8 +164,15 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenu(context),),
+            Text('User UID: ${widget.uid}'),
             ListTile(
-              onTap: () {},
+              onTap: () {
+
+                // update user as NEB member
+
+                // check if user has this right & set switch acordingly
+
+              },
               title: const Text('Make NEB Member:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,

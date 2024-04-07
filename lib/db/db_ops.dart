@@ -185,3 +185,19 @@ class GetBlogUserSelfie {
     return userURL;
   }
 }
+
+class UpdateUserRights {
+  UpdateUserRights({required this.uid});
+  final String uid;
+  FirebaseFirestore? _instance;
+
+  Future<void> isNEB() async {
+    // get firestore instance
+    _instance = FirebaseFirestore.instance;
+
+    // get user
+    _instance!.collection('users').doc(uid).get().then((value) {
+      
+    },);
+  }
+}
