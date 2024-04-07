@@ -191,13 +191,30 @@ class UpdateUserRights {
   final String uid;
   FirebaseFirestore? _instance;
 
+  Future<void> nebStatus() async {
+    // get firestore instance
+    _instance = FirebaseFirestore.instance;
+
+    // get user
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'isNEB': true});
+  }
+
   Future<void> isNEB() async {
     // get firestore instance
     _instance = FirebaseFirestore.instance;
 
     // get user
-    _instance!.collection('users').doc(uid).get().then((value) {
-      
-    },);
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'isNEB': true});
+  }
+
+  Future<void> notNEB() async {
+    // get firestore instance
+    _instance = FirebaseFirestore.instance;
+
+    // get user
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'isNEB': false});
   }
 }

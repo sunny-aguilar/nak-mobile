@@ -167,11 +167,6 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
             Text('User UID: ${widget.uid}'),
             ListTile(
               onTap: () {
-
-                // update user as NEB member
-
-                // check if user has this right & set switch acordingly
-
               },
               title: const Text('Make NEB Member:'),
               trailing: Switch(
@@ -181,6 +176,16 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     enabledNEB = value;
+                    // check if user has this right & set switch acordingly (may need to check DB status)
+
+                    // add ore remove NEB rights
+                    if (value) {
+                      db.UpdateUserRights(uid: widget.uid).isNEB();
+                    }
+                    else if (!value) {
+                      db.UpdateUserRights(uid: widget.uid).notNEB();
+                    }
+
                   });
                 },
               ),
