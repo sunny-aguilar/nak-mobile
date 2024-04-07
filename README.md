@@ -28,8 +28,8 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 
 ## iOS Build System Notes
 ### Info.plist
-- Update the purpose strings for both the camera and photo album to describe what the app is using them for and why
-- Encryption rules
+- Update the purpose strings for both the camera and photo album to describe what the app is using them for and why.
+- Encryption rules: on Info.Plist, add an entry under 'App Uses Non-Exemp Entryption' wiht a value of NO.
 
 ## Android Build System Notes
 
