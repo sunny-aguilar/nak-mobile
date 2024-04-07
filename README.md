@@ -19,6 +19,7 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - firebase login (login)
 - firebase projects:list (view projects)
 - curl -sL https://firebase.tools | upgrade=true bash (update Firebase CLI)
+
 ### Getting Data Out
 - data is in an object
 - you must first get an instance to Firestore, then get a reference to the collection, tnen a specific doc or group of docs

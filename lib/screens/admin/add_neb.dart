@@ -32,6 +32,8 @@ class _AddNebScreenState extends State<AddNebScreen> {
   }
 }
 
+
+// view class
 class UserListBody extends StatefulWidget {
   const UserListBody({super.key});
   @override
@@ -70,17 +72,28 @@ class _UserListBodyState extends State<UserListBody> {
         return ListTile(
           onTap: () {
 
-
             // pass screen arguments to next page
             Navigator.push(
               context,
               MaterialPageRoute<Widget>(
                 builder: (BuildContext context) {
-                  return NebSettingsScreen(uid: data[index].data()['uid'],);
+                  return FutureBuilder(
+                    future: db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
+                    builder: (BuildContext context, snapshot) {
+                      if (!snapshot.hasData) { _circularProgress(); }
+                      else if (snapshot.data == null) { _circularProgress(); }
+                      else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                        var result = snapshot.data ?? false;
+                        print('Result: ${result}');
+                        return NebSettingsScreen(uid: data[index].data()['uid'], nebStatus: result,);
+                      }
+                      return _circularProgress();
+                    },
+                  );
+                  // return NebSettingsScreen(uid: data[index].data()['uid'],);
                 },
               ),
             );
-
 
           },
           // tileColor: theme.greyClr,
@@ -120,8 +133,9 @@ class _UserListBodyState extends State<UserListBody> {
 
 // Route that displays switches for the user
 class NebSettingsScreen extends StatefulWidget {
-  const NebSettingsScreen({super.key, required this.uid});
+  const NebSettingsScreen({super.key, required this.uid, required this.nebStatus});
   final String uid;
+  final bool nebStatus;
   @override
   State<NebSettingsScreen> createState() => _NebSettingsScreenState();
 }
@@ -130,6 +144,13 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
   bool enabledNEB = false;
   bool enabledAdmin = false;
   bool enabledSuperAdmin = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    enabledNEB = widget.nebStatus;
+  }
 
   final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
     (Set<MaterialState> states) {
@@ -164,10 +185,8 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenu(context),),
-            Text('User UID: ${widget.uid}'),
             ListTile(
-              onTap: () {
-              },
+              onTap: () {},
               title: const Text('Make NEB Member:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,
@@ -176,7 +195,8 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     enabledNEB = value;
-                    // check if user has this right & set switch acordingly (may need to check DB status)
+                    // check if user is NEB & set switch acordingly (may need to check DB status)
+                    db.UpdateUserRights(uid: widget.uid).nebStatus();
 
                     // add ore remove NEB rights
                     if (value) {
