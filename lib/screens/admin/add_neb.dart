@@ -72,7 +72,7 @@ class _UserListBodyState extends State<UserListBody> {
         return ListTile(
           onTap: () {
 
-            // pass screen arguments to next page
+            // pass screen arguments to NebSettingsScreen()
             Navigator.push(
               context,
               MaterialPageRoute<Widget>(
@@ -91,7 +91,12 @@ class _UserListBodyState extends State<UserListBody> {
                         bool nebStatus = snapshot.data![0];
                         bool adminResult = snapshot.data![1];
                         bool superAdminStatus = snapshot.data![2];
-                        return NebSettingsScreen(uid: uid, nebStatus: nebStatus, adminStatus: adminResult, superAdminStatus: superAdminStatus,);
+                        return NebSettingsScreen(
+                          uid: uid,
+                          nebStatus: nebStatus,
+                          adminStatus: adminResult,
+                          superAdminStatus: superAdminStatus,
+                        );
                       }
                       return _circularProgress();
                     },
@@ -108,7 +113,7 @@ class _UserListBodyState extends State<UserListBody> {
             child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
           ),
           title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
-          subtitle: Text('${data[index].data()['chapter']} chapter}'),
+          subtitle: Text('${data[index].data()['chapter']} chapter'),
           trailing: const Icon(Icons.arrow_forward_ios),
         );
       }
