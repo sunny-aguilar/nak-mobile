@@ -191,6 +191,7 @@ class UpdateUserRights {
   final String uid;
   FirebaseFirestore? _instance;
 
+  /* NEB Status * * * * * * * * * * * * * * * * * */
   Future<bool> nebStatus() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
@@ -210,6 +211,7 @@ class UpdateUserRights {
     await userRef.update({'isNEB': false});
   }
 
+  /* Admin Status * * * * * * * * * * * * * * * * */
   Future<bool> adminStatus() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
@@ -234,6 +236,7 @@ class UpdateUserRights {
     });
   }
 
+  /* Super Admin Status * * * * * * * * * * * * * */
   Future<bool> superAdminStatus() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
