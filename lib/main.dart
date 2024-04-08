@@ -21,6 +21,7 @@ import 'package:nak_app/screens/uploadphoto_screen.dart';
 import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/screens/blog/preview_blog.dart';
 import 'package:nak_app/screens/admin/add_neb.dart';
+import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -66,6 +67,7 @@ class App extends StatelessWidget {
         '/newBlog': (context) => const NewBlogScreen(),
         '/previewBlog': (context) => const PreviewBlog(),
         '/addNEB': (context) => const AddNebScreen(),
+        '/users': (context) => const AllUsers(),
       };
 
     return  GetMaterialApp(

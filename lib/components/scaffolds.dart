@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:nak_app/screens/admin/users.dart' as users;
 import 'package:nak_app/ui/theme.dart' as theme;
 
 // return a floating action button for users who are admins
@@ -67,7 +68,15 @@ class SpeedDialButton extends StatelessWidget {
         ),
         SpeedDialChild(
           child: const Icon(Icons.person),
-          onTap: () { /*Navigator.pushNamed(context, '/addNEB');*/ },
+          onTap: () {
+
+            // see how this navigator varies from 'pushNamed()'
+            Navigator.push(
+              context,
+              MaterialPageRoute( builder: (BuildContext context) => const users.AllUsers(), ),
+            );
+
+          },
           // backgroundColor: theme.primaryClr,
           label: 'Users'
         ),

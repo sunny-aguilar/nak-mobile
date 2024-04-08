@@ -21,9 +21,7 @@ class _AddNebScreenState extends State<AddNebScreen> {
         actions: <Widget>[
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
+            onPressed: () => service.ThemeService().switchTheme(),
           ),
         ],
       ),
