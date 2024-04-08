@@ -78,14 +78,20 @@ class _UserListBodyState extends State<UserListBody> {
               MaterialPageRoute<Widget>(
                 builder: (BuildContext context) {
                   return FutureBuilder(
-                    future: db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
+                    future: Future.wait([
+                      db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
+                      db.UpdateUserRights(uid: data[index].data()['uid']).adminStatus(),
+                      db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
+                    ],),
                     builder: (BuildContext context, snapshot) {
                       if (!snapshot.hasData) { _circularProgress(); }
                       else if (snapshot.data == null) { _circularProgress(); }
                       else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                        var result = snapshot.data ?? false;
-                        print('Result: ${result}');
-                        return NebSettingsScreen(uid: data[index].data()['uid'], nebStatus: result,);
+                        String uid = data[index].data()['uid'];
+                        bool nebStatus = snapshot.data![0];
+                        bool adminResult = snapshot.data![1];
+                        bool superAdminStatus = snapshot.data![2];
+                        return NebSettingsScreen(uid: uid, nebStatus: nebStatus, adminStatus: adminResult, superAdminStatus: superAdminStatus,);
                       }
                       return _circularProgress();
                     },
@@ -133,9 +139,11 @@ class _UserListBodyState extends State<UserListBody> {
 
 // Route that displays switches for the user
 class NebSettingsScreen extends StatefulWidget {
-  const NebSettingsScreen({super.key, required this.uid, required this.nebStatus});
+  const NebSettingsScreen({super.key, required this.uid, required this.nebStatus, required this.adminStatus, required this.superAdminStatus});
   final String uid;
   final bool nebStatus;
+  final bool adminStatus;
+  final bool superAdminStatus;
   @override
   State<NebSettingsScreen> createState() => _NebSettingsScreenState();
 }
@@ -147,9 +155,10 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     enabledNEB = widget.nebStatus;
+    enabledAdmin = widget.adminStatus;
+    enabledSuperAdmin = widget.superAdminStatus;
   }
 
   final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
@@ -169,14 +178,14 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+        //     onPressed: () {
+        //       service.ThemeService().switchTheme();
+        //     },
+        //   ),
+        // ],
       ),
 
       body: Padding(
@@ -184,7 +193,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenu(context),),
+            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
               onTap: () {},
               title: const Text('Make NEB Member:'),
@@ -195,10 +204,11 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     enabledNEB = value;
-                    // check if user is NEB & set switch acordingly (may need to check DB status)
-                    db.UpdateUserRights(uid: widget.uid).nebStatus();
 
-                    // add ore remove NEB rights
+                    // check if user is NEB & set switch acordingly (may need to check DB status)
+                    // db.UpdateUserRights(uid: widget.uid).nebStatus();
+
+                    // add or remove NEB rights
                     if (value) {
                       db.UpdateUserRights(uid: widget.uid).isNEB();
                     }
@@ -220,6 +230,14 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     enabledAdmin = value;
+
+                    // add or remove admin rights
+                    if (value) {
+                      db.UpdateUserRights(uid: widget.uid).isAdmin();
+                    }
+                    else if (!value) {
+                      db.UpdateUserRights(uid: widget.uid).notAdmin();
+                    }
                   });
                 },
               ),
@@ -234,6 +252,14 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                 onChanged: (bool value) {
                   setState(() {
                     enabledSuperAdmin = value;
+
+                    // add or remove admin rights
+                    if (value) {
+                      db.UpdateUserRights(uid: widget.uid).isSuperAdmin();
+                    }
+                    else if (!value) {
+                      db.UpdateUserRights(uid: widget.uid).notSuperAdmin();
+                    }
                   });
                 },
               ),

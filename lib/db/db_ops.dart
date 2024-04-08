@@ -192,10 +192,7 @@ class UpdateUserRights {
   FirebaseFirestore? _instance;
 
   Future<bool> nebStatus() async {
-    // get firestore instance
     _instance = FirebaseFirestore.instance;
-
-    // get user
     final userRef = _instance!.collection('users').doc(uid);
     final user = await userRef.get();
     print('isNEB: ${user.data()?['isNEB']}');
@@ -203,21 +200,63 @@ class UpdateUserRights {
   }
 
   Future<void> isNEB() async {
-    // get firestore instance
     _instance = FirebaseFirestore.instance;
-
-    // get user
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'isNEB': true});
   }
 
   Future<void> notNEB() async {
-    // get firestore instance
     _instance = FirebaseFirestore.instance;
-
-    // get user
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'isNEB': false});
+  }
+
+  Future<bool> adminStatus() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    final user = await userRef.get();
+    bool adminStatus = user.data()!['isAdmin'].contains('admin');
+    return adminStatus;
+  }
+
+  Future<void> isAdmin() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    userRef.update({
+      'isAdmin': FieldValue.arrayUnion(['admin'])
+    });
+  }
+
+  Future<void> notAdmin() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    userRef.update({
+      'isAdmin': FieldValue.arrayRemove(['admin'])
+    });
+  }
+
+  Future<bool> superAdminStatus() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    final user = await userRef.get();
+    bool superAdminStatus = user.data()!['isAdmin'].contains('superAdmin');
+    return superAdminStatus;
+  }
+
+  Future<void> isSuperAdmin() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    userRef.update({
+      'isAdmin': FieldValue.arrayUnion(['superAdmin'])
+    });
+  }
+
+  Future<void> notSuperAdmin() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    userRef.update({
+      'isAdmin': FieldValue.arrayRemove(['superAdmin'])
+    });
   }
 
 }
