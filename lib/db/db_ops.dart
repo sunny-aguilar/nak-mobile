@@ -195,7 +195,6 @@ class UpdateUserRights {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     final user = await userRef.get();
-    print('isNEB: ${user.data()?['isNEB']}');
     return user.data()?['isNEB'];
   }
 
@@ -239,7 +238,7 @@ class UpdateUserRights {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     final user = await userRef.get();
-    bool superAdminStatus = user.data()!['isAdmin'].contains('superAdmin');
+    bool superAdminStatus = await user.data()!['isAdmin'].contains('superAdmin');
     return superAdminStatus;
   }
 

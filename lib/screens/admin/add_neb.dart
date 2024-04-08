@@ -57,11 +57,6 @@ class _UserListBodyState extends State<UserListBody> {
   }
 
   ListView _buildUserList(data) {
-    // List<String> items = List<String>.generate(2, (i) => 'Item $i');
-    // print('Runtime: $data');
-    // print('Len: ${data.length}');
-    // print('Element: ${data[0].data()}');
-    // print('Chapter: ${data[0].data()['chapter']}');
     return ListView.builder(
       itemCount: data.length,
       prototypeItem: ListTile(
@@ -81,7 +76,7 @@ class _UserListBodyState extends State<UserListBody> {
                     future: Future.wait([
                       db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
                       db.UpdateUserRights(uid: data[index].data()['uid']).adminStatus(),
-                      db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
+                      db.UpdateUserRights(uid: data[index].data()['uid']).superAdminStatus(),
                     ],),
                     builder: (BuildContext context, snapshot) {
                       if (!snapshot.hasData) { _circularProgress(); }
@@ -101,7 +96,7 @@ class _UserListBodyState extends State<UserListBody> {
                       return _circularProgress();
                     },
                   );
-                  // return NebSettingsScreen(uid: data[index].data()['uid'],);
+
                 },
               ),
             );
