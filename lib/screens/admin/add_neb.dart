@@ -205,9 +205,6 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
                   setState(() {
                     enabledNEB = value;
 
-                    // check if user is NEB & set switch acordingly (may need to check DB status)
-                    // db.UpdateUserRights(uid: widget.uid).nebStatus();
-
                     // add or remove NEB rights
                     if (value) {
                       db.UpdateUserRights(uid: widget.uid).isNEB();
