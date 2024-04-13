@@ -173,10 +173,10 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
 
                           // add or remove NEB rights
                           if (val) {
-                            db_users.UserRights(uid: widget.uid).addBlogRights();
+                            db_users.BlogRights(uid: widget.uid).addBlogRights();
                           }
                           else if (!val) {
-                            db_users.UserRights(uid: widget.uid).removeBlogRights();
+                            db_users.BlogRights(uid: widget.uid).removeBlogRights();
                           }
                         });
                       }

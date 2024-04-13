@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
 
-class UserRights {
-  UserRights({required this.uid});
+class BlogRights {
+  BlogRights({required this.uid});
   final String uid;
   FirebaseFirestore? _instance;
 
