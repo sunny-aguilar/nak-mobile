@@ -71,7 +71,18 @@ class _UserlistState extends State<Userlist> {
             ),
             itemBuilder: (context, index) {
               return ListTile(
-                onTap: () {},
+                onTap: () {
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<Widget>(
+                      builder: (BuildContext context) {
+                        return 
+                      }
+                    ),
+                  );
+
+                },
                 leading: CircleAvatar(
                   backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
                   child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
