@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
-import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/db/db_ops.dart' as db_ops;
+import 'package:nak_app/db/db_users.dart' as db_users;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class AllUsers extends StatefulWidget {
@@ -53,7 +54,7 @@ class _UserlistState extends State<Userlist> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: db.GetUsers().getAllUsers(),
+      future: db_ops.GetUsers().getAllUsers(),
       builder: (BuildContext context, snapshot) {
 
         if (!snapshot.hasData) { _circularProgress(); }
@@ -77,7 +78,7 @@ class _UserlistState extends State<Userlist> {
                     context,
                     MaterialPageRoute<Widget>(
                       builder: (BuildContext context) {
-                        return const UserSettingsScreen();
+                        return UserSettingsScreen(uid: data[index]['uid'],);
                       }
                     ),
                   );
@@ -103,13 +104,27 @@ class _UserlistState extends State<Userlist> {
 
 
 class UserSettingsScreen extends StatefulWidget {
-  const UserSettingsScreen({super.key});
+  const UserSettingsScreen({super.key, required this.uid});
+  final String uid;
   @override
   State<UserSettingsScreen> createState() => _UserSettingsScreenState();
 }
 
 class _UserSettingsScreenState extends State<UserSettingsScreen> {
   bool enableChat = false;
+
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 12, width: 12,
+        child: CircularProgressIndicator(
+          strokeWidth: 4,
+          color: theme.redClr,
+          backgroundColor: theme.greyClr,
+        ),
+      ),
+    );
+  }
 
   final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
     (Set<MaterialState> states) {
@@ -126,7 +141,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
-        backgroundColor: theme.lightGrey,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
@@ -144,16 +159,51 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
               title: const Text('Give blog rights:'),
-              trailing: Switch(
-                thumbIcon: thumbIcon,
-                value: enableChat,
-                activeColor: theme.mintClr,
-                onChanged: (bool val) {
-                  setState(() {
-                    enableChat = val;
-                  });
+              trailing: FutureBuilder(
+                future: db_users.UserRights(uid: widget.uid).blogRightsStatus(),
+                builder: (BuildContext context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                    return Switch(
+                      thumbIcon: thumbIcon,
+                      value: enableChat,
+                      activeColor: theme.mintClr,
+                      onChanged: (bool val) {
+                        setState(() {
+                          enableChat = val;
+
+                          // add or remove NEB rights
+                          if (val) {
+                            db_users.UserRights(uid: widget.uid).addBlogRights();
+                          }
+                          else if (!val) {
+                            db_users.UserRights(uid: widget.uid).removeBlogRights();
+                          }
+                        });
+                      }
+                    );
+                  }
+                  // return _circularProgress();
+                  return Icon(Icons.access_alarm);
                 }
               ),
+              // trailing: Switch(
+              //   thumbIcon: thumbIcon,
+              //   value: enableChat,
+              //   activeColor: theme.mintClr,
+              //   onChanged: (bool val) {
+              //     setState(() {
+              //       enableChat = val;
+
+              //       // add or remove NEB rights
+              //       if (val) {
+              //         db_users.UserRights(uid: widget.uid).addBlogRights();
+              //       }
+              //       else if (!val) {
+              //         db_users.UserRights(uid: widget.uid).removeBlogRights();
+              //       }
+              //     });
+              //   }
+              // ),
             ),
           ],
         ),
