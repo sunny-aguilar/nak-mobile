@@ -45,7 +45,7 @@ class _UserlistState extends State<Userlist> {
       child: SizedBox(
         height: 75, width: 75,
         child: CircularProgressIndicator(
-          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.greyClr,
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
         ),
       ),
     );
@@ -82,6 +82,23 @@ class _UserlistState extends State<Userlist> {
                       }
                     ),
                   );
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute<Widget>(
+                  //     builder: (BuildContext context) {
+                  //       return FutureBuilder(
+                  //         future: db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
+                  //         builder: (BuildContext context, snapshot) {
+                  //           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                  //             return UserSettingsScreen(uid: data[index]['uid'],);
+                  //           }
+                  //           return _circularProgress();
+                  //         }
+                  //       );
+                  //     }
+                  //   ),
+                  // );
 
                 },
                 leading: CircleAvatar(
@@ -159,51 +176,51 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
               title: const Text('Give blog rights:'),
-              trailing: FutureBuilder(
-                future: db_users.BlogRights(uid: widget.uid).rightsStatus(),
-                builder: (BuildContext context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                    return Switch(
-                      thumbIcon: thumbIcon,
-                      value: enableChat,
-                      activeColor: theme.mintClr,
-                      onChanged: (bool val) {
-                        setState(() {
-                          enableChat = val;
+              // trailing: FutureBuilder(
+              //   future: db_users.BlogRights(uid: widget.uid).rightsStatus(),
+              //   builder: (BuildContext context, snapshot) {
+              //     if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+              //       return Switch(
+              //         thumbIcon: thumbIcon,
+              //         value: enableChat,
+              //         activeColor: theme.mintClr,
+              //         onChanged: (bool val) {
+              //           setState(() {
+              //             enableChat = val;
 
-                          // add or remove NEB rights
-                          if (val) {
-                            db_users.BlogRights(uid: widget.uid).addRights();
-                          }
-                          else if (!val) {
-                            db_users.BlogRights(uid: widget.uid).removeRights();
-                          }
-                        });
-                      }
-                    );
-                  }
-                  // return _circularProgress();
-                  return const Icon(Icons.access_alarm);
-                }
-              ),
-              // trailing: Switch(
-              //   thumbIcon: thumbIcon,
-              //   value: enableChat,
-              //   activeColor: theme.mintClr,
-              //   onChanged: (bool val) {
-              //     setState(() {
-              //       enableChat = val;
-
-              //       // add or remove NEB rights
-              //       if (val) {
-              //         db_users.UserRights(uid: widget.uid).addBlogRights();
-              //       }
-              //       else if (!val) {
-              //         db_users.UserRights(uid: widget.uid).removeBlogRights();
-              //       }
-              //     });
+              //             // add or remove NEB rights
+              //             if (val) {
+              //               db_users.BlogRights(uid: widget.uid).addRights();
+              //             }
+              //             else if (!val) {
+              //               db_users.BlogRights(uid: widget.uid).removeRights();
+              //             }
+              //           });
+              //         }
+              //       );
+              //     }
+              //     // return _circularProgress();
+              //     return const Icon(Icons.access_alarm);
               //   }
               // ),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enableChat,
+                activeColor: theme.mintClr,
+                onChanged: (bool val) {
+                  setState(() {
+                    enableChat = val;
+
+                    // add or remove NEB rights
+                    if (val) {
+                      db_users.BlogRights(uid: widget.uid).addRights();
+                    }
+                    else if (!val) {
+                      db_users.BlogRights(uid: widget.uid).removeRights();
+                    }
+                  });
+                }
+              ),
             ),
           ],
         ),
