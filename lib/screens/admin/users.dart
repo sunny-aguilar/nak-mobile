@@ -77,7 +77,7 @@ class _UserlistState extends State<Userlist> {
                     context,
                     MaterialPageRoute<Widget>(
                       builder: (BuildContext context) {
-                        return 
+                        return const UserSettingsScreen();
                       }
                     ),
                   );
@@ -97,6 +97,67 @@ class _UserlistState extends State<Userlist> {
         return _circularProgress();
 
       }
+    );
+  }
+}
+
+
+class UserSettingsScreen extends StatefulWidget {
+  const UserSettingsScreen({super.key});
+  @override
+  State<UserSettingsScreen> createState() => _UserSettingsScreenState();
+}
+
+class _UserSettingsScreenState extends State<UserSettingsScreen> {
+  bool enableChat = false;
+
+  final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.check);
+      }
+      return const Icon(Icons.close);
+    }
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: theme.lightGrey,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
+            ListTile(
+              title: const Text('Give blog rights:'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enableChat,
+                activeColor: theme.mintClr,
+                onChanged: (bool val) {
+                  setState(() {
+                    enableChat = val;
+                  });
+                }
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
