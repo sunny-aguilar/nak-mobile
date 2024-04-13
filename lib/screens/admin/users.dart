@@ -160,7 +160,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
             ListTile(
               title: const Text('Give blog rights:'),
               trailing: FutureBuilder(
-                future: db_users.UserRights(uid: widget.uid).blogRightsStatus(),
+                future: db_users.BlogRights(uid: widget.uid).rightsStatus(),
                 builder: (BuildContext context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                     return Switch(
@@ -173,10 +173,10 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
 
                           // add or remove NEB rights
                           if (val) {
-                            db_users.BlogRights(uid: widget.uid).addBlogRights();
+                            db_users.BlogRights(uid: widget.uid).addRights();
                           }
                           else if (!val) {
-                            db_users.BlogRights(uid: widget.uid).removeBlogRights();
+                            db_users.BlogRights(uid: widget.uid).removeRights();
                           }
                         });
                       }

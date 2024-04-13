@@ -7,20 +7,20 @@ class BlogRights {
   final String uid;
   FirebaseFirestore? _instance;
 
-  Future<bool> blogRightsStatus() async {
+  Future<bool> rightsStatus() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     final user = await userRef.get();
     return user.data()?['rights']['blog'];
   }
 
-  Future<void> addBlogRights() async {
+  Future<void> addRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'rights.blog': true});
   }
 
-  Future<void> removeBlogRights() async {
+  Future<void> removeRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'rights.blog': false});
