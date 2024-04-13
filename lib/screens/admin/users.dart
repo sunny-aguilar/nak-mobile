@@ -62,7 +62,6 @@ class _UserlistState extends State<Userlist> {
 
           final data = snapshot.data.docs;
           final count = snapshot.data.docs.length;
-          print('data: ${data[0].data()}');
 
           return ListView.builder(
             itemCount: count,
