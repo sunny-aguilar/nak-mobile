@@ -26,3 +26,11 @@ class BlogRights {
     await userRef.update({'rights.blog': false});
   }
 }
+
+
+
+
+
+
+
+

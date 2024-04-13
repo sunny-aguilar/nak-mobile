@@ -183,7 +183,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                     );
                   }
                   // return _circularProgress();
-                  return Icon(Icons.access_alarm);
+                  return const Icon(Icons.access_alarm);
                 }
               ),
               // trailing: Switch(
