@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 final FirebaseFirestore db = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
@@ -111,7 +110,7 @@ class DeactivateUserData {
     final reference = _instance!.collection('users');
 
     // add bool field "isactive"
-    Map<String, bool> dataToSend = {'isactive': true};
+    Map<String, bool> dataToSend = {'isactive': false};
 
     // save field on user's data
     await reference.doc(userUID).set(dataToSend, SetOptions(merge: true));

@@ -143,8 +143,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'email': email,
       'status': status,
       'selfie': '',
+      // default settings
       'isAdmin': [],
-      'isNEB': false
+      'isNEB': false,
+      'rights': {'chat':true, 'blog':false,},
     });
 
     // add() auto-creates a document name
