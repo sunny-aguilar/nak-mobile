@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class AddNebScreen extends StatefulWidget {
@@ -31,7 +31,6 @@ class _AddNebScreenState extends State<AddNebScreen> {
 }
 
 
-// view class
 class UserListBody extends StatefulWidget {
   const UserListBody({super.key});
   @override
@@ -43,12 +42,9 @@ class _UserListBodyState extends State<UserListBody> {
   Center _circularProgress() {
     return const Center(
       child: SizedBox(
-        height: 75,
-        width: 75,
+        height: 75, width: 75,
         child: CircularProgressIndicator(
-          strokeWidth: 5,
-          color: theme.redClr,
-          backgroundColor: theme.greyClr,
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.greyClr,
         ),
       ),
     );
@@ -65,7 +61,6 @@ class _UserListBodyState extends State<UserListBody> {
         return ListTile(
           onTap: () {
 
-            // pass screen arguments to NebSettingsScreen()
             Navigator.push(
               context,
               MaterialPageRoute<Widget>(
@@ -82,12 +77,12 @@ class _UserListBodyState extends State<UserListBody> {
                       else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                         String uid = data[index].data()['uid'];
                         bool nebStatus = snapshot.data![0];
-                        bool adminResult = snapshot.data![1];
+                        bool adminStatus = snapshot.data![1];
                         bool superAdminStatus = snapshot.data![2];
                         return NebSettingsScreen(
                           uid: uid,
                           nebStatus: nebStatus,
-                          adminStatus: adminResult,
+                          adminStatus: adminStatus,
                           superAdminStatus: superAdminStatus,
                         );
                       }
@@ -108,6 +103,7 @@ class _UserListBodyState extends State<UserListBody> {
           title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
           subtitle: Text('${data[index].data()['chapter']} chapter'),
           trailing: const Icon(Icons.arrow_forward_ios),
+
         );
       }
     );

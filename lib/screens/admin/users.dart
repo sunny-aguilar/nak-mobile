@@ -5,13 +5,8 @@ import 'package:nak_app/db/db_ops.dart' as db_ops;
 import 'package:nak_app/db/db_users.dart' as db_users;
 import 'package:nak_app/services/theme_service.dart' as service;
 
-class AllUsers extends StatefulWidget {
+class AllUsers extends StatelessWidget {
   const AllUsers({super.key});
-  @override
-  State<AllUsers> createState() => _AllUsersState();
-}
-
-class _AllUsersState extends State<AllUsers> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,19 +21,19 @@ class _AllUsersState extends State<AllUsers> {
           ),
         ],
       ),
-      body: const Userlist(),
+      body: const UserlistBody(),
     );
   }
 }
 
 
-class Userlist extends StatefulWidget {
-  const Userlist({super.key});
+class UserlistBody extends StatefulWidget {
+  const UserlistBody({super.key});
   @override
-  State<Userlist> createState() => _UserlistState();
+  State<UserlistBody> createState() => _UserlistState();
 }
 
-class _UserlistState extends State<Userlist> {
+class _UserlistState extends State<UserlistBody> {
 
   Center _circularProgress() {
     return const Center(
@@ -51,68 +46,125 @@ class _UserlistState extends State<Userlist> {
     );
   }
 
+  ListView _buildUserList(data) {
+    return ListView.builder(
+      itemCount: data.length,
+      prototypeItem: ListTile(
+        title: Text(data[0].data()['chapter']),
+        subtitle: const Text('User Subtitle'),
+      ),
+      itemBuilder: (context, index) {
+        return ListTile(
+          onTap: () {
+
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext context) {
+                  return FutureBuilder(
+                    future: Future.wait([
+                      db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
+                    ]),
+                    builder: (BuildContext context, snapshot) {
+                      if (!snapshot.hasData) { _circularProgress(); }
+                      else if (snapshot.data == null) { _circularProgress(); }
+                      else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                        String uid = data[index].data()['uid'];
+                        bool blogStatus = snapshot.data![0];
+                        return UserSettingsScreen(
+                          uid: uid,
+                          blogStatus: blogStatus,
+                        );
+                      }
+                      return _circularProgress();
+                    }
+                  );
+
+                }
+              ),
+            );
+
+          },
+          leading: CircleAvatar(
+            backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+            child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
+          ),
+          title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
+          subtitle: Text('${data[index]['chapter']} chapter'),
+          trailing: const Icon(Icons.arrow_forward_ios),
+
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: db_ops.GetUsers().getAllUsers(),
       builder: (BuildContext context, snapshot) {
-
-        if (!snapshot.hasData) { _circularProgress(); }
-        else if (snapshot.data == null) { _circularProgress(); }
-        else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-
+        if (snapshot.hasData) {
           final data = snapshot.data.docs;
-          final count = snapshot.data.docs.length;
-
-          return ListView.builder(
-            itemCount: count,
-            prototypeItem: const ListTile(
-              title: Text('UserName'),
-              subtitle: Text('Chapter'),
-            ),
-            itemBuilder: (context, index) {
-              return ListTile(
-                onTap: () {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<Widget>(
-                      builder: (BuildContext context) {
-                        return UserSettingsScreen(uid: data[index]['uid'],);
-                      }
-                    ),
-                  );
-
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute<Widget>(
-                  //     builder: (BuildContext context) {
-                  //       return FutureBuilder(
-                  //         future: db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
-                  //         builder: (BuildContext context, snapshot) {
-                  //           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                  //             return UserSettingsScreen(uid: data[index]['uid'],);
-                  //           }
-                  //           return _circularProgress();
-                  //         }
-                  //       );
-                  //     }
-                  //   ),
-                  // );
-
-                },
-                leading: CircleAvatar(
-                  backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-                  child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
-                ),
-                title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
-                subtitle: Text('${data[index]['chapter']} chapter'),
-                trailing: const Icon(Icons.arrow_forward_ios),
-              );
-            },
-          );
+          return _buildUserList(data);
         }
-        return _circularProgress();
+        else if (snapshot.hasError) {
+          return const Center(child: Text('Oh no! An error occurred!'),);
+        }
+        else {
+          return _circularProgress();
+        }
+        // if (!snapshot.hasData) { _circularProgress(); }
+        // else if (snapshot.data == null) { _circularProgress(); }
+        // else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+
+        //   final data = snapshot.data.docs;
+        //   final count = snapshot.data.docs.length;
+
+        //   return ListView.builder(
+        //     itemCount: count,
+        //     prototypeItem: const ListTile(
+        //       title: Text('UserName'),
+        //       subtitle: Text('Chapter'),
+        //     ),
+        //     itemBuilder: (context, index) {
+        //       return ListTile(
+        //         onTap: () {
+
+        //           Navigator.push(
+        //             context,
+        //             MaterialPageRoute<Widget>(
+        //               builder: (BuildContext context) {
+        //                 return FutureBuilder(
+        //                   future: Future.wait([
+        //                     db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
+        //                   ]),
+        //                   builder: (BuildContext context, snapshot) {
+
+        //                     print('blog status: ${snapshot.data![0]}');
+
+        //                     if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+        //                       return UserSettingsScreen(uid: data[index]['uid'], blogStatus: true,);
+        //                     }
+        //                     return _circularProgress();
+        //                   }
+        //                 );
+        //               }
+        //             ),
+        //           );
+
+        //         },
+        //         leading: CircleAvatar(
+        //           backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+        //           child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
+        //         ),
+        //         title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
+        //         subtitle: Text('${data[index]['chapter']} chapter'),
+        //         trailing: const Icon(Icons.arrow_forward_ios),
+        //       );
+        //     },
+        //   );
+        // }
+        // return _circularProgress();
 
       }
     );
@@ -121,14 +173,21 @@ class _UserlistState extends State<Userlist> {
 
 
 class UserSettingsScreen extends StatefulWidget {
-  const UserSettingsScreen({super.key, required this.uid});
+  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus});
   final String uid;
+  final bool blogStatus;
   @override
   State<UserSettingsScreen> createState() => _UserSettingsScreenState();
 }
 
 class _UserSettingsScreenState extends State<UserSettingsScreen> {
   bool enableChat = false;
+
+  @override
+  void initState() {
+    super.initState();
+    enableChat = widget.blogStatus;
+  }
 
   Center _circularProgress() {
     return const Center(
@@ -159,14 +218,14 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+        //     onPressed: () {
+        //       service.ThemeService().switchTheme();
+        //     },
+        //   ),
+        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
@@ -176,33 +235,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
               title: const Text('Give blog rights:'),
-              // trailing: FutureBuilder(
-              //   future: db_users.BlogRights(uid: widget.uid).rightsStatus(),
-              //   builder: (BuildContext context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-              //       return Switch(
-              //         thumbIcon: thumbIcon,
-              //         value: enableChat,
-              //         activeColor: theme.mintClr,
-              //         onChanged: (bool val) {
-              //           setState(() {
-              //             enableChat = val;
 
-              //             // add or remove NEB rights
-              //             if (val) {
-              //               db_users.BlogRights(uid: widget.uid).addRights();
-              //             }
-              //             else if (!val) {
-              //               db_users.BlogRights(uid: widget.uid).removeRights();
-              //             }
-              //           });
-              //         }
-              //       );
-              //     }
-              //     // return _circularProgress();
-              //     return const Icon(Icons.access_alarm);
-              //   }
-              // ),
               trailing: Switch(
                 thumbIcon: thumbIcon,
                 value: enableChat,
@@ -221,6 +254,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                   });
                 }
               ),
+
             ),
           ],
         ),
