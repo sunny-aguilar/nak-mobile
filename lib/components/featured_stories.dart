@@ -9,21 +9,6 @@ import 'package:nak_app/db/db_ops.dart' as db;
 
 class HomeScreenChildren extends StatelessWidget {
   const HomeScreenChildren({super.key});
-
-  Center circularProgress() {
-    return const Center(
-      child: SizedBox(
-        height: 75,
-        width: 75,
-        child: CircularProgressIndicator(
-          strokeWidth: 10,
-          color: theme.redClr,
-          backgroundColor: theme.bronzeOfficial,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return const BlogStream();
@@ -41,13 +26,12 @@ class BlogStream extends StatefulWidget {
 class _BlogStreamState extends State<BlogStream> {
   final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('blog').orderBy('date', descending: true).snapshots();
 
-  Center circularProgress() {
+  Center _circularProgress() {
     return const Center(
       child: Padding(
         padding: EdgeInsets.symmetric(vertical:  60.0),
         child: SizedBox(
-          height: 50,
-          width: 50,
+          height: 50, width: 50,
           child: CircularProgressIndicator(
             strokeWidth: 7,
             color: theme.redClr,
@@ -75,9 +59,9 @@ class _BlogStreamState extends State<BlogStream> {
 
         clientWidgets += carouselList;
 
-        if (snapshot.data == null) { return circularProgress(); }
+        if (snapshot.data == null) { return _circularProgress(); }
 
-        if (!snapshot.hasData) { return circularProgress(); }
+        if (!snapshot.hasData) { return _circularProgress(); }
 
         if (snapshot.hasData) {
 
@@ -93,9 +77,9 @@ class _BlogStreamState extends State<BlogStream> {
               FutureBuilder(
                 future: db.GetBlogUserSelfie().getBlogUserUID(),
                 builder: (BuildContext context, snapshot) {
-                  if (!snapshot.hasData) {return circularProgress(); }
+                  if (!snapshot.hasData) {return _circularProgress(); }
 
-                  else if (snapshot.data == null) { circularProgress(); }
+                  else if (snapshot.data == null) { _circularProgress(); }
 
                   else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
 
@@ -119,22 +103,9 @@ class _BlogStreamState extends State<BlogStream> {
                             date: blog['date'],
                           );
                   }
-                  return circularProgress();
+                  return _circularProgress();
                 },
               );
-
-
-            // this works in plce of the futurebuilder but it requires adding selfie URL to the blog data
-            // final clientWidget =
-            //     cards.StoryCardNetwork(
-            //       // userImage: defaultUserImg,
-            //       userImage: defaultUserImg,      // userData is comes from FutureBuilder
-            //       userName: blog['name'],
-            //       storyHeadline: blog['title'],
-            //       image: blog['url'],
-            //       storyText: blog['body'],
-            //       date: blog['date'],
-            //     );
 
             // add cards to list
             clientWidgets.add(clientWidget);

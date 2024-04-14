@@ -221,113 +221,165 @@ class StoryCardNetwork extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
-      clipBehavior: Clip.antiAlias,
-      color: Theme.of(context).primaryColor,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(6.0),
-        side: const BorderSide(
-          width: 1.0,
-          color: theme.greyClr
+    // dropdown variables
+
+    return GestureDetector(
+      onTap: () {
+
+        showModalBottomSheet(
+          backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
+          showDragHandle: true,
+          enableDrag: true,
+          context: context,
+          isScrollControlled: true,
+          builder: (BuildContext context) {
+            return SizedBox(
+              // height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              child: FractionallySizedBox(
+                heightFactor: 0.8,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      // cteate a class to hold a modal template
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(color: theme.dividerClr,),
+                      ),
+                      ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage: NetworkImage(userImage),
+                          backgroundColor: Colors.grey,
+                        ),
+                        title: Text(userName,),
+                        subtitle: Text(storyHeadline),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Divider(color: theme.dividerClr,),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(storyText),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Divider(color: theme.dividerClr),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Icon(Icons.bookmark),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
+        );
+
+      },
+      child: Card.outlined(
+        clipBehavior: Clip.antiAlias,
+        color: Theme.of(context).primaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6.0),
+          side: const BorderSide(
+            width: 1.0,
+            color: theme.greyClr
+          ),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ListTile(
+              leading: CircleAvatar(
+                backgroundImage: NetworkImage(userImage),
+                backgroundColor: Colors.grey,
+              ),
+              title: Text(
+                userName,
+                style: const TextStyle(
+                  fontFamily: 'College',
+                  fontSize: 20,
+                  // fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(
+                storyHeadline,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              trailing: const PopupMenu(),
+              // trailing: IconButton(
+              //   icon: const Icon(Icons.more_vert,),
+              //   onPressed: () {
+              //     // modal was previously here
+              //   },
+              // ),
+            ),
+            SizedBox(
+              height: 200,
+              width: MediaQuery.of(context).size.width,
+              child: Image.network(
+                image,
+                fit: BoxFit.cover,
+                scale: 1,
+                width: double.infinity,
+                height: 150,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+              child: Text(date,),
+            ),
+          ],
         ),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          ListTile(
-            leading: CircleAvatar(
-              backgroundImage: NetworkImage(userImage),
-              backgroundColor: Colors.grey,
-            ),
-            title: Text(
-              userName,
-              style: const TextStyle(
-                fontFamily: 'College',
-                fontSize: 20,
-                // fontWeight: FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(
-              storyHeadline,
-              style: const TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            trailing: IconButton(
-              icon: const Icon(Icons.more_vert,),
-              onPressed: () {
-                showModalBottomSheet(
-                  backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.whiteClr,
-                  showDragHandle: true,
-                  enableDrag: true,
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (BuildContext context) {
-                    return SizedBox(
-                      // height: MediaQuery.of(context).size.height,
-                      width: double.infinity,
-                      child: FractionallySizedBox(
-                        heightFactor: 0.8,
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              // cteate a class to hold a modal template
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(color: theme.dividerClr,),
-                              ),
-                              ListTile(
-                                leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(userImage),
-                                  backgroundColor: Colors.grey,
-                                ),
-                                title: Text(userName,),
-                                subtitle: Text(storyHeadline),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Divider(color: theme.dividerClr,),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Text(storyText),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Divider(color: theme.dividerClr),
-                              ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 8.0),
-                                child: Icon(Icons.bookmark),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    );
-                  }
-                );
-              },
+    );
+  }
+}
+
+
+enum SampleItem { itemOne, itemTwo }
+
+class PopupMenu extends StatefulWidget {
+  const PopupMenu({super.key});
+  @override
+  State<PopupMenu> createState() => _PopupMenuState();
+}
+
+class _PopupMenuState extends State<PopupMenu> {
+  SampleItem? selectedItem;
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      initialValue: selectedItem,
+      onSelected: (SampleItem item) {
+        setState(() {
+          selectedItem = item;
+        });
+      },
+      itemBuilder: (BuildContext context) {
+        return <PopupMenuEntry<SampleItem>>[
+          const PopupMenuItem<SampleItem>(
+            value: SampleItem.itemOne,
+            child: ListTile(
+              leading: Icon(Icons.create_outlined),
+              title: Text('Edit'),
             ),
           ),
-          SizedBox(
-            height: 200,
-            width: MediaQuery.of(context).size.width,
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-              scale: 1,
-              width: double.infinity,
-              height: 150,
+          const PopupMenuItem<SampleItem>(
+            value: SampleItem.itemTwo,
+            child: ListTile(
+              leading: Icon(Icons.delete_outline),
+              title: Text('Edit'),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
-            child: Text(date,),
-          ),
-        ],
-      ),
+        ];
+      },
     );
   }
 }
