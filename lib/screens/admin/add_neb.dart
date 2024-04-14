@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class AddNebScreen extends StatefulWidget {
@@ -67,9 +68,9 @@ class _UserListBodyState extends State<UserListBody> {
                 builder: (BuildContext context) {
                   return FutureBuilder(
                     future: Future.wait([
-                      db.UpdateUserRights(uid: data[index].data()['uid']).nebStatus(),
-                      db.UpdateUserRights(uid: data[index].data()['uid']).adminStatus(),
-                      db.UpdateUserRights(uid: data[index].data()['uid']).superAdminStatus(),
+                      db_neb.UpdateUserPermissions(uid: data[index].data()['uid']).nebStatus(),
+                      db_neb.UpdateUserPermissions(uid: data[index].data()['uid']).adminStatus(),
+                      db_neb.UpdateUserPermissions(uid: data[index].data()['uid']).superAdminStatus(),
                     ],),
                     builder: (BuildContext context, snapshot) {
                       if (!snapshot.hasData) { _circularProgress(); }
@@ -201,10 +202,10 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
 
                     // add or remove NEB rights
                     if (value) {
-                      db.UpdateUserRights(uid: widget.uid).isNEB();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).isNEB();
                     }
                     else if (!value) {
-                      db.UpdateUserRights(uid: widget.uid).notNEB();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).notNEB();
                     }
 
                   });
@@ -224,10 +225,10 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
 
                     // add or remove admin rights
                     if (value) {
-                      db.UpdateUserRights(uid: widget.uid).isAdmin();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).isAdmin();
                     }
                     else if (!value) {
-                      db.UpdateUserRights(uid: widget.uid).notAdmin();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).notAdmin();
                     }
                   });
                 },
@@ -246,10 +247,10 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
 
                     // add or remove admin rights
                     if (value) {
-                      db.UpdateUserRights(uid: widget.uid).isSuperAdmin();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).isSuperAdmin();
                     }
                     else if (!value) {
-                      db.UpdateUserRights(uid: widget.uid).notSuperAdmin();
+                      db_neb.UpdateUserPermissions(uid: widget.uid).notSuperAdmin();
                     }
                   });
                 },

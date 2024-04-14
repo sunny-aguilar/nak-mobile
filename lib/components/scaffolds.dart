@@ -64,7 +64,7 @@ class SpeedDialButton extends StatelessWidget {
           child: const Icon(Icons.person_add),
           onTap: () { Navigator.pushNamed(context, '/addNEB'); },
           // backgroundColor: theme.primaryClr,
-          label: 'User Settings'
+          label: 'NEB Permissions'
         ),
         SpeedDialChild(
           child: const Icon(Icons.person),
@@ -78,7 +78,7 @@ class SpeedDialButton extends StatelessWidget {
 
           },
           // backgroundColor: theme.primaryClr,
-          label: 'Users'
+          label: 'Permissions'
         ),
       ],
     );

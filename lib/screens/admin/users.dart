@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db_ops;
-import 'package:nak_app/db/db_users.dart' as db_users;
+import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class AllUsers extends StatelessWidget {
