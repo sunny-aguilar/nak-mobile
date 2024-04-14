@@ -27,7 +27,18 @@ class BlogRights {
   }
 }
 
+class ChatRights {
+  ChatRights({required this.uid});
+  final String uid;
+  FirebaseFirestore? _instance;
 
+  Future<bool> rightsStatus() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    final user = await userRef.get();
+    return user.data()?['rights']['chat'];
+  }
+}
 
 
 
