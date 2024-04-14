@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/neb_screen.dart';
+import 'package:nak_app/db/db_ops.dart' as db;
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -219,6 +220,17 @@ class StoryCardNetwork extends StatelessWidget {
     required this.storyText,
   });
 
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 25, width: 25,
+        child: CircularProgressIndicator(
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     // dropdown variables
@@ -312,7 +324,21 @@ class StoryCardNetwork extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              trailing: const PopupMenu(),
+              // trailing: const PopupMenu(),
+              trailing: FutureBuilder(
+                future: db.AuthCheck().isAdmin('admin'),
+                builder: (BuildContext context, snapshot) {
+                  if (!snapshot.hasData) { _circularProgress(); }
+                  else if (snapshot.data == null) { _circularProgress(); }
+                  else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                    return const PopupMenu();
+                  }
+                  return _circularProgress();
+                },
+              ),
+
+
+
               // trailing: IconButton(
               //   icon: const Icon(Icons.more_vert,),
               //   onPressed: () {
@@ -343,8 +369,6 @@ class StoryCardNetwork extends StatelessWidget {
 }
 
 
-enum SampleItem { itemOne, itemTwo }
-
 class PopupMenu extends StatefulWidget {
   const PopupMenu({super.key});
   @override
@@ -352,32 +376,38 @@ class PopupMenu extends StatefulWidget {
 }
 
 class _PopupMenuState extends State<PopupMenu> {
-  SampleItem? selectedItem;
+  // SampleItem? selectedItem;
+
+  PopupMenuItem _buildPopupMenuItem(String title, IconData iconData) {
+    return PopupMenuItem(
+      onTap: () {
+
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) {
+              return editBlog
+            },
+          )
+        );
+
+      },
+      child: ListTile(
+        leading: Icon(iconData),
+        title: Text(title),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
-      initialValue: selectedItem,
-      onSelected: (SampleItem item) {
-        setState(() {
-          selectedItem = item;
-        });
-      },
+      // initialValue: selectedItem,
+      onSelected: (item) {},
       itemBuilder: (BuildContext context) {
-        return <PopupMenuEntry<SampleItem>>[
-          const PopupMenuItem<SampleItem>(
-            value: SampleItem.itemOne,
-            child: ListTile(
-              leading: Icon(Icons.create_outlined),
-              title: Text('Edit'),
-            ),
-          ),
-          const PopupMenuItem<SampleItem>(
-            value: SampleItem.itemTwo,
-            child: ListTile(
-              leading: Icon(Icons.delete_outline),
-              title: Text('Edit'),
-            ),
-          ),
+        return <PopupMenuEntry>[
+          _buildPopupMenuItem('Edit', Icons.create_outlined),
+          _buildPopupMenuItem('Delete', Icons.delete_outline),
         ];
       },
     );

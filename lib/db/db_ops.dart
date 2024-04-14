@@ -56,6 +56,7 @@ class AuthCheck {
     }
     return '';
   }
+
 }
 
 
