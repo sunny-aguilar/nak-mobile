@@ -38,6 +38,18 @@ class ChatRights {
     final user = await userRef.get();
     return user.data()?['rights']['chat'];
   }
+
+  Future<void> addRights() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'rights.chat': true});
+  }
+
+  Future<void> removeRights() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'rights.chat': false});
+  }
 }
 
 

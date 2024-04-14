@@ -64,6 +64,7 @@ class _UserlistState extends State<UserlistBody> {
                   return FutureBuilder(
                     future: Future.wait([
                       db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
+                      db_users.ChatRights(uid: data[index]['uid']).rightsStatus(),
                     ]),
                     builder: (BuildContext context, snapshot) {
                       if (!snapshot.hasData) { _circularProgress(); }
@@ -71,9 +72,11 @@ class _UserlistState extends State<UserlistBody> {
                       else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                         String uid = data[index].data()['uid'];
                         bool blogStatus = snapshot.data![0];
+                        bool chatStatus = snapshot.data![1];
                         return UserSettingsScreen(
                           uid: uid,
                           blogStatus: blogStatus,
+                          chatStatus: chatStatus,
                         );
                       }
                       return _circularProgress();
@@ -113,59 +116,6 @@ class _UserlistState extends State<UserlistBody> {
         else {
           return _circularProgress();
         }
-        // if (!snapshot.hasData) { _circularProgress(); }
-        // else if (snapshot.data == null) { _circularProgress(); }
-        // else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-
-        //   final data = snapshot.data.docs;
-        //   final count = snapshot.data.docs.length;
-
-        //   return ListView.builder(
-        //     itemCount: count,
-        //     prototypeItem: const ListTile(
-        //       title: Text('UserName'),
-        //       subtitle: Text('Chapter'),
-        //     ),
-        //     itemBuilder: (context, index) {
-        //       return ListTile(
-        //         onTap: () {
-
-        //           Navigator.push(
-        //             context,
-        //             MaterialPageRoute<Widget>(
-        //               builder: (BuildContext context) {
-        //                 return FutureBuilder(
-        //                   future: Future.wait([
-        //                     db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
-        //                   ]),
-        //                   builder: (BuildContext context, snapshot) {
-
-        //                     print('blog status: ${snapshot.data![0]}');
-
-        //                     if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-        //                       return UserSettingsScreen(uid: data[index]['uid'], blogStatus: true,);
-        //                     }
-        //                     return _circularProgress();
-        //                   }
-        //                 );
-        //               }
-        //             ),
-        //           );
-
-        //         },
-        //         leading: CircleAvatar(
-        //           backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-        //           child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
-        //         ),
-        //         title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
-        //         subtitle: Text('${data[index]['chapter']} chapter'),
-        //         trailing: const Icon(Icons.arrow_forward_ios),
-        //       );
-        //     },
-        //   );
-        // }
-        // return _circularProgress();
-
       }
     );
   }
@@ -173,33 +123,24 @@ class _UserlistState extends State<UserlistBody> {
 
 
 class UserSettingsScreen extends StatefulWidget {
-  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus});
+  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus, required this.chatStatus});
   final String uid;
   final bool blogStatus;
+  final bool chatStatus;
+  // final bool chatStatus;
   @override
   State<UserSettingsScreen> createState() => _UserSettingsScreenState();
 }
 
 class _UserSettingsScreenState extends State<UserSettingsScreen> {
+  bool enableBlog = false;
   bool enableChat = false;
 
   @override
   void initState() {
     super.initState();
-    enableChat = widget.blogStatus;
-  }
-
-  Center _circularProgress() {
-    return const Center(
-      child: SizedBox(
-        height: 12, width: 12,
-        child: CircularProgressIndicator(
-          strokeWidth: 4,
-          color: theme.redClr,
-          backgroundColor: theme.greyClr,
-        ),
-      ),
-    );
+    enableBlog = widget.blogStatus;
+    enableChat = widget.chatStatus;
   }
 
   final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
@@ -238,6 +179,29 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
 
               trailing: Switch(
                 thumbIcon: thumbIcon,
+                value: enableBlog,
+                activeColor: theme.mintClr,
+                onChanged: (bool val) {
+                  setState(() {
+                    enableBlog = val;
+
+                    // add or remove NEB rights
+                    if (val) {
+                      db_users.BlogRights(uid: widget.uid).addRights();
+                    }
+                    else if (!val) {
+                      db_users.BlogRights(uid: widget.uid).removeRights();
+                    }
+                  });
+                }
+              ),
+
+            ),
+            ListTile(
+              title: const Text('Give chat rights:'),
+
+              trailing: Switch(
+                thumbIcon: thumbIcon,
                 value: enableChat,
                 activeColor: theme.mintClr,
                 onChanged: (bool val) {
@@ -246,10 +210,10 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
 
                     // add or remove NEB rights
                     if (val) {
-                      db_users.BlogRights(uid: widget.uid).addRights();
+                      db_users.ChatRights(uid: widget.uid).addRights();
                     }
                     else if (!val) {
-                      db_users.BlogRights(uid: widget.uid).removeRights();
+                      db_users.ChatRights(uid: widget.uid).removeRights();
                     }
                   });
                 }

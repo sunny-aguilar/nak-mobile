@@ -187,7 +187,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
+            Text('NEB User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
               onTap: () {},
               title: const Text('Make NEB Member:'),
