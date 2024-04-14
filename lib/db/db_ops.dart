@@ -95,6 +95,14 @@ class GetUsers {
     QuerySnapshot snapshot = await users.get();
     return snapshot;
   }
+
+  Future nebUsers() async {
+    _instance = FirebaseFirestore.instance;
+    CollectionReference users = _instance!.collection('users');
+    final query = users.where('isNEB', isEqualTo: true);
+    QuerySnapshot snapshot = await query.get();
+    return snapshot;
+  }
 }
 
 

@@ -4,8 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseFirestore db = FirebaseFirestore.instance;
 final FirebaseAuth auth = FirebaseAuth.instance;
 
-class UpdateUserPermissions {
-  UpdateUserPermissions({required this.uid});
+class NebRights {
+  NebRights({required this.uid});
   final String uid;
   FirebaseFirestore? _instance;
 
@@ -17,17 +17,24 @@ class UpdateUserPermissions {
     return user.data()?['isNEB'];
   }
 
-  Future<void> isNEB() async {
+  Future<void> addRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'isNEB': true});
   }
 
-  Future<void> notNEB() async {
+  Future<void> removeRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     await userRef.update({'isNEB': false});
   }
+}
+
+
+class AdminRights {
+  AdminRights({required this.uid});
+  final String uid;
+  FirebaseFirestore? _instance;
 
   /* Admin Status * * * * * * * * * * * * * * * * */
   Future<bool> adminStatus() async {
@@ -38,7 +45,7 @@ class UpdateUserPermissions {
     return adminStatus;
   }
 
-  Future<void> isAdmin() async {
+  Future<void> addRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     userRef.update({
@@ -46,13 +53,20 @@ class UpdateUserPermissions {
     });
   }
 
-  Future<void> notAdmin() async {
+  Future<void> removeRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     userRef.update({
       'isAdmin': FieldValue.arrayRemove(['admin'])
     });
   }
+}
+
+
+class SuperAdminRights {
+  SuperAdminRights({required this.uid});
+  final String uid;
+  FirebaseFirestore? _instance;
 
   /* Super Admin Status * * * * * * * * * * * * * */
   Future<bool> superAdminStatus() async {
@@ -63,7 +77,7 @@ class UpdateUserPermissions {
     return superAdminStatus;
   }
 
-  Future<void> isSuperAdmin() async {
+  Future<void> addRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     userRef.update({
@@ -71,12 +85,11 @@ class UpdateUserPermissions {
     });
   }
 
-  Future<void> notSuperAdmin() async {
+  Future<void> removeRights() async {
     _instance = FirebaseFirestore.instance;
     final userRef = _instance!.collection('users').doc(uid);
     userRef.update({
       'isAdmin': FieldValue.arrayRemove(['superAdmin'])
     });
   }
-
 }

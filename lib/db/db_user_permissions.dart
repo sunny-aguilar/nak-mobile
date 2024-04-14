@@ -27,6 +27,7 @@ class BlogRights {
   }
 }
 
+
 class ChatRights {
   ChatRights({required this.uid});
   final String uid;
