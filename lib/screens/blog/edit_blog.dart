@@ -50,7 +50,10 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
             print('snapshot: ${snapshot}');
             print('snapshot.data: ${snapshot.data}');
             print('snapshot data: ${snapshot.data![0]['date']}');
+
             int count = snapshot.data!.length;
+            final blog = snapshot.data!;
+
             return ListView.builder(
               itemCount: count,
               itemBuilder: (context, index) {
