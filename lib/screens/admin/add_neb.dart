@@ -114,7 +114,7 @@ class _UserListBodyState extends State<UserListBody> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: db.GetUsers().nebUsers(),
+      future: db.GetUsers().getAllUsers(),
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData) {
           final data = snapshot.data.docs;

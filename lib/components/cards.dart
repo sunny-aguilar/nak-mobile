@@ -325,18 +325,24 @@ class StoryCardNetwork extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              // trailing: const PopupMenu(),
-              trailing: FutureBuilder(
-                future: db.AuthCheck().isAdmin('admin'),
-                builder: (BuildContext context, snapshot) {
-                  if (!snapshot.hasData) { _circularProgress(); }
-                  else if (snapshot.data == null) { _circularProgress(); }
-                  else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                    return const PopupMenu();
-                  }
-                  return _circularProgress();
-                },
-              ),
+              trailing: const PopupMenu(),
+              // trailing: FutureBuilder(
+              //   future: db.AuthCheck().isAdmin('admin'),
+              //   builder: (BuildContext context, snapshot) {
+              //     if (!snapshot.hasData) { _circularProgress(); }
+              //     else if (snapshot.data == null) { _circularProgress(); }
+              //     else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+              //       bool isAdmin = snapshot.data!;
+              //       if (isAdmin) {
+              //         return const PopupMenu();
+              //       }
+              //       else {
+              //         return const SizedBox.shrink();
+              //       }
+              //     }
+              //     return _circularProgress();
+              //   },
+              // ),
 
 
 
@@ -379,18 +385,23 @@ class PopupMenu extends StatefulWidget {
 class _PopupMenuState extends State<PopupMenu> {
   // SampleItem? selectedItem;
 
-  PopupMenuItem _buildPopupMenuItem(String title, IconData iconData) {
+  PopupMenuItem _buildPopupMenuItem(String title, IconData iconData, String action) {
     return PopupMenuItem(
       onTap: () {
 
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) {
-              return const edit_blog.EditBlogScreen();
-            },
-          )
-        );
+        if (action == 'edit') {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const edit_blog.EditBlogScreen();
+              },
+            )
+          );
+        }
+        else if (action == 'delete') {
+          print('Replace me: delete blog entry');
+        }
 
       },
       child: ListTile(
@@ -407,8 +418,8 @@ class _PopupMenuState extends State<PopupMenu> {
       onSelected: (item) {},
       itemBuilder: (BuildContext context) {
         return <PopupMenuEntry>[
-          _buildPopupMenuItem('Edit', Icons.create_outlined),
-          _buildPopupMenuItem('Delete', Icons.delete_outline),
+          _buildPopupMenuItem('Edit', Icons.create_outlined, 'edit'),
+          _buildPopupMenuItem('Delete', Icons.delete_outline, 'delete'),
         ];
       },
     );
