@@ -20,7 +20,7 @@ import 'package:nak_app/screens/account.dart';
 import 'package:nak_app/screens/uploadphoto_screen.dart';
 import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/screens/blog/preview_blog.dart';
-import 'package:nak_app/screens/blog/blog_list.dart';
+import 'package:nak_app/screens/blog/edit_blog.dart';
 import 'package:nak_app/screens/admin/add_neb.dart';
 import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -67,7 +67,7 @@ class App extends StatelessWidget {
         '/uploadPhoto': (context) => const UploadPhotoScreen(),
         '/newBlog': (context) => const NewBlogScreen(),
         '/previewBlog': (context) => const PreviewBlog(),
-        '/blogList': (context) => const BlogList(),
+        '/editBlog': (context) => const BlogList(),
         '/addNEB': (context) => const AddNebScreen(),
         '/users': (context) => const AllUsers(),
       };
