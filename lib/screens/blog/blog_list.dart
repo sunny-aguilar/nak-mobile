@@ -47,9 +47,6 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
           if (!snapshot.hasData) { return _circularProgress(); }
           else if (snapshot.data == null) { _circularProgress(); }
           else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-            print('snapshot: ${snapshot}');
-            print('snapshot.data: ${snapshot.data}');
-            print('snapshot data: ${snapshot.data![0]['date']}');
 
             int count = snapshot.data!.length;
             final blog = snapshot.data!;
@@ -58,8 +55,10 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
               itemCount: count,
               itemBuilder: (context, index) {
                 return ListTile(
+                  onTap: () {},
                   title: Text(blog[index]['name']),
                   subtitle: Text(blog[index]['title']),
+                  trailing: const Icon(Icons.arrow_forward_ios),
                 );
               },
             );
