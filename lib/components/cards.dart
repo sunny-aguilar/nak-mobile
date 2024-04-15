@@ -6,6 +6,7 @@ import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/screens/blog/edit_blog.dart' as edit_blog;
 
 class RedOutlineCard extends StatelessWidget {
   const RedOutlineCard({super.key});
@@ -386,7 +387,7 @@ class _PopupMenuState extends State<PopupMenu> {
           context,
           MaterialPageRoute(
             builder: (BuildContext context) {
-              return editBlog
+              return const edit_blog.EditBlogScreen();
             },
           )
         );
