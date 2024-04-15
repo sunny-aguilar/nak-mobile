@@ -136,9 +136,7 @@ class _EditBlogState extends State<EditBlog> {
                 Text('Edit Blog', style: theme.TextThemes.headlineMedLarge(context)),
                 const SizedBox(height: 10,),
 
-                // add text input to edit blog here
-                //
-
+                // title text input
                 Text(widget.title),
                 const SizedBox(height: 20,),
                 TextFormField(
@@ -150,6 +148,9 @@ class _EditBlogState extends State<EditBlog> {
                   keyboardType: TextInputType.text,
                 ),
                 const SizedBox(height: 20,),
+
+
+                // body text input
                 TextFormField(
                   maxLines: 16,
                   decoration: const InputDecoration(
@@ -160,6 +161,9 @@ class _EditBlogState extends State<EditBlog> {
                   keyboardType: TextInputType.text,
                 ),
                 const SizedBox(height: 30,),
+
+
+                // form submit button
                 TextButton(
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                   child: const Text('Submit Edits'),
