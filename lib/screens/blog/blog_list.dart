@@ -57,8 +57,9 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
             return ListView.builder(
               itemCount: count,
               itemBuilder: (context, index) {
-                return const ListTile(
-                  title: Text('items'),
+                return ListTile(
+                  title: Text(blog[index]['name']),
+                  subtitle: Text(blog[index]['title']),
                 );
               },
             );
