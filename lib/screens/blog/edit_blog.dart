@@ -59,7 +59,11 @@ class _EditBlogScreenState extends State<BlogList> {
                       context,
                       MaterialPageRoute(
                         builder: (BuildContext context) {
-                          return EditBlog(title: blog[index]['title'], text: blog[index]['body']);
+                          return EditBlog(
+                            title: blog[index]['title'],
+                            text: blog[index]['body'],
+                            docID: blog[index]['docID'],
+                          );
                         }
                       ),
                     );
@@ -82,9 +86,10 @@ class _EditBlogScreenState extends State<BlogList> {
 }
 
 class EditBlog extends StatefulWidget {
-  const EditBlog({super.key, required this.title, required this.text});
+  const EditBlog({super.key, required this.title, required this.text, required this.docID});
   final String title;
   final String text;
+  final String docID;
   @override
   State<EditBlog> createState() => _EditBlogState();
 }
@@ -132,9 +137,13 @@ class _EditBlogState extends State<EditBlog> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
+
+
+                // title
                 const SizedBox(height: 20,),
                 Text('Edit Blog', style: theme.TextThemes.headlineMedLarge(context)),
                 const SizedBox(height: 10,),
+
 
                 // title text input
                 Text(widget.title),
@@ -178,7 +187,25 @@ class _EditBlogState extends State<EditBlog> {
                     // }
                   },
                 ),
+                const SizedBox(height: 10,),
 
+
+                // form submit button
+                TextButton(
+                  style: buttons.buttonStyleRed(context),
+                  child: const Text('Delete Blog'),
+                  onPressed: () {
+                    // submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
+
+                    // if (_formKey.currentState!.validate()) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Submitting report...')),
+                    //   );
+                    //   sendEmail(context, _formData);
+                    // }
+                  },
+                ),
+                 const SizedBox(height: 40,),
 
 
               ],

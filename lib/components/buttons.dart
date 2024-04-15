@@ -221,27 +221,7 @@ TextButton materialButton() {
         ),
       ),
     ),
-    onPressed: () {
-      // store form field data into MAP
-      // _formData['name'] = _nameCtl.text;
-      // _formData['email'] = _emailCtl.text;
-      // _formData['nature'] = _natureCtl.text;
-      // _formData['urgency'] = _urgencyCtl.text;
-      // _formData['date'] = _dateCtl.text;
-      // _formData['location'] = _locationCtl.text;
-      // _formData['desc'] = _descCtl.text;
-      // _formData['uni'] = _uniCtl.text;
-      // _formData['police'] = _policeCtl.text;
-      // _formData['followUp'] = _followUpCtl.text;
-
-      // // send email if validation passes
-      // if (_formKey.currentState!.validate()) {
-      //   ScaffoldMessenger.of(context).showSnackBar(
-      //     const SnackBar(content: Text('Submitting report...')),
-      //   );
-      //   sendEmail(context, _formData);
-      // }
-    },
+    onPressed: () {},
     child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
   );
 }
