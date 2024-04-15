@@ -90,12 +90,13 @@ class BlogDB {
 class Blogs {
   FirebaseFirestore? _instance;
 
-  Future getAllBlogs() async {
+  Future<List> getAllBlogs() async {
     _instance = FirebaseFirestore.instance;
     final blogs = _instance!.collection('blog');
     final query = await blogs.get();
-    print('Query: ${query.docs[0]['date']}');
-    return query;
+    // print('Query.docs: ${query.docs}');
+    // print('Query: ${query.docs[0]['date']}');
+    return query.docs;
   }
 }
 

@@ -39,15 +39,20 @@ class _EditBlogScreenState extends State<EditBlogScreen> {
       ),
       body: FutureBuilder(
         future: db.Blogs().getAllBlogs(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           // print('snapshot data: ${snapshot.data}');
+          // int index = snapshot.data;
+          // print('len: ${index}');
 
           if (!snapshot.hasData) { return _circularProgress(); }
           else if (snapshot.data == null) { _circularProgress(); }
           else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-            print('snapshot data: ${snapshot.data}');
+            print('snapshot: ${snapshot}');
+            print('snapshot.data: ${snapshot.data}');
+            print('snapshot data: ${snapshot.data![0]['date']}');
+            int count = snapshot.data!.length;
             return ListView.builder(
-              itemCount: 2,
+              itemCount: count,
               itemBuilder: (context, index) {
                 return const ListTile(
                   title: Text('items'),
