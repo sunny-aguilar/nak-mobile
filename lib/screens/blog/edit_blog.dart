@@ -90,6 +90,26 @@ class EditBlog extends StatefulWidget {
 }
 
 class _EditBlogState extends State<EditBlog> {
+  final _editBlogFormKey = GlobalKey<FormState>();
+
+  // Controllers
+  TextEditingController _titleCtl = TextEditingController();
+  TextEditingController _bodyCtl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _titleCtl = TextEditingController(text: widget.title);
+    _bodyCtl = TextEditingController(text: widget.text);
+  }
+
+  @override
+  void dispose() {
+    _titleCtl.dispose();
+    _bodyCtl.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,58 +127,58 @@ class _EditBlogState extends State<EditBlog> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal:  8.0,),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(height: 20,),
-              Text('Edit Blog', style: theme.TextThemes.headlineMedLarge(context)),
-              const SizedBox(height: 10,),
+          child: Form(
+            key: _editBlogFormKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(height: 20,),
+                Text('Edit Blog', style: theme.TextThemes.headlineMedLarge(context)),
+                const SizedBox(height: 10,),
 
-              // add text input to edit blog here
-              //
+                // add text input to edit blog here
+                //
 
-              Text(widget.title),
-              const SizedBox(height: 20,),
-              TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Title',
-                  // hintText: widget.title,
-                  helperText: 'edit the title'
+                Text(widget.title),
+                const SizedBox(height: 20,),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Title',
+                    helperText: 'Edit the title'
+                  ),
+                  controller: _titleCtl,
+                  keyboardType: TextInputType.text,
                 ),
-                initialValue: widget.title,
-                keyboardType: TextInputType.text,
-              ),
-              const SizedBox(height: 20,),
-              TextFormField(
-                maxLines: 16,
-                decoration: const InputDecoration(
-                  labelText: 'Blog Text',
-                  // hintText: widget.title,
-                  helperText: 'edit the text body'
+                const SizedBox(height: 20,),
+                TextFormField(
+                  maxLines: 16,
+                  decoration: const InputDecoration(
+                    labelText: 'Blog Text',
+                    helperText: 'Edit the text body'
+                  ),
+                  controller: _bodyCtl,
+                  keyboardType: TextInputType.text,
                 ),
-                initialValue: widget.text,
-                keyboardType: TextInputType.text,
-              ),
-              const SizedBox(height: 30,),
-              TextButton(
-                style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
-                child: const Text('Submit Edits'),
-                onPressed: () {
-                  // submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
+                const SizedBox(height: 30,),
+                TextButton(
+                  style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                  child: const Text('Submit Edits'),
+                  onPressed: () {
+                    // submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
 
-                  // if (_formKey.currentState!.validate()) {
-                  //   ScaffoldMessenger.of(context).showSnackBar(
-                  //     const SnackBar(content: Text('Submitting report...')),
-                  //   );
-                  //   sendEmail(context, _formData);
-                  // }
-                },
-              ),
+                    // if (_formKey.currentState!.validate()) {
+                    //   ScaffoldMessenger.of(context).showSnackBar(
+                    //     const SnackBar(content: Text('Submitting report...')),
+                    //   );
+                    //   sendEmail(context, _formData);
+                    // }
+                  },
+                ),
 
 
 
-
-            ],
+              ],
+            ),
           ),
         ),
       ),
