@@ -56,6 +56,7 @@ class _EditBlogScreenState extends State<BlogList> {
               itemBuilder: (context, index) {
                 return ListTile(
                   onTap: () {},
+                  leading: Text(blog[index]['date']),
                   title: Text(blog[index]['name']),
                   subtitle: Text(blog[index]['title']),
                   trailing: const Icon(Icons.arrow_forward_ios),
