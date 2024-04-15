@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class BlogList extends StatefulWidget {
   const BlogList({super.key});
@@ -40,9 +41,6 @@ class _EditBlogScreenState extends State<BlogList> {
       body: FutureBuilder(
         future: db.Blogs().getAllBlogs(),
         builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
-          // print('snapshot data: ${snapshot.data}');
-          // int index = snapshot.data;
-          // print('len: ${index}');
 
           if (!snapshot.hasData) { return _circularProgress(); }
           else if (snapshot.data == null) { _circularProgress(); }
@@ -75,12 +73,10 @@ class _EditBlogScreenState extends State<BlogList> {
               },
             );
           }
-          // print('snapshot data: ${snapshot.data}');
-          // print('snapshot conn state: ${snapshot.connectionState}');
-          // print('snapshot error: ${snapshot.hasError}');
           return _circularProgress();
         },
       ),
+
     );
   }
 }
@@ -122,9 +118,42 @@ class _EditBlogState extends State<EditBlog> {
               //
 
               Text(widget.title),
-              const SizedBox(height: 10,),
-              Text(widget.text),
-              const SizedBox(height: 40,),
+              const SizedBox(height: 20,),
+              TextFormField(
+                decoration: const InputDecoration(
+                  labelText: 'Title',
+                  // hintText: widget.title,
+                  helperText: 'edit the title'
+                ),
+                initialValue: widget.title,
+                keyboardType: TextInputType.text,
+              ),
+              const SizedBox(height: 20,),
+              TextFormField(
+                maxLines: 16,
+                decoration: const InputDecoration(
+                  labelText: 'Blog Text',
+                  // hintText: widget.title,
+                  helperText: 'edit the text body'
+                ),
+                initialValue: widget.text,
+                keyboardType: TextInputType.text,
+              ),
+              const SizedBox(height: 30,),
+              TextButton(
+                style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                child: const Text('Submit Edits'),
+                onPressed: () {
+                  // submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
+
+                  // if (_formKey.currentState!.validate()) {
+                  //   ScaffoldMessenger.of(context).showSnackBar(
+                  //     const SnackBar(content: Text('Submitting report...')),
+                  //   );
+                  //   sendEmail(context, _formData);
+                  // }
+                },
+              ),
 
 
 
