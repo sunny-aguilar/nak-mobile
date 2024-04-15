@@ -4,13 +4,13 @@ import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/services/theme_service.dart' as service;
 
-class EditBlogScreen extends StatefulWidget {
-  const EditBlogScreen({super.key});
+class BlogList extends StatefulWidget {
+  const BlogList({super.key});
   @override
-  State<EditBlogScreen> createState() => _EditBlogScreenState();
+  State<BlogList> createState() => _EditBlogScreenState();
 }
 
-class _EditBlogScreenState extends State<EditBlogScreen> {
+class _EditBlogScreenState extends State<BlogList> {
 
   Center _circularProgress() {
     return const Center(

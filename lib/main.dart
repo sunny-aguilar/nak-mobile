@@ -67,7 +67,7 @@ class App extends StatelessWidget {
         '/uploadPhoto': (context) => const UploadPhotoScreen(),
         '/newBlog': (context) => const NewBlogScreen(),
         '/previewBlog': (context) => const PreviewBlog(),
-        '/editBlog': (context) => const EditBlogScreen(),
+        '/blogList': (context) => const BlogList(),
         '/addNEB': (context) => const AddNebScreen(),
         '/users': (context) => const AllUsers(),
       };

@@ -394,7 +394,7 @@ class _PopupMenuState extends State<PopupMenu> {
             context,
             MaterialPageRoute(
               builder: (BuildContext context) {
-                return const edit_blog.EditBlogScreen();
+                return const edit_blog.BlogList();
               },
             )
           );
