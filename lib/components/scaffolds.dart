@@ -49,10 +49,10 @@ class SpeedDialButton extends StatelessWidget {
           label: 'Blog'
         ),
         SpeedDialChild(
-          child: const Icon(Icons.security),
-          onTap: () {},
+          child: const Icon(Icons.edit),
+          onTap: () { Navigator.pushNamed(context, '/editBlog'); },
           // backgroundColor: theme.primaryClr,
-          label: 'Admin'
+          label: 'Edit Blogs'
         ),
         SpeedDialChild(
           child: const Icon(Icons.tune),
