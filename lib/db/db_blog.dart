@@ -36,35 +36,62 @@ class GetBlogUserSelfie {
     // get firestore instance
     _instance = FirebaseFirestore.instance;
 
-    // to store user UIDs
-    final List<String> userUidList = [];
-
-    // to store user URLs
-    // final List<String> userSelfieUrlList = [];
-
     // to store Map of UID:URLs
     final Map<String, String> userURL = {};
 
-    // get all blog docs & store UIDs in list
+    // get all blog docs to get userUIDs & use it to get selfie
+    // url from users. Returns a map of uid:selfie.
     await _instance!.collection('blog').get().then(
-      (querySnapshot) {
+      (querySnapshot) async {
         for (var docSnapshot in querySnapshot.docs) {
-          userUidList.add(docSnapshot['userUID']);
+          // userUidList.add(docSnapshot['userUID']);
+          await _instance!.collection('users').doc(docSnapshot['userUID']).get().then(
+            (querySnapshot) {
+              userURL[docSnapshot['userUID']] = '${querySnapshot.data()?['selfie']}';
+            }
+          );
         }
       }
     );
 
-    // get user URLs from blog doc UIDs and store in list
-    for (var uid in userUidList) {
-      await _instance!.collection('users').doc(uid).get().then(
-        (querySnapshot) {
-          // userSelfieUrlList.add(querySnapshot.data()?['selfie']);
-          userURL[uid] = '${querySnapshot.data()?['selfie']}';
-        }
-      );
-    }
-
     // returns a map of UID:url
     return userURL;
   }
+
+  // this is a working but less efficient version of the function above
+  // Future<Map<String, String>> getBlogUserUIDv1() async {
+  //   // get firestore instance
+  //   _instance = FirebaseFirestore.instance;
+
+  //   // to store user UIDs
+  //   final List<String> userUidList = [];
+
+  //   // to store user URLs
+  //   final List<String> userSelfieUrlList = [];
+
+  //   // to store Map of UID:URLs
+  //   final Map<String, String> userURL = {};
+
+  //   // get all blog docs & store UIDs in list
+  //   await _instance!.collection('blog').get().then(
+  //     (querySnapshot) {
+  //       for (var docSnapshot in querySnapshot.docs) {
+  //         userUidList.add(docSnapshot['userUID']);
+  //       }
+  //     }
+  //   );
+
+  //   // get user URLs from blog doc UIDs and store in list
+  //   for (var uid in userUidList) {
+  //     await _instance!.collection('users').doc(uid).get().then(
+  //       (querySnapshot) {
+  //         userSelfieUrlList.add(querySnapshot.data()?['selfie']);
+  //         userURL[uid] = '${querySnapshot.data()?['selfie']}';
+  //       }
+  //     );
+  //   }
+
+  //   // returns a map of UID:url
+  //   return userURL;
+  // }
 }

@@ -5,73 +5,8 @@ import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/neb_screen.dart';
-import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/screens/blog/edit_blog.dart' as edit_blog;
 
-class RedOutlineCard extends StatelessWidget {
-  const RedOutlineCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      // color: const Color.fromARGB(175, 196, 18, 48),
-      shape: RoundedRectangleBorder(
-        side: const BorderSide(
-          color: Color.fromARGB(175, 254, 58, 67), width: 3,
-        ),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: <Widget>[
-          ListTile(
-            leading: const Icon(
-              Icons.stacked_bar_chart,
-              color: Color.fromARGB(175, 196, 18, 48),
-            ),
-            title: RichText(
-              text: const TextSpan(
-                // style: DefaultTextStyle.of(context).style,
-                children: <TextSpan>[
-                  TextSpan(
-                    text: 'Red Outline Card',
-                    style: TextStyle(
-                      color: Color.fromARGB(175, 196, 18, 48),
-                      fontSize: 20,
-                      fontFamily: 'HelveticaNeue',
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            subtitle: const Text(
-              'Read the latest state of the fraternity union.',
-              style: TextStyle(
-                color: Color.fromARGB(175, 196, 18, 48),
-                fontSize: 14,
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              TextButton(
-                onPressed: () => {},
-                child: const Text(
-                  'KEEP READING',
-                  style: TextStyle(
-                    color: Color.fromARGB(175, 196, 18, 48),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class LargeGreyPictureCard extends StatelessWidget {
   final String userImage;
@@ -221,17 +156,6 @@ class StoryCardNetwork extends StatelessWidget {
     required this.storyText,
   });
 
-  Center _circularProgress() {
-    return const Center(
-      child: SizedBox(
-        height: 25, width: 25,
-        child: CircularProgressIndicator(
-          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     // dropdown variables
@@ -325,7 +249,7 @@ class StoryCardNetwork extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              trailing: const PopupMenu(),
+              // trailing: const PopupMenu(),
               // trailing: FutureBuilder(
               //   future: db.AuthCheck().isAdmin('admin'),
               //   builder: (BuildContext context, snapshot) {
@@ -427,135 +351,6 @@ class _PopupMenuState extends State<PopupMenu> {
 }
 
 
-class LightGrayCard extends StatelessWidget {
-  const LightGrayCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Card(
-      elevation: 1,
-      // color: Color.fromARGB(255, 243, 243, 243),
-      shadowColor: Color.fromARGB(100, 0, 0, 0),
-      child: ListTile(
-        leading: Icon(
-          Icons.message_outlined,
-          color: Color.fromARGB(255, 254, 58, 67),
-        ),
-        title: Text(
-          'Light Gray Card',
-          style: TextStyle(
-            color: Color.fromARGB(255, 28, 28, 28),
-          ),
-        ),
-        subtitle: Text(
-          'Come read about the state of the fraternity.',
-          style: TextStyle(
-            color: Color.fromARGB(255, 28, 28, 28),
-          ),
-        ),
-        trailing: Icon(
-          Icons.arrow_forward_ios_outlined,
-          color: Color.fromARGB(255, 11, 0, 34),
-        ),
-      ),
-    );
-  }
-}
-
-class MiniCard extends StatelessWidget {
-  const MiniCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 210,
-      height: 180,
-      padding: const EdgeInsets.all(2),
-      decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 255, 255, 255),
-        // color: const Color.fromARGB(255, 235, 181, 248),
-        borderRadius: BorderRadius.circular(4),
-        border: Border.all(
-          width: 1,
-          color: const Color.fromARGB(255, 223, 223, 223)
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            spreadRadius: 1,
-            blurRadius: 2,
-            offset: const Offset(0.8, 1),
-          ),
-        ],
-      ),
-      child: Center(
-        child: Container(
-          width: 180,
-          height: 160,
-          color: const Color.fromARGB(255, 235, 181, 248),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              FittedBox(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Center(
-                    child: Image.asset(
-                      'assets/img/image_wireframe2.png',
-                      height: 90,
-                      color: const Color.fromARGB(255, 213, 109, 235),
-                      colorBlendMode: BlendMode.modulate,
-                    ),
-                  ),
-                ),
-              ),
-              Text(
-                'Headline',
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                ),
-              ),
-              Text(
-                'Here is a card description',
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                  color: Theme.of(context).colorScheme.onPrimary,
-                )
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class GridCards extends StatelessWidget {
-  const GridCards({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      children: <Widget>[
-        Row(
-          children: <Widget>[
-            MiniCard(),
-            Spacer(),
-            MiniCard(),
-          ],
-        ),
-        SizedBox(height: 12,),
-        Row(
-          children: <Widget>[
-            MiniCard(),
-            Spacer(),
-            MiniCard(),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 Card chapterCard({required BuildContext context, required int index, required List chapters}) {
   var cardImage = 'assets/img/chapters/$index.png';
   var heading = '${chapters[index]["name"]}';
@@ -634,22 +429,7 @@ Card duesCard({required BuildContext context, required int index, required List 
               child: ColorFiltered(
                 colorFilter: const ColorFilter.mode(
                 Colors.grey,
-                  // BlendMode.modulate,
-                  // BlendMode.screen,
                   BlendMode.overlay,
-                  // BlendMode.darken,
-                  // BlendMode.lighten,
-                  // BlendMode.colorDodge,
-                  // BlendMode.colorBurn,
-                  // BlendMode.hardLight,
-                  // BlendMode.softLight,
-                  // BlendMode.difference,
-                  // BlendMode.exclusion,
-                  // BlendMode.multiply,
-                  // BlendMode.hue,
-                  // BlendMode.saturation,
-                  // BlendMode.color,
-                  // BlendMode.luminosity,
                 ),
                 child: Image.asset(
                   cardImage,
@@ -754,38 +534,6 @@ Card duesCard({required BuildContext context, required int index, required List 
   );
  }
 
-class RevampedCard extends StatelessWidget {
-  const RevampedCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card.filled(
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 220,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 73, 91, 120)
-            ),
-            child: const Text('TOP CONTAINER'),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: 210,
-            decoration: const BoxDecoration(
-              color: Color.fromARGB(255, 22, 22, 30),
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)
-              ),
-            ),
-            child: const Text('BOTTOM CONTAINER'),
-          ),
-        ],
-      ),
-    );
-  }
-}
 
 class NotificationCard extends StatelessWidget {
   const NotificationCard({super.key});

@@ -15,6 +15,7 @@ class ChapterScreen extends StatefulWidget {
 class _ChapterScreensState extends State<ChapterScreen> {
   List _chapters = [];
   late Future<String> _download;
+
   Future<String> _readJson() async{
     // json loaded externally from G drive, developer@nakinc.org
     String url = 'https://drive.google.com/uc?export=view&id=1TO7ucgL_lg_ipfW8KUniRzevlRU3vd5F';
@@ -32,10 +33,20 @@ class _ChapterScreensState extends State<ChapterScreen> {
     // final data = await json.decode(response);
     // setState( () => _chapters = data['chapters'] );
   }
+
   @override
   void initState() {
     super.initState();
     _download = _readJson();
+  }
+
+  Center _circularProgress() {
+    return Center(
+      child: SizedBox(
+        height: 60, width: 60,
+        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      ),
+    );
   }
 
   @override
@@ -57,13 +68,15 @@ class _ChapterScreensState extends State<ChapterScreen> {
                   backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
                 ),
                 body: Center(
-                  child: Text('An error occurred fetching chapter data. \nError: ${snapshot.error} occurred.', textAlign: TextAlign.center,),
+                  child: Text(
+                    'An error occurred fetching chapter data. \nError: ${snapshot.error} occurred.',
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               );
             }
             // view if data is fetched and no errors occurred
             else if (snapshot.hasData) {
-              _download.then( (val) => print('_download: $val') );
               return CustomScrollView(
                 slivers: <Widget>[
                   SliverAppBar(
@@ -100,13 +113,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
                 title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
                 backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
               ),
-              body: Center(
-                child: SizedBox(
-                  height: 60,
-                  width: 60,
-                  child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
-                ),
-              ),
+              body: _circularProgress(),
             );
           }
 
@@ -116,13 +123,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
               title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
               backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
             ),
-            body: Center(
-              child: SizedBox(
-                height: 60,
-                width: 60,
-                child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
-              ),
-            ),
+            body: _circularProgress(),
           );
         }
 
