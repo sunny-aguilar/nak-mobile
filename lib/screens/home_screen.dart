@@ -6,6 +6,7 @@ import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
+import 'package:nak_app/screens/chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,6 +16,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Future<String> isAdmin = db.AuthCheck().isAdminOrSuperAdmin('superAdmin');
+
+  int index = 0;
+
+  void updateIndex(val) {
+    setState(() {
+      index = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +44,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       drawer: const drawer.DrawerComponent(),
-      body: const featured.HomeScreenChildren(),
-      bottomNavigationBar: const nav.BottomNavBar(),
+
+      body: <Widget>[
+        // bottom nav screens
+        const featured.HomeScreenChildren(),
+        const ChatScreen()
+      ][index],
+
+      bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
       floatingActionButton: FutureBuilder<String>(
         future: isAdmin,
         builder: (context, AsyncSnapshot<String> snapshot) {
