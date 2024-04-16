@@ -3,7 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:nak_app/components/carousel.dart' as carousel;
 import 'package:nak_app/components/cards.dart' as cards;
 import 'package:nak_app/ui/theme.dart' as theme;
-// import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/db/db_blog.dart' as db_blog;
 
 /* This widget adds the featured stories in the home page */

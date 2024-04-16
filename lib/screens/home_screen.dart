@@ -5,6 +5,7 @@ import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
+import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,6 +24,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
+          // const Icon(Icons.message_outlined),
+          // const SizedBox(width: 10,),
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {
@@ -33,6 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       drawer: const drawer.DrawerComponent(),
       body: const featured.HomeScreenChildren(),
+      bottomNavigationBar: const nav.BottomNavBar(),
       floatingActionButton: FutureBuilder<String>(
         future: isAdmin,
         builder: (context, AsyncSnapshot<String> snapshot) {

@@ -74,12 +74,11 @@ class App extends StatelessWidget {
 
     return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      // initialRoute: "/",
       routes: routes,
       home: const SplashScreen(),
       theme: theme.CustomTheme.lightThemeData(context),     // theme: is the primary default theme
       darkTheme: theme.CustomTheme.darkThemeData(context),  // darkTheme: primary default dark theme
-      /// themeMode: changes the default theme settings (light, dark)
+      // themeMode: changes the default theme settings (light, dark)
       themeMode: service.ThemeService().theme,
     );
   }
