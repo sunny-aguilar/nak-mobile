@@ -454,7 +454,18 @@ class _ContactFormState extends State<ContactScreen> {
                     style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                     child: const Text('Submit'),
                     onPressed: () {
-                      submitForm(_formData, _nameCtl.text, _emailCtl.text, _natureCtl.text, _urgencyCtl.text, _dateCtl.text, _locationCtl.text, _descCtl.text, _uniCtl.text, _policeCtl.text, _followUpCtl.text);
+                      submitForm(_formData,
+                      _nameCtl.text,
+                      _emailCtl.text,
+                      _natureCtl.text,
+                      _urgencyCtl.text,
+                      _dateCtl.text,
+                      _locationCtl.text,
+                      _descCtl.text,
+                      _uniCtl.text,
+                      _policeCtl.text,
+                      _followUpCtl.text
+                      );
 
                       if (_formKey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
