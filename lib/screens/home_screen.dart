@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: <Widget>[
         // bottom nav screens
         const featured.HomeScreenChildren(),
-        const ChatScreen()
+        ChatScreen(context: context)
       ][index],
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
