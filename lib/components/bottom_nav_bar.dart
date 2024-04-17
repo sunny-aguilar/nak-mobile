@@ -6,7 +6,7 @@ class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key, required this.index, required this.updateIndex});
   final int index;
   final Function updateIndex;
-  // int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
@@ -15,7 +15,6 @@ class BottomNavBar extends StatelessWidget {
       },
       indicatorColor: Get.isDarkMode ? theme.carbonClr : theme.primaryClr,
       backgroundColor: Get.isDarkMode ? theme.carbonClr : theme.primaryClr,
-      shadowColor: theme.carbonClr,
       height: 75.0,
       indicatorShape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(4.0),
@@ -24,7 +23,6 @@ class BottomNavBar extends StatelessWidget {
           color: theme.redClr,
         )
       ),
-      elevation: 4.0,
       selectedIndex: index,
       destinations: <Widget>[
         NavigationDestination(

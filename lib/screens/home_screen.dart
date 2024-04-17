@@ -17,8 +17,10 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   Future<String> isAdmin = db.AuthCheck().isAdminOrSuperAdmin('superAdmin');
 
+  // index to track which nav page to show
   int index = 0;
 
+  // lift state up from botton nav class
   void updateIndex(val) {
     setState(() {
       index = val;
@@ -43,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+
       drawer: const drawer.DrawerComponent(),
 
       body: <Widget>[
@@ -52,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ][index],
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
+
       floatingActionButton: FutureBuilder<String>(
         future: isAdmin,
         builder: (context, AsyncSnapshot<String> snapshot) {

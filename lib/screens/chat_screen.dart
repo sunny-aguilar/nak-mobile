@@ -23,7 +23,6 @@ class _ChatScreenState extends State<ChatScreen> {
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
               child: Text('GC', style: theme.TextThemes.headlineSmall(context)),
             ),
-            // TODO
             title: const Text('General Chat'),
             subtitle: const Text('Talk about anything and everything'),
             trailing: const Icon(Icons.arrow_forward_ios),
