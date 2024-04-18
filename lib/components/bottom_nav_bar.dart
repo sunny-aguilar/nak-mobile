@@ -18,9 +18,9 @@ class BottomNavBar extends StatelessWidget {
       height: 75.0,
       indicatorShape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(4.0),
-        side: const BorderSide(
-          width: 3.0,
-          color: theme.redClr,
+        side: BorderSide(
+          width: 2.0,
+          color: Get.isDarkMode ? theme.primaryClr : theme.redClr,
         )
       ),
       selectedIndex: index,

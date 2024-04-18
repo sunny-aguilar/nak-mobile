@@ -17,7 +17,12 @@ class _ChatScreenState extends State<ChatScreen> {
       body: ListView(
         children: <Widget>[
           ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(
+                context,
+                '/gchat'
+              );
+            },
             leading: CircleAvatar(
               foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
