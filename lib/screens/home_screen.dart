@@ -5,7 +5,7 @@ import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
-import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
+// import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
