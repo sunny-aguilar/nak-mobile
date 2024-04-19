@@ -119,7 +119,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               onTap: () => Navigator.pushNamed(context, '/account'),
             ),
             ListTile(
-              leading: const Icon(Icons.code),
+              leading: const FaIcon(FontAwesomeIcons.codeBranch, size: 20.0,),
               title: Text('App Version', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/version'),
             ),
