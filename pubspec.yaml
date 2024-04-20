@@ -118,3 +118,6 @@ flutter:
     - family: "Bebas"
       fonts:
         - asset: assets/fonts/BebasNeue-Regular.ttf
+    - family: "SpaceMono"
+      fonts:
+        - asset: assets/fonts/SpaceMono-Regular.ttf
