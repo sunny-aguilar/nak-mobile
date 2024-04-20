@@ -14,6 +14,10 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 - User roles
 - Role dependent features
 
+## User Registration
+- Any user will be able to register, for now.
+- Once enough interest is generated via the app, user registration will be limited to the @nakinc.org domain.
+
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:
 - firebase login (login)
