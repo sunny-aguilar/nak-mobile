@@ -493,10 +493,10 @@ class TextThemes{
   }
 
   static TextStyle versionSlogan(BuildContext context) {
-    return const TextStyle(
+    return TextStyle(
       fontFamily: 'Lato',
+      color: Get.isDarkMode ? primaryClr : darkGreyClr,
       fontSize: 24,
-      color: darkGreyClr,
     );
   }
 
