@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _passwordCtr.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
+      print('some error');
       if (mounted) {
         if (e.code == 'wrong-password') {
           ScaffoldMessenger.of(context).showSnackBar(
