@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/create_id_number.dart' as id;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -424,9 +423,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
-                    bool isValid = EmailValidator.validate(value!);
-                    if (!isValid) {
-                      return 'Enter a valid email.';
+                    final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
+                    if (!emailValid) {
+                      return 'Enter a valid @nakinc.org email.';
                     }
                     return null;
                   },
