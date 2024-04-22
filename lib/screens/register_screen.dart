@@ -179,11 +179,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 75,),
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
-              Text('Sign up below with your details', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
+              Text('Register with your @nakinc.org email', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
               const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Members of the community will also be able to access and learn more about Nu Alpha Kappa Fraternity, Inc. Our App Privacy Policy can be found in the link below.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
+                child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Our App Privacy Policy can be found in the link below.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
               ),
               TextButton(
                 onPressed: () async {
