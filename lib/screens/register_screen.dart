@@ -179,6 +179,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
               Text('Register with your @nakinc.org email', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
+              TextButton(
+                onPressed: () async {
+                Future<void> launchUrlStart({required String url}) async {
+                  if (!await launchUrl(Uri.parse(url))) {
+                    throw 'Could not launch $url';
+                  }
+                }
+                launchUrlStart(url: 'https://naknet.org/newnakincaddress/');
+              },
+                child: Text('Request a @nakinc.org email',
+                style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
+              ),
               const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),

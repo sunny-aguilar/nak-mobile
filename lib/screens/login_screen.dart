@@ -182,12 +182,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Not a member?', style: theme.TextThemes.loginBody(context),),
+                  Text('Not registered?', style: theme.TextThemes.loginBody(context),),
                   const SizedBox(width: 6,),
                   // Add a gesture detector to text to get to registration screen
                   GestureDetector(
                     onTap: widget.showRegisterPage,
-                    child: Text('Register now', style: theme.TextThemes.linkBody(context),),
+                    child: Text('Register now.', style: theme.TextThemes.linkBody(context),),
                   ),
                 ],
               ),
