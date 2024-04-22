@@ -47,7 +47,7 @@ class VersionScreen extends StatelessWidget {
               Text('KAPPA', style: theme.TextThemes.versionHeadline(context),),
               Text('FRATERNITY', style: theme.TextThemes.versionHeadline(context),),
               const SizedBox(height: 16,),
-              Text('Mind.Culture.Pride', style: theme.TextThemes.versionSlogan(context),),
+              Text('Mind.Culture.Pride.', style: theme.TextThemes.versionSlogan(context),),
               const SizedBox(height: 26,),
               Text('Created by: Sandro Aguilar, ID #33', style: theme.TextThemes.versionDesign(context),),
             ],
