@@ -109,7 +109,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               onTap: () => Navigator.pushNamed(context, '/id'),
             ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(Icons.badge),
               title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/profile'),
             ),
