@@ -442,6 +442,7 @@ Card duesCard({required BuildContext context, required int index, required List 
   var heading = board.position;
   var subheading = board.name;
   var supportingText = board.email;
+  print('Image: ${board.image}');
 
   return Card(
     color: Theme.of(context).primaryColor,
