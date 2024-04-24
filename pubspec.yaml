@@ -15,7 +15,7 @@ publish_to: 'none'
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
 # Example: flutter build appbundle --build-name=0.1.8+2 --build-number=2
-version: 0.1.14
+version: 0.1.15
 
 environment:
   sdk: '>=3.2.6 <4.0.0'
