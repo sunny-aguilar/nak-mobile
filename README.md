@@ -26,6 +26,7 @@ Types of permissions:
 - super admin
 - NEB member
 - Developer
+
 Permission rights:
 - admin: create blogs
 - super admin: create, edit, delete blogs
