@@ -437,12 +437,15 @@ Card duesCard({required BuildContext context, required int index, required List 
     );
  }
 
- Card boardCard({required BuildContext context, required int index, required Boardmember board}) {
+
+// Board member cards displayed in the 'National Board' menu
+// NEB data is populated by a JSON file saved on the developer Google drive
+// NEB images are stored in the project assets folder
+Card boardCard({required BuildContext context, required int index, required Boardmember board}) {
   var cardImage = board.image;
   var heading = board.position;
   var subheading = board.name;
   var supportingText = board.email;
-  print('Image: ${board.image}');
 
   return Card(
     color: Theme.of(context).primaryColor,
@@ -461,6 +464,8 @@ Card duesCard({required BuildContext context, required int index, required List 
             ),
           ),
         ),
+
+        // NEB user info
         ListTile(
           contentPadding: const EdgeInsets.all(8.0),
           minVerticalPadding: 0,
