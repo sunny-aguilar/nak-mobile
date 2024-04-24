@@ -20,7 +20,12 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 - Alumni and or inactive brothers will pay full price.
 
 ## User Permissions
-- The app distinguishes users based on their permissions. When a user registers, they are assigned basic rights. 
+The app distinguishes users based on their permissions. When a user registers, they are assigned basic rights.
+Types of permissions:
+- admin
+- super admin
+- NEB member
+- Developer member
 
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:
