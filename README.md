@@ -29,7 +29,15 @@ Types of permissions:
 
 Permission rights:
 - admin: create blogs
-- super admin: create, edit, delete blogs
+- super admin: create/edit/delete blogs
+- NEB member:
+- Developer: create/edit/delete blogs, add NEB members
+
+Other rights being considered:
+- Chat rights
+- Undergard blog rights
+
+This area is under developement. The right balance of user rights is being determined and is subject to change quickly.
 
 
 ## Firebase Notes
