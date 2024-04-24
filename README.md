@@ -26,6 +26,10 @@ Types of permissions:
 - super admin
 - NEB member
 - Developer
+Permission rights:
+- admin: create blogs
+- super admin: create, edit, delete blogs
+
 
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:
