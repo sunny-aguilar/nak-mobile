@@ -178,13 +178,6 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        // data['selfie'] != null ?
-                        // Image.network(
-                        //   data['selfie'],
-                        //   fit: BoxFit.cover,
-                        //   height: 200,
-                        // ) :
-                        // Image.asset(_image),
                         FutureBuilder(
                           future: http.get(Uri.parse(data['selfie'])),
                           builder: (BuildContext context, AsyncSnapshot<http.Response> snapshot) {

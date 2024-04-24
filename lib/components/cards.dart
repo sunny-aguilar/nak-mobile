@@ -249,33 +249,6 @@ class StoryCardNetwork extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              // trailing: const PopupMenu(),
-              // trailing: FutureBuilder(
-              //   future: db.AuthCheck().isAdmin('admin'),
-              //   builder: (BuildContext context, snapshot) {
-              //     if (!snapshot.hasData) { _circularProgress(); }
-              //     else if (snapshot.data == null) { _circularProgress(); }
-              //     else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-              //       bool isAdmin = snapshot.data!;
-              //       if (isAdmin) {
-              //         return const PopupMenu();
-              //       }
-              //       else {
-              //         return const SizedBox.shrink();
-              //       }
-              //     }
-              //     return _circularProgress();
-              //   },
-              // ),
-
-
-
-              // trailing: IconButton(
-              //   icon: const Icon(Icons.more_vert,),
-              //   onPressed: () {
-              //     // modal was previously here
-              //   },
-              // ),
             ),
             SizedBox(
               height: 200,
