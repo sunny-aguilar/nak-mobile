@@ -251,6 +251,13 @@ class TextThemes{
     );
   }
 
+  static TextStyle drawerSignInTxt(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 14,
+    );
+  }
+
   static TextStyle chapterCardTitle(BuildContext context) {
     return TextStyle(
       color: Get.isDarkMode ? primaryClr : darkGreyClr,

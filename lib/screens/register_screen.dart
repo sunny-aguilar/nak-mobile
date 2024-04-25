@@ -45,12 +45,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // create user
   Future signUp() async {
     if (passwordConfirmed()) {
-      // create user
       try {
+        // create user
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailCtrl.text.trim(),
           password: _passwordCtrl.text.trim(),
         );
+
+        // send confirmation email to user
+        FirebaseAuth.instance
+          .authStateChanges()
+          .listen((User? user) async {
+            if (user != null) {
+              final user = FirebaseAuth.instance.currentUser!;
+              await user.sendEmailVerification();
+            }
+          });
+
+        // show message indicating account creation status
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -59,6 +71,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           );
         }
+
+        // add users details to user profile
+        FirebaseAuth.instance
+          .authStateChanges()
+          .listen((User? user) async {
+            if (user != null) {
+              final user = FirebaseAuth.instance.currentUser!;
+              await user.updateDisplayName('${_firstNameCtrl.text.trim()} ${_lastNameCtrl.text.trim()}');
+            }
+          });
 
         // add user details to firebase
         addUserDetails(
@@ -114,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future addUserDetails(String firstName, String lastName, String chapter, String className, String lineNumber, String email, String status) async {
-    // to write to DB, you must chage rules
+    // to write to DB, you must change rules
     // to this: allow read, write: if request.auth != null;
     // from this (this rule locks Firestore): allow read, write: if false;
 
