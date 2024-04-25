@@ -61,19 +61,6 @@ class _AuthCheckState extends State<AuthCheck> {
             }
           }
           return _circularProgress();
-
-          // prior Auth logic
-          // if (snapshot.hasData) {
-          //   return const HomeScreen();
-          // }
-          // else {
-          //   if (showLoginPage) {
-          //     return LoginScreen(showRegisterPage: toggleScreens);
-          //   }
-          //   else {
-          //     return RegisterScreen(showLoginScreen: toggleScreens);
-          //   }
-          // }
         },
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
@@ -15,7 +16,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   late Timer _timer;
 
   void setTimerForRedirect() {
-    _timer = Timer.periodic(const Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 2500), (timer) {
       print(timer.tick);
       FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
@@ -24,6 +25,17 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
         Navigator.of(context).pushNamed('/auth');
       }
     });
+  }
+
+  void _resendEmailVerification() {
+    FirebaseAuth.instance
+      .authStateChanges()
+      .listen((User? user) async {
+        if (user != null) {
+          final user = FirebaseAuth.instance.currentUser!;
+          await user.sendEmailVerification();
+        }
+      });
   }
 
   @override
@@ -42,14 +54,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               const SizedBox(height: 100,),
-              const Icon(Icons.drafts, size: 75,),
+              const Icon(Icons.drafts_outlined, size: 115,),
               const SizedBox(height: 40,),
               Text('Verify your email address', style: theme.TextThemes.headlineMedLarge(context),),
               const SizedBox(height: 25,),
               Text('We have just sent you an email verification link. Please check your email and click on that link to verify your email address.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
               const SizedBox(height: 20,),
               Text('If you are not auto redirected after verification, click on the Continue button.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
-              const SizedBox(height: 20,),
+              const SizedBox(height: 40,),
               TextButton(
                 onPressed: () {
                   setTimerForRedirect();
@@ -57,10 +69,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                 child: Text('Continue', style: theme.TextThemes.bodyLarge(context),),
               ),
-              const SizedBox(height: 20,),
-              Text('Resend E-Mail Link'),
-              const SizedBox(height: 20,),
-              Text('<- back to login'),
+              const SizedBox(height: 40,),
+              GestureDetector(
+                onTap: () {
+                  _resendEmailVerification();
+                },
+                child: Text('Resend E-Mail Link', style: theme.TextThemes.linkBody(context),),
+              ),
+              const SizedBox(height: 34,),
             ],
           ),
         ),
