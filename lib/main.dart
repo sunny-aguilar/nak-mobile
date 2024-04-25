@@ -27,6 +27,7 @@ import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
+/// Version 0.1.15
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
