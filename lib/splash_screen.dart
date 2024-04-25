@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nak_app/components/auth_check.dart';
-import 'package:nak_app/screens/email_verification_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 class SplashScreen extends StatefulWidget {
@@ -21,7 +20,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
       Navigator.of(context).pushReplacement(MaterialPageRoute(
         // check if user is logged in
         builder: (_) => const AuthCheck(),
-        // builder: (_) => const EmailVerificationScreen(),
       ));
     });
   }

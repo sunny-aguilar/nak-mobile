@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
@@ -17,7 +16,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   void setTimerForRedirect() {
     _timer = Timer.periodic(const Duration(milliseconds: 2500), (timer) {
-      print(timer.tick);
+      // print(timer.tick);
       FirebaseAuth.instance.currentUser?.reload();
       final user = FirebaseAuth.instance.currentUser;
       if (user!.emailVerified) {
