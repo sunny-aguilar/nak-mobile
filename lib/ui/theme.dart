@@ -454,6 +454,12 @@ class TextThemes{
     );
   }
 
+  static TextStyle bodyLarge24(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 24,
+    );
+  }
+
   static TextStyle bodyLarge(BuildContext contex) {
     return const TextStyle(
       fontSize: 18,
