@@ -27,10 +27,6 @@ class _NationalBoardState extends State<NationalBoard> {
     }
     _count = _board.length;
     return 'Data downloaded';
-    // loading board members from local JSON file
-    // final String response = await rootBundle.loadString('assets/json/board_members.json');
-    // final data = await json.decode(response);
-    // setState( () => _board = parsedJson );
   }
   @override
   void initState() {

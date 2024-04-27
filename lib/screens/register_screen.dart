@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/create_id_number.dart' as id;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -46,12 +45,24 @@ class _RegisterScreenState extends State<RegisterScreen> {
   // create user
   Future signUp() async {
     if (passwordConfirmed()) {
-      // create user
       try {
+        // create user
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _emailCtrl.text.trim(),
           password: _passwordCtrl.text.trim(),
         );
+
+        // send confirmation email to user
+        FirebaseAuth.instance
+          .authStateChanges()
+          .listen((User? user) async {
+            if (user != null) {
+              final user = FirebaseAuth.instance.currentUser!;
+              await user.sendEmailVerification();
+            }
+          });
+
+        // show message indicating account creation status
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -60,6 +71,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           );
         }
+
+        // add users details to user profile
+        FirebaseAuth.instance
+          .authStateChanges()
+          .listen((User? user) async {
+            if (user != null) {
+              final user = FirebaseAuth.instance.currentUser!;
+              await user.updateDisplayName('${_firstNameCtrl.text.trim()} ${_lastNameCtrl.text.trim()}');
+            }
+          });
 
         // add user details to firebase
         addUserDetails(
@@ -115,7 +136,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 
   Future addUserDetails(String firstName, String lastName, String chapter, String className, String lineNumber, String email, String status) async {
-    // to write to DB, you must chage rules
+    // to write to DB, you must change rules
     // to this: allow read, write: if request.auth != null;
     // from this (this rule locks Firestore): allow read, write: if false;
 
@@ -179,12 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const SizedBox(height: 75,),
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
-              Text('Sign up below with your details', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
-              const SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Members of the community will also be able to access and learn more about Nu Alpha Kappa Fraternity, Inc. Our App Privacy Policy can be found in the link below.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
-              ),
+              Text('Register with your @nakinc.org email', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
               TextButton(
                 onPressed: () async {
                 Future<void> launchUrlStart({required String url}) async {
@@ -192,12 +208,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     throw 'Could not launch $url';
                   }
                 }
-                launchUrlStart(url: 'https://www.naknet.org/nak-app-privacy-policy/');
+                launchUrlStart(url: 'https://naknet.org/newnakincaddress/');
               },
-                child: Text('NAK App Privacy Policy',
+                child: Text('Request a @nakinc.org email',
                 style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
               ),
-              const SizedBox(height: 25,),
+              const SizedBox(height: 10,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Our App Privacy Policy can be found at the bottom.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
+              ),
+              const SizedBox(height: 30,),
 
               // first name textfield
               Padding(
@@ -424,9 +445,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
-                    bool isValid = EmailValidator.validate(value!);
-                    if (!isValid) {
-                      return 'Enter a valid email.';
+                    final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
+                    if (!emailValid) {
+                      return 'Enter a valid @nakinc.org email.';
                     }
                     return null;
                   },
@@ -518,6 +539,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: Text('Login now', style: theme.TextThemes.linkBody(context),),
                   ),
                 ],
+              ),
+              const SizedBox(height: 10.0,),
+              TextButton(
+                onPressed: () async {
+                Future<void> launchUrlStart({required String url}) async {
+                  if (!await launchUrl(Uri.parse(url))) {
+                    throw 'Could not launch $url';
+                  }
+                }
+                launchUrlStart(url: 'https://www.naknet.org/nak-app-privacy-policy/');
+              },
+                child: Text('App Privacy Policy',
+                style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
               ),
               const SizedBox(height: 45,),
 

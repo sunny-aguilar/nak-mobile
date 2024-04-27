@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:email_validator/email_validator.dart';
 import 'package:nak_app/components/buttons.dart' as buttons;
 
 
@@ -90,9 +89,9 @@ class _ForgotPwScreenState extends State<ForgotPwScreen> {
                     controller: _emailCtrl,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
-                      bool isValid = EmailValidator.validate(value!);
-                      if (!isValid) {
-                        return 'Enter a valid email.';
+                      final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
+                      if (!emailValid) {
+                        return 'Enter a valid @nakinc.org email.';
                       }
                       return null;
                     },

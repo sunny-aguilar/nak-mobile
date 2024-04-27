@@ -43,6 +43,7 @@ class _LoginScreenState extends State<LoginScreen> {
         password: _passwordCtr.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
+      print('some error');
       if (mounted) {
         if (e.code == 'wrong-password') {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -181,12 +182,12 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('Not a member?', style: theme.TextThemes.loginBody(context),),
+                  Text('Not registered?', style: theme.TextThemes.loginBody(context),),
                   const SizedBox(width: 6,),
                   // Add a gesture detector to text to get to registration screen
                   GestureDetector(
                     onTap: widget.showRegisterPage,
-                    child: Text('Register now', style: theme.TextThemes.linkBody(context),),
+                    child: Text('Register now.', style: theme.TextThemes.linkBody(context),),
                   ),
                 ],
               ),

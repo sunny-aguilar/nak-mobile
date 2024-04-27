@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/login_screen.dart';
 import 'package:nak_app/screens/register_screen.dart';
+import 'package:nak_app/screens/email_verification_screen.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 // this widget checks to see if a user is logged in. If logged in, they are
 // redirected to the home page. If not logged in, redirected to the login page.
@@ -22,23 +24,43 @@ class _AuthCheckState extends State<AuthCheck> {
     });
   }
 
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 75, width: 75,
+        child: CircularProgressIndicator(
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder<User?>(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const HomeScreen();
-          }
-          else {
-            if (showLoginPage) {
-              return LoginScreen(showRegisterPage: toggleScreens);
+          if (snapshot.connectionState == ConnectionState.active) {
+            User? user = snapshot.data;
+            if (user == null) {
+              if (showLoginPage) {
+                return LoginScreen(showRegisterPage: toggleScreens);
+              }
+              else {
+                return RegisterScreen(showLoginScreen: toggleScreens);
+              }
             }
             else {
-              return RegisterScreen(showLoginScreen: toggleScreens);
+              if (user.emailVerified) {
+                return const HomeScreen();
+              }
+              else {
+                return const EmailVerificationScreen();
+              }
             }
           }
+          return _circularProgress();
         },
       ),
     );

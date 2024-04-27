@@ -249,33 +249,6 @@ class StoryCardNetwork extends StatelessWidget {
                   fontSize: 16,
                 ),
               ),
-              // trailing: const PopupMenu(),
-              // trailing: FutureBuilder(
-              //   future: db.AuthCheck().isAdmin('admin'),
-              //   builder: (BuildContext context, snapshot) {
-              //     if (!snapshot.hasData) { _circularProgress(); }
-              //     else if (snapshot.data == null) { _circularProgress(); }
-              //     else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-              //       bool isAdmin = snapshot.data!;
-              //       if (isAdmin) {
-              //         return const PopupMenu();
-              //       }
-              //       else {
-              //         return const SizedBox.shrink();
-              //       }
-              //     }
-              //     return _circularProgress();
-              //   },
-              // ),
-
-
-
-              // trailing: IconButton(
-              //   icon: const Icon(Icons.more_vert,),
-              //   onPressed: () {
-              //     // modal was previously here
-              //   },
-              // ),
             ),
             SizedBox(
               height: 200,
@@ -464,7 +437,11 @@ Card duesCard({required BuildContext context, required int index, required List 
     );
  }
 
- Card boardCard({required BuildContext context, required int index, required Boardmember board}) {
+
+// Board member cards displayed in the 'National Board' menu
+// NEB data is populated by a JSON file saved on the developer Google drive
+// NEB images are stored in the project assets folder
+Card boardCard({required BuildContext context, required int index, required Boardmember board}) {
   var cardImage = board.image;
   var heading = board.position;
   var subheading = board.name;
@@ -487,6 +464,8 @@ Card duesCard({required BuildContext context, required int index, required List 
             ),
           ),
         ),
+
+        // NEB user info
         ListTile(
           contentPadding: const EdgeInsets.all(8.0),
           minVerticalPadding: 0,

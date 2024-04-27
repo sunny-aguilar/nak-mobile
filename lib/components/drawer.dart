@@ -12,7 +12,7 @@ class DrawerComponent extends StatefulWidget {
 }
 
 class _DrawerComponentState extends State<DrawerComponent> {
-  final user = FirebaseAuth.instance.currentUser?.email;
+  final user = FirebaseAuth.instance.currentUser?.displayName;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               child: Image.asset(Get.isDarkMode ? 'assets/img/nak_letters_bw.png' : 'assets/img/nak_letters.png',),
             ),
             ListTile(
-              title: Text('Signed in as: $user'),
+              title: Text('Hello, $user.', style: theme.TextThemes.drawerSignInTxt(context)),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village,),
@@ -109,7 +109,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               onTap: () => Navigator.pushNamed(context, '/id'),
             ),
             ListTile(
-              leading: const Icon(Icons.person),
+              leading: const Icon(Icons.badge),
               title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/profile'),
             ),
@@ -117,6 +117,11 @@ class _DrawerComponentState extends State<DrawerComponent> {
               leading: const Icon(Icons.settings),
               title: Text('My Account', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/account'),
+            ),
+            ListTile(
+              leading: const FaIcon(FontAwesomeIcons.codeBranch, size: 20.0,),
+              title: Text('App Version', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/version'),
             ),
             ListTile(
               leading: const Icon(Icons.logout),

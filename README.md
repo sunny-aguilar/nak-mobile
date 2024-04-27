@@ -6,6 +6,7 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 ![Badge](https://img.shields.io/badge/Contributor-Sunny-blue)
 
 ## Features Wishlist
+- Biometric authentication
 - GPS to find nearby brothers
 - Digital NAK ID
 - Calenar with upcoming chapter events
@@ -13,6 +14,32 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 - NEB admins & super admins
 - User roles
 - Role dependent features
+
+## User Registration
+- Only users with a nakinc.org email are able to register.
+- Undergrads who are active will be able to use the app free of charge.
+- Alumni and or inactive brothers will pay full price.
+
+## User Permissions
+The app distinguishes users based on their permissions. When a user registers, they are assigned basic rights.
+Types of permissions:
+- admin
+- super admin
+- NEB member
+- Developer
+
+Permission rights:
+- admin: create blogs
+- super admin: create/edit/delete blogs
+- NEB member:
+- Developer: create/edit/delete blogs, add NEB members
+
+Other rights being considered:
+- Chat rights
+- Undergard blog rights
+
+This area is under developement. The right balance of user rights is being determined and is subject to change quickly.
+
 
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:

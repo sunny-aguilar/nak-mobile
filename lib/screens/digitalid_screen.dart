@@ -171,7 +171,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                         color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                         child: Center(
                           child: Text(
-                            data['status'],
+                            data['isNEB'] ? 'NEB' : data['status'],
                             style: theme.TextThemes.idImageTitle(context),
                           )
                         )

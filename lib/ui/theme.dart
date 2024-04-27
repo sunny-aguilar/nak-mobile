@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4E5ae8);
@@ -254,6 +255,13 @@ class TextThemes{
     );
   }
 
+  static TextStyle drawerSignInTxt(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 14,
+    );
+  }
+
   static TextStyle chapterCardTitle(BuildContext context) {
     return TextStyle(
       color: Get.isDarkMode ? primaryClr : darkGreyClr,
@@ -450,6 +458,12 @@ class TextThemes{
     );
   }
 
+  static TextStyle bodyLarge24(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 24,
+    );
+  }
+
   static TextStyle bodyLarge(BuildContext contex) {
     return const TextStyle(
       fontSize: 18,
@@ -465,6 +479,48 @@ class TextThemes{
   static TextStyle bodyMed(BuildContext contex) {
     return const TextStyle(
       fontSize: 12,
+    );
+  }
+
+  static TextStyle versionYear(BuildContext contex) {
+    return TextStyle(
+      fontFamily: 'SpaceMono',
+      fontSize: 175,
+      height: 1.0,
+      color: Get.isDarkMode ? lightGrey : charcoalClr,
+    );
+  }
+
+  static TextStyle versionNum(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 18,
+      color: darkGreyClr,
+    );
+  }
+
+  static TextStyle versionHeadline(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Oswald',
+      fontWeight: FontWeight.bold,
+      fontSize: 60,
+      height: 0.90,
+      letterSpacing: 1.0,
+    );
+  }
+
+  static TextStyle versionSlogan(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Lato',
+      color: Get.isDarkMode ? primaryClr : darkGreyClr,
+      fontSize: 24,
+    );
+  }
+
+  static TextStyle versionDesign(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 16,
     );
   }
 }
