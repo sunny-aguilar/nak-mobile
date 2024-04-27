@@ -7,7 +7,7 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 
 ## Features Wishlist
 - Biometric authentication
-GPS to find nearby brothers
+- GPS to find nearby brothers
 - Digital NAK ID
 - Calenar with upcoming chapter events
 - User profiles
