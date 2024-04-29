@@ -59,11 +59,13 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                 if (!snapshot.hasData) { return _circularProgress(); }
 
                 if (snapshot.hasData) {
-                  print('Data: ${snapshot.data.docs.toList()}');
-                  print('Data: ${snapshot.data.docs.toList()[0]['initial']}');
+                  print('Data 1: ${snapshot.data.docs.toList()}');
+                  // print('Data 2: ${snapshot.data.docs.toList()[0]['initial']}');
                   final chats = snapshot.data.docs.toList();
                   for (final chat in chats) {
-                    print('chat: $chat');
+                    // print('chat: ${chat['initial']}');
+                    // print('chat: ${chat['monday']}');
+                    print('chat 3: ${chat}');
                   }
                   // print('Data: ${snapshot.data.docs.toList()[1]['second']}');
                   return const Text('Data in streambuilder');
