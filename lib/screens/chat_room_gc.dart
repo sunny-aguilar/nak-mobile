@@ -61,6 +61,10 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                 if (snapshot.hasData) {
                   print('Data: ${snapshot.data.docs.toList()}');
                   print('Data: ${snapshot.data.docs.toList()[0]['initial']}');
+                  final chats = snapshot.data.docs.toList();
+                  for (final chat in chats) {
+                    print('chat: $chat');
+                  }
                   // print('Data: ${snapshot.data.docs.toList()[1]['second']}');
                   return const Text('Data in streambuilder');
                 }
