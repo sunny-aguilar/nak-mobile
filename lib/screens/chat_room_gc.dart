@@ -62,7 +62,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
               final blurbs = chat['gc'];
               final quotes = blurbs['01'];
               for (final quote in quotes) {
-                // print('Q: ${quote}');
                 var item = Text(quote,);
                 chatList.add(item);
               }
@@ -105,7 +104,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: const Icon(Icons.send),
+                      icon: const Icon(Icons.send, size: 50,),
                     ),
                   ],
                 ),
