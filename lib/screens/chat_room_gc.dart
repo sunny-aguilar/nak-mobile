@@ -91,14 +91,14 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                       width: 300,
                       child: TextFormField(
                         maxLines: 1,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
                             borderSide: BorderSide(color: theme.azureClr),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: theme.azureClr),
+                            borderSide: BorderSide(color: theme.redClr),
                           ),
                         ),
                       ),
