@@ -13,6 +13,8 @@ class GeneralChatRoom extends StatefulWidget {
 class _GeneralChatRoomState extends State<GeneralChatRoom> {
   final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('chat').snapshots();
 
+  final List<Widget> chatList = [];
+
   Center _circularProgress() {
     return const Center(
       child: Padding(
@@ -44,47 +46,41 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
         ],
       ),
 
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal:  20.0),
-        child: Column(
-          children: <Widget>[
-            const Text('chat text 1'),
-            const SizedBox(height: 20,),
-            const Text('chat text 2'),
-            StreamBuilder(
-              stream: _stream,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) { return _circularProgress(); }
+      body: StreamBuilder(
+        stream: _stream,
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.data == null) { return _circularProgress(); }
 
-                if (!snapshot.hasData) { return _circularProgress(); }
+          if (!snapshot.hasData) { return _circularProgress(); }
 
-                if (snapshot.hasData) {
-                  // print('.toList(): ${snapshot.data.docs.toList()}');
-                  final chats = snapshot.data.docs.toList();
-                  final monday = snapshot.data.docs.toList()[0]['gc'];
-                  print('gc: $monday');
-                  for (final chat in chats) {
-                    final blurbs = chat['gc'];
-                    // print('blurbs[gc]: ${blurbs}');
-                    // print('blurbs[monday]: ${blurbs['monday']}');
-
-                    final quotes = blurbs['01'];
-                    for (final quote in quotes) {
-                      print('Q: ${quote}');
-                    }
-
-                    // for (final blurb in blurbs) {
-                    //   print('final: $blurb');r
-                    // }
-                  }
-                  return const Text('Data in streambuilder');
-                }
-                return _circularProgress();
+          if (snapshot.hasData) {
+            // print('.toList(): ${snapshot.data.docs.toList()}');
+            final chats = snapshot.data.docs.toList();
+            final monday = snapshot.data.docs.toList()[0]['gc'];
+            // print('gc: $monday');
+            for (final chat in chats) {
+              final blurbs = chat['gc'];
+              final quotes = blurbs['01'];
+              for (final quote in quotes) {
+                // print('Q: ${quote}');
+                var item = Text(quote,);
+                chatList.add(item);
               }
-            ),
-
-          ],
-        ),
+              print('List: ${chatList}');
+            }
+            return  Column(
+              children: <Widget>[
+                ListView(
+                  padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                  shrinkWrap: true,
+                  children: chatList,
+                ),
+                Text('Enter Text'),
+              ],
+            );
+          }
+          return _circularProgress();
+        }
       ),
     );
   }
