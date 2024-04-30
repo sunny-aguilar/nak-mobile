@@ -75,7 +75,40 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   shrinkWrap: true,
                   children: chatList,
                 ),
-                Text('Enter Text'),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    // Container(
+                    //   height: 50,
+                    //   width: 100,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(22.0),
+                    //     color: theme.azureClr,
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 60,
+                      width: 300,
+                      child: TextFormField(
+                        maxLines: 1,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(color: theme.azureClr),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                            borderSide: BorderSide(color: theme.azureClr),
+                          ),
+                        ),
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.send),
+                    ),
+                  ],
+                ),
               ],
             );
           }
