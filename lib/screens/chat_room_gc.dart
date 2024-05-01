@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -13,6 +14,13 @@ class GeneralChatRoom extends StatefulWidget {
 class _GeneralChatRoomState extends State<GeneralChatRoom> {
   final Stream<QuerySnapshot> _stream = FirebaseFirestore.instance.collection('chat').snapshots();
 
+  // form key
+  final _chatKey = GlobalKey<FormState>();
+
+  // text controllers
+  final TextEditingController _chatCtrl = TextEditingController();
+
+  // chat stream list
   final List<Widget> chatList = [];
 
   Center _circularProgress() {
@@ -54,10 +62,8 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
           if (!snapshot.hasData) { return _circularProgress(); }
 
           if (snapshot.hasData) {
-            // print('.toList(): ${snapshot.data.docs.toList()}');
             final chats = snapshot.data.docs.toList();
-            final monday = snapshot.data.docs.toList()[0]['gc'];
-            // print('gc: $monday');
+
             for (final chat in chats) {
               final blurbs = chat['gc'];
               final quotes = blurbs['01'];
@@ -69,41 +75,54 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
             }
             return  Column(
               children: <Widget>[
-                ListView(
-                  padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                  shrinkWrap: true,
-                  children: chatList,
+                SingleChildScrollView(
+                  child: ListView(
+                    padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                    shrinkWrap: true,
+                    children: chatList,
+                  ),
                 ),
+                const SizedBox(height: 20,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    // Container(
-                    //   height: 50,
-                    //   width: 100,
-                    //   decoration: BoxDecoration(
-                    //     borderRadius: BorderRadius.circular(22.0),
-                    //     color: theme.azureClr,
-                    //   ),
-                    // ),
                     SizedBox(
                       height: 60,
                       width: 300,
-                      child: TextFormField(
-                        maxLines: 1,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: theme.azureClr),
+                      child: Form(
+                        key: _chatKey,
+                        child: TextFormField(
+                          maxLines: 1,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderSide: BorderSide(color: theme.azureClr),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                              borderSide: BorderSide(color: theme.redClr),
+                            ),
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                            borderSide: BorderSide(color: theme.redClr),
-                          ),
+                          controller: _chatCtrl,
+                          keyboardType: TextInputType.name,
                         ),
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // get reference
+                        final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
+
+                        // create chat data to send
+                        ref.update(
+                          {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
+                        );
+
+                        setState(() {});
+
+                        // clear text controoler
+                        _chatCtrl.clear();
+                      },
                       icon: const Icon(Icons.send, size: 50,),
                     ),
                   ],
