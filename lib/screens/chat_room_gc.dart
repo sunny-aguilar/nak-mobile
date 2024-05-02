@@ -20,9 +20,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
   // text controllers
   final TextEditingController _chatCtrl = TextEditingController();
 
-  // chat stream list
-  final List<Widget> chatList = [];
-
   Center _circularProgress() {
     return const Center(
       child: Padding(
@@ -62,22 +59,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
           if (!snapshot.hasData) { return _circularProgress(); }
 
           if (snapshot.hasData) {
-            final chats = snapshot.data.docs.toList();
-            final gc_chat = chats[0]['gc']['01'].last;
-            print('gc_chat: ${gc_chat}');
-            print('List len: ${snapshot.data.docs.toList()[0]['gc']['01'].length}');
             int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
             List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
 
-            // for (final chat in chats) {
-            //   final blurbs = chat['gc'];
-            //   final quotes = blurbs['01'];
-            //   for (final quote in quotes) {
-            //     var item = Text(quote,);
-            //     chatList.add(item);
-            //   }
-            //   // print('List: ${chatList}');
-            // }
             return  Column(
               children: <Widget>[
                 ListView.builder(
@@ -105,7 +89,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                              borderSide: BorderSide(color: theme.azureClr),
+                              borderSide: BorderSide(color: theme.redClr),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.all(Radius.circular(20.0)),

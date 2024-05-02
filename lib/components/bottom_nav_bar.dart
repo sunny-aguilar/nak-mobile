@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -30,7 +31,7 @@ class BottomNavBar extends StatelessWidget {
           label: 'Home'
         ),
         NavigationDestination(
-          icon: Icon(Icons.chat_bubble, color: Get.isDarkMode ? theme.whiteClr : theme.redClr,),
+          icon: Icon(CupertinoIcons.bubble_left_bubble_right_fill, color: Get.isDarkMode ? theme.whiteClr : theme.redClr,),
           label: 'Chat'
         ),
       ],
