@@ -54,7 +54,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
         ],
       ),
 
-      body: StreamBuilder(
+      body: StreamBuilder<QuerySnapshot>(
         stream: _stream,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.data == null) { return _circularProgress(); }
@@ -63,26 +63,31 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
           if (snapshot.hasData) {
             final chats = snapshot.data.docs.toList();
+            final gc_chat = chats[0]['gc']['01'].last;
+            print('gc_chat: ${gc_chat}');
 
-            for (final chat in chats) {
-              final blurbs = chat['gc'];
-              final quotes = blurbs['01'];
-              for (final quote in quotes) {
-                var item = Text(quote,);
-                chatList.add(item);
-              }
-              print('List: ${chatList}');
-            }
+            // for (final chat in chats) {
+            //   final blurbs = chat['gc'];
+            //   final quotes = blurbs['01'];
+            //   for (final quote in quotes) {
+            //     var item = Text(quote,);
+            //     chatList.add(item);
+            //   }
+            //   // print('List: ${chatList}');
+            // }
             return  Column(
               children: <Widget>[
-                SingleChildScrollView(
-                  child: ListView(
-                    padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                    shrinkWrap: true,
-                    children: chatList,
-                  ),
+                ListView.builder(
+                  padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                  shrinkWrap: true,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ListTile(
+                      title: Text(gc_chat),
+                    );
+                  }
                 ),
                 const SizedBox(height: 20,),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -118,13 +123,12 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
                         );
 
-                        setState(() {});
-
                         // clear text controoler
                         _chatCtrl.clear();
                       },
                       icon: const Icon(Icons.send, size: 50,),
                     ),
+
                   ],
                 ),
               ],
