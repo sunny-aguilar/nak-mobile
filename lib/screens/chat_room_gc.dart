@@ -65,6 +65,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
             final chats = snapshot.data.docs.toList();
             final gc_chat = chats[0]['gc']['01'].last;
             print('gc_chat: ${gc_chat}');
+            print('List len: ${snapshot.data.docs.toList()[0]['gc']['01'].length}');
+            int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
+            List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
 
             // for (final chat in chats) {
             //   final blurbs = chat['gc'];
@@ -80,9 +83,10 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                 ListView.builder(
                   padding: const EdgeInsets.symmetric(horizontal:  20.0),
                   shrinkWrap: true,
+                  itemCount: chatLength,
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
-                      title: Text(gc_chat),
+                      title: Text(chatters[index]),
                     );
                   }
                 ),
