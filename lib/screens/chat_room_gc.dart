@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -33,6 +34,21 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
         ),
       ),
     );
+  }
+
+  void buttonStuff() {
+    if (_chatKey.currentState!.validate()) {
+      // get reference
+      final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
+
+      // create chat data to send
+      ref.update(
+        {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
+      );
+    }
+
+    // clear text controoler
+    _chatCtrl.clear();
   }
 
   @override
@@ -85,51 +101,113 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
               }
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: 60,
-                width: 300,
-                child: Form(
-                  key: _chatKey,
-                  child: TextFormField(
-                    maxLines: 1,
-                    decoration: const InputDecoration(
-                      hintText: 'Type something...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide: BorderSide(color: theme.redClr),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                        borderSide: BorderSide(color: theme.redClr),
+          SafeArea(
+            bottom: true,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 8.0,),
+                        child: Form(
+                          key: _chatKey,
+                          child: TextFormField(
+                            maxLines: 1,
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(Icons.abc),
+                              hintText: 'Type something...',
+                              contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                              // enabledBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                              //   borderSide: BorderSide(
+                              //     color: theme.bronzeOfficial,
+                              //     width: 2.0,
+                              //   )
+                              // ),
+                              // focusedBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                              //   borderSide: BorderSide(
+                              //     color: theme.bronzeOfficial,
+                              //     width: 2.0,
+                              //   )
+                              // ),
+                              // errorBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                              //   borderSide: BorderSide(
+                              //     color: theme.redClr,
+                              //     width: 2.0,
+                              //   )
+                              // ),
+                              // focusedErrorBorder: OutlineInputBorder(
+                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                              //   borderSide: BorderSide(
+                              //     color: theme.redClr,
+                              //     width: 2.0,
+                              //   )
+                              // ),
+                            ),
+                            controller: _chatCtrl,
+                            keyboardType: TextInputType.name,
+                            validator: (val) {
+                              if (val == null || val.isEmpty) {
+                                return 'You must enter some text...';
+                              }
+                              return null;
+                            },
+                          ),
+                        ),
                       ),
                     ),
-                    controller: _chatCtrl,
-                    keyboardType: TextInputType.name,
-                  ),
+                    // const SizedBox(width: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      child: GlowingActionButton(icon: Icons.send, onPressed: buttonStuff),
+                    ),
+                  ],
                 ),
-              ),
-              IconButton(
-                onPressed: () {
-                  // get reference
-                  final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
-
-                  // create chat data to send
-                  ref.update(
-                    {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
-                  );
-
-                  // clear text controoler
-                  _chatCtrl.clear();
-                },
-                icon: const Icon(Icons.send, size: 50,),
-              ),
-
-            ],
+                const SizedBox(height: 10,),
+              ],
+            ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class GlowingActionButton extends StatelessWidget {
+  const GlowingActionButton({super.key, required this.icon, required this.onPressed});
+
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        color: theme.azureClr,
+        shape: BoxShape.circle,
+      ),
+      child: ClipOval(
+        child: Material(
+          color: theme.bronzeOfficial,
+          child: InkWell(
+            splashColor: theme.lightRedClr,
+            onTap: () { onPressed(); },
+            child: const SizedBox(
+              width: 50,
+              height: 50,
+              child: Icon(
+                Icons.send,
+                size: 26,
+                color: theme.primaryClr
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

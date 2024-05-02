@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4E5ae8);
@@ -10,6 +9,7 @@ const Color darkBlue = Color(0xFF17203A);
 const Color mintClr = Color(0xff9CFC97);
 const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
+const Color lightRedClr =Color.fromARGB(255, 250, 218, 220);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
 const Color lightGrey = Color.fromARGB(255, 218, 218, 218);
 const Color dividerClr = Color.fromARGB(255, 174, 174, 174);
