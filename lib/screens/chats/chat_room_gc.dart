@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -19,6 +18,25 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
   // text controllers
   final TextEditingController _chatCtrl = TextEditingController();
+
+  // scroll controller
+  final ScrollController _scrollController = ScrollController();
+
+  void _scrollToBottom() {
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(const Duration(seconds: 1), () {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(seconds: 1),
+        curve: Curves.linear,
+      );
+    });
+  }
 
   Center _circularProgress() {
     return const Center(
@@ -86,6 +104,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                       ListView.builder(
                         padding: const EdgeInsets.symmetric(horizontal:  20.0),
                         shrinkWrap: true,
+                        controller: _scrollController,
                         itemCount: chatLength,
                         itemBuilder: (BuildContext context, int index) {
                           return ListTile(
@@ -111,52 +130,55 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   children: <Widget>[
                     Expanded(
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0,),
-                        child: Form(
-                          key: _chatKey,
-                          child: TextFormField(
-                            maxLines: 1,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.abc),
-                              hintText: 'Type something...',
-                              contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                              // enabledBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                              //   borderSide: BorderSide(
-                              //     color: theme.bronzeOfficial,
-                              //     width: 2.0,
-                              //   )
-                              // ),
-                              // focusedBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                              //   borderSide: BorderSide(
-                              //     color: theme.bronzeOfficial,
-                              //     width: 2.0,
-                              //   )
-                              // ),
-                              // errorBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                              //   borderSide: BorderSide(
-                              //     color: theme.redClr,
-                              //     width: 2.0,
-                              //   )
-                              // ),
-                              // focusedErrorBorder: OutlineInputBorder(
-                              //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                              //   borderSide: BorderSide(
-                              //     color: theme.redClr,
-                              //     width: 2.0,
-                              //   )
-                              // ),
+                        padding: const EdgeInsets.only(left: 10.0,),
+                        child: SizedBox(
+                          height: 74,
+                          child: Form(
+                            key: _chatKey,
+                            child: TextFormField(
+                              maxLines: 1,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(Icons.abc),
+                                hintText: 'Type something...',
+                                contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                                // enabledBorder: OutlineInputBorder(
+                                //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                //   borderSide: BorderSide(
+                                //     color: theme.bronzeOfficial,
+                                //     width: 2.0,
+                                //   )
+                                // ),
+                                // focusedBorder: OutlineInputBorder(
+                                //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                //   borderSide: BorderSide(
+                                //     color: theme.bronzeOfficial,
+                                //     width: 2.0,
+                                //   )
+                                // ),
+                                errorBorder: OutlineInputBorder(
+                                  // borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderSide: BorderSide(
+                                    color: theme.redClr,
+                                    width: 2.0,
+                                  )
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  // borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderSide: BorderSide(
+                                    color: theme.redClr,
+                                    width: 2.0,
+                                  )
+                                ),
+                              ),
+                              controller: _chatCtrl,
+                              keyboardType: TextInputType.name,
+                              validator: (val) {
+                                if (val == null || val.isEmpty) {
+                                  return 'You must enter some text...';
+                                }
+                                return null;
+                              },
                             ),
-                            controller: _chatCtrl,
-                            keyboardType: TextInputType.name,
-                            validator: (val) {
-                              if (val == null || val.isEmpty) {
-                                return 'You must enter some text...';
-                              }
-                              return null;
-                            },
                           ),
                         ),
                       ),
@@ -193,7 +215,7 @@ class GlowingActionButton extends StatelessWidget {
       ),
       child: ClipOval(
         child: Material(
-          color: theme.bronzeOfficial,
+          color: theme.redClr,
           child: InkWell(
             splashColor: theme.lightRedClr,
             onTap: () { onPressed(); },
