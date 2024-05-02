@@ -50,79 +50,86 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
         ],
       ),
 
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _stream,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.data == null) { return _circularProgress(); }
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Expanded(
+            child: StreamBuilder<QuerySnapshot>(
+              stream: _stream,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) { return _circularProgress(); }
 
-          if (!snapshot.hasData) { return _circularProgress(); }
+                if (!snapshot.hasData) { return _circularProgress(); }
 
-          if (snapshot.hasData) {
-            int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
-            List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
+                if (snapshot.hasData) {
+                  int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
+                  List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
 
-            return  Column(
-              children: <Widget>[
-                ListView.builder(
-                  padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                  shrinkWrap: true,
-                  itemCount: chatLength,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      title: Text(chatters[index]),
-                    );
-                  }
-                ),
-                const SizedBox(height: 20,),
-
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: 60,
-                      width: 300,
-                      child: Form(
-                        key: _chatKey,
-                        child: TextFormField(
-                          maxLines: 1,
-                          decoration: const InputDecoration(
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                              borderSide: BorderSide(color: theme.redClr),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                              borderSide: BorderSide(color: theme.redClr),
-                            ),
-                          ),
-                          controller: _chatCtrl,
-                          keyboardType: TextInputType.name,
-                        ),
+                  return  Column(
+                    children: <Widget>[
+                      ListView.builder(
+                        padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                        shrinkWrap: true,
+                        itemCount: chatLength,
+                        itemBuilder: (BuildContext context, int index) {
+                          return ListTile(
+                            title: Text(chatters[index]),
+                          );
+                        }
+                      ),
+                      const SizedBox(height: 20,),
+                    ],
+                  );
+                }
+                return _circularProgress();
+              }
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: 60,
+                width: 300,
+                child: Form(
+                  key: _chatKey,
+                  child: TextFormField(
+                    maxLines: 1,
+                    decoration: const InputDecoration(
+                      hintText: 'Type something...',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        borderSide: BorderSide(color: theme.redClr),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        borderSide: BorderSide(color: theme.redClr),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        // get reference
-                        final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
-
-                        // create chat data to send
-                        ref.update(
-                          {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
-                        );
-
-                        // clear text controoler
-                        _chatCtrl.clear();
-                      },
-                      icon: const Icon(Icons.send, size: 50,),
-                    ),
-
-                  ],
+                    controller: _chatCtrl,
+                    keyboardType: TextInputType.name,
+                  ),
                 ),
-              ],
-            );
-          }
-          return _circularProgress();
-        }
+              ),
+              IconButton(
+                onPressed: () {
+                  // get reference
+                  final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
+
+                  // create chat data to send
+                  ref.update(
+                    {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
+                  );
+
+                  // clear text controoler
+                  _chatCtrl.clear();
+                },
+                icon: const Icon(Icons.send, size: 50,),
+              ),
+
+            ],
+          ),
+        ],
       ),
     );
   }
