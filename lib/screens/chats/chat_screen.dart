@@ -32,22 +32,6 @@ class _ChatScreenState extends State<ChatScreen> {
             subtitle: const Text('Talk about anything and everything'),
             trailing: const Icon(Icons.arrow_forward_ios),
           ),
-          ListTile(
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                '/slivers'
-              );
-            },
-            leading: CircleAvatar(
-              foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
-              child: Text('SL', style: theme.TextThemes.headlineSmall(context)),
-            ),
-            title: const Text('Sliver Chat Room'),
-            subtitle: const Text('Sliver Testing Room'),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
         ],
       ),
     );
