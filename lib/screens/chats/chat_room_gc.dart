@@ -88,36 +88,38 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: _stream,
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.data == null) { return _circularProgress(); }
+            child: SingleChildScrollView(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _stream,
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.data == null) { return _circularProgress(); }
 
-                if (!snapshot.hasData) { return _circularProgress(); }
+                  if (!snapshot.hasData) { return _circularProgress(); }
 
-                if (snapshot.hasData) {
-                  int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
-                  List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
+                  if (snapshot.hasData) {
+                    int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
+                    List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
 
-                  return  Column(
-                    children: <Widget>[
-                      ListView.builder(
-                        padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                        shrinkWrap: true,
-                        controller: _scrollController,
-                        itemCount: chatLength,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            title: Text(chatters[index]),
-                          );
-                        }
-                      ),
-                      const SizedBox(height: 20,),
-                    ],
-                  );
+                    return  Column(
+                      children: <Widget>[
+                        ListView.builder(
+                          padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                          shrinkWrap: true,
+                          controller: _scrollController,
+                          itemCount: chatLength,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListTile(
+                              title: Text(chatters[index]),
+                            );
+                          }
+                        ),
+                        const SizedBox(height: 20,),
+                      ],
+                    );
+                  }
+                  return _circularProgress();
                 }
-                return _circularProgress();
-              }
+              ),
             ),
           ),
           SafeArea(
