@@ -90,7 +90,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
                   if (snapshot.hasData) {
                     int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
-                    List chatters = snapshot.data.docs.toList()[0]['gc']['01'];
+                    List chatList = snapshot.data.docs.toList()[0]['gc']['01'];
 
                     return  Column(
                       children: <Widget>[
@@ -101,7 +101,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              title: ChatBubble(msg: chatters[index]['msg'], chatUID: chatters[index]['uid'],),
+                              title: ChatBubble(msg: chatList[index]['msg'], chatUID: chatList[index]['uid'],),
                             );
                           }
                         ),
@@ -276,56 +276,56 @@ class ChatBubble extends StatelessWidget {
   }
 }
 
-class ChatBubbleLeft extends StatelessWidget {
-  const ChatBubbleLeft({super.key, required this.msg});
+// class ChatBubbleLeft extends StatelessWidget {
+//   const ChatBubbleLeft({super.key, required this.msg});
 
-  final String msg;
+//   final String msg;
 
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(18),
-            topRight: Radius.circular(18),
-            bottomRight: Radius.circular(18)
-          ),
-          color: Get.isDarkMode ? theme.charcoalClr : theme.chatGregyClr,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text(msg),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Align(
+//       alignment: Alignment.centerLeft,
+//       child: Container(
+//         decoration: BoxDecoration(
+//           borderRadius: const BorderRadius.only(
+//             topLeft: Radius.circular(18),
+//             topRight: Radius.circular(18),
+//             bottomRight: Radius.circular(18)
+//           ),
+//           color: Get.isDarkMode ? theme.charcoalClr : theme.chatGregyClr,
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+//           child: Text(msg),
+//         ),
+//       ),
+//     );
+//   }
+// }
 
-class ChatBubbleRight extends StatelessWidget {
-  const ChatBubbleRight({super.key, required this.msg});
+// class ChatBubbleRight extends StatelessWidget {
+//   const ChatBubbleRight({super.key, required this.msg});
 
-  final String msg;
+//   final String msg;
 
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.centerRight,
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(18),
-            bottomLeft: Radius.circular(18),
-            bottomRight: Radius.circular(18)
-          ),
-          color: theme.redClr
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text(msg, style: const TextStyle(color: theme.primaryClr),),
-        ),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Align(
+//       alignment: Alignment.centerRight,
+//       child: Container(
+//         decoration: const BoxDecoration(
+//           borderRadius: BorderRadius.only(
+//             topLeft: Radius.circular(18),
+//             bottomLeft: Radius.circular(18),
+//             bottomRight: Radius.circular(18)
+//           ),
+//           color: theme.redClr
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+//           child: Text(msg, style: const TextStyle(color: theme.primaryClr),),
+//         ),
+//       ),
+//     );
+//   }
+// }
