@@ -96,7 +96,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              title: ChatBubbleLeft(msg: chatters[index]),
+                              title: ChatBubbleRight(msg: chatters[index]),
                             );
                           }
                         ),
@@ -239,7 +239,7 @@ class ChatBubbleLeft extends StatelessWidget {
             topRight: Radius.circular(18),
             bottomRight: Radius.circular(18)
           ),
-          color: Get.isDarkMode ? theme.charcoalClr : theme.lightGrey,
+          color: Get.isDarkMode ? theme.charcoalClr : theme.chatGregyClr,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
@@ -258,7 +258,7 @@ class ChatBubbleRight extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Container(
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
@@ -266,11 +266,11 @@ class ChatBubbleRight extends StatelessWidget {
             bottomLeft: Radius.circular(18),
             bottomRight: Radius.circular(18)
           ),
-          color: theme.azureClr
+          color: theme.redClr
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text(msg),
+          child: Text(msg, style: const TextStyle(color: theme.primaryClr),),
         ),
       ),
     );
