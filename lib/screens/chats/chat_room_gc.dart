@@ -241,17 +241,28 @@ class ChatBubble extends StatelessWidget {
     return chatUID == uid;
   }
 
+  BorderRadius chatShape(chatUID) {
+    if (checkUser(chatUID)) {
+      return const BorderRadius.only(
+        topLeft: Radius.circular(18),
+        bottomLeft: Radius.circular(18),
+        bottomRight: Radius.circular(18),
+      );
+    }
+    return const BorderRadius.only(
+      topLeft: Radius.circular(18),
+      topRight: Radius.circular(18),
+      bottomRight: Radius.circular(18),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: checkUser(chatUID) ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(18),
-            topRight:  Radius.circular(18),
-            bottomRight: Radius.circular(18)
-          ),
+          borderRadius: chatShape(chatUID),
           color:
             Get.isDarkMode ? checkUser(chatUID)
             ? theme.redClr : theme.charcoalClr
@@ -275,57 +286,3 @@ class ChatBubble extends StatelessWidget {
     );
   }
 }
-
-// class ChatBubbleLeft extends StatelessWidget {
-//   const ChatBubbleLeft({super.key, required this.msg});
-
-//   final String msg;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.centerLeft,
-//       child: Container(
-//         decoration: BoxDecoration(
-//           borderRadius: const BorderRadius.only(
-//             topLeft: Radius.circular(18),
-//             topRight: Radius.circular(18),
-//             bottomRight: Radius.circular(18)
-//           ),
-//           color: Get.isDarkMode ? theme.charcoalClr : theme.chatGregyClr,
-//         ),
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-//           child: Text(msg),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class ChatBubbleRight extends StatelessWidget {
-//   const ChatBubbleRight({super.key, required this.msg});
-
-//   final String msg;
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Align(
-//       alignment: Alignment.centerRight,
-//       child: Container(
-//         decoration: const BoxDecoration(
-//           borderRadius: BorderRadius.only(
-//             topLeft: Radius.circular(18),
-//             bottomLeft: Radius.circular(18),
-//             bottomRight: Radius.circular(18)
-//           ),
-//           color: theme.redClr
-//         ),
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-//           child: Text(msg, style: const TextStyle(color: theme.primaryClr),),
-//         ),
-//       ),
-//     );
-//   }
-// }
