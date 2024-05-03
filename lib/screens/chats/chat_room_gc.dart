@@ -26,20 +26,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
   //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   // }
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (_scrollController.hasClients) {
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeOut,
-        );
-      }
-    });
-  }
-
   Center _circularProgress() {
     return const Center(
       child: Padding(
@@ -116,7 +102,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                             );
                           }
                         ),
-                        const SizedBox(height: 20,),
+                        // const SizedBox(height: 20,),
                       ],
                     );
                   }
@@ -176,7 +162,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                                 ),
                               ),
                               controller: _chatCtrl,
-                              keyboardType: TextInputType.name,
+                              keyboardType: TextInputType.text,
                               validator: (val) {
                                 if (val == null || val.isEmpty) {
                                   return 'You must enter some text...';
