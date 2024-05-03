@@ -132,29 +132,29 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                                 prefixIcon: Icon(Icons.abc),
                                 hintText: 'Type something...',
                                 contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                                // enabledBorder: OutlineInputBorder(
-                                //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                                //   borderSide: BorderSide(
-                                //     color: theme.bronzeOfficial,
-                                //     width: 2.0,
-                                //   )
-                                // ),
-                                // focusedBorder: OutlineInputBorder(
-                                //   borderRadius: BorderRadius.all(Radius.circular(26.0)),
-                                //   borderSide: BorderSide(
-                                //     color: theme.bronzeOfficial,
-                                //     width: 2.0,
-                                //   )
-                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderSide: BorderSide(
+                                    color: theme.bronzeOfficial,
+                                    width: 2.0,
+                                  )
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderSide: BorderSide(
+                                    color: theme.bronzeOfficial,
+                                    width: 2.0,
+                                  )
+                                ),
                                 errorBorder: OutlineInputBorder(
-                                  // borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(26.0)),
                                   borderSide: BorderSide(
                                     color: theme.redClr,
                                     width: 2.0,
                                   )
                                 ),
                                 focusedErrorBorder: OutlineInputBorder(
-                                  // borderRadius: BorderRadius.all(Radius.circular(26.0)),
+                                  borderRadius: BorderRadius.all(Radius.circular(26.0)),
                                   borderSide: BorderSide(
                                     color: theme.redClr,
                                     width: 2.0,
@@ -222,6 +222,27 @@ class GlowingActionButton extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ChatBubble extends StatelessWidget {
+  const ChatBubble({super.key, required this.msg});
+
+  final String msg;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(10),
+          bottomLeft: Radius.circular(10),
+          bottomRight: Radius.circular(20)
+        ),
+        color: theme.azureClr
+      ),
+      child: Text(msg),
     );
   }
 }
