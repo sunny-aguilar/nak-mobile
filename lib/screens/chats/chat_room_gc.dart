@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
@@ -46,10 +47,14 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
     if (_chatKey.currentState!.validate()) {
       // get reference
       final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
-      // create chat data to send
-      ref.update(
-        {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
-      );
+      final uid = FirebaseAuth.instance.currentUser!.uid;
+
+      Map<String, dynamic> chat = {};
+      chat['msg'] = _chatCtrl.text.trim();
+      chat['uid'] = uid;
+      chat['timestamp'] = 'FieldValue.serverTimestamp()';
+
+       ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
     // clear text controoler
     _chatCtrl.clear();
@@ -96,7 +101,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              title: ChatBubbleRight(msg: chatters[index]),
+                              title: ChatBubble(msg: chatters[index]['msg'], chatUID: chatters[index]['uid'],),
                             );
                           }
                         ),
@@ -215,6 +220,54 @@ class GlowingActionButton extends StatelessWidget {
                 size: 26,
                 color: theme.primaryClr
               ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class ChatBubble extends StatelessWidget {
+  const ChatBubble({super.key, required this.msg, required this.chatUID});
+
+  final String msg;
+  final String chatUID;
+  final bool isUser = false;
+
+  bool checkUser(String chatUID) {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    return chatUID == uid;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: checkUser(chatUID) ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight:  Radius.circular(18),
+            bottomRight: Radius.circular(18)
+          ),
+          color:
+            Get.isDarkMode ? checkUser(chatUID)
+            ? theme.redClr : theme.charcoalClr
+            : checkUser(chatUID)
+            ? theme.redClr : theme.chatGregyClr,
+
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+          child: Text(
+            msg,
+            style: TextStyle(
+              color:
+                Get.isDarkMode ? theme.primaryClr
+                : checkUser(chatUID)
+                ? theme.primaryClr : theme.darkGreyClr,
             ),
           ),
         ),
