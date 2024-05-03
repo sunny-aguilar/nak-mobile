@@ -46,13 +46,11 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
     if (_chatKey.currentState!.validate()) {
       // get reference
       final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
-
       // create chat data to send
       ref.update(
         {'gc.01': FieldValue.arrayUnion([_chatCtrl.text.trim()])}
       );
     }
-
     // clear text controoler
     _chatCtrl.clear();
   }
@@ -98,11 +96,10 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
                             return ListTile(
-                              title: Text(chatters[index]),
+                              title: ChatBubbleLeft(msg: chatters[index]),
                             );
                           }
                         ),
-                        // const SizedBox(height: 20,),
                       ],
                     );
                   }
@@ -135,14 +132,14 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(26.0)),
                                   borderSide: BorderSide(
-                                    color: theme.bronzeOfficial,
+                                    color: theme.redClr,
                                     width: 2.0,
                                   )
                                 ),
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(26.0)),
                                   borderSide: BorderSide(
-                                    color: theme.bronzeOfficial,
+                                    color: theme.redClr,
                                     width: 2.0,
                                   )
                                 ),
@@ -226,23 +223,56 @@ class GlowingActionButton extends StatelessWidget {
   }
 }
 
-class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key, required this.msg});
+class ChatBubbleLeft extends StatelessWidget {
+  const ChatBubbleLeft({super.key, required this.msg});
 
   final String msg;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(10),
-          bottomLeft: Radius.circular(10),
-          bottomRight: Radius.circular(20)
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(18),
+            topRight: Radius.circular(18),
+            bottomRight: Radius.circular(18)
+          ),
+          color: Get.isDarkMode ? theme.charcoalClr : theme.lightGrey,
         ),
-        color: theme.azureClr
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+          child: Text(msg),
+        ),
       ),
-      child: Text(msg),
+    );
+  }
+}
+
+class ChatBubbleRight extends StatelessWidget {
+  const ChatBubbleRight({super.key, required this.msg});
+
+  final String msg;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18),
+            bottomLeft: Radius.circular(18),
+            bottomRight: Radius.circular(18)
+          ),
+          color: theme.azureClr
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+          child: Text(msg),
+        ),
+      ),
     );
   }
 }
