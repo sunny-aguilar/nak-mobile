@@ -26,7 +26,6 @@ import 'package:nak_app/screens/admin/add_neb.dart';
 import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/screens/chats/chat_screen.dart';
 import 'package:nak_app/screens/chats/chat_room_gc.dart';
-import 'package:nak_app/screens/chats/slivers.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -76,7 +75,6 @@ class App extends StatelessWidget {
         '/addNEB': (context) => const AddNebScreen(),
         '/users': (context) => const AllUsers(),
         '/chat': (context) => ChatScreen(context: context),
-        '/slivers': (context) => const GcChatRoom(),
         '/gchat': (context) => const GeneralChatRoom(),
       };
 

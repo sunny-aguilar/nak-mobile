@@ -22,19 +22,21 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
   // scroll controller
   final ScrollController _scrollController = ScrollController();
 
-  void _scrollToBottom() {
-    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-  }
+  // void _scrollToBottom() {
+  //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+  // }
 
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(seconds: 1),
-        curve: Curves.linear,
-      );
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (_scrollController.hasClients) {
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeOut,
+        );
+      }
     });
   }
 
@@ -92,6 +94,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
               child: StreamBuilder<QuerySnapshot>(
                 stream: _stream,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
+
                   if (snapshot.data == null) { return _circularProgress(); }
 
                   if (!snapshot.hasData) { return _circularProgress(); }
