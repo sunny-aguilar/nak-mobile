@@ -60,6 +60,11 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
     _chatCtrl.clear();
   }
 
+  bool checkIfCurrentUser(String chatUID) {
+    final uid = FirebaseAuth.instance.currentUser!.uid;
+    return chatUID == uid;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,8 +105,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           controller: _scrollController,
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
+                            bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
                             return ListTile(
-                              title: ChatBubble(msg: chatList[index]['msg'], chatUID: chatList[index]['uid'],),
+                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser,),
                             );
                           }
                         ),
@@ -230,19 +236,13 @@ class GlowingActionButton extends StatelessWidget {
 
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key, required this.msg, required this.chatUID});
+  const ChatBubble({super.key, required this.msg, required this.isCurrentUser});
 
   final String msg;
-  final String chatUID;
-  final bool isUser = false;
+  final bool isCurrentUser;
 
-  bool checkUser(String chatUID) {
-    final uid = FirebaseAuth.instance.currentUser!.uid;
-    return chatUID == uid;
-  }
-
-  BorderRadius chatShape(chatUID) {
-    if (checkUser(chatUID)) {
+  BorderRadius chatShape() {
+    if (isCurrentUser) {
       return const BorderRadius.only(
         topLeft: Radius.circular(18),
         bottomLeft: Radius.circular(18),
@@ -259,14 +259,14 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: checkUser(chatUID) ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: chatShape(chatUID),
+          borderRadius: chatShape(),
           color:
-            Get.isDarkMode ? checkUser(chatUID)
+            Get.isDarkMode ? isCurrentUser
             ? theme.redClr : theme.charcoalClr
-            : checkUser(chatUID)
+            : isCurrentUser
             ? theme.redClr : theme.chatGregyClr,
 
         ),
@@ -277,7 +277,7 @@ class ChatBubble extends StatelessWidget {
             style: TextStyle(
               color:
                 Get.isDarkMode ? theme.primaryClr
-                : checkUser(chatUID)
+                : isCurrentUser
                 ? theme.primaryClr : theme.darkGreyClr,
             ),
           ),
