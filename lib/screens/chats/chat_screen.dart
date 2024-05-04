@@ -16,8 +16,18 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
+          Container(
+            height: 5,
+            decoration: const BoxDecoration(
+              color: theme.azureClr
+            ),
+          ),
           ListTile(
             onTap: () {
+              // check if user has chat permissions
+              // canChat == true, blue bar or orange bar
+
+              // navigate to chat screen
               Navigator.pushNamed(
                 context,
                 '/gchat'

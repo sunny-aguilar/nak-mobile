@@ -9,6 +9,7 @@ const Color darkBlue = Color(0xFF17203A);
 const Color mintClr = Color(0xff9CFC97);
 const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
+const Color orangeClr = Color.fromARGB(255, 255, 152, 0);
 const Color lightRedClr =Color.fromARGB(255, 250, 218, 220);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
 const Color chatGregyClr = Color.fromARGB(255, 234, 234, 234);
