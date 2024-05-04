@@ -30,7 +30,7 @@ class AuthCheck {
   Future<Map> checkAuth() async {
     _instance = FirebaseFirestore.instance;
     String userUID = FirebaseAuth.instance.currentUser!.uid;
-    // add query to DB to get user's document & check if they are an admi
+    // add query to DB to get user's document & check if they are an admin
     CollectionReference users = _instance!.collection('users');
     DocumentSnapshot snapshot = await users.doc(userUID).get();
     return snapshot.data() as Map;
