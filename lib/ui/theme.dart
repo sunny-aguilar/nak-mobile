@@ -525,6 +525,21 @@ class TextThemes{
       fontSize: 16,
     );
   }
+
+  static TextStyle charWarning(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Lato',
+      fontSize: 16,
+      // color: redClr,
+    );
+  }
+
+  static TextStyle dynamic(BuildContext context) {
+    return TextStyle(
+      color: Get.isDarkMode ? primaryClr : darkGreyClr,
+      fontSize: 16,
+    );
+  }
 }
 
 
