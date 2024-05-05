@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -56,6 +57,16 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
        ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
+
+    // scroll to botton of listview
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 1),
+        curve: Curves.fastOutSlowIn
+      );
+    });
+
     // clear text controoler
     _chatCtrl.clear();
   }
