@@ -24,7 +24,7 @@ import 'package:nak_app/screens/blog/preview_blog.dart';
 import 'package:nak_app/screens/blog/edit_blog.dart';
 import 'package:nak_app/screens/admin/add_neb.dart';
 import 'package:nak_app/screens/admin/users.dart';
-import 'package:nak_app/screens/chats/chat_screen.dart';
+import 'package:nak_app/screens/chats/chat_room_list.dart';
 import 'package:nak_app/screens/chats/chat_room_gc.dart';
 import 'package:nak_app/screens/chats/chat_rules.dart';
 import 'package:nak_app/ui/theme.dart' as theme;

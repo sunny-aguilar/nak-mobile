@@ -93,12 +93,12 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                 title: Text('Do not use obscene, offensive, or sexually explicit language.'),
               ),
               const ListTile(
-                leading: Icon(Icons.check_circle),
-                title: Text('A blue bar means your chat priviledges are in good standing.', style: TextStyle(color: theme.azureClr),),
+                leading: Icon(Icons.check_circle, color: theme.azureClr),
+                title: Text('A blue bar means your chat priviledges are in good standing.',),
               ),
               const ListTile(
-                leading: Icon(Icons.check_circle),
-                title: Text('An orange bar means your chat privileges have been suspended. Contact neb@nakinc.org if you believe this is incorrect.', style: TextStyle(color: theme.orangeClr),),
+                leading: Icon(Icons.check_circle, color: theme.orangeClr),
+                title: Text('An orange bar means your chat privileges have been suspended. Contact neb@nakinc.org if you believe this is incorrect.',),
               ),
               const SizedBox(height: 20,),
               Padding(
@@ -110,9 +110,42 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, '/chat');
+
+                    if (chatEnabled) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          duration: Duration(milliseconds: 1500),
+                          content: Text('Authenticating user...')
+                        ),
+                      );
+                      Navigator.pushNamed(
+                        context,
+                        '/chat'
+                      );
+                    }
+                    else {
+                      showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Chat Disabled', textAlign: TextAlign.center,),
+                            content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context, 'cancel');
+                                },
+                                style: buttons.buttonStyleRed(context),
+                                child: const Text('Ok'),
+                              ),
+                            ],
+                          );
+                        }
+                      );
+                    }
+
                   },
-                  style: buttons.buttonStyleRed(context),
+                  style: buttons.chatButton(context),
                   child: const Text('Start Chatting'),
                 ),
               ),

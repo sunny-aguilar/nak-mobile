@@ -386,3 +386,17 @@ class BlogFilledCameraButton extends StatelessWidget {
     );
   }
 }
+
+ButtonStyle chatButton(BuildContext context) {
+  return TextButton.styleFrom(
+    minimumSize: const Size.fromHeight(60),
+    padding: const EdgeInsets.all(8),
+    backgroundColor: theme.redClr,
+    foregroundColor: theme.primaryClr,
+    // side: const BorderSide(color: theme.primaryClr, width: 2.0),
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4.0),
+    ),
+    textStyle: theme.TextThemes.button1(context),
+  );
+}

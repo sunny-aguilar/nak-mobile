@@ -37,6 +37,7 @@ Permission rights:
 Other rights being considered:
 - Chat rights
 - Undergard blog rights
+- log users off
 
 This area is under developement. The right balance of user rights is being determined and is subject to change quickly.
 
