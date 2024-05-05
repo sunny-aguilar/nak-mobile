@@ -7,6 +7,7 @@ import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 import 'package:nak_app/screens/chats/chat_screen.dart';
+import 'package:nak_app/screens/chats/chat_rules.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
       body: <Widget>[
         // bottom nav screens
         const featured.HomeScreenChildren(),
-        ChatScreen(context: context)
+        const ChatRules(),
+        // ChatScreen(context: context),
       ][index],
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
