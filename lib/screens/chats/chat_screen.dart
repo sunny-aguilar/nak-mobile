@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_chat.dart' as db;
+import 'package:nak_app/screens/chats/chat_room_gc.dart';
+import 'package:nak_app/components/buttons.dart' as buttons;
+
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.context});
@@ -12,11 +14,12 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  bool chatEnabled = false;
 
   Center _circularProgress() {
     return const Center(
       child: SizedBox(
-        height: 75, width: 75,
+        height: 10, width: 10,
         child: CircularProgressIndicator(
           strokeWidth: 5, color: theme.redClr, backgroundColor: theme.greyClr,
         ),
@@ -29,70 +32,76 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       body: ListView(
         children: <Widget>[
-          Container(
-            height: 5,
-            decoration: const BoxDecoration(
-              color: theme.azureClr
-            ),
+          // Container(
+          //   height: 5,
+          //   decoration: const BoxDecoration(
+          //     color: theme.azureClr,
+          //   ),
+          // ),
+          FutureBuilder(
+            future: db.Chat().canChat(),
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              if (!snapshot.hasData) { _circularProgress(); }
+              else if (snapshot.data == null) { _circularProgress(); }
+              else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                bool canChat = snapshot.data!;
+                chatEnabled = canChat;
+                if (canChat) {
+                  return Container(
+                    height: 5,
+                    decoration: const BoxDecoration(color: theme.azureClr,),
+                  );
+                }
+                if (!canChat) {
+                  return Container(
+                    height: 5,
+                    decoration: const BoxDecoration(color: theme.orangeClr,),
+                  );
+                }
+
+              }
+              return _circularProgress();
+            }
           ),
           ListTile(
             onTap: () {
-              // check if user has chat permissions
-              // canChat == true, blue bar or orange bar
 
-              FutureBuilder(
-                future: db.Chat().canChat(),
-                builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                  if (!snapshot.hasData) { _circularProgress(); }
-                  else if (snapshot.data == null) { _circularProgress(); }
-                  else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        duration: Duration(milliseconds: 1500),
-                        content: Text('Verifying user chat rights...'),
-                      ),
-                    );
-
-                    Navigator.pushNamed(
-                      context,
-                      '/gchat'
-                    );
-                  }
-                  return _circularProgress();
-                }
-              );
-
-
-              Navigator.push(
-                context,
-                MaterialPageRoute(
+              if (chatEnabled) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    duration: Duration(milliseconds: 1500),
+                    content: Text('Authenticating user...')
+                  ),
+                );
+                Navigator.pushNamed(
+                  context,
+                  '/gchat'
+                );
+              }
+              else {
+                showDialog<String>(
+                  context: context,
                   builder: (BuildContext context) {
-                    return FutureBuilder(
-                      future: db.Chat().canChat(),
-                      builder: (BuildContext context, snapshot) {
-                        if (!snapshot.hasData) { _circularProgress(); }
-                        else if (snapshot.data == null) { _circularProgress(); }
-                        else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-
-                          bool canChat = true;
-                          print('Bool val: ${snapshot.data.docs}');
-                          if (canChat) {
-                            print('User can chat');
-                          }
-
-                        }
-                        return _circularProgress();
-                      }
+                    return AlertDialog(
+                      title: const Text('Chat Disabled', textAlign: TextAlign.center,),
+                      content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context, 'cancel');
+                          },
+                          style: buttons.buttonStyleRed(context),
+                          child: const Text('Ok'),
+                        ),
+                      ],
                     );
                   }
-                ),
-              );
+                );
+              }
 
-              // navigate to chat screen
-              // Navigator.pushNamed(
-              //   context,
-              //   '/gchat'
-              // );
+
+              // Navigator.pushNamed(context, '/chatRules');
+
             },
             leading: CircleAvatar(
               foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
