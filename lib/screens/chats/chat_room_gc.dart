@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,10 +25,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
   // scroll controller
   final ScrollController _scrollController = ScrollController();
-
-  // void _scrollToBottom() {
-  //   _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-  // }
 
   Center _circularProgress() {
     return const Center(
@@ -55,17 +53,8 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       chat['uid'] = uid;
       chat['timestamp'] = 'FieldValue.serverTimestamp()';
 
-       ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
+      ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
-
-    // scroll to botton of listview
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 1),
-        curve: Curves.fastOutSlowIn
-      );
-    });
 
     // clear text controoler
     _chatCtrl.clear();
@@ -114,6 +103,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           padding: const EdgeInsets.symmetric(horizontal:  20.0),
                           shrinkWrap: true,
                           controller: _scrollController,
+                          cacheExtent: 1000,
                           itemCount: chatLength,
                           itemBuilder: (BuildContext context, int index) {
                             bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
