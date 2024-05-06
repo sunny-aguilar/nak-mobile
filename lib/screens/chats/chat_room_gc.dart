@@ -52,6 +52,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       Map<String, dynamic> chat = {};
       chat['msg'] = _chatCtrl.text.trim();
       chat['uid'] = uid;
+      chat['username'] = db_chat.Chat().getUserName();
       chat['timestamp'] = utils.Dates().getDateTime();
       ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
@@ -108,7 +109,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemBuilder: (BuildContext context, int index) {
                             bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
                             return ListTile(
-                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser, timestamp: chatList[index]['timestamp'],),
+                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser, timestamp: chatList[index]['timestamp'], username: chatList[index]['username'],),
                             );
                           }
                         ),
@@ -237,10 +238,16 @@ class GlowingActionButton extends StatelessWidget {
 
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key, required this.msg, required this.isCurrentUser, required this.timestamp});
+  const ChatBubble({super.key,
+    required this.msg,
+    required this.isCurrentUser,
+    required this.username,
+    required this.timestamp}
+  );
 
   final String msg;
   final bool isCurrentUser;
+  final String username;
   final String timestamp;
 
   BorderRadius chatShape() {
@@ -266,7 +273,7 @@ class ChatBubble extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          Text(db_chat.Chat().getUserName()),
+          Text(username),
           Container(
             decoration: BoxDecoration(
               borderRadius: chatShape(),
