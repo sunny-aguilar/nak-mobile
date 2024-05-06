@@ -16,6 +16,13 @@ class Chat {
     Map<dynamic, dynamic> userData = await getUsers();
     return userData['rights']['chat'];
   }
+
+  String getUserName() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      return FirebaseAuth.instance.currentUser?.displayName ?? '';
+    }
+    return '';
+  }
 }
 
 

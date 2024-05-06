@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/db/db_chat.dart' as db_chat;
 import 'package:nak_app/components/utils.dart' as utils;
 
 class GeneralChatRoom extends StatefulWidget {
@@ -265,6 +266,7 @@ class ChatBubble extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
+          Text(db_chat.Chat().getUserName()),
           Container(
             decoration: BoxDecoration(
               borderRadius: chatShape(),
