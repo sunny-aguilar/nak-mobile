@@ -133,10 +133,10 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
-                                  Navigator.pop(context, 'cancel');
+                                  Navigator.pop(context);
                                 },
                                 style: buttons.buttonStyleRed(context),
-                                child: const Text('Ok'),
+                                child: const Text('Dismiss'),
                               ),
                             ],
                           );
