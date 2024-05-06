@@ -1,12 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/widget_export.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/components/utils.dart' as utils;
 
 class GeneralChatRoom extends StatefulWidget {
   const GeneralChatRoom({super.key});
@@ -48,11 +47,11 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       final ref = FirebaseFirestore.instance.collection('chat').doc('general_chat');
       final uid = FirebaseAuth.instance.currentUser!.uid;
 
+      // create chat data to be saved
       Map<String, dynamic> chat = {};
       chat['msg'] = _chatCtrl.text.trim();
       chat['uid'] = uid;
-      chat['timestamp'] = 'FieldValue.serverTimestamp()';
-
+      chat['timestamp'] = utils.Dates().getDateTime();
       ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
 
@@ -108,7 +107,7 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemBuilder: (BuildContext context, int index) {
                             bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
                             return ListTile(
-                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser,),
+                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser, timestamp: chatList[index]['timestamp'],),
                             );
                           }
                         ),
@@ -237,10 +236,11 @@ class GlowingActionButton extends StatelessWidget {
 
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key, required this.msg, required this.isCurrentUser});
+  const ChatBubble({super.key, required this.msg, required this.isCurrentUser, required this.timestamp});
 
   final String msg;
   final bool isCurrentUser;
+  final String timestamp;
 
   BorderRadius chatShape() {
     if (isCurrentUser) {
@@ -263,6 +263,7 @@ class ChatBubble extends StatelessWidget {
       alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Column(
         mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Container(
             decoration: BoxDecoration(
@@ -287,7 +288,7 @@ class ChatBubble extends StatelessWidget {
             ),
           ),
           Container(
-            child: Text('May 6, 2024', style: theme.TextThemes.chatDate(context),),
+            child: Text(timestamp, style: theme.TextThemes.chatDate(context),),
           ),
         ],
       ),
