@@ -287,9 +287,7 @@ class ChatBubble extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            child: Text(timestamp, style: theme.TextThemes.chatDate(context),),
-          ),
+          Text(timestamp, style: theme.TextThemes.chatDate(context),),
         ],
       ),
     );
