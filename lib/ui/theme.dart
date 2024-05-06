@@ -526,11 +526,17 @@ class TextThemes{
     );
   }
 
-  static TextStyle charWarning(BuildContext context) {
+  static TextStyle chatWarning(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
       fontSize: 16,
       // color: redClr,
+    );
+  }
+
+  static TextStyle chatDate(BuildContext context) {
+    return const TextStyle(
+      fontSize: 11,
     );
   }
 

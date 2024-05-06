@@ -103,7 +103,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
               const SizedBox(height: 20,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Text('Failure to follow any of these rules will result in you getting banned from chat.', textAlign: TextAlign.center, style: theme.TextThemes.charWarning(context),),
+                child: Text('Failure to follow any of these rules will result in you getting banned from chat.', textAlign: TextAlign.center, style: theme.TextThemes.chatWarning(context),),
               ),
               const SizedBox(height: 24,),
               Padding(

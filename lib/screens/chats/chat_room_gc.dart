@@ -261,28 +261,35 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: chatShape(),
-          color:
-            Get.isDarkMode ? isCurrentUser
-            ? theme.redClr : theme.charcoalClr
-            : isCurrentUser
-            ? theme.redClr : theme.chatGregyClr,
-
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text(
-            msg,
-            style: TextStyle(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: chatShape(),
               color:
-                Get.isDarkMode ? theme.primaryClr
+                Get.isDarkMode ? isCurrentUser
+                ? theme.redClr : theme.charcoalClr
                 : isCurrentUser
-                ? theme.primaryClr : theme.darkGreyClr,
+                ? theme.redClr : theme.chatGregyClr,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+              child: Text(
+                msg,
+                style: TextStyle(
+                  color:
+                    Get.isDarkMode ? theme.primaryClr
+                    : isCurrentUser
+                    ? theme.primaryClr : theme.darkGreyClr,
+                ),
+              ),
             ),
           ),
-        ),
+          Container(
+            child: Text('May 6, 2024', style: theme.TextThemes.chatDate(context),),
+          ),
+        ],
       ),
     );
   }
