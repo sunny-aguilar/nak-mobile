@@ -1,21 +1,11 @@
 import 'package:intl/intl.dart';
 
 class Dates {
-
-  String getDate() {
-    getTime();
-    return DateFormat.yMMMMd('en_US').format(DateTime.now());
-  }
-
-  String getTime() {
-    final DateTime now = DateTime.now();
-    final timeFormatter = DateFormat.jm();
-    final formattedTime = timeFormatter.format(now);
-    return formattedTime;
-  }
-
   String getDateTime() {
-    return '${getDate()} ${getTime()}';
+    final DateTime now = DateTime.now();
+    // final timeFormattter = DateFormat.jm().add_jm(); // 00/00/0000 format
+    final timeFormattter = DateFormat.yMMMd('en_US').add_jm();
+    return timeFormattter.format(now);
   }
 }
 
