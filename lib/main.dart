@@ -18,7 +18,7 @@ import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/screens/profile/my_profile.dart';
 import 'package:nak_app/screens/account.dart';
 import 'package:nak_app/screens/version_screen.dart';
-import 'package:nak_app/screens/uploadphoto_screen.dart';
+import 'package:nak_app/screens/profile/uploadphoto_screen.dart';
 import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/screens/blog/preview_blog.dart';
 import 'package:nak_app/screens/blog/edit_blog.dart';
