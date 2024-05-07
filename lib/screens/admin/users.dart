@@ -78,7 +78,7 @@ class _UserlistState extends State<UserlistBody> {
                           uid: uid,
                           blogStatus: blogStatus,
                           chatStatus: chatStatus,
-                          username: db_ops.GetUsers().getUserName(),
+                          username: '${data[index]['firstName']} ${data[index]['lastName']}',
                         );
                       }
                       return _circularProgress();
@@ -178,7 +178,8 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
           children: <Widget>[
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
-              title: Text('Current User: ${widget.username}'),
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(widget.username),
             ),
             ListTile(
               title: const Text('Give blog rights:'),
