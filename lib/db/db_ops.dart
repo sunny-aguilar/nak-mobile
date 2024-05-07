@@ -104,6 +104,23 @@ class GetUsers {
     QuerySnapshot snapshot = await query.get();
     return snapshot;
   }
+
+  String getUserName() {
+    if (FirebaseAuth.instance.currentUser != null) {
+      String username = FirebaseAuth.instance.currentUser?.displayName ?? 'No name';
+      return username;
+    }
+    return 'No name';
+  }
+}
+
+class UpdateUsers {
+  Future updateDisplayName (String username) async {
+    if (FirebaseAuth.instance.currentUser != null) {
+      final user = FirebaseAuth.instance.currentUser;
+      await user?.updateDisplayName(username);
+    }
+  }
 }
 
 

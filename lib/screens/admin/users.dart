@@ -4,6 +4,7 @@ import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db_ops;
 import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/components/buttons.dart' as buttons;
 
 class AllUsers extends StatelessWidget {
   const AllUsers({super.key});
@@ -77,6 +78,7 @@ class _UserlistState extends State<UserlistBody> {
                           uid: uid,
                           blogStatus: blogStatus,
                           chatStatus: chatStatus,
+                          username: db_ops.GetUsers().getUserName(),
                         );
                       }
                       return _circularProgress();
@@ -123,11 +125,12 @@ class _UserlistState extends State<UserlistBody> {
 
 
 class UserSettingsScreen extends StatefulWidget {
-  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus, required this.chatStatus});
+  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus, required this.chatStatus, required this.username});
   final String uid;
   final bool blogStatus;
   final bool chatStatus;
-  // final bool chatStatus;
+  final String username;
+
   @override
   State<UserSettingsScreen> createState() => _UserSettingsScreenState();
 }
@@ -175,6 +178,9 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
           children: <Widget>[
             Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
             ListTile(
+              title: Text('Current User: ${widget.username}'),
+            ),
+            ListTile(
               title: const Text('Give blog rights:'),
 
               trailing: Switch(
@@ -218,7 +224,6 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                   });
                 }
               ),
-
             ),
           ],
         ),
