@@ -50,10 +50,12 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal:  24.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Text('Chat Maintenance Body'),
           // TODO: add functions to add a new chat list
           // chatListName = utils.Dates().getDate();
+          Text('Create New List'),
         ],
       ),
     );
