@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 class Chat {
   FirebaseFirestore? _instance;
 
-  Future<Map> getUsers() async {
+  Future<Map> getUser() async {
     _instance = FirebaseFirestore.instance;
     String userUID = FirebaseAuth.instance.currentUser!.uid;
     CollectionReference users = _instance!.collection('users');
@@ -13,7 +13,7 @@ class Chat {
   }
 
   Future<bool> canChat() async {
-    Map<dynamic, dynamic> userData = await getUsers();
+    Map<dynamic, dynamic> userData = await getUser();
     return userData['rights']['chat'];
   }
 

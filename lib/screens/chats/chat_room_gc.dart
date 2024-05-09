@@ -109,7 +109,12 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                           itemBuilder: (BuildContext context, int index) {
                             bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
                             return ListTile(
-                              title: ChatBubble(msg: chatList[index]['msg'], isCurrentUser: isCurrentUser, timestamp: chatList[index]['timestamp'], username: chatList[index]['username'],),
+                              title: ChatBubble(
+                                msg: chatList[index]['msg'],
+                                isCurrentUser: isCurrentUser,
+                                timestamp: chatList[index]['timestamp'],
+                                username: chatList[index]['username'],
+                              ),
                             );
                           }
                         ),

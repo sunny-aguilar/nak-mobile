@@ -146,7 +146,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
 
                   },
                   style: buttons.chatButton(context, theme.redClr),
-                  child: const Text('Start Chatting'),
+                  child: const Text('Start Chatting', style: TextStyle(color: theme.primaryClr),),
                 ),
               ),
             ],
