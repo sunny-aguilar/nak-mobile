@@ -27,6 +27,7 @@ import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/screens/chats/chat_room_list.dart';
 import 'package:nak_app/screens/chats/chat_room_gc.dart';
 import 'package:nak_app/screens/chats/chat_rules.dart';
+import 'package:nak_app/screens/chats/chat_maintenance.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
@@ -78,6 +79,7 @@ class App extends StatelessWidget {
         '/chat': (context) => ChatScreen(context: context),
         '/gchat': (context) => const GeneralChatRoom(),
         '/chatRules': (context) => const ChatRules(),
+        '/chatMaintenance': (context) => const ChatMaintenance(),
       };
 
     return  GetMaterialApp(

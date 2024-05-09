@@ -7,6 +7,13 @@ class Dates {
     final timeFormattter = DateFormat.yMMMd('en_US').add_jm();
     return timeFormattter.format(now);
   }
+
+  String getDate() {
+    // 00/00/0000 format
+    final DateTime now = DateTime.now();
+    final timeFormattter = DateFormat.yMMMMd('en_US');
+    return timeFormattter.format(now);
+  }
 }
 
 
