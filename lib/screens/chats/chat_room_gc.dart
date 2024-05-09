@@ -54,7 +54,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       chat['uid'] = uid;
       chat['username'] = db_chat.Chat().getUserName();
       chat['timestamp'] = utils.Dates().getDateTime();
-      ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
+
+      // TODO: this should post to the correct chat cycle
+      ref.update({ 'gc.May 8, 2024': FieldValue.arrayUnion([ chat ]) });
     }
 
     // clear text controoler
@@ -95,8 +97,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   if (!snapshot.hasData) { return _circularProgress(); }
 
                   if (snapshot.hasData) {
-                    int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
-                    List chatList = snapshot.data.docs.toList()[0]['gc']['01'];
+                    // TODO: there should be a function here to create a new list every 72 hours
+                    int chatLength = snapshot.data.docs.toList()[0]['gc']['May 8, 2024'].length;
+                    List chatList = snapshot.data.docs.toList()[0]['gc']['May 8, 2024'];
 
                     return  Column(
                       children: <Widget>[
