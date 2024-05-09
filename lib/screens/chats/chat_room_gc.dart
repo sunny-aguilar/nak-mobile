@@ -42,17 +42,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
     );
   }
 
-  // TODO: create variables to hold the new chat list that should update every cycle (3-5 days?)
-  String chatListName = '';
-
-  // TODO: create a function to change the chat list name every 3 days
-  void setNewChatListName() {
-    DateTime start = DateTime(2024, 05, 01);
-    DateTime end = DateTime(2024, 05, 02);
-    Duration duration = end.difference(start);
-    print('Diff: ${duration.inHours}');
-  }
-
   void buttonStuff() {
     if (_chatKey.currentState!.validate()) {
       // get reference
@@ -66,7 +55,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       chat['username'] = db_chat.Chat().getUserName();
       chat['timestamp'] = utils.Dates().getDateTime();
 
-      // TODO: this should post to the correct chat cycle
       ref.update({ 'gc.01': FieldValue.arrayUnion([ chat ]) });
     }
 
@@ -108,10 +96,6 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   if (!snapshot.hasData) { return _circularProgress(); }
 
                   if (snapshot.hasData) {
-                    // TODO: there should be a function here to create a new list every 72 hours
-                    chatListName = utils.Dates().getDate();
-                    print('List name: $chatListName');
-                    setNewChatListName();
                     int chatLength = snapshot.data.docs.toList()[0]['gc']['01'].length;
                     List chatList = snapshot.data.docs.toList()[0]['gc']['01'];
 
