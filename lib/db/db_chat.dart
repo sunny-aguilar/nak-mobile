@@ -36,7 +36,8 @@ class ChatSettings {
   }
 
   Future<void> resetChat() async {
-    
+    _instance = FirebaseFirestore.instance;
+    CollectionReference chatRefs = _instance!.collection('chat');
   }
 }
 

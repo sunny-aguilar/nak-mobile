@@ -94,7 +94,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 
                   return ListTile(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const GeneraChatOptions())
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const GeneraChatOptions(chatRoom: 'general_chat'))
                       );
                     },
                     leading: CircleAvatar(
@@ -119,7 +119,8 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 }
 
 class GeneraChatOptions extends StatelessWidget {
-  const GeneraChatOptions({super.key});
+  const GeneraChatOptions({super.key, required this.chatRoom});
+  final String chatRoom;
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +140,7 @@ class GeneraChatOptions extends StatelessWidget {
             Text('Archive Chat', style: theme.TextThemes.headlineSmall16(context),),
             const Text('Chats will be archived using a timestamp. Any archives will be datestamped with the following timestamp.',),
             const SizedBox(height: 12,),
-            Text('Timestamp: ${utils.Dates().getDate()}'),
+            Text('Timestamp: ${utils.Dates().getDateTime()}'),
             const SizedBox(height: 12,),
             TextButton(
               onPressed: () {},
