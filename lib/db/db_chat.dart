@@ -34,6 +34,10 @@ class ChatSettings {
     DocumentSnapshot snapshot = await chatRefs.doc(chatDoc).get();
     return snapshot.data() as Map;
   }
+
+  Future<void> resetChat() async {
+    
+  }
 }
 
 
