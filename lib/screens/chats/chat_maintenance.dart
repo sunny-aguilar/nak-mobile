@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/db/db_chat.dart' as db_chat;
+import 'package:nak_app/components/utils.dart' as utils;
 
 class ChatMaintenance extends StatefulWidget {
   const ChatMaintenance({super.key});
@@ -135,7 +137,15 @@ class GeneraChatOptions extends StatelessWidget {
             Text('Chat Room Stats', style: theme.TextThemes.headlineMedLarge(context),),
             const SizedBox(height: 12,),
             Text('Archive Chat', style: theme.TextThemes.headlineSmall16(context),),
-            const Text('General Chat List Name:',),
+            const Text('Chats will be archived using a timestamp. Any archives will be datestamped with the following timestamp.',),
+            const SizedBox(height: 12,),
+            Text('Timestamp: ${utils.Dates().getDate()}'),
+            const SizedBox(height: 12,),
+            TextButton(
+              onPressed: () {},
+              style: buttons.chatButton(context, theme.redClr),
+              child: const Text('Archive Chat', style: TextStyle(color: theme.primaryClr),),
+            ),
           ],
         ),
       ),
