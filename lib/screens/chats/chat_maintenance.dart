@@ -65,11 +65,15 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           FutureBuilder(
-            future: db_chat.ChatSettings().totalChats('general_chat', 'gc'),
+            future: db_chat.ChatSettings().totalChats('general_chat'),
             builder: (BuildContext context, snapshot) {
               if (!snapshot.hasData) { _circularProgress(); }
               else if (snapshot.data == null) { _circularProgress(); }
               else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+
+                Map<dynamic, dynamic> obj = snapshot.data?['gc']['01'][0];
+                print('val: ${obj['username']}');
+
                 return Text('1');
               }
               return _circularProgress();
