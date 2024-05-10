@@ -134,8 +134,8 @@ class GeneraChatOptions extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('Chat Room Stats', style: theme.TextThemes.headlineMedLarge(context),),
-            const SizedBox(height: 20,),
-            const Text('Archive Chat'),
+            const SizedBox(height: 12,),
+            Text('Archive Chat', style: theme.TextThemes.headlineSmall16(context),),
           ],
         ),
       ),
