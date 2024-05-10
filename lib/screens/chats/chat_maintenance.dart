@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/db/db_chat.dart' as db_chat;
 
 class ChatMaintenance extends StatelessWidget {
   const ChatMaintenance({super.key});
@@ -45,6 +46,17 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 
   // TODO: there should be a function here to create a new list every 72 hours
 
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 75, width: 75,
+        child: CircularProgressIndicator(
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -52,10 +64,21 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Chat Maintenance Body'),
+          FutureBuilder(
+            future: db_chat.ChatSettings().totalChats('general_chat', 'gc'),
+            builder: (BuildContext context, snapshot) {
+              if (!snapshot.hasData) { _circularProgress(); }
+              else if (snapshot.data == null) { _circularProgress(); }
+              else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                return Text('1');
+              }
+              return _circularProgress();
+            }
+          ),
+          const Text('Chat Maintenance Body'),
           // TODO: add functions to add a new chat list
           // chatListName = utils.Dates().getDate();
-          Text('Create New List'),
+          const Text('Create New List'),
         ],
       ),
     );

@@ -25,6 +25,17 @@ class Chat {
   }
 }
 
+class ChatSettings {
+  FirebaseFirestore? _instance;
+
+  Future<int> totalChats(String chatDoc, String chatCollection) async {
+    _instance = FirebaseFirestore.instance;
+    CollectionReference chatRefs = _instance!.collection('chat');
+    DocumentSnapshot snapshot = await chatRefs.doc(chatDoc).get();
+    print('Snapshot: ${snapshot.data()}');
+    return 1;
+  }
+}
 
 
 
