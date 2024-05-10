@@ -39,13 +39,13 @@ class ChatMaintenanceBody extends StatefulWidget {
 
 class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 
-  // TODO: create variables to hold the new chat list that should update every cycle (3-5 days?)
+  // TODO: create variables to hold the new chat list that should update every cycle (500 chats?)
   String chatListName = '';
 
   // chat stat variables
   int totalGcChats = 0;
 
-  // TODO: create a function to change the chat list name every 72 hours
+  // TODO: create a function to change the chat list name every 500 chat messages
   void setNewChatListName() {
     DateTime start = DateTime(2024, 05, 01);
     DateTime end = DateTime(2024, 05, 02);
@@ -53,7 +53,9 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
     print('Diff: ${duration.inHours}');
   }
 
-  // TODO: there should be a function here to create a new list every 72 hours
+  // TODO: there should be a function here to create a new list every 500 chat messages
+  // copy chat list to a new one
+  // delete all chats in '01' chat
 
   Center _circularProgress() {
     return const Center(
@@ -136,6 +138,7 @@ class GeneraChatOptions extends StatelessWidget {
             Text('Chat Room Stats', style: theme.TextThemes.headlineMedLarge(context),),
             const SizedBox(height: 12,),
             Text('Archive Chat', style: theme.TextThemes.headlineSmall16(context),),
+            const Text('General Chat List Name:',),
           ],
         ),
       ),
