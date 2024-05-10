@@ -71,8 +71,9 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
               else if (snapshot.data == null) { _circularProgress(); }
               else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
 
-                Map<dynamic, dynamic> obj = snapshot.data?['gc']['01'][0];
-                print('val: ${obj['username']}');
+                List<dynamic> chatList = snapshot.data?['gc']['01'];
+                int totalChats = chatList.length;
+                print('val: $totalChats');
 
                 return Text('1');
               }
