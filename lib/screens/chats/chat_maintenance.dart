@@ -85,7 +85,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
               else if (snapshot.data == null) { _circularProgress(); }
               else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
 
-                List<dynamic> chatList = snapshot.data?['gc']['01'];
+                List<dynamic> chatList = snapshot.data?['gc']['active'];
                 int totalChats = chatList.length;
                 totalGcChats = totalChats;
 
