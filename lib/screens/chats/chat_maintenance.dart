@@ -137,11 +137,12 @@ class GeneraChatOptions extends StatelessWidget {
           children: <Widget>[
             Text('Chat Room Stats', style: theme.TextThemes.headlineMedLarge(context),),
             const SizedBox(height: 12,),
-            Text('Archive Chat', style: theme.TextThemes.headlineSmall16(context),),
-            const Text('Chats will be archived using a timestamp. Any archives will be datestamped with the following timestamp.',),
+            Text('Archive Chat Process', style: theme.TextThemes.headlineSmall16(context),),
+            const Text('Chats will be archived using a timestamp. Any archives will be datestamped with a date stamped and saved in an archive.',),
             const SizedBox(height: 12,),
-            Text('Timestamp: ${utils.Dates().getDateTime()}'),
-            const SizedBox(height: 12,),
+            Text('Chat Room Data:', style: theme.TextThemes.headlineSmall16(context),),
+            Text('Chat Room: $chatRoom\nTimestamp: ${utils.Dates().getDateTime()}'),
+            const SizedBox(height: 20,),
             TextButton(
               onPressed: () {},
               style: buttons.chatButton(context, theme.redClr),
