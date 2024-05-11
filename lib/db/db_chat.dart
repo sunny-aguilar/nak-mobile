@@ -39,8 +39,8 @@ class ChatSettings {
     // TODO: implement archive method
     _instance = FirebaseFirestore.instance;
     CollectionReference chatRefs = _instance!.collection('chat');
-      // copy chat list to a new one
-      // delete all chats in 'active' chat
+    // copy chat list to a new one
+    // delete all chats in 'active' chat
   }
 }
 

@@ -108,7 +108,9 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                       (BuildContext context, int index) {
                         return ListTile(
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const GeneraChatOptions(chatRoom: 'general_chat'))
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => GeneraChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
                             );
                           },
                           leading: CircleAvatar(
@@ -134,8 +136,9 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 }
 
 class GeneraChatOptions extends StatelessWidget {
-  const GeneraChatOptions({super.key, required this.chatRoom});
+  const GeneraChatOptions({super.key, required this.chatRoom, required this.totalChats});
   final String chatRoom;
+  final int totalChats;
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +159,7 @@ class GeneraChatOptions extends StatelessWidget {
             const Text('Chats will be archived using a timestamp. Any archives will be datestamped with a date stamped and saved in an archive. Monitor Firestore to make sure data is saved properly.',),
             const SizedBox(height: 12,),
             Text('Chat Room Data:', style: theme.TextThemes.headlineSmall16(context),),
-            Text('Chat Room: $chatRoom\nTimestamp: ${utils.Dates().getDateTime()}'),
+            Text('Chat Room: $chatRoom\nTotal Messages: $totalChats\nTimestamp: ${utils.Dates().getDateTime()}'),
             const SizedBox(height: 20,),
             TextButton(
               onPressed: () {
