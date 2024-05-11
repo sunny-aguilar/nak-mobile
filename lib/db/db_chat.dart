@@ -38,7 +38,8 @@ class ChatSettings {
   Future<void> resetChat() async {
     _instance = FirebaseFirestore.instance;
     CollectionReference chatRefs = _instance!.collection('chat');
-    
+      // copy chat list to a new one
+      // delete all chats in 'active' chat
   }
 }
 

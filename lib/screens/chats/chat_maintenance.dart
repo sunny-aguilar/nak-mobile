@@ -40,24 +40,15 @@ class ChatMaintenanceBody extends StatefulWidget {
 }
 
 class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
-
-  // TODO: create variables to hold the new chat list that should update every cycle (500 chats?)
-  String chatListName = '';
-
   // chat stat variables
   int totalGcChats = 0;
 
-  // TODO: create a function to change the chat list name every 500 chat messages
   void setNewChatListName() {
     DateTime start = DateTime(2024, 05, 01);
     DateTime end = DateTime(2024, 05, 02);
     Duration duration = end.difference(start);
     print('Diff: ${duration.inHours}');
   }
-
-  // TODO: there should be a function here to create a new list every 500 chat messages
-  // copy chat list to a new one
-  // delete all chats in '01' chat
 
   Future<void> _handleRefresh() async {
     setState(() {});
