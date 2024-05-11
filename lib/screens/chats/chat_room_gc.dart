@@ -55,7 +55,8 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
       chat['username'] = db_chat.Chat().getUserName();
       chat['timestamp'] = utils.Dates().getDateTime();
 
-      ref.update({ 'gc.active': FieldValue.arrayUnion([ chat ]) });
+      // ref.update({ 'gc.active': FieldValue.arrayUnion([ chat ]) });
+      ref.update({ 'active': FieldValue.arrayUnion([ chat ]) });
     }
 
     // clear text controoler
@@ -96,8 +97,10 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   if (!snapshot.hasData) { return _circularProgress(); }
 
                   if (snapshot.hasData) {
-                    int chatLength = snapshot.data.docs.toList()[0]['gc']['active'].length;
-                    List chatList = snapshot.data.docs.toList()[0]['gc']['active'];
+                    // int chatLength = snapshot.data.docs.toList()[0]['gc']['active'].length;
+                    // List chatList = snapshot.data.docs.toList()[0]['gc']['active'];
+                    int chatLength = snapshot.data.docs.toList()[0]['active'].length;
+                    List chatList = snapshot.data.docs.toList()[0]['active'];
 
                     return  Column(
                       children: <Widget>[
