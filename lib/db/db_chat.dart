@@ -36,6 +36,7 @@ class ChatSettings {
   }
 
   Future<void> resetChat() async {
+    // TODO: implement archive method
     _instance = FirebaseFirestore.instance;
     CollectionReference chatRefs = _instance!.collection('chat');
       // copy chat list to a new one
