@@ -45,18 +45,22 @@ class ChatSettings {
         // get active chat list
         final data = doc.data() as Map<String, dynamic>;
 
+        // create archive name using datestamp
         final String date = utils.Dates().getDateTime();
 
-        final datas = {date: data['gc']};
+        // data to be saved
+        final chatData = {date: data['gc']};
 
         // copy active chat list to archive
-        docRef.collection('gc_archive').doc('archive_list').set(datas, SetOptions(merge: true));
-
+        docRef.collection('gc_archive').doc('archive_list').set(chatData, SetOptions(merge: true));
       },
       onError: (e) => print('Error getting document: $e'),
     );
-    // copy chat list to a new one
-    // delete all chats in 'active' chat
+    // delete data
+    final updates = <String, dynamic>{
+      'gc': FieldValue.delete(),
+    };
+    docRef.update(updates);
   }
 }
 
