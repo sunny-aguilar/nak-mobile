@@ -62,12 +62,6 @@ class ChatSettings {
       },
       onError: (e) => print('Error getting document: $e'),
     );
-    // delete data
-    // final updates = <String, dynamic>{ 'active': FieldValue.delete(), };
-    // docRef.update(updates);
-
-    // add blank entry
-    // addBlankEntry();
   }
 
   void addBlankEntry() {
