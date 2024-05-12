@@ -350,7 +350,8 @@ class ChatBubble extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: chatShape(),
               color:
-                Get.isDarkMode ? isCurrentUser
+                Get.isDarkMode
+                ? isCurrentUser
                 ? theme.redClr : theme.charcoalClr
                 : isCurrentUser
                 ? theme.redClr : theme.chatGregyClr,
