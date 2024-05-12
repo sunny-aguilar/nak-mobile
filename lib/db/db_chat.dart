@@ -75,10 +75,10 @@ class ChatSettings {
 
     // create chat data to be saved
     Map<String, dynamic> chat = {};
-    chat['msg'] = '';
+    chat['msg'] = utils.Dates().getDate();
     chat['uid'] = '';
     chat['username'] = '';
-    chat['timestamp'] = '';
+    chat['timestamp'] = 'system';
 
     docRef.update({ 'active': FieldValue.arrayUnion([ chat ]) });
   }

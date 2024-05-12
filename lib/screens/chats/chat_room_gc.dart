@@ -97,33 +97,76 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                   if (!snapshot.hasData) { return _circularProgress(); }
 
                   if (snapshot.hasData) {
-                    // int chatLength = snapshot.data.docs.toList()[0]['gc']['active'].length;
-                    // List chatList = snapshot.data.docs.toList()[0]['gc']['active'];
-                    int chatLength = snapshot.data.docs.toList()[0]['active'].length;
-                    List chatList = snapshot.data.docs.toList()[0]['active'];
+                    try {
+                      int chatLength = snapshot.data.docs.toList()[0]['active'].length;
+                      List chatList = snapshot.data.docs.toList()[0]['active'];
 
-                    return  Column(
-                      children: <Widget>[
-                        ListView.builder(
-                          padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                          shrinkWrap: true,
-                          controller: _scrollController,
-                          reverse: false,
-                          itemCount: chatLength,
-                          itemBuilder: (BuildContext context, int index) {
-                            bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
-                            return ListTile(
-                              title: ChatBubble(
-                                msg: chatList[index]['msg'],
-                                isCurrentUser: isCurrentUser,
-                                timestamp: chatList[index]['timestamp'],
-                                username: chatList[index]['username'],
+                      return  Column(
+                        children: <Widget>[
+                          ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                            shrinkWrap: true,
+                            controller: _scrollController,
+                            reverse: false,
+                            itemCount: chatLength,
+                            itemBuilder: (BuildContext context, int index) {
+                              bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
+                              return ListTile(
+                                title: ChatBubble(
+                                  msg: chatList[index]['msg'],
+                                  isCurrentUser: isCurrentUser,
+                                  timestamp: chatList[index]['timestamp'],
+                                  username: chatList[index]['username'],
+                                ),
+                              );
+                            }
+                          ),
+                        ],
+                      );
+
+                    }
+                    catch (e) {
+                      return Column(
+                        children: <Widget>[
+                          ListView(
+                            shrinkWrap: true,
+                            children: const <Widget>[
+                              ListTile(
+                                title: Text('No chat messages yet...'),
                               ),
-                            );
-                          }
-                        ),
-                      ],
-                    );
+                            ],
+                          ),
+                        ]
+                      );
+                    }
+
+                    // TODO: only delete this once the above try catch block is verified
+                    // TODO: to fully work
+                    // int chatLength = snapshot.data.docs.toList()[0]['active'].length;
+                    // List chatList = snapshot.data.docs.toList()[0]['active'];
+
+                    // return  Column(
+                    //   children: <Widget>[
+                    //     ListView.builder(
+                    //       padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                    //       shrinkWrap: true,
+                    //       controller: _scrollController,
+                    //       reverse: false,
+                    //       itemCount: chatLength,
+                    //       itemBuilder: (BuildContext context, int index) {
+                    //         bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
+                    //         return ListTile(
+                    //           title: ChatBubble(
+                    //             msg: chatList[index]['msg'],
+                    //             isCurrentUser: isCurrentUser,
+                    //             timestamp: chatList[index]['timestamp'],
+                    //             username: chatList[index]['username'],
+                    //           ),
+                    //         );
+                    //       }
+                    //     ),
+                    //   ],
+                    // );
                   }
                   return _circularProgress();
                 }
@@ -317,6 +360,17 @@ class DateBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Align(
+      alignment: Alignment.center,
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.0)
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
+          child: Text('May xx, 2024'),
+        ),
+      ),
+    );
   }
 }
