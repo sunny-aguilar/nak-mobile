@@ -57,10 +57,24 @@ class ChatSettings {
       onError: (e) => print('Error getting document: $e'),
     );
     // delete data
-    final updates = <String, dynamic>{
-      'gc': FieldValue.delete(),
-    };
+    final updates = <String, dynamic>{ 'gc': FieldValue.delete(), };
     docRef.update(updates);
+
+    // add blank entry
+    // addBlankEntry();
+  }
+
+  void addBlankEntry() {
+    final docRef = FirebaseFirestore.instance.collection('chat').doc('general_chat');
+
+    // create chat data to be saved
+    Map<String, dynamic> chat = {};
+    chat['msg'] = '';
+    chat['uid'] = '';
+    chat['username'] = '';
+    chat['timestamp'] = '';
+
+    docRef.update({ 'active': FieldValue.arrayUnion([ chat ]) });
   }
 }
 

@@ -311,3 +311,12 @@ class ChatBubble extends StatelessWidget {
     );
   }
 }
+
+class DateBubble extends StatelessWidget {
+  const DateBubble({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
+}
