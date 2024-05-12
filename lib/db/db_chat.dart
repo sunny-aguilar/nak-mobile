@@ -38,7 +38,20 @@ class ChatSettings {
   Future<void> resetChat() async {
     // TODO: implement archive method
     _instance = FirebaseFirestore.instance;
-    CollectionReference chatRefs = _instance!.collection('chat');
+    final docRef = _instance!.collection('chat').doc('general_chat');
+    docRef.get().then(
+      (DocumentSnapshot doc) {
+        // get active chat list
+        final data = doc.data() as Map<String, dynamic>;
+        // print('Data: ${data['gc']}');
+        final datas = {'May 5, 2024': data['gc']};
+
+        // copy active chat list to archive
+        docRef.collection('gc_archive').doc('archive_list').set(datas, SetOptions(merge: true));
+
+      },
+      onError: (e) => print('Error getting document: $e'),
+    );
     // copy chat list to a new one
     // delete all chats in 'active' chat
   }
