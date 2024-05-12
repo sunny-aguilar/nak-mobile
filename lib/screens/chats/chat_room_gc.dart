@@ -374,24 +374,3 @@ class ChatBubble extends StatelessWidget {
     );
   }
 }
-
-class DateBubble extends StatelessWidget {
-  const DateBubble({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          color: theme.redClr,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text(utils.Dates().getDate()),
-        ),
-      ),
-    );
-  }
-}
