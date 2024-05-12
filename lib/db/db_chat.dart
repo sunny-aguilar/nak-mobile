@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nak_app/components/utils.dart' as utils;
 
 class Chat {
   FirebaseFirestore? _instance;
@@ -43,8 +44,10 @@ class ChatSettings {
       (DocumentSnapshot doc) {
         // get active chat list
         final data = doc.data() as Map<String, dynamic>;
-        // print('Data: ${data['gc']}');
-        final datas = {'May 5, 2024': data['gc']};
+
+        final String date = utils.Dates().getDate();
+
+        final datas = {date: data['gc']};
 
         // copy active chat list to archive
         docRef.collection('gc_archive').doc('archive_list').set(datas, SetOptions(merge: true));
