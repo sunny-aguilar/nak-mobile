@@ -111,10 +111,12 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                             itemCount: chatLength,
                             itemBuilder: (BuildContext context, int index) {
                               bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
+                              bool isSystem = chatList[index]['timestamp'] == 'system';
                               return ListTile(
                                 title: ChatBubble(
                                   msg: chatList[index]['msg'],
                                   isCurrentUser: isCurrentUser,
+                                  isSystem: isSystem,
                                   timestamp: chatList[index]['timestamp'],
                                   username: chatList[index]['username'],
                                 ),
@@ -293,26 +295,44 @@ class ChatBubble extends StatelessWidget {
   const ChatBubble({super.key,
     required this.msg,
     required this.isCurrentUser,
+    required this.isSystem,
     required this.username,
     required this.timestamp}
   );
 
   final String msg;
   final bool isCurrentUser;
+  final bool isSystem;
   final String username;
   final String timestamp;
 
   BorderRadius chatShape() {
-    if (isCurrentUser) {
+    if (isSystem) {
+      return const BorderRadius.only(
+        topLeft: Radius.circular(18),
+        topRight: Radius.circular(18),
+        bottomLeft: Radius.circular(18),
+        bottomRight: Radius.circular(18),
+      );
+    }
+    else if (isCurrentUser) {
       return const BorderRadius.only(
         topLeft: Radius.circular(18),
         bottomLeft: Radius.circular(18),
         bottomRight: Radius.circular(18),
       );
     }
+    else if (!isCurrentUser) {
+      return const BorderRadius.only(
+        topLeft: Radius.circular(18),
+        topRight: Radius.circular(18),
+        bottomRight: Radius.circular(18),
+      );
+    }
     return const BorderRadius.only(
       topLeft: Radius.circular(18),
       topRight: Radius.circular(18),
+      bottomLeft: Radius.circular(18),
       bottomRight: Radius.circular(18),
     );
   }
@@ -320,10 +340,10 @@ class ChatBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
+      alignment: isSystem ? Alignment.center : isCurrentUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment: isSystem ? CrossAxisAlignment.center : isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
           Text(username),
           Container(
@@ -364,11 +384,12 @@ class DateBubble extends StatelessWidget {
       alignment: Alignment.center,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0)
+          borderRadius: BorderRadius.circular(12.0),
+          color: theme.redClr,
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),
-          child: Text('May xx, 2024'),
+          child: Text(utils.Dates().getDate()),
         ),
       ),
     );
