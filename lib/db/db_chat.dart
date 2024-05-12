@@ -45,7 +45,7 @@ class ChatSettings {
         // get active chat list
         final data = doc.data() as Map<String, dynamic>;
 
-        final String date = utils.Dates().getDate();
+        final String date = utils.Dates().getDateTime();
 
         final datas = {date: data['gc']};
 
