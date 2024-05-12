@@ -49,16 +49,22 @@ class ChatSettings {
         final String date = utils.Dates().getDateTime();
 
         // data to be saved
-        final chatData = {date: data['gc']};
+        final chatData = {date: data['active']};
 
         // copy active chat list to archive
         docRef.collection('gc_archive').doc('archive_list').set(chatData, SetOptions(merge: true));
+
+        final updates = <String, dynamic>{ 'active': FieldValue.delete(), };
+        docRef.update(updates);
+
+        // add blank entry
+        addBlankEntry();
       },
       onError: (e) => print('Error getting document: $e'),
     );
     // delete data
-    final updates = <String, dynamic>{ 'gc': FieldValue.delete(), };
-    docRef.update(updates);
+    // final updates = <String, dynamic>{ 'active': FieldValue.delete(), };
+    // docRef.update(updates);
 
     // add blank entry
     // addBlankEntry();
