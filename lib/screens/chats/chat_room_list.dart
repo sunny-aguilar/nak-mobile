@@ -51,13 +51,13 @@ class _ChatScreenState extends State<ChatScreen> {
               else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                 bool canChat = snapshot.data!;
                 chatEnabled = canChat;
-                if (canChat) {
+                if (chatEnabled) {
                   return Container(
                     height: 5,
                     decoration: const BoxDecoration(color: theme.azureClr,),
                   );
                 }
-                if (!canChat) {
+                if (!chatEnabled) {
                   return Container(
                     height: 5,
                     decoration: const BoxDecoration(color: theme.orangeClr,),
@@ -71,12 +71,14 @@ class _ChatScreenState extends State<ChatScreen> {
           ChatRoom(
             canChat: chatEnabled,
             initials: 'GC',
+            room: '/gchat',
             roomName: 'General Chat',
             desc: 'Talk about anything and everything',
           ),
           ChatRoom(
             canChat: chatEnabled,
             initials: 'EC',
+            room: '/echat',
             roomName: 'Fraternity Events',
             desc: 'Local and National Events Chat',
           ),
@@ -87,8 +89,17 @@ class _ChatScreenState extends State<ChatScreen> {
 }
 
 class ChatRoom extends StatelessWidget {
-  const ChatRoom({super.key, required this.canChat, required this.initials, required this.roomName, required this.desc});
+  const ChatRoom({
+    super.key,
+    required this.canChat,
+    required this.room,
+    required this.initials,
+    required this.roomName,
+    required this.desc
+  });
+
   final bool canChat;
+  final String room;
   final String initials;
   final String roomName;
   final String desc;
@@ -107,7 +118,7 @@ class ChatRoom extends StatelessWidget {
           );
           Navigator.pushNamed(
             context,
-            '/gchat'
+            room
           );
         }
         else {
