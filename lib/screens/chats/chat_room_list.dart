@@ -68,54 +68,78 @@ class _ChatScreenState extends State<ChatScreen> {
               return _circularProgress();
             }
           ),
-          ListTile(
-            onTap: () {
-
-              if (chatEnabled) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    duration: Duration(milliseconds: 1500),
-                    content: Text('Verifying chat privileges...')
-                  ),
-                );
-                Navigator.pushNamed(
-                  context,
-                  '/gchat'
-                );
-              }
-              else {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Chat Disabled', textAlign: TextAlign.center,),
-                      content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context, 'cancel');
-                          },
-                          style: buttons.buttonStyleRed(context),
-                          child: const Text('Ok'),
-                        ),
-                      ],
-                    );
-                  }
-                );
-              }
-
-            },
-            leading: CircleAvatar(
-              foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
-              child: Text('GC', style: theme.TextThemes.headlineSmall(context)),
-            ),
-            title: const Text('General Chat'),
-            subtitle: const Text('Talk about anything and everything'),
-            trailing: const Icon(Icons.arrow_forward_ios),
+          ChatRoom(
+            canChat: chatEnabled,
+            initials: 'GC',
+            roomName: 'General Chat',
+            desc: 'Talk about anything and everything',
+          ),
+          ChatRoom(
+            canChat: chatEnabled,
+            initials: 'GC',
+            roomName: 'General Chat',
+            desc: 'Talk about anything and everything',
           ),
         ],
       ),
+    );
+  }
+}
+
+class ChatRoom extends StatelessWidget {
+  const ChatRoom({super.key, required this.canChat, required this.initials, required this.roomName, required this.desc});
+  final bool canChat;
+  final String initials;
+  final String roomName;
+  final String desc;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      onTap: () {
+
+        if (canChat) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              duration: Duration(milliseconds: 1500),
+              content: Text('Verifying chat privileges...')
+            ),
+          );
+          Navigator.pushNamed(
+            context,
+            '/gchat'
+          );
+        }
+        else {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Chat Disabled', textAlign: TextAlign.center,),
+                content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pop(context, 'cancel');
+                    },
+                    style: buttons.buttonStyleRed(context),
+                    child: const Text('Ok'),
+                  ),
+                ],
+              );
+            }
+          );
+        }
+
+      },
+      leading: CircleAvatar(
+        foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+        backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
+        child: Text(initials, style: theme.TextThemes.headlineSmall(context)),
+      ),
+      title: Text(roomName),
+      subtitle: Text(desc),
+      trailing: const Icon(Icons.arrow_forward_ios),
     );
   }
 }
