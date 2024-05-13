@@ -76,7 +76,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
           ChatRoom(
             canChat: chatEnabled,
-            initials: 'GC',
+            initials: 'EC',
             roomName: 'Fraternity Events',
             desc: 'Local and National Events Chat',
           ),
