@@ -119,7 +119,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             duration: Duration(milliseconds: 1500),
-                            content: Text('Authenticating user...')
+                            content: Text('Verifying chat privileges...')
                           ),
                         );
                         Navigator.pushNamed(

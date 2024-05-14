@@ -26,6 +26,14 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
   // scroll controller
   final ScrollController _scrollController = ScrollController();
 
+  // void scrollDown() {
+  //   _scrollController.animateTo(
+  //     _scrollController.position.maxScrollExtent,
+  //     duration: const Duration(milliseconds: 500),
+  //     curve: Curves.easeOut,
+  //   );
+  // }
+
   Center _circularProgress() {
     return const Center(
       child: Padding(
@@ -61,6 +69,9 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
 
     // clear text controoler
     _chatCtrl.clear();
+
+    // scroll down
+    // scrollDown();
   }
 
   bool checkIfCurrentUser(String chatUID) {
@@ -104,10 +115,10 @@ class _GeneralChatRoomState extends State<GeneralChatRoom> {
                       return  Column(
                         children: <Widget>[
                           ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal:  20.0),
+                            padding: const EdgeInsets.symmetric(horizontal:  10.0),
                             shrinkWrap: true,
                             controller: _scrollController,
-                            reverse: false,
+                            reverse: true,
                             itemCount: chatLength,
                             itemBuilder: (BuildContext context, int index) {
                               bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);

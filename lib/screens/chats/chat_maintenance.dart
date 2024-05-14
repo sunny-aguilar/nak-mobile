@@ -44,16 +44,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
   int totalGcChats = 0;
   int totalEventChats = 0;
 
-  // void setNewChatListName() {
-  //   DateTime start = DateTime(2024, 05, 01);
-  //   DateTime end = DateTime(2024, 05, 02);
-  //   Duration duration = end.difference(start);
-  //   print('Diff: ${duration.inHours}');
-  // }
-
-  Future<void> _handleRefresh() async {
-    setState(() {});
-  }
+  Future<void> _handleRefresh() async { setState(() {}); }
 
   Center _circularProgress() {
     return const Center(
@@ -115,6 +106,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                       (BuildContext context, int index) {
                         return Column(
                           children: [
+
                             ListTile(
                               onTap: () {
                                 Navigator.push(
@@ -131,11 +123,12 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                               subtitle: const Text('Total chat messages'),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
+
                             ListTile(
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'events_chat', totalChats: totalEventChats, archive: 'gc_archive',))
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'events_chat', totalChats: totalEventChats, archive: 'events_archive',))
                                 );
                               },
                               leading: CircleAvatar(
@@ -143,10 +136,11 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                                 backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
                                 child: Text('$totalEventChats', style: theme.TextThemes.headlineSmall(context)),
                               ),
-                              title: const Text('Event chat messages'),
+                              title: const Text('Events chat'),
                               subtitle: const Text('Total chat messages'),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
+
                           ],
                         );
                       }
