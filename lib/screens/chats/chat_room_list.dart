@@ -51,19 +51,11 @@ class _ChatScreenState extends State<ChatScreen> {
               else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                 bool canChat = snapshot.data!;
                 chatEnabled = canChat;
-                if (chatEnabled) {
-                  return Container(
-                    height: 5,
-                    decoration: const BoxDecoration(color: theme.azureClr,),
-                  );
-                }
-                if (!chatEnabled) {
-                  return Container(
-                    height: 5,
-                    decoration: const BoxDecoration(color: theme.orangeClr,),
-                  );
-                }
-
+                Color chatStatusColor = chatEnabled ? theme.azureClr : theme.orangeClr;
+                return Container(
+                  height: 5,
+                  decoration: BoxDecoration(color: chatStatusColor,),
+                );
               }
               return _circularProgress();
             }
