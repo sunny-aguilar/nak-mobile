@@ -41,40 +41,40 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          FutureBuilder<bool>(
-            future: db.Chat().canChat(),
-            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-              if (!snapshot.hasData) { _circularProgress(); }
-              else if (snapshot.data == null) { _circularProgress(); }
-              else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                bool canChat = snapshot.data!;
-                chatEnabled = canChat;
-                Color chatStatusColor = chatEnabled ? theme.azureClr : theme.orangeClr;
-                return Container(
+      body: FutureBuilder<bool>(
+        future: db.Chat().canChat(),
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (!snapshot.hasData) { _circularProgress(); }
+          else if (snapshot.data == null) { _circularProgress(); }
+          else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+            bool canChat = snapshot.data!;
+            chatEnabled = canChat;
+            Color chatStatusColor = chatEnabled ? theme.azureClr : theme.orangeClr;
+            return ListView(
+              children: <Widget>[
+                Container(
                   height: 5,
                   decoration: BoxDecoration(color: chatStatusColor,),
-                );
-              }
-              return _circularProgress();
-            }
-          ),
-          ChatRoom(
-            canChat: chatEnabled,
-            initials: 'GC',
-            room: '/gchat',
-            roomName: 'General Chat',
-            desc: 'Talk about anything and everything',
-          ),
-          ChatRoom(
-            canChat: chatEnabled,
-            initials: 'EC',
-            room: '/echat',
-            roomName: 'Fraternity Events',
-            desc: 'Local and National Events Chat',
-          ),
-        ],
+                ),
+                ChatRoom(
+                  canChat: chatEnabled,
+                  initials: 'GC',
+                  room: '/gchat',
+                  roomName: 'General Chat',
+                  desc: 'Talk about anything and everything',
+                ),
+                ChatRoom(
+                  canChat: chatEnabled,
+                  initials: 'EC',
+                  room: '/echat',
+                  roomName: 'Fraternity Events',
+                  desc: 'Local and National Events Chat',
+                ),
+              ],
+            );
+          }
+          return _circularProgress();
+        } // builder
       ),
     );
   }
