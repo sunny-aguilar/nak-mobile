@@ -106,20 +106,39 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                     delegate: SliverChildBuilderDelegate(
                       childCount: 1,
                       (BuildContext context, int index) {
-                        return ListTile(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => GeneraChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
-                            );
-                          },
-                          leading: CircleAvatar(
-                            foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-                            backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
-                            child: Text('$totalGcChats', style: theme.TextThemes.headlineSmall(context)),
-                          ),
-                          title: const Text('Total chat messages'),
-                          trailing: const Icon(Icons.arrow_forward_ios),
+                        return Column(
+                          children: [
+                            ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
+                                );
+                              },
+                              leading: CircleAvatar(
+                                foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                                backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
+                                child: Text('$totalGcChats', style: theme.TextThemes.headlineSmall(context)),
+                              ),
+                              title: const Text('Total chat messages'),
+                              trailing: const Icon(Icons.arrow_forward_ios),
+                            ),
+                            ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
+                                );
+                              },
+                              leading: CircleAvatar(
+                                foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                                backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
+                                child: Text('$totalGcChats', style: theme.TextThemes.headlineSmall(context)),
+                              ),
+                              title: const Text('Total chat messages'),
+                              trailing: const Icon(Icons.arrow_forward_ios),
+                            ),
+                          ],
                         );
                       }
                     ),
@@ -135,8 +154,8 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
   }
 }
 
-class GeneraChatOptions extends StatelessWidget {
-  const GeneraChatOptions({super.key, required this.chatRoom, required this.totalChats});
+class GeneralChatOptions extends StatelessWidget {
+  const GeneralChatOptions({super.key, required this.chatRoom, required this.totalChats});
   final String chatRoom;
   final int totalChats;
 
@@ -163,7 +182,7 @@ class GeneraChatOptions extends StatelessWidget {
             const SizedBox(height: 20,),
             TextButton(
               onPressed: () {
-                // TODO: implement archive function here
+                // archive function
                 db_chat.ChatSettings().resetChat();
               },
               style: buttons.chatButton(context, theme.redClr),
