@@ -14,7 +14,9 @@ class NationalBoard extends StatefulWidget {
 class _NationalBoardState extends State<NationalBoard> {
   List _board = [];
   int _count = 0;
+
   late Future<String> _download;
+
   Future<String> _readJson() async {
     String url = 'https://drive.google.com/uc?export=view&id=1r5B70c-bj4DDRYXB-WF4SsDzwtHXEB3q';
     final response = await http.get(Uri.parse(url));
@@ -28,11 +30,13 @@ class _NationalBoardState extends State<NationalBoard> {
     _count = _board.length;
     return 'Data downloaded';
   }
+
   @override
   void initState() {
     super.initState();
     _download = _readJson();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

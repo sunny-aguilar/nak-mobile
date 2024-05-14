@@ -115,7 +115,6 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: TextButton(
                     onPressed: () {
-            
                       if (chatEnabled) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
