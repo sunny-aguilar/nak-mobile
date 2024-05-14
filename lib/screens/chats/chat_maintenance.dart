@@ -42,13 +42,14 @@ class ChatMaintenanceBody extends StatefulWidget {
 class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
   // chat stat variables
   int totalGcChats = 0;
+  int totalEventChats = 0;
 
-  void setNewChatListName() {
-    DateTime start = DateTime(2024, 05, 01);
-    DateTime end = DateTime(2024, 05, 02);
-    Duration duration = end.difference(start);
-    print('Diff: ${duration.inHours}');
-  }
+  // void setNewChatListName() {
+  //   DateTime start = DateTime(2024, 05, 01);
+  //   DateTime end = DateTime(2024, 05, 02);
+  //   Duration duration = end.difference(start);
+  //   print('Diff: ${duration.inHours}');
+  // }
 
   Future<void> _handleRefresh() async {
     setState(() {});
@@ -74,15 +75,22 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
         backgroundColor: theme.redClr,
         onRefresh: _handleRefresh,
         child: FutureBuilder(
-          future: db_chat.ChatSettings().totalChats('general_chat'),
+          future: Future.wait([
+            db_chat.ChatSettings().totalChats('general_chat'),
+            db_chat.ChatSettings().totalChats('events_chat')
+          ]),
           builder: (BuildContext context, snapshot) {
             if (!snapshot.hasData) { _circularProgress(); }
             else if (snapshot.data == null) { _circularProgress(); }
             else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
 
-              List<dynamic> chatList = snapshot.data?['active'];
-              int totalChats = chatList.length;
-              totalGcChats = totalChats;
+              // general chat total
+              List<dynamic> generalChatList = snapshot.data?[0]['active'];
+              totalGcChats = generalChatList.length;
+
+              // event chat total
+              List<dynamic> eventChatList = snapshot.data?[1]['active'];
+              totalEventChats = eventChatList.length;
 
               return CustomScrollView(
                 slivers: <Widget>[
@@ -95,8 +103,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text('Chat Room Stats', style: theme.TextThemes.headlineMedLarge(context),),
-                            const SizedBox(height: 20,),
-                            Text('General Chat Stats', style: theme.TextThemes.headlineSmall16(context),),
+                            const SizedBox(height: 10,),
                           ],
                         );
                       }
@@ -112,7 +119,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalGcChats,))
                                 );
                               },
                               leading: CircleAvatar(
@@ -120,22 +127,24 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                                 backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
                                 child: Text('$totalGcChats', style: theme.TextThemes.headlineSmall(context)),
                               ),
-                              title: const Text('Total chat messages'),
+                              title: const Text('General chat'),
+                              subtitle: const Text('Total chat messages'),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
                             ListTile(
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalChats,))
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'events_chat', totalChats: totalEventChats,))
                                 );
                               },
                               leading: CircleAvatar(
                                 foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                                 backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
-                                child: Text('$totalGcChats', style: theme.TextThemes.headlineSmall(context)),
+                                child: Text('$totalEventChats', style: theme.TextThemes.headlineSmall(context)),
                               ),
-                              title: const Text('Total chat messages'),
+                              title: const Text('Event chat messages'),
+                              subtitle: const Text('Total chat messages'),
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
                           ],

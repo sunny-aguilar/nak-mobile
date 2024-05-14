@@ -37,7 +37,6 @@ class ChatSettings {
   }
 
   Future<void> resetChat() async {
-    // TODO: implement archive method
     _instance = FirebaseFirestore.instance;
     final docRef = _instance!.collection('chat').doc('general_chat');
     docRef.get().then(
