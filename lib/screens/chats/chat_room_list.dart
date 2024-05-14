@@ -109,7 +109,6 @@ class ChatRoom extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-
         if (canChat) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
@@ -128,7 +127,7 @@ class ChatRoom extends StatelessWidget {
             builder: (BuildContext context) {
               return AlertDialog(
                 title: const Text('Chat Disabled', textAlign: TextAlign.center,),
-                content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
+                content: const Text('Chat privileges are disabled.', textAlign: TextAlign.center,),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () {

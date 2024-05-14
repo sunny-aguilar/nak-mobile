@@ -128,7 +128,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: const Text('Chat Disabled', textAlign: TextAlign.center,),
-                            content: const Text('You\'ve been banned!', textAlign: TextAlign.center,),
+                            content: const Text('Chat privileges are disabled.', textAlign: TextAlign.center,),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {

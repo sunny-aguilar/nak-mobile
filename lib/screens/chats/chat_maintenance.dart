@@ -119,7 +119,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalGcChats,))
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'general_chat', totalChats: totalGcChats, archive: 'gc_archive',))
                                 );
                               },
                               leading: CircleAvatar(
@@ -135,7 +135,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                               onTap: () {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'events_chat', totalChats: totalEventChats,))
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'events_chat', totalChats: totalEventChats, archive: 'gc_archive',))
                                 );
                               },
                               leading: CircleAvatar(
@@ -164,9 +164,10 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
 }
 
 class GeneralChatOptions extends StatelessWidget {
-  const GeneralChatOptions({super.key, required this.chatRoom, required this.totalChats});
+  const GeneralChatOptions({super.key, required this.chatRoom, required this.totalChats, required this.archive});
   final String chatRoom;
   final int totalChats;
+  final String archive;
 
   @override
   Widget build(BuildContext context) {
@@ -192,7 +193,7 @@ class GeneralChatOptions extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // archive function
-                db_chat.ChatSettings().resetChat();
+                db_chat.ChatSettings().resetChat(chatroom: chatRoom, archive: archive);
               },
               style: buttons.chatButton(context, theme.redClr),
               child: const Text('Archive Chat', style: TextStyle(color: theme.primaryClr),),

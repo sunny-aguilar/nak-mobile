@@ -36,9 +36,9 @@ class ChatSettings {
     return snapshot.data() as Map;
   }
 
-  Future<void> resetChat() async {
+  Future<void> resetChat({required String chatroom, required String archive}) async {
     _instance = FirebaseFirestore.instance;
-    final docRef = _instance!.collection('chat').doc('general_chat');
+    final docRef = _instance!.collection('chat').doc(chatroom);
     docRef.get().then(
       (DocumentSnapshot doc) {
         // get active chat list
@@ -51,20 +51,20 @@ class ChatSettings {
         final chatData = {date: data['active']};
 
         // copy active chat list to archive
-        docRef.collection('gc_archive').doc('archive_list').set(chatData, SetOptions(merge: true));
+        docRef.collection(archive).doc('archive_list').set(chatData, SetOptions(merge: true));
 
         final updates = <String, dynamic>{ 'active': FieldValue.delete(), };
         docRef.update(updates);
 
         // add blank entry
-        addBlankEntry();
+        addBlankEntry(chatroom: chatroom);
       },
       onError: (e) => print('Error getting document: $e'),
     );
   }
 
-  void addBlankEntry() {
-    final docRef = FirebaseFirestore.instance.collection('chat').doc('general_chat');
+  void addBlankEntry({required String chatroom}) {
+    final docRef = FirebaseFirestore.instance.collection('chat').doc(chatroom);
 
     // create chat data to be saved
     Map<String, dynamic> chat = {};
