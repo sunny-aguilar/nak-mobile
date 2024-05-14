@@ -47,8 +47,8 @@ class _ChatScreenState extends State<ChatScreen> {
           if (!snapshot.hasData) { _circularProgress(); }
           else if (snapshot.data == null) { _circularProgress(); }
           else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-            bool canChat = snapshot.data!;
-            chatEnabled = canChat;
+            // check if user has chat rights to paint alert
+            chatEnabled = snapshot.data!;
             Color chatStatusColor = chatEnabled ? theme.azureClr : theme.orangeClr;
             return ListView(
               children: <Widget>[
@@ -74,7 +74,7 @@ class _ChatScreenState extends State<ChatScreen> {
             );
           }
           return _circularProgress();
-        } // builder
+        }
       ),
     );
   }
