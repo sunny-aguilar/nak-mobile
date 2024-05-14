@@ -43,7 +43,7 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: ListView(
         children: <Widget>[
-          FutureBuilder(
+          FutureBuilder<bool>(
             future: db.Chat().canChat(),
             builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
               if (!snapshot.hasData) { _circularProgress(); }
