@@ -13,6 +13,7 @@ import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
+import 'package:nak_app/screens/frat_info.dart';
 import 'package:nak_app/screens/contact_screen.dart';
 import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/screens/profile/my_profile.dart';
@@ -66,6 +67,7 @@ class App extends StatelessWidget {
         '/mentalhealth': (context) => const ResourceScreen(),
         '/prevention': (context) => const ResourceScreen(),
         '/titleix': (context) => const ResourceScreen(),
+        '/info': (context) => const FratInfo(),
         '/contact': (context) => const ContactScreen(),
         '/id': (context) => const DigitalIDScreen(),
         '/profile': (context) => const MyProfileScreen(),
