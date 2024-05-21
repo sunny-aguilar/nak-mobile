@@ -61,7 +61,7 @@ Map<String, dynamic> obj = doc.data;
 - Or if you have a list of objects:
 ```
     snapshot.docs.forEach(doc => {
-    Map<String, dynamic> obj = doc.data;
+        Map<String, dynamic> obj = doc.data;
     });
 ```
 
