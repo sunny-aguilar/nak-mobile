@@ -57,9 +57,9 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - Get data into object
     - `Map<String, dynamic> obj = doc.data;`
 - Or if you have a list of objects:
-    - `snapshot.docs.forEach(doc => {`
-    - `  Map<String, dynamic> obj = doc.data;`
-    - `});`
+    - `snapshot.docs.forEach(doc => {
+    Map<String, dynamic> obj = doc.data;
+    });`
 
 ## iOS Build System Notes
 ### Info.plist
