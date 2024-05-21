@@ -54,6 +54,8 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - in the UI, you can access the data usually from the snapshot of a FutureBuilder/StreamBuilder
 - snapshot.data.doc.toList() <--- will give you a list of the objects
 - for (var user in Users) <--- iterate through the objects to pull the date out of each one Map style user['firstName]
+- Get data into object
+- `Map<String, dynamic> obj = doc.data;`
 
 ## iOS Build System Notes
 ### Info.plist
