@@ -40,7 +40,7 @@ class VersionScreen extends StatelessWidget {
                   color: theme.lightGrey,
                   borderRadius: BorderRadius.circular(6.0),
                 ),
-                child: Center(child: Text('0.1.14', style: theme.TextThemes.versionNum(context),)),
+                child: Center(child: Text('0.1.16', style: theme.TextThemes.versionNum(context),)),
               ),
               const SizedBox(height: 20,),
               Text('NU ALPHA', style: theme.TextThemes.versionHeadline(context),),
