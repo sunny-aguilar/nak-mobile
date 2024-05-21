@@ -100,7 +100,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ),
             ListTile(
               // leading: const Icon(Icons.info,),
-              leading: const FaIcon(FontAwesomeIcons.circleInfo,),
+              leading: const FaIcon(FontAwesomeIcons.buildingColumns,),
               title: Text('Frat Info', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/info'),
             ),
