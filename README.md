@@ -56,6 +56,10 @@ The backend chosen for the app is Google's Firebase. The Firebase CLI is downloa
 - for (var user in Users) <--- iterate through the objects to pull the date out of each one Map style user['firstName]
 - Get data into object
     - `Map<String, dynamic> obj = doc.data;`
+- Or if you have a list of objects:
+    - `snapshot.docs.forEach(doc => {`
+    - `  Map<String, dynamic> obj = doc.data;`
+    - `});`
 
 ## iOS Build System Notes
 ### Info.plist
