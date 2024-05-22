@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class FratInfo extends StatelessWidget {
   const FratInfo({super.key});
@@ -29,13 +31,29 @@ class FratInfoBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text('Hello World'),
-        ],
-      ),
+    return ListView(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.all(26.0),
+          child: Column(
+            children: <Widget>[
+              Text('Fraternity Info', textAlign: TextAlign.center, style: theme.TextThemes.headlineLargeMed(context),),
+              const SizedBox(height: 20,),
+              Text('Corporate Address', textAlign: TextAlign.left, style: theme.TextThemes.bodyLargeBold(context),),
+              const Divider(),
+              Text('Nu Alpha Kappa Fraternity\nPO Box 1287\nRoseville, CA 95678', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
+              const SizedBox(height: 40,),
+              Text('Tax Information', textAlign: TextAlign.left, style: theme.TextThemes.bodyLargeBold(context)),
+              const Divider(),
+              Text('Nu Alpha Kappa, Inc. is an officially recognized 501(c)(3) organization. Contact the CFO for more information regarding the tax status of Nu Alpha Kappa Fraternity.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context)),
+              const SizedBox(height: 40,),
+              Text('Donations', textAlign: TextAlign.left, style: theme.TextThemes.bodyLargeBold(context)),
+              const Divider(),
+              Text('As an officially ', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
