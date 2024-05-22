@@ -49,7 +49,7 @@ class FratInfoBody extends StatelessWidget {
               const SizedBox(height: 40,),
               Text('Donations', textAlign: TextAlign.left, style: theme.TextThemes.bodyLargeBold(context)),
               const Divider(),
-              Text('As an officially ', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context)),
+              Text('Most donations made to the national organization Nu Alpha Kappa Fraternity, Inc. are tax deductible. NAK provides tax receipts upon request. Local chapters should inquire to the national office for any questions on donations.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context)),
             ],
           ),
         ),
