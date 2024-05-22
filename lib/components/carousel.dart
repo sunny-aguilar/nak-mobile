@@ -13,11 +13,13 @@ class _CarouselComponentState extends State<CarouselComponent> {
   int activePage = 0;
 
   List<String> imagesArr = [
+    'assets/img/carousel/nldc_carousel.png',
     'assets/img/carousel/nakfest_carousel.webp',
     'assets/img/carousel/email_carousel.webp',
     'assets/img/carousel/store_carousel.webp',
   ];
   List<String> urlArr = [
+    'https://naknet.org/store/#!/NLDC-2023/p/376065284/category=72126034',
     'https://naknet.org/store/#!/NAKFEST-2024-Fresno/c/164050252',
     'https://naknet.org/newnakincaddress/',
     'https://shopnualphakappa.com/',
