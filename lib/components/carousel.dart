@@ -13,7 +13,7 @@ class _CarouselComponentState extends State<CarouselComponent> {
   int activePage = 0;
 
   List<String> imagesArr = [
-    'assets/img/carousel/nldc_carousel.png',
+    'assets/img/carousel/nldc_carousel.PNG',
     'assets/img/carousel/nakfest_carousel.webp',
     'assets/img/carousel/email_carousel.webp',
     'assets/img/carousel/store_carousel.webp',
