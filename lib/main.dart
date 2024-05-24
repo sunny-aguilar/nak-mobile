@@ -80,7 +80,7 @@ class App extends StatelessWidget {
         '/addNEB': (context) => const AddNebScreen(),
         '/users': (context) => const AllUsers(),
         '/chat': (context) => ChatScreen(context: context),
-        '/gchat': (context) => const GeneralChatRoom(),
+        // '/gchat': (context) => const GeneralChatRoom(),
         '/echat': (context) => const EventsChatRoom(),
         '/chatRules': (context) => const ChatRules(),
         '/chatMaintenance': (context) => const ChatMaintenance(),

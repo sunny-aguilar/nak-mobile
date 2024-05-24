@@ -4,7 +4,8 @@ import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_chat.dart' as db;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
-
+import 'package:nak_app/screens/chats/rooms/chat_room.dart' as chat;
+import 'package:nak_app/components/constants.dart' as chat;
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.context});
@@ -15,6 +16,9 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   bool chatEnabled = false;
+
+  // chat room form keys
+  Map<String, dynamic> formKeyMap = {};
 
   Center _circularProgress() {
     return const Center(
@@ -56,20 +60,43 @@ class _ChatScreenState extends State<ChatScreen> {
                   height: 5,
                   decoration: BoxDecoration(color: chatStatusColor,),
                 ),
+
                 ChatRoom(
-                  canChat: chatEnabled,
+                  chatEnabled: chatEnabled,
                   initials: 'GC',
+                  roomNumber: chat.Room.general.index,
                   room: '/gchat',
-                  roomName: 'General Chat',
+                  roomTitle: 'General Chat',
+                  dbChatRoomName: 'general_chat',
                   desc: 'Talk about anything and everything',
+                  formKey: formKeyMap,
+                  formKeyName: 'generalChatKey',
                 ),
+
                 ChatRoom(
-                  canChat: chatEnabled,
+                  chatEnabled: chatEnabled,
                   initials: 'EC',
+                  roomNumber: chat.Room.events.index,
                   room: '/echat',
-                  roomName: 'Fraternity Events',
+                  roomTitle: 'Fraternity Events',
+                  dbChatRoomName: 'events_chat',
                   desc: 'Local and National Events Chat',
+                  formKey: formKeyMap,
+                  formKeyName: 'eventChatKey',
                 ),
+
+                ChatRoom(
+                  chatEnabled: chatEnabled,
+                  initials: 'AC',
+                  roomNumber: chat.Room.alumni.index,
+                  room: '/echat', // wont be needed in updated widget
+                  roomTitle: 'Alumni Chat',
+                  dbChatRoomName: 'alumni_chat',
+                  desc: 'Connect with alumni, career advice, and jobs',
+                  formKey: formKeyMap,
+                  formKeyName: 'alumniChatKey',
+                ),
+
               ],
             );
           }
@@ -84,34 +111,56 @@ class _ChatScreenState extends State<ChatScreen> {
 class ChatRoom extends StatelessWidget {
   const ChatRoom({
     super.key,
-    required this.canChat,
+    required this.chatEnabled,
     required this.room,
     required this.initials,
-    required this.roomName,
-    required this.desc
+    required this.roomNumber,
+    required this.roomTitle,
+    required this.dbChatRoomName,
+    required this.desc,
+    required this.formKey,
+    required this.formKeyName,
   });
 
-  final bool canChat;
+  final bool chatEnabled;
   final String room;
   final String initials;
-  final String roomName;
+  final int roomNumber;
+  final String roomTitle;
+  final String dbChatRoomName;
   final String desc;
+  final Map<String, dynamic> formKey;
+  final String formKeyName;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       onTap: () {
-        if (canChat) {
+        if (chatEnabled) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
               duration: Duration(milliseconds: 1500),
               content: Text('Verifying chat privileges...')
             ),
           );
-          Navigator.pushNamed(
+          // TODO: this navigator has to be updated to push a new general chat room using a material navigator
+          Navigator.push(
             context,
-            room
+            MaterialPageRoute(
+              builder: (context) => chat.ChatRoom(
+                roomTitle: roomTitle,
+                dbChatRoomName: dbChatRoomName,
+                roomNumber: roomNumber,
+                formKey: formKey,
+                formKeyName: formKeyName,
+              ),
+            ),
           );
+
+          // Navigator.pushNamed(
+          //   context,
+          //   room
+          // );
         }
         else {
           showDialog<String>(
@@ -140,7 +189,7 @@ class ChatRoom extends StatelessWidget {
         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
         child: Text(initials, style: theme.TextThemes.headlineSmall(context)),
       ),
-      title: Text(roomName),
+      title: Text(roomTitle),
       subtitle: Text(desc),
       trailing: const Icon(Icons.arrow_forward_ios),
     );
