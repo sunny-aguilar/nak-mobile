@@ -26,8 +26,6 @@ import 'package:nak_app/screens/blog/edit_blog.dart';
 import 'package:nak_app/screens/admin/add_neb.dart';
 import 'package:nak_app/screens/admin/users.dart';
 import 'package:nak_app/screens/chats/chat_room_list.dart';
-import 'package:nak_app/screens/chats/rooms/chat_room_gc.dart';
-import 'package:nak_app/screens/chats/rooms/chat_room_events.dart';
 import 'package:nak_app/screens/chats/chat_rules.dart';
 import 'package:nak_app/screens/chats/chat_maintenance.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -80,8 +78,6 @@ class App extends StatelessWidget {
         '/addNEB': (context) => const AddNebScreen(),
         '/users': (context) => const AllUsers(),
         '/chat': (context) => ChatScreen(context: context),
-        // '/gchat': (context) => const GeneralChatRoom(),
-        // '/echat': (context) => const EventsChatRoom(),
         '/chatRules': (context) => const ChatRules(),
         '/chatMaintenance': (context) => const ChatMaintenance(),
       };
