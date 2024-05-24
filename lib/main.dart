@@ -81,7 +81,7 @@ class App extends StatelessWidget {
         '/users': (context) => const AllUsers(),
         '/chat': (context) => ChatScreen(context: context),
         // '/gchat': (context) => const GeneralChatRoom(),
-        '/echat': (context) => const EventsChatRoom(),
+        // '/echat': (context) => const EventsChatRoom(),
         '/chatRules': (context) => const ChatRules(),
         '/chatMaintenance': (context) => const ChatMaintenance(),
       };
