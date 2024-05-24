@@ -78,7 +78,7 @@ class SpeedDialButton extends StatelessWidget {
           onTap: () {
             Navigator.pushNamed(context, '/chatMaintenance');
           },
-          label: 'Chat'
+          label: 'Chat Maintenance'
         ),
       ],
     );
