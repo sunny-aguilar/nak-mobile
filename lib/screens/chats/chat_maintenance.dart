@@ -43,6 +43,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
   // chat stat variables
   int totalGcChats = 0;
   int totalEventChats = 0;
+  int totalAlumniChats = 0;
 
   Future<void> _handleRefresh() async { setState(() {}); }
 
@@ -68,7 +69,8 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
         child: FutureBuilder(
           future: Future.wait([
             db_chat.ChatSettings().totalChats('general_chat'),
-            db_chat.ChatSettings().totalChats('events_chat')
+            db_chat.ChatSettings().totalChats('events_chat'),
+            db_chat.ChatSettings().totalChats('alumni_chat'),
           ]),
           builder: (BuildContext context, snapshot) {
             if (!snapshot.hasData) { _circularProgress(); }
@@ -82,6 +84,10 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
               // event chat total
               List<dynamic> eventChatList = snapshot.data?[1]['active'];
               totalEventChats = eventChatList.length;
+
+              // alumni chat total
+              List<dynamic> alumniChatList = snapshot.data?[2]['active'];
+              totalAlumniChats = alumniChatList.length;
 
               return CustomScrollView(
                 slivers: <Widget>[
@@ -141,6 +147,23 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
                               trailing: const Icon(Icons.arrow_forward_ios),
                             ),
 
+                            ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => GeneralChatOptions(chatRoom: 'alumni_chat', totalChats: totalEventChats, archive: 'alumni_archive',))
+                                );
+                              },
+                              leading: CircleAvatar(
+                                foregroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                                backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.redClr,
+                                child: Text('$totalAlumniChats', style: theme.TextThemes.headlineSmall(context)),
+                              ),
+                              title: const Text('Alumni chat'),
+                              subtitle: const Text('Total chat messages'),
+                              trailing: const Icon(Icons.arrow_forward_ios),
+                            ),
+
                           ],
                         );
                       }
@@ -156,6 +179,7 @@ class _ChatMaintenanceBodyState extends State<ChatMaintenanceBody> {
     );
   }
 }
+
 
 class GeneralChatOptions extends StatelessWidget {
   const GeneralChatOptions({super.key, required this.chatRoom, required this.totalChats, required this.archive});
@@ -187,6 +211,8 @@ class GeneralChatOptions extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // archive function
+                // There is no need to care the archive collection on the chat room document in Firebase.
+                // It is auto created by db_chat.dart
                 db_chat.ChatSettings().resetChat(chatroom: chatRoom, archive: archive);
               },
               style: buttons.chatButton(context, theme.redClr),
