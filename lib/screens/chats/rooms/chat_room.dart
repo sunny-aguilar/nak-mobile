@@ -169,34 +169,6 @@ class _ChatRoomState extends State<ChatRoom> {
                         ]
                       );
                     }
-
-                    // TODO: only delete this once the above try catch block is verified
-                    // TODO: to fully work
-                    // int chatLength = snapshot.data.docs.toList()[0]['active'].length;
-                    // List chatList = snapshot.data.docs.toList()[0]['active'];
-
-                    // return  Column(
-                    //   children: <Widget>[
-                    //     ListView.builder(
-                    //       padding: const EdgeInsets.symmetric(horizontal:  20.0),
-                    //       shrinkWrap: true,
-                    //       controller: _scrollController,
-                    //       reverse: false,
-                    //       itemCount: chatLength,
-                    //       itemBuilder: (BuildContext context, int index) {
-                    //         bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
-                    //         return ListTile(
-                    //           title: ChatBubble(
-                    //             msg: chatList[index]['msg'],
-                    //             isCurrentUser: isCurrentUser,
-                    //             timestamp: chatList[index]['timestamp'],
-                    //             username: chatList[index]['username'],
-                    //           ),
-                    //         );
-                    //       }
-                    //     ),
-                    //   ],
-                    // );
                   }
                   return _circularProgress();
                 }
