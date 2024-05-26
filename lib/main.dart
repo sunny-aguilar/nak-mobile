@@ -30,6 +30,7 @@ import 'package:nak_app/screens/chats/chat_rules.dart';
 import 'package:nak_app/screens/chats/chat_maintenance.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/components/constants.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
