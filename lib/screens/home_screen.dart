@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
+import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
@@ -37,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   // RevenueCat Paywall
   bool _isLoading = false;
 
-  void performMagic() async {
+  // show Paywall
+  void performMagic(val) async {
     setState(() {
       _isLoading = true;
     });
@@ -47,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
         customerInfo.entitlements.all[entitlementID]?.isActive == true) {
       // if user has entitlement, enter the chat room
       setState(() {
+        index = val;
         _isLoading = false;
       });
     }
@@ -60,9 +63,38 @@ class _HomeScreenState extends State<HomeScreen> {
           context: context,
           builder: (BuildContext context) => ShowDialogToDismiss(
             title: 'Error',
-            context: ,
+            content: e.message ?? 'Unknown error',
             buttonText: 'OK'
-          );
+          )
+        );
+      }
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (offerings == null || offerings.current == null) {
+        // offerings are empty, show a message to user
+      }
+      else {
+        await showModalBottomSheet(
+          useRootNavigator: true,
+          isDismissible: true,
+          isScrollControlled: true,
+          backgroundColor: theme.kColorBackground,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+          ),
+          context: context,
+          builder: (BuildContext context) {
+            return StatefulBuilder(
+              builder: (BuildContext context, StateSetter setModalState) {
+                return Paywall(
+                  offering: offerings!.current!,
+                );
+              }
+            );
+          }
         );
       }
     }
@@ -94,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // ChatScreen(context: context),
       ][index],
 
-      bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
+      bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: performMagic,),
 
       floatingActionButton: FutureBuilder<String>(
         future: isAdmin,
