@@ -6,9 +6,7 @@ const entitlementID = 'premium';
 
 //TO DO: add your subscription terms and conditions
 const footerText =
-    """Don't forget to add your subscription terms and conditions.
-
-Read more about this here: https://www.revenuecat.com/blog/schedule-2-section-3-8-b""";
+    '''A \$19.99 annual premium purchase will be applied to your iTunes account on confirmation. Subscriptions will automatically renew unless canceled within 24-hours before the end of the current period. You can cancel anytime with your iTunes account settings. Any unused portion of a free trial will be forfeited if you purchase a subscription. For more information, see our https://naknet.org/nak-app-terms-of-service/ and https://naknet.org/nak-app-privacy-policy/''';
 
 //TO DO: add the Apple API key for your app from the RevenueCat dashboard: https://app.revenuecat.com
 const appleApiKey = 'appl_api_key';
