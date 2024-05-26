@@ -568,6 +568,20 @@ class TextThemes{
       fontSize: 16,
     );
   }
+
+  static TextStyle titleTextStyle(BuildContext context) {
+    return const TextStyle(
+      fontWeight: FontWeight.bold,
+      fontSize: 18.0,
+    );
+  }
+
+  static TextStyle descriptionTextStyle(BuildContext context) {
+    return const TextStyle(
+      fontWeight: FontWeight.normal,
+      fontSize: 16,
+    );
+  }
 }
 
 
