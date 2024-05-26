@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/drawer.dart' as drawer;
@@ -6,8 +7,13 @@ import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
-import 'package:nak_app/screens/chats/chat_room_list.dart';
 import 'package:nak_app/screens/chats/chat_rules.dart';
+
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:nak_app/components/revenuecat/paywall.dart';
+import 'package:nak_app/components/revenuecat/singletons_data.dart';
+import 'package:nak_app/components/revenuecat/constants.dart';
+import 'package:nak_app/components/revenuecat/native_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,6 +34,40 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  // RevenueCat Paywall
+  bool _isLoading = false;
+
+  void performMagic() async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+    if (customerInfo.entitlements.all[entitlementID] != null &&
+        customerInfo.entitlements.all[entitlementID]?.isActive == true) {
+      // if user has entitlement, enter the chat room
+      setState(() {
+        _isLoading = false;
+      });
+    }
+    else {
+      Offerings? offerings;
+      try {
+        offerings = await Purchases.getOfferings();
+      }
+      on PlatformException catch (e) {
+        await showDialog(
+          context: context,
+          builder: (BuildContext context) => ShowDialogToDismiss(
+            title: 'Error',
+            context: ,
+            buttonText: 'OK'
+          );
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
-          // const Icon(Icons.message_outlined),
-          // const SizedBox(width: 10,),
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {

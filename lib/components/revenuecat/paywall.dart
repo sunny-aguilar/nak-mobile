@@ -30,7 +30,7 @@ class _PaywallState extends State<Paywall> {
               ),
             ),
              Padding(
-              padding: EdgeInsets.only(top: 32.0, bottom: 16.0, left: 16.0, right: 16.0),
+              padding: const EdgeInsets.only(top: 32.0, bottom: 16.0, left: 16.0, right: 16.0),
               child: SizedBox(
                 width: double.infinity,
                 child: Text('NAK APP PREMIUM', style: theme.TextThemes.descriptionTextStyle(context),),
