@@ -32,8 +32,8 @@ import 'package:nak_app/screens/chats/chat_maintenance.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:nak_app/components/store_config.dart';
-import 'package:nak_app/components/constants.dart';
+import 'package:nak_app/components/revenuecat/store_config.dart';
+import 'package:nak_app/components/revenuecat/constants.dart';
 
 void main() async {
   // RevenueCat Store config

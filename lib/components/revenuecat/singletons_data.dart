@@ -1,4 +1,3 @@
-
 class AppData {
   static final AppData _appData = AppData._internal();
 
