@@ -47,7 +47,7 @@ class _PaywallState extends State<Paywall> {
                     itemCount: widget.offering.availablePackages.length,
                     itemBuilder: (BuildContext context, int index) {
                       var myProductList = widget.offering.availablePackages;
-                      return Card(
+                      return Card.outlined(
                         color: Get.isDarkMode ? theme.darkGreyClr : theme.offWhiteClr,
                         child: ListTile(
                           onTap: () async {
@@ -86,7 +86,7 @@ class _PaywallState extends State<Paywall> {
                     child: SizedBox(
                       child: Text(
                         footerText,
-                        style: theme.TextThemes.descriptionTextStyle(context),
+                        style: theme.TextThemes.descriptionTextStyle(context).copyWith(fontSize: 14.0),
                       ),
                     ),
                   ),

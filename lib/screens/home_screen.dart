@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+
     if (customerInfo.entitlements.all[entitlementID] != null &&
         customerInfo.entitlements.all[entitlementID]?.isActive == true) {
       // if user has entitlement, enter the chat room
