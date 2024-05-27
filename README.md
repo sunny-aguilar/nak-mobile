@@ -15,6 +15,15 @@ This is the official app by Nu Alpha Kappa Fraternity, Inc. Learn more about Nu 
 - User roles
 - Role dependent features
 
+## Flutter Dependencies
+These commands will remove and re-install flutter dependencies.
+- flutter clean
+- flutter pub get
+
+## Firebase CLI
+Generally, you want to use the most up-to-date Firebase CLI version
+- curl -sL https://firebase.tools | upgrade=true bash
+
 ## User Registration
 - Only users with a nakinc.org email are able to register.
 - Undergrads who are active will be able to use the app free of charge.
@@ -40,7 +49,6 @@ Other rights being considered:
 - log users off
 
 This area is under developement. The right balance of user rights is being determined and is subject to change quickly.
-
 
 ## Firebase Notes
 The backend chosen for the app is Google's Firebase. The Firebase CLI is downloaded locally and you must log in using the terminal. You should try to use the latest Firebase version. It can be updated using the commands below. The following are some helpful commands:

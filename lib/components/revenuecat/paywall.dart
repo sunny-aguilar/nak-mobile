@@ -48,7 +48,7 @@ class _PaywallState extends State<Paywall> {
                     itemBuilder: (BuildContext context, int index) {
                       var myProductList = widget.offering.availablePackages;
                       return Card(
-                        color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                        color: Get.isDarkMode ? theme.darkGreyClr : theme.offWhiteClr,
                         child: ListTile(
                           onTap: () async {
                             try {
