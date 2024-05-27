@@ -12,7 +12,6 @@ import 'package:nak_app/screens/chats/chat_rules.dart';
 
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:nak_app/components/revenuecat/paywall.dart';
-import 'package:nak_app/components/revenuecat/singletons_data.dart';
 import 'package:nak_app/components/revenuecat/constants.dart';
 import 'package:nak_app/components/revenuecat/native_dialog.dart';
 
