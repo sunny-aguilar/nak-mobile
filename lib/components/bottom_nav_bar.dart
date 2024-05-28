@@ -16,7 +16,7 @@ class BottomNavBar extends StatelessWidget {
       },
       indicatorColor: Get.isDarkMode ? theme.carbonClr : theme.primaryClr,
       backgroundColor: Get.isDarkMode ? theme.carbonClr : theme.primaryClr,
-      height: 75.0,
+      height: 68.0,
       indicatorShape: RoundedRectangleBorder(
         borderRadius: BorderRadiusDirectional.circular(4.0),
         side: BorderSide(
