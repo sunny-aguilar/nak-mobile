@@ -59,14 +59,16 @@ class _HomeScreenState extends State<HomeScreen> {
         offerings = await Purchases.getOfferings();
       }
       on PlatformException catch (e) {
-        await showDialog(
-          context: context,
-          builder: (BuildContext context) => ShowDialogToDismiss(
-            title: 'Error',
-            content: e.message ?? 'Unknown error',
-            buttonText: 'OK'
-          )
-        );
+        if (mounted) {
+          await showDialog(
+            context: context,
+            builder: (BuildContext context) => ShowDialogToDismiss(
+              title: 'Error',
+              content: e.message ?? 'Unknown error',
+              buttonText: 'OK'
+            )
+          );
+        }
       }
 
       setState(() {
@@ -77,25 +79,27 @@ class _HomeScreenState extends State<HomeScreen> {
         // offerings are empty, show a message to user
       }
       else {
-        await showModalBottomSheet(
-          useRootNavigator: true,
-          isDismissible: true,
-          isScrollControlled: true,
-          backgroundColor: theme.kColorBackground,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-          ),
-          context: context,
-          builder: (BuildContext context) {
-            return StatefulBuilder(
-              builder: (BuildContext context, StateSetter setModalState) {
-                return Paywall(
-                  offering: offerings!.current!,
-                );
-              }
-            );
-          }
-        );
+        if (mounted) {
+          await showModalBottomSheet(
+            useRootNavigator: true,
+            isDismissible: true,
+            isScrollControlled: true,
+            backgroundColor: theme.kColorBackground,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (BuildContext context) {
+              return StatefulBuilder(
+                builder: (BuildContext context, StateSetter setModalState) {
+                  return Paywall(
+                    offering: offerings!.current!,
+                  );
+                }
+              );
+            }
+          );
+        }
       }
     }
   }
@@ -120,11 +124,9 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const drawer.DrawerComponent(),
 
       body: <Widget>[
-        // bottom nav screens
-        const featured.HomeScreenChildren(),
-        const ChatRules(),
-        // ChatScreen(context: context),
-      ][index],
+              const featured.HomeScreenChildren(),
+              const ChatRules(),
+            ][index],
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: performMagic,),
 
