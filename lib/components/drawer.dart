@@ -5,6 +5,13 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
+// revenueCat packages
+import 'package:flutter/services.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:nak_app/components/revenuecat/paywall.dart';
+import 'package:nak_app/components/revenuecat/constants.dart';
+import 'package:nak_app/components/revenuecat/native_dialog.dart';
+
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({super.key});
   @override
@@ -13,6 +20,102 @@ class DrawerComponent extends StatefulWidget {
 
 class _DrawerComponentState extends State<DrawerComponent> {
   final user = FirebaseAuth.instance.currentUser?.displayName;
+
+  bool _isLoading = false;
+
+  // show Paywall
+  void performMagic(String menuItem) async {
+    setState(() {
+      _isLoading = true;
+    });
+
+    CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+
+    if (customerInfo.entitlements.all[entitlementID] != null &&
+        customerInfo.entitlements.all[entitlementID]?.isActive == true) {
+      // if user has entitlement, allow premium function
+      /* ADD PREMIUM FUNCTIONALITY HERE */
+      switch (menuItem) {
+        case 'id':
+          if (mounted) {
+            Navigator.pushNamed(context, '/id');
+          }
+        case 'profile':
+          if (mounted) {
+            Navigator.pushNamed(context, '/profile');
+          }
+        case 'resources':
+          if (mounted) {
+            Navigator.pushNamed(context, '/resources');
+          }
+      }
+
+      // if (menuItem == 'id') {
+      //   if (mounted) {
+      //     Navigator.pushNamed(context, '/id');
+      //   }
+      // }
+      // else if  (menuItem == 'profile') {
+      //   if (mounted) {
+      //     Navigator.pushNamed(context, '/profile');
+      //   }
+      // }
+
+
+      setState(() {
+        _isLoading = false;
+      });
+    }
+    else {
+      Offerings? offerings;
+      try {
+        offerings = await Purchases.getOfferings();
+      }
+      on PlatformException catch (e) {
+        if (mounted) {
+          await showDialog(
+            context: context,
+            builder: (BuildContext context) => ShowDialogToDismiss(
+              title: 'Error',
+              content: e.message ?? 'Unknown error',
+              buttonText: 'OK'
+            )
+          );
+        }
+      }
+
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (offerings == null || offerings.current == null) {
+        // offerings are empty, show a message to user
+      }
+      else {
+        if (mounted) {
+          await showModalBottomSheet(
+            useRootNavigator: true,
+            isDismissible: true,
+            isScrollControlled: true,
+            backgroundColor: theme.kColorBackground,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+            ),
+            context: context,
+            builder: (BuildContext context) {
+              return StatefulBuilder(
+                builder: (BuildContext context, StateSetter setModalState) {
+                  return Paywall(
+                    offering: offerings!.current!,
+                  );
+                }
+              );
+            }
+          );
+        }
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,7 +166,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.local_library,),
               title: Text('Resources', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => Navigator.pushNamed(context, '/resources'),
+              onTap: () => performMagic('resources'),
             ),
             ListTile(
               leading: const Icon(Icons.school,),
@@ -102,7 +205,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
               // leading: const Icon(Icons.info,),
               leading: const FaIcon(FontAwesomeIcons.buildingColumns,),
               title: Text('Frat Info', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => Navigator.pushNamed(context, '/info'),
+              onTap: () =>  Navigator.pushNamed(context, '/info'),
             ),
             ListTile(
               leading: const Icon(Icons.email,),
@@ -112,12 +215,12 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.qr_code),
               title: Text('Digital ID', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => Navigator.pushNamed(context, '/id'),
+              onTap: () => performMagic('id'),
             ),
             ListTile(
               leading: const Icon(Icons.badge),
               title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => Navigator.pushNamed(context, '/profile'),
+              onTap: () => performMagic('profile'),
             ),
             ListTile(
               leading: const Icon(Icons.settings),
