@@ -20,6 +20,11 @@ These commands will remove and re-install flutter dependencies.
 - flutter clean
 - flutter pub get
 
+## Flutter Dart Fix
+These commands will identify errors/warnings/deprecated code in Flutter.
+- dart fix --dry-run
+- dart fix --apply
+
 ## Firebase CLI
 Generally, you want to use the most up-to-date Firebase CLI version
 - curl -sL https://firebase.tools | upgrade=true bash

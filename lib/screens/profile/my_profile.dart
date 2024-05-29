@@ -55,7 +55,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
         padding: const EdgeInsets.only(left: 12.0, right: 12.0, top: 0.0, bottom: 0.0),
         child: FutureBuilder(
           future: db.UserService().getData(),
-          initialData: Text('Initial data'),
+          initialData: const Text('Initial data'),
           builder: (BuildContext context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(

@@ -201,30 +201,30 @@ ButtonStyle buttonStyleMinDark(BuildContext context) {
   );
 }
 
-TextButton materialButton() {
-  return TextButton(
-    style: ButtonStyle(
-      minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 60),),
-      foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
-      backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 0, 0)),
-      overlayColor: MaterialStateProperty.resolveWith<Color?>(
-        (Set<MaterialState> states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.white.withOpacity(0.3);
-          }
-          return null; // Defer to the widget's default.
-        },
-      ),
-      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-        RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(4.0),
-        ),
-      ),
-    ),
-    onPressed: () {},
-    child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
-  );
-}
+// TextButton materialButton() {
+//   return TextButton(
+//     style: ButtonStyle(
+//       minimumSize: const MaterialStatePropertyAll<Size>(Size(400, 60),),
+//       foregroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 255, 255, 255)),
+//       backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 0, 0, 0)),
+//       overlayColor: MaterialStateProperty.resolveWith<Color?>(
+//         (Set<MaterialState> states) {
+//           if (states.contains(MaterialState.pressed)) {
+//             return Colors.white.withOpacity(0.3);
+//           }
+//           return null; // Defer to the widget's default.
+//         },
+//       ),
+//       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+//         RoundedRectangleBorder(
+//           borderRadius: BorderRadius.circular(4.0),
+//         ),
+//       ),
+//     ),
+//     onPressed: () {},
+//     child: const Text('Submit', style: TextStyle(fontSize: 20.0),)
+//   );
+// }
 
 
 class SmallFormButtonLight extends StatelessWidget {
