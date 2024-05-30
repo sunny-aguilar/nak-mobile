@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nak_app/components/auth_check.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/revenuecat/constants.dart' as constants;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -79,8 +80,11 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     ),
                   ),
                 ),
+
               ],
             ),
+            // const SizedBox(height: 100,),
+                Text(constants.appVersion, style: theme.TextThemes.headlineXSmall14(context),)
           ],
         ),
       ),
