@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/revenuecat/constants.dart' as constants;
 
 class VersionScreen extends StatelessWidget {
   const VersionScreen({super.key});
@@ -40,7 +41,7 @@ class VersionScreen extends StatelessWidget {
                   color: theme.lightGrey,
                   borderRadius: BorderRadius.circular(6.0),
                 ),
-                child: Center(child: Text('0.1.18', style: theme.TextThemes.versionNum(context),)),
+                child: Center(child: Text(constants.appVersion, style: theme.TextThemes.versionNum(context),)),
               ),
               const SizedBox(height: 20,),
               Text('NU ALPHA', style: theme.TextThemes.versionHeadline(context),),

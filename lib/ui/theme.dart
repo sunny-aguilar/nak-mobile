@@ -332,6 +332,14 @@ class TextThemes{
     );
   }
 
+  static TextStyle headlineXSmall14(BuildContext context) {
+    return const TextStyle(
+      // color: darkGreyClr,
+      fontFamily: 'College',
+      fontSize: 14,
+    );
+  }
+
   static TextStyle headline(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',

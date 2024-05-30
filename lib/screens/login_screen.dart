@@ -5,6 +5,7 @@ import 'package:nak_app/screens/forgot_pw_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'dart:async';
+import 'package:nak_app/components/revenuecat/constants.dart' as constants;
 
 class LoginScreen extends StatefulWidget {
   final VoidCallback showRegisterPage;
@@ -191,6 +192,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
+              const SizedBox(height: 25,),
+              Text(constants.appVersion, style: theme.TextThemes.headlineXSmall14(context),),
 
             ],
           ),
