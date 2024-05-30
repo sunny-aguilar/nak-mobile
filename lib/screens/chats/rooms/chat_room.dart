@@ -135,7 +135,7 @@ class _ChatRoomState extends State<ChatRoom> {
                             padding: const EdgeInsets.symmetric(horizontal:  10.0),
                             shrinkWrap: true,
                             controller: _scrollController,
-                            reverse: true,
+                            reverse: false,
                             itemCount: chatLength,
                             itemBuilder: (BuildContext context, int index) {
                               bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);

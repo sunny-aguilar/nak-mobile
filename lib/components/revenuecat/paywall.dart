@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:nak_app/components/revenuecat/constants.dart';
 import 'package:nak_app/components/revenuecat/singletons_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
@@ -13,6 +15,17 @@ class Paywall extends StatefulWidget {
 }
 
 class _PaywallState extends State<Paywall> {
+
+  void restorePurchase() async {
+    try {
+      CustomerInfo customerInfo = await Purchases.restorePurchases();
+      // ... check restored purchaserInfo to see if entitlement is now active
+    } on PlatformException catch (e) {
+      // Error restoring purchases
+      print('Restore purchases error: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -41,6 +54,7 @@ class _PaywallState extends State<Paywall> {
                   ),
                 ),
                 ListView.builder(
+                  padding: const EdgeInsets.only(bottom: 0.0),
                   shrinkWrap: true,
                   physics: const ClampingScrollPhysics(),
                   itemCount: widget.offering.availablePackages.length,
@@ -80,7 +94,17 @@ class _PaywallState extends State<Paywall> {
                   }
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0, left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 20.0, left: 16.0, right: 16.0),
+                  child: TextButton(
+                    onPressed: () => restorePurchase(),
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.darkGreyClr,
+                    ),
+                    child: const Text('Restore'),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 10.0, left: 16.0, right: 16.0),
                   child: SizedBox(
                     child: Text(
                       footerText,
@@ -88,7 +112,39 @@ class _PaywallState extends State<Paywall> {
                     ),
                   ),
                 ),
-                SizedBox(height: 28,),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 2.0, left: 16.0, right: 16.0),
+                  child: TextButton(
+                    onPressed: () {
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/nak-app-terms-of-service/');
+                      Future<void> launchInWebView({required Uri url}) async {
+                        if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                          throw Exception('Could not launch $url');
+                        }
+                      }
+                      launchInWebView(url: toLaunch);
+                    },
+                    child: Text('Terms of Service', style: theme.TextThemes.dynamic(context),)
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 40.0, left: 16.0, right: 16.0),
+                  child: TextButton(
+                    onPressed: () {
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/nak-app-privacy-policy/');
+                      Future<void> launchInWebView({required Uri url}) async {
+                        if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                          throw Exception('Could not launch $url');
+                        }
+                      }
+                      launchInWebView(url: toLaunch);
+                    },
+                    style: TextButton.styleFrom(
+                      // foregroundColor: theme.darkGreyClr,
+                    ),
+                    child: Text('Privacy Policy', style: theme.TextThemes.dynamic(context),)
+                  ),
+                ),
               ],
             ),
           ),
