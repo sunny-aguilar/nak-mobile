@@ -139,9 +139,6 @@ class _PaywallState extends State<Paywall> {
                       }
                       launchInWebView(url: toLaunch);
                     },
-                    style: TextButton.styleFrom(
-                      // foregroundColor: theme.darkGreyClr,
-                    ),
                     child: Text('Privacy Policy', style: theme.TextThemes.dynamic(context),)
                   ),
                 ),
