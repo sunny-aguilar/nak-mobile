@@ -9,6 +9,7 @@ import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 import 'package:nak_app/screens/chats/chat_rules.dart';
+import 'package:nak_app/db/db_revenuecat.dart' as db_rc;
 
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:nak_app/components/revenuecat/paywall.dart';
@@ -60,7 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       on PlatformException catch (e) {
         if (mounted) {
-          // 
+          // save any errors to DB RC logs
+          db_rc.RevenueCat().recordErrors(e);
+
+          // show error modal
           await showDialog(
             context: context,
             builder: (BuildContext context) => ShowDialogToDismiss(
