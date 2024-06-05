@@ -62,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
       on PlatformException catch (e) {
         if (mounted) {
           // save any errors to DB RC logs
+          print('Save error log to database');
           db_rc.RevenueCat().recordErrors(e);
 
           // show error modal
