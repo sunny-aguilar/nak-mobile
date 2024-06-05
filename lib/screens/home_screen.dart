@@ -60,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       }
       on PlatformException catch (e) {
         if (mounted) {
+          // 
           await showDialog(
             context: context,
             builder: (BuildContext context) => ShowDialogToDismiss(
