@@ -343,7 +343,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   dropdownColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                   items: <String>[
-                    'Founding','Alpha','Beta','Gamma','Delta','Epsilon','Zeta','Eta','Theta','Iota','Kappa','Lambda','Mu','Nu','Xi','Omicron','Pi','Rho','Sigma','Tau','Upsilon','Phi','Chi','Psi','Alpha Alpha','Alpha Beta','Alpha Gamma','Alpha Delta','Alpha Epsilon','Alpha Zeta','Alpha Eta','Alpha Theta','Alpha Iota','Alpha Kappa','Alpha Lambda','Alpha Mu','Alpha Nu','Alpha Xi','Alpha Omicon','Alpha Pi','Alpha Rho','Alpha Sigma','Alpha Tau','Alpha Upsilon','Alpha Phi','Alpha Chi','Alpha Psi','Beta Alpha','Beta Beta','Beta Gamma','Beta Delta','Beta Epsilon','Beta Zeta','Beta Eta','Beta Theta','Beta Iota','Beta Kappa','Beta Lambda','Beta Mu','Beta Nu','Beta Xi','Beta Omicron','Beta Pi','Beta Rho','Beta Sigma','Beta Tau','Beta Upsilon','Beta Phi','Beta Chi','Beta Psi',
+                    'NA','Founding','Alpha','Beta','Gamma','Delta','Epsilon','Zeta','Eta','Theta','Iota','Kappa','Lambda','Mu','Nu','Xi','Omicron','Pi','Rho','Sigma','Tau','Upsilon','Phi','Chi','Psi','Alpha Alpha','Alpha Beta','Alpha Gamma','Alpha Delta','Alpha Epsilon','Alpha Zeta','Alpha Eta','Alpha Theta','Alpha Iota','Alpha Kappa','Alpha Lambda','Alpha Mu','Alpha Nu','Alpha Xi','Alpha Omicon','Alpha Pi','Alpha Rho','Alpha Sigma','Alpha Tau','Alpha Upsilon','Alpha Phi','Alpha Chi','Alpha Psi','Beta Alpha','Beta Beta','Beta Gamma','Beta Delta','Beta Epsilon','Beta Zeta','Beta Eta','Beta Theta','Beta Iota','Beta Kappa','Beta Lambda','Beta Mu','Beta Nu','Beta Xi','Beta Omicron','Beta Pi','Beta Rho','Beta Sigma','Beta Tau','Beta Upsilon','Beta Phi','Beta Chi','Beta Psi',
                   ]
                   .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
@@ -370,7 +370,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.numbers),
                     labelText: 'Line Number',
-                    helperText: '*required'
+                    helperText: '*required (00 if not appplicable)'
                   ),
                   controller: _lineNumberCtrl,
                   keyboardType: TextInputType.number,
