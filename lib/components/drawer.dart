@@ -142,13 +142,14 @@ class _DrawerComponentState extends State<DrawerComponent> {
               leading: const Icon(Icons.shopping_cart,),
               title: Text('NAKstore', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () {
-                final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/');
-                Future<void> launchInWebView({required Uri url}) async {
-                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
-                    throw Exception('Could not launch $url');
-                  }
-                }
-                launchInWebView(url: toLaunch);
+                Navigator.pushNamed(context, '/store');
+                // final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/');
+                // Future<void> launchInWebView({required Uri url}) async {
+                //   if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                //     throw Exception('Could not launch $url');
+                //   }
+                // }
+                // launchInWebView(url: toLaunch);
               },
             ),
             ListTile(
