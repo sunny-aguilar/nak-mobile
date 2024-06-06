@@ -1,5 +1,5 @@
 // app version number
-const String appVersion = 'v0.1.20';
+const String appVersion = 'v0.1.21';
 
 // room number enums
 enum Room { alumni, events, general }
@@ -9,7 +9,7 @@ const entitlementID = 'premium';
 
 //TO DO: add your subscription terms and conditions
 const footerText =
-    '''A \$19.99 annual premium purchase will be applied to your iTunes account on confirmation. Subscriptions will automatically renew unless canceled within 24-hours before the end of the current period. You can cancel anytime with your iTunes account settings. Any unused portion of a free trial will be forfeited if you purchase a subscription.''';
+    '''A \$19.99 annual premium purchase will be applied to your iTunes account on confirmation. The subscription entitles you to you premium features such as Chat, Digital IDs and My Profile. The subscription will also include future premium features. Subscriptions will automatically renew unless canceled within 24-hours before the end of the current period. You can cancel anytime with your iTunes account settings. Any unused portion of a free trial will be forfeited if you purchase a subscription.''';
 
 //TO DO: add the Apple API key for your app from the RevenueCat dashboard: https://app.revenuecat.com
 const appleApiKey = 'appl_pnbvNaoqwlJkFpdaXOVABHoxRIt';

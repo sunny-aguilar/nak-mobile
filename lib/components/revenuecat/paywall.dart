@@ -47,10 +47,17 @@ class _PaywallState extends State<Paywall> {
             child: Column(
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(top: 32.0, bottom: 16.0, left: 16.0, right: 16.0),
+                  padding: const EdgeInsets.only(top: 10.0, bottom: 6.0, left: 16.0, right: 16.0),
                   child: SizedBox(
                     width: double.infinity,
                     child: Text('ANNUAL PLAN', style: theme.TextThemes.descriptionTextStyle(context),),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 0.0, bottom: 16.0, left: 16.0, right: 16.0),
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: Text('Premium Features Include:\n* Chat/messaging * Digital ID * My Profile * Upcoming Premium Features *', style: theme.TextThemes.descriptionTextStyle(context).copyWith(fontSize: 14.0),),
                   ),
                 ),
                 ListView.builder(
