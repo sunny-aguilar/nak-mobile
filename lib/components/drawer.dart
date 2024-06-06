@@ -50,18 +50,6 @@ class _DrawerComponentState extends State<DrawerComponent> {
           }
       }
 
-      // if (menuItem == 'id') {
-      //   if (mounted) {
-      //     Navigator.pushNamed(context, '/id');
-      //   }
-      // }
-      // else if  (menuItem == 'profile') {
-      //   if (mounted) {
-      //     Navigator.pushNamed(context, '/profile');
-      //   }
-      // }
-
-
       setState(() {
         _isLoading = false;
       });
@@ -168,6 +156,11 @@ class _DrawerComponentState extends State<DrawerComponent> {
               title: Text('Resources', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => performMagic('resources'),
             ),
+            // ListTile(
+            //   leading: const Icon(Icons.abc),
+            //   title: Text('Training', style: theme.TextThemes.drawerMenuNT(context)),
+            //   onTap: () => {},
+            // ),
             ListTile(
               leading: const Icon(Icons.school,),
               title: Text('Alumni Network', style: theme.TextThemes.drawerMenuNT(context)),
