@@ -4,6 +4,12 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 
+extension ImageExtension on num {
+  int cacheSize(BuildContext context) {
+    return (this * MediaQuery.of(context).devicePixelRatio).round();
+  }
+}
+
 class NakStore extends StatelessWidget {
   const NakStore({super.key});
 
@@ -36,7 +42,8 @@ class NakStore extends StatelessWidget {
                 Text('NAK Polo', style: theme.TextThemes.headlineMedLarge(context),),
                 Text('NAK Dri-FIT Nike Polo', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
                 Image.network(
-                  'https://drive.google.com/uc?export=view&id=1VPCwsWZqQRrLlbHQWxcy69jIzV3NvTNz'
+                  'https://drive.google.com/uc?export=view&id=1VPCwsWZqQRrLlbHQWxcy69jIzV3NvTNz',
+                  cacheWidth: 160.cacheSize(context),
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
@@ -66,7 +73,8 @@ class NakStore extends StatelessWidget {
                 Text('Graduation Sashes', style: theme.TextThemes.headlineMedLarge(context),),
                 Text('Bachelors, Masters and PhD', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
                 Image.network(
-                  'https://drive.google.com/uc?export=view&id=1e7Sme97MdwtUwh9HRfLX_C8gdbtc5vPp'
+                  'https://drive.google.com/uc?export=view&id=1e7Sme97MdwtUwh9HRfLX_C8gdbtc5vPp',
+                  cacheWidth: 160.cacheSize(context),
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
@@ -96,7 +104,8 @@ class NakStore extends StatelessWidget {
                 Text('Stitched Hoodie', style: theme.TextThemes.headlineMedLarge(context),),
                 Text('Heavyweight hooded sweatshirt with stitched twill letters', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
                 Image.network(
-                  'https://drive.google.com/uc?export=view&id=1xZHqT7Ctbx2mzaata4fKxiP0poiPxsvE'
+                  'https://drive.google.com/uc?export=view&id=1xZHqT7Ctbx2mzaata4fKxiP0poiPxsvE',
+                  cacheWidth: 160.cacheSize(context),
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
