@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -31,20 +32,26 @@ class NakStore extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text('Featured Products', style: theme.TextThemes.headlineLarge(context),),
+                const SizedBox(height: 10,),
                 Text('NAK Polo', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('NAK Dri-FIT Nike Polo', style: theme.TextThemes.headlineSmall20(context),),
-                Container(
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    color: theme.lightGrey,
-                  ),
+                Text('NAK Dri-FIT Nike Polo', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
+                Image.network(
+                  'https://drive.google.com/uc?export=view&id=1VPCwsWZqQRrLlbHQWxcy69jIzV3NvTNz'
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/collections/polos/products/nak-logo-dri-fit-nike-polo');
+                        Future<void> launchInWebView({required Uri url}) async {
+                          if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        }
+                      launchInWebView(url: toLaunch);
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: theme.primaryClr,
                       backgroundColor: theme.azureClr,
@@ -57,19 +64,24 @@ class NakStore extends StatelessWidget {
                 ),
                 const SizedBox(height: 40,),
                 Text('Graduation Sashes', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('Bachelors, Masters and PhD', style: theme.TextThemes.headlineSmall20(context),),
-                Container(
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    color: theme.lightGrey,
-                  ),
+                Text('Bachelors, Masters and PhD', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
+                Image.network(
+                  'https://drive.google.com/uc?export=view&id=1e7Sme97MdwtUwh9HRfLX_C8gdbtc5vPp'
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/collections/graduation/products/bachelor-degree-stole');
+                        Future<void> launchInWebView({required Uri url}) async {
+                          if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        }
+                      launchInWebView(url: toLaunch);
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: theme.primaryClr,
                       backgroundColor: theme.azureClr,
@@ -77,24 +89,29 @@ class NakStore extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.0)
                       ),
                     ),
-                    child: Text('See Item'),
+                    child: const Text('See Item'),
                   ),
                 ),
                 const SizedBox(height: 40,),
-                Text('Item Name', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('Item Description', style: theme.TextThemes.headlineSmall20(context),),
-                Container(
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    color: theme.lightGrey,
-                  ),
+                Text('Stitched Hoodie', style: theme.TextThemes.headlineMedLarge(context),),
+                Text('Heavyweight hooded sweatshirt with stitched twill letters', textAlign: TextAlign.center, style: theme.TextThemes.headlineSmall20(context),),
+                Image.network(
+                  'https://drive.google.com/uc?export=view&id=1xZHqT7Ctbx2mzaata4fKxiP0poiPxsvE'
                 ),
                 const SizedBox(height: 6,),
                 SizedBox(
                   width: double.infinity,
                   height: 60,
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'shopnualphakappa.com', path: '/collections/outwear/products/classic-stitched-applique-block-letters-hoodie');
+                        Future<void> launchInWebView({required Uri url}) async {
+                          if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                            throw Exception('Could not launch $url');
+                          }
+                        }
+                      launchInWebView(url: toLaunch);
+                    },
                     style: TextButton.styleFrom(
                       foregroundColor: theme.primaryClr,
                       backgroundColor: theme.azureClr,
@@ -102,14 +119,18 @@ class NakStore extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.0)
                       ),
                     ),
-                    child: Text('See Item'),
+                    child: const Text('See Item'),
                   ),
                 ),
                 const SizedBox(height: 40,),
                 Text('Custom Options', style: theme.TextThemes.headlineLarge(context),),
                 Text(
-                  'Most apparel can be customized to suit your needs. Although complex customizations are not being done, you can add simple customizations by simply contacting the store.',
+                  'Most apparel can be customized to suit your needs. Although complex customizations are not being done, you can add simple customizations by simply contacting the store via email at ',
                   style: theme.TextThemes.headlineSmall20(context), textAlign: TextAlign.center,
+                ),
+                Text(
+                  'store@nakinc.org.',
+                  style: theme.TextThemes.headlineSmall20(context).copyWith(fontWeight: FontWeight.bold), textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40,),
               ],
