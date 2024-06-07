@@ -19,9 +19,10 @@ import 'package:nak_app/screens/frat_info.dart';
 import 'package:nak_app/screens/contact_screen.dart';
 import 'package:nak_app/screens/digitalid_screen.dart';
 import 'package:nak_app/screens/profile/my_profile.dart';
+import 'package:nak_app/screens/profile/update_profile.dart';
+import 'package:nak_app/screens/profile/uploadphoto_screen.dart';
 import 'package:nak_app/screens/account.dart';
 import 'package:nak_app/screens/version_screen.dart';
-import 'package:nak_app/screens/profile/uploadphoto_screen.dart';
 import 'package:nak_app/screens/blog/new_blog.dart';
 import 'package:nak_app/screens/blog/preview_blog.dart';
 import 'package:nak_app/screens/blog/edit_blog.dart';
@@ -90,9 +91,10 @@ class App extends StatelessWidget {
         '/contact': (context) => const ContactScreen(),
         '/id': (context) => const DigitalIDScreen(),
         '/profile': (context) => const MyProfileScreen(),
+        '/updateProfile': (context) => const UpdateProfile(),
+        '/uploadPhoto': (context) => const UploadPhotoScreen(),
         '/account': (context) => const MyAccount(),
         '/version': (content) => const VersionScreen(),
-        '/uploadPhoto': (context) => const UploadPhotoScreen(),
         '/newBlog': (context) => const NewBlogScreen(),
         '/previewBlog': (context) => const PreviewBlog(),
         '/editBlog': (context) => const BlogList(),

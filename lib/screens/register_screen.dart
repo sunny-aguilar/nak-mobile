@@ -167,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       // default settings
       'isAdmin': [],
       'isNEB': false,
-      'rights': {'chat':false, 'blog':false,},
+      'rights': {'chat':true, 'blog':false,},
     });
 
     // add() auto-creates a document name
