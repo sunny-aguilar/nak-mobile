@@ -22,11 +22,13 @@ class UpdateUsers {
     final FirebaseAuth auth = FirebaseAuth.instance;
     final userUID = auth.currentUser!.uid;
 
-    _instance = FirebaseFirestore.instance;
-    _instance!.collection('users').doc(userUID).set({
+    final data = {
       'firstName': firstName,
       'lastName': lastName,
-    });
+    };
+
+    _instance = FirebaseFirestore.instance;
+    _instance!.collection('users').doc(userUID).set(data, SetOptions(merge: true));
 
   }
 }
