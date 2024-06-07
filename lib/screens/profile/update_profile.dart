@@ -12,9 +12,22 @@ class UpdateProfile extends StatefulWidget {
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
+  // get username from profile
   final username = FirebaseAuth.instance.currentUser?.displayName;
+  // form key
+  final _profileFormKey = GlobalKey<FormState>();
+
   // Controllers
-  final TextEditingController _nameCtl = TextEditingController();
+  final TextEditingController _firstnameCtl = TextEditingController();
+  final TextEditingController _lastnameCtl = TextEditingController();
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed
+    _firstnameCtl.dispose();
+    _lastnameCtl.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,42 +40,71 @@ class _UpdateProfileState extends State<UpdateProfile> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30.0),
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 10,),
-              Text('Update Your Profile', style: theme.TextThemes.headlineMed(context)),
-              const SizedBox(height: 10,),
-              Text('You can only update your display name at this time. Chapter and line numbers are permanent.', textAlign: TextAlign.center, style: theme.TextThemes.bodyMedLarge(context)),
-              const SizedBox(height: 10,),
-              TextFormField(
-                decoration: InputDecoration(
-                  prefixIcon: const Icon(Icons.person_2_outlined),
-                  labelText: 'Update Your Name*',
-                  helperText: '*Current name: $username',
-                ),
-                controller: _nameCtl,
-                keyboardType: TextInputType.name,
-              ),
-              const SizedBox(height: 10,),
-              SizedBox(
-                width: double.infinity,
-                height: 50,
-                child: TextButton(
-                  onPressed: () {
-                    db_profile.UpdateUsers().updateDisplayName(_nameCtl.text.trim());
-                    Navigator.pop(context);
-                  },
-                  style: TextButton.styleFrom(
-                    foregroundColor: theme.primaryClr,
-                    backgroundColor: theme.redClr,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0)
-                    ),
+          child: Form(
+            key: _profileFormKey,
+            child: Column(
+              children: <Widget>[
+                const SizedBox(height: 10,),
+                Text('Update Your Profile', style: theme.TextThemes.headlineMed(context)),
+                const SizedBox(height: 10,),
+                Text('You can only update your display name at this time. Chapter and line numbers are permanent.', textAlign: TextAlign.center, style: theme.TextThemes.bodyMedLarge(context)),
+                const SizedBox(height: 20,),
+                Text('Current Name: $username'),
+                const SizedBox(height: 10,),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person_2_outlined),
+                    labelText: 'Update Your First Name*',
+                    helperText: '*Required',
                   ),
-                  child: Text('Update'),
+                  controller: _firstnameCtl,
+                  keyboardType: TextInputType.name,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your first name';
+                    }
+                    return null;
+                  },
                 ),
-              ),
-            ],
+                const SizedBox(height: 10,),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person_2_outlined),
+                    labelText: 'Update Your Last Name*',
+                    helperText: '*Required',
+                  ),
+                  controller: _lastnameCtl,
+                  keyboardType: TextInputType.name,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your lastname';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10,),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: TextButton(
+                    onPressed: () {
+                      if (_profileFormKey.currentState!.validate()) {
+                        db_profile.UpdateUsers().updateDisplayName(_firstnameCtl.text.trim(), _lastnameCtl.text.trim());
+                        Navigator.pop(context);
+                      }
+                    },
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.primaryClr,
+                      backgroundColor: theme.redClr,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)
+                      ),
+                    ),
+                    child: const Text('Update'),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
