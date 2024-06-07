@@ -32,15 +32,55 @@ class NakStore extends StatelessWidget {
               children: <Widget>[
                 Text('Featured Products', style: theme.TextThemes.headlineLarge(context),),
                 Text('NAK Polo', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('Official Business NAK Polo', style: theme.TextThemes.headlineSmall20(context),),
+                Text('NAK Dri-FIT Nike Polo', style: theme.TextThemes.headlineSmall20(context),),
                 Container(
                   height: 400,
                   decoration: const BoxDecoration(
                     color: theme.lightGrey,
                   ),
                 ),
+                const SizedBox(height: 6,),
+                SizedBox(
+                  width: double.infinity,
+                  height: 60,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.primaryClr,
+                      backgroundColor: theme.azureClr,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)
+                      ),
+                    ),
+                    child: const Text('See Item'),
+                  ),
+                ),
                 const SizedBox(height: 40,),
-                Text('Next Item', style: theme.TextThemes.headlineMedLarge(context),),
+                Text('Graduation Sashes', style: theme.TextThemes.headlineMedLarge(context),),
+                Text('Bachelors, Masters and PhD', style: theme.TextThemes.headlineSmall20(context),),
+                Container(
+                  height: 400,
+                  decoration: const BoxDecoration(
+                    color: theme.lightGrey,
+                  ),
+                ),
+                const SizedBox(height: 6,),
+                SizedBox(
+                  width: double.infinity,
+                  height: 60,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.primaryClr,
+                      backgroundColor: theme.azureClr,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)
+                      ),
+                    ),
+                    child: Text('See Item'),
+                  ),
+                ),
+                const SizedBox(height: 40,),
                 Text('Item Name', style: theme.TextThemes.headlineMedLarge(context),),
                 Text('Item Description', style: theme.TextThemes.headlineSmall20(context),),
                 Container(
@@ -49,16 +89,29 @@ class NakStore extends StatelessWidget {
                     color: theme.lightGrey,
                   ),
                 ),
-                const SizedBox(height: 40,),
-                Text('Next Item', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('Item Name', style: theme.TextThemes.headlineMedLarge(context),),
-                Text('Item Description', style: theme.TextThemes.headlineSmall20(context),),
-                Container(
-                  height: 400,
-                  decoration: const BoxDecoration(
-                    color: theme.lightGrey,
+                const SizedBox(height: 6,),
+                SizedBox(
+                  width: double.infinity,
+                  height: 60,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: TextButton.styleFrom(
+                      foregroundColor: theme.primaryClr,
+                      backgroundColor: theme.azureClr,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4.0)
+                      ),
+                    ),
+                    child: Text('See Item'),
                   ),
                 ),
+                const SizedBox(height: 40,),
+                Text('Custom Options', style: theme.TextThemes.headlineLarge(context),),
+                Text(
+                  'Most apparel can be customized to suit your needs. Although complex customizations are not being done, you can add simple customizations by simply contacting the store.',
+                  style: theme.TextThemes.headlineSmall20(context), textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 40,),
               ],
             ),
           ),
