@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_user_profiles.dart' as db_profile;
@@ -11,6 +12,7 @@ class UpdateProfile extends StatefulWidget {
 }
 
 class _UpdateProfileState extends State<UpdateProfile> {
+  final username = FirebaseAuth.instance.currentUser?.displayName;
   // Controllers
   final TextEditingController _nameCtl = TextEditingController();
 
@@ -33,10 +35,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
               Text('You can only update your display name at this time. Chapter and line numbers are permanent.', textAlign: TextAlign.center, style: theme.TextThemes.bodyMedLarge(context)),
               const SizedBox(height: 10,),
               TextFormField(
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.person_2_outlined),
-                  labelText: 'Update Your Display*',
-                  helperText: '*required',
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.person_2_outlined),
+                  labelText: 'Update Your Name*',
+                  helperText: '*Current name: $username',
                 ),
                 controller: _nameCtl,
                 keyboardType: TextInputType.name,
@@ -46,7 +48,10 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 width: double.infinity,
                 height: 50,
                 child: TextButton(
-                  onPressed: () => db_profile.UpdateUsers().updateDisplayName(_nameCtl.text.trim()),
+                  onPressed: () {
+                    db_profile.UpdateUsers().updateDisplayName(_nameCtl.text.trim());
+                    Navigator.pop(context);
+                  },
                   style: TextButton.styleFrom(
                     foregroundColor: theme.primaryClr,
                     backgroundColor: theme.redClr,
