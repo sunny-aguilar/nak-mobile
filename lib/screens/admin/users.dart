@@ -94,7 +94,7 @@ class _UserlistState extends State<UserlistBody> {
             child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
           ),
           title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
-          subtitle: Text('${data[index]['chapter']} chapter'),
+          subtitle: Text('${data[index]['chapter']} chapter - ${data[index]['email']}', overflow: TextOverflow.ellipsis,),
           trailing: const Icon(Icons.arrow_forward_ios),
 
         );
