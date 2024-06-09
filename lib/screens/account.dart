@@ -45,7 +45,7 @@ class _MyAccountState extends State<MyAccount> {
               child: Row(
                 children: <Widget>[
                   const FaIcon(FontAwesomeIcons.circleXmark, size: 20.0, color: theme.pinkClr,),
-                  Text(' Log you out of your device', style: theme.TextThemes.bodyMedLarge(context),),
+                  Text(' Log you out of your account', style: theme.TextThemes.bodyMedLarge(context),),
                 ],
               ),
             ),
