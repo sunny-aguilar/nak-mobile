@@ -194,7 +194,7 @@ class _ChatRoomState extends State<ChatRoom> {
                               maxLines: 1,
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(Icons.abc),
-                                hintText: 'Type something...',
+                                hintText: 'Send a message',
                                 contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(26.0)),
