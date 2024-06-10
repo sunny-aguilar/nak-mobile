@@ -52,28 +52,28 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
         children: <Widget>[
           FutureBuilder(
             future: db.Chat().canChat(),
-              builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-                if (!snapshot.hasData) { _circularProgress(); }
-                else if (snapshot.data == null) { _circularProgress(); }
-                else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                  bool canChat = snapshot.data!;
-                  chatEnabled = canChat;
-                  if (canChat) {
-                    return Container(
-                      height: 5,
-                      decoration: const BoxDecoration(color: theme.azureClr,),
-                    );
-                  }
-                  if (!canChat) {
-                    return Container(
-                      height: 5,
-                      decoration: const BoxDecoration(color: theme.orangeClr,),
-                    );
-                  }
+            builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+              if (!snapshot.hasData) { _circularProgress(); }
+              else if (snapshot.data == null) { _circularProgress(); }
+              else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                bool canChat = snapshot.data!;
+                chatEnabled = canChat;
+                if (canChat) {
+                  return Container(
+                    height: 5,
+                    decoration: const BoxDecoration(color: theme.azureClr,),
+                  );
                 }
-                return _circularProgress();
+                if (!canChat) {
+                  return Container(
+                    height: 5,
+                    decoration: const BoxDecoration(color: theme.orangeClr,),
+                  );
+                }
               }
-            ),
+              return _circularProgress();
+            }
+          ),
           Text('Chat Rules', style: theme.TextThemes.headlineLarge(context), textAlign: TextAlign.center,),
           const ListTile(
             leading: Icon(Icons.check_circle),
@@ -146,6 +146,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
               child: const Text('Start Chatting', style: TextStyle(color: theme.primaryClr),),
             ),
           ),
+          const SizedBox(height: 40,),
         ],
       ),
     );

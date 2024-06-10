@@ -389,7 +389,7 @@ class BlogFilledCameraButton extends StatelessWidget {
 
 ButtonStyle chatButton(BuildContext context, Color btnColor) {
   return TextButton.styleFrom(
-    minimumSize: const Size.fromHeight(60),
+    minimumSize: const Size.fromHeight(80),
     padding: const EdgeInsets.all(8),
     backgroundColor: btnColor,
     foregroundColor: theme.darkGreyClr,
