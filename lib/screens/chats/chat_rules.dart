@@ -74,7 +74,8 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
               return _circularProgress();
             }
           ),
-          Text('Chat Rules', style: theme.TextThemes.headlineLarge(context), textAlign: TextAlign.center,),
+          const SizedBox(height: 20,),
+          Text('Chat Rules', style: theme.TextThemes.headlineMed(context), textAlign: TextAlign.center,),
           const ListTile(
             leading: Icon(Icons.check_circle),
             title: Text('Be friendly. Be polite. Be considerate.',),
