@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
 import 'package:nak_app/ui/theme.dart' as theme;
 
 // revenueCat packages
@@ -25,6 +26,27 @@ class _DrawerComponentState extends State<DrawerComponent> {
 
   // show Paywall
   void performMagic(String menuItem) async {
+    // bypass paywall if bro is NEB * * * * * * * * * * * * *
+    String userUID = FirebaseAuth.instance.currentUser!.uid;
+    if (await db_neb.NebRights(uid: userUID).nebStatus()) {
+      switch (menuItem) {
+        case 'id':
+          if (mounted) {
+            Navigator.pushNamed(context, '/id');
+          }
+        case 'profile':
+          if (mounted) {
+            Navigator.pushNamed(context, '/profile');
+          }
+        case 'resources':
+          if (mounted) {
+            Navigator.pushNamed(context, '/resources');
+          }
+      }
+      return;
+    }
+    // * * * * * * * * * * * * * * * * * * * * * * * * * * *
+
     setState(() {
       _isLoading = true;
     });
