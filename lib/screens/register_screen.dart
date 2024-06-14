@@ -168,6 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'isAdmin': [],
       'isNEB': false,
       'rights': {'chat':true, 'blog':false,},
+      'position': '',
     });
 
     // add() auto-creates a document name
