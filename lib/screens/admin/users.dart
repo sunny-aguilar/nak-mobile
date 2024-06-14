@@ -65,6 +65,7 @@ class _UserlistState extends State<UserlistBody> {
                     future: Future.wait([
                       db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
                       db_users.ChatRights(uid: data[index]['uid']).rightsStatus(),
+                      db_users.ActiveRights(uid: data[index]['uid']).rightsStatus(),
                     ]),
                     builder: (BuildContext context, snapshot) {
                       if (!snapshot.hasData) { _circularProgress(); }
@@ -73,10 +74,12 @@ class _UserlistState extends State<UserlistBody> {
                         String uid = data[index].data()['uid'];
                         bool blogStatus = snapshot.data![0];
                         bool chatStatus = snapshot.data![1];
+                        bool activeStatus = snapshot.data![2];
                         return UserSettingsScreen(
                           uid: uid,
                           blogStatus: blogStatus,
                           chatStatus: chatStatus,
+                          activeStatus: activeStatus,
                           username: '${data[index]['firstName']} ${data[index]['lastName']}',
                         );
                       }
@@ -124,10 +127,19 @@ class _UserlistState extends State<UserlistBody> {
 
 
 class UserSettingsScreen extends StatefulWidget {
-  const UserSettingsScreen({super.key, required this.uid, required this.blogStatus, required this.chatStatus, required this.username});
+  const UserSettingsScreen({
+    super.key,
+    required this.uid,
+    required this.blogStatus,
+    required this.chatStatus,
+    required this.activeStatus,
+    required this.username
+  });
+
   final String uid;
   final bool blogStatus;
   final bool chatStatus;
+  final bool activeStatus;
   final String username;
 
   @override
@@ -135,12 +147,14 @@ class UserSettingsScreen extends StatefulWidget {
 }
 
 class _UserSettingsScreenState extends State<UserSettingsScreen> {
+  bool enableActive = false;
   bool enableBlog = false;
   bool enableChat = false;
 
   @override
   void initState() {
     super.initState();
+    enableActive = widget.activeStatus;
     enableBlog = widget.blogStatus;
     enableChat = widget.chatStatus;
   }
@@ -161,14 +175,6 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-        //     onPressed: () {
-        //       service.ThemeService().switchTheme();
-        //     },
-        //   ),
-        // ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
@@ -181,8 +187,28 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
               title: Text(widget.username),
             ),
             ListTile(
-              title: const Text('Give blog rights:'),
+              title: const Text('Active Bro'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enableActive,
+                activeColor: theme.mintClr,
+                onChanged: (bool val) {
+                  setState(() {
+                    enableActive = val;
 
+                    // add or remove active status
+                    if (val) {
+                      db_users.ActiveRights(uid: widget.uid).addRights();
+                    }
+                    else if (!val) {
+                      db_users.ActiveRights(uid: widget.uid).removeRights();
+                    }
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: const Text('Give blog rights:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,
                 value: enableBlog,
@@ -201,11 +227,9 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
                   });
                 }
               ),
-
             ),
             ListTile(
               title: const Text('Give chat rights:'),
-
               trailing: Switch(
                 thumbIcon: thumbIcon,
                 value: enableChat,
