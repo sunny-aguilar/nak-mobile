@@ -169,6 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'isNEB': false,
       'rights': {'chat':true, 'blog':false,},
       'position': '',
+      'isActive': false,
     });
 
     // add() auto-creates a document name

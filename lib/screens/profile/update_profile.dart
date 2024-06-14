@@ -20,12 +20,14 @@ class _UpdateProfileState extends State<UpdateProfile> {
   // Controllers
   final TextEditingController _firstnameCtl = TextEditingController();
   final TextEditingController _lastnameCtl = TextEditingController();
+  final TextEditingController _positionCtl = TextEditingController();
 
   @override
   void dispose() {
     // Clean up the controller when the widget is disposed
     _firstnameCtl.dispose();
     _lastnameCtl.dispose();
+    _positionCtl.dispose();
     super.dispose();
   }
 
@@ -83,13 +85,32 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   },
                 ),
                 const SizedBox(height: 10,),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.person_2_outlined),
+                    labelText: 'Update Your Chapter/NEB Position*',
+                    helperText: '*Required',
+                  ),
+                  controller: _positionCtl,
+                  keyboardType: TextInputType.name,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your chapter/NEB position';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 10,),
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: TextButton(
                     onPressed: () {
                       if (_profileFormKey.currentState!.validate()) {
-                        db_profile.UpdateUsers().updateDisplayName(_firstnameCtl.text.trim(), _lastnameCtl.text.trim());
+                        db_profile.UpdateUsers().updateUser(
+                          _firstnameCtl.text.trim(),
+                          _lastnameCtl.text.trim(),
+                          _positionCtl.text.trim());
                         Navigator.pop(context);
                       }
                     },

@@ -161,7 +161,7 @@ class _MyProfileScreenState extends State<MyProfileScreen> {
                         Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
                         const Spacer(),
                         Text('Position', style: theme.TextThemes.idLabel(context),),
-                        Text('${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
+                        Text('${data['position']}', style: theme.TextThemes.idBody(context),),
                         const Spacer(),
                         Text('ID Number', style: theme.TextThemes.idLabel(context),),
                         Text('${data['nakID']}', style: theme.TextThemes.idBody(context),),

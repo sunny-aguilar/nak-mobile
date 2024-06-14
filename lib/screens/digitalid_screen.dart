@@ -118,6 +118,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
                       Text('${data['firstName']} ${data['lastName']}', style: theme.TextThemes.idUserName(context),),
                       Text('Line Number\n${data['lineNumber']}', style: theme.TextThemes.idBody(context),),
                       Text('ID Number\n${data['nakID']}', style: theme.TextThemes.idBody(context),),
+                      Text('Position\n${data['position']}', style: theme.TextThemes.idBody(context),),
                       Text('Email\n${data['email']}', style: theme.TextThemes.idBody(context),),
                     ],
                   ),

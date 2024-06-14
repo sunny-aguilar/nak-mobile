@@ -136,7 +136,7 @@ class DeactivateUserData {
     final reference = _instance!.collection('users');
 
     // add bool field "isactive"
-    Map<String, bool> dataToSend = {'isactive': false};
+    Map<String, bool> dataToSend = {'deleteUser': true};
 
     // save field on user's data
     await reference.doc(userUID).set(dataToSend, SetOptions(merge: true));

@@ -6,15 +6,27 @@ final FirebaseAuth auth = FirebaseAuth.instance;
 class UpdateUsers {
   FirebaseFirestore? _instance;
 
-  Future<void> updateDisplayName(String firstName, String lastName) async {
+  Future<void> updateUser(String firstName, String lastName, String position) async {
     if (FirebaseAuth.instance.currentUser != null) {
-      try {
-        final user = FirebaseAuth.instance.currentUser;
-        await user?.updateDisplayName('$firstName $lastName');
-        updateDbUsername(firstName, lastName);
-      } catch (e) {
-        print('Error updating user profile name');
-      }
+      // try {
+      //   final user = FirebaseAuth.instance.currentUser;
+      //   await user?.updateDisplayName('$firstName $lastName');
+      //   updateDbUsername(firstName, lastName);
+      // } catch (e) {
+      //   print('Error updating user profile name');
+      // }
+      updateUserProfile(firstName, lastName);
+      updateDbUsername(firstName, lastName);
+      updateUserPosition(position);
+    }
+  }
+
+  Future<void> updateUserProfile(String firstName, String lastName) async {
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      await user?.updateDisplayName('$firstName $lastName');
+    } catch (e) {
+      print('Error updating user profile name');
     }
   }
 
@@ -29,6 +41,13 @@ class UpdateUsers {
 
     _instance = FirebaseFirestore.instance;
     _instance!.collection('users').doc(userUID).set(data, SetOptions(merge: true));
+  }
 
+  Future<void> updateUserPosition(String position) async {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final userUID = auth.currentUser!.uid;
+    final data = { 'position': position, };
+    _instance = FirebaseFirestore.instance;
+    _instance!.collection('users').doc(userUID).set(data, SetOptions(merge: true));
   }
 }
