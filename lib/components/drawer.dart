@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
+import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/ui/theme.dart' as theme;
 
 // revenueCat packages
@@ -26,9 +26,9 @@ class _DrawerComponentState extends State<DrawerComponent> {
 
   // show Paywall
   void performMagic(String menuItem) async {
-    // bypass paywall if bro is NEB * * * * * * * * * * * * *
+    // bypass paywall if bro is active * * * * * * * * * * * * *
     String userUID = FirebaseAuth.instance.currentUser!.uid;
-    if (await db_neb.NebRights(uid: userUID).nebStatus()) {
+    if (await db_users.ActiveRights(uid: userUID).rightsStatus()) {
       switch (menuItem) {
         case 'id':
           if (mounted) {

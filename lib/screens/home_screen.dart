@@ -7,7 +7,7 @@ import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
-import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
+import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 import 'package:nak_app/screens/chats/chat_rules.dart';
@@ -45,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     // bypass paywall if bro is NEB * * * * * * * * * * * * *
     String userUID = FirebaseAuth.instance.currentUser!.uid;
-    if (await db_neb.NebRights(uid: userUID).nebStatus()) {
+    if (await db_users.ActiveRights(uid: userUID).rightsStatus()) {
       setState(() {
         index = val;
         _isLoading = false;
