@@ -1,6 +1,30 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
+class ActiveRights {
+  ActiveRights({required this.uid});
+  final String uid;
+  FirebaseFirestore? _instance;
+
+  Future<bool> rightsStatus() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    final user = await userRef.get();
+    return user.data()?['isActive'];
+  }
+
+  Future<void> addRights() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'isActive': true});
+  }
+
+  Future<void> removeRights() async {
+    _instance = FirebaseFirestore.instance;
+    final userRef = _instance!.collection('users').doc(uid);
+    await userRef.update({'isActive': false});
+  }
+}
 
 class BlogRights {
   BlogRights({required this.uid});
