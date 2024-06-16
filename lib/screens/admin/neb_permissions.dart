@@ -60,6 +60,13 @@ class _UserListBodyState extends State<UserListBody> {
         subtitle: const Text('User Subtitle', ),
       ),
       itemBuilder: (context, index) {
+        Map<String, dynamic> userData = {};
+        userData['firstName'] = data[index]['firstName'];
+        userData['lastName'] = data[index]['lastName'];
+        userData['email'] = data[index]['email'];
+        userData['chapter'] = data[index]['chapter'];
+        userData['uid'] = data[index]['uid'];
+
         return ListTile(
           onTap: () {
 
