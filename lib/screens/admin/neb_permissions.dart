@@ -66,6 +66,9 @@ class _UserListBodyState extends State<UserListBody> {
         userData['email'] = data[index]['email'];
         userData['chapter'] = data[index]['chapter'];
         userData['uid'] = data[index]['uid'];
+        userData['nebStatus'] = data[index]['isNEB'];
+        userData['adminStatus'] = data[index]['isAdmin'].contains('admin');
+        userData['superAdminStatus'] = data[index]['isAdmin'].contains('superAdmin');
 
         return ListTile(
           onTap: () {
