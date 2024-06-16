@@ -166,9 +166,9 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
     enabledSuperAdmin = widget.superAdminStatus;
   }
 
-  final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
-    (Set<MaterialState> states) {
-      if (states.contains(MaterialState.selected)) {
+  final WidgetStateProperty<Icon?> thumbIcon = WidgetStateProperty.resolveWith<Icon> (
+    (Set<WidgetState> states) {
+      if (states.contains(WidgetState.selected)) {
         return const Icon(Icons.check);
       }
       return const Icon(Icons.close);
