@@ -1,0 +1,273 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
+import 'package:nak_app/services/theme_service.dart' as service;
+
+class AddNebScreen extends StatefulWidget {
+  const AddNebScreen({super.key});
+  @override
+  State<AddNebScreen> createState() => _AddNebScreenState();
+}
+
+class _AddNebScreenState extends State<AddNebScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () => service.ThemeService().switchTheme(),
+          ),
+        ],
+      ),
+      body: const UserListBody(),
+    );
+  }
+}
+
+
+class UserListBody extends StatefulWidget {
+  const UserListBody({super.key});
+  @override
+  State<UserListBody> createState() => _UserListBodyState();
+}
+
+class _UserListBodyState extends State<UserListBody> {
+
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 75, width: 75,
+        child: CircularProgressIndicator(
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.greyClr,
+        ),
+      ),
+    );
+  }
+
+  ListView _buildUserList(data) {
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: data.length,
+      prototypeItem: ListTile(
+        title: Text(data[0].data()['chapter']),
+        subtitle: const Text('User Subtitle', ),
+      ),
+      itemBuilder: (context, index) {
+        return ListTile(
+          onTap: () {
+
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext context) {
+                  return FutureBuilder(
+                    future: Future.wait([
+                      db_neb.NebRights(uid: data[index].data()['uid']).nebStatus(),
+                      db_neb.AdminRights(uid: data[index].data()['uid']).adminStatus(),
+                      db_neb.SuperAdminRights(uid: data[index].data()['uid']).superAdminStatus(),
+                    ],),
+                    builder: (BuildContext context, snapshot) {
+                      if (!snapshot.hasData) { _circularProgress(); }
+                      else if (snapshot.data == null) { _circularProgress(); }
+                      else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+                        String uid = data[index].data()['uid'];
+                        bool nebStatus = snapshot.data![0];
+                        bool adminStatus = snapshot.data![1];
+                        bool superAdminStatus = snapshot.data![2];
+                        return NebSettingsScreen(
+                          uid: uid,
+                          nebStatus: nebStatus,
+                          adminStatus: adminStatus,
+                          superAdminStatus: superAdminStatus,
+                        );
+                      }
+                      return _circularProgress();
+                    },
+                  );
+
+                },
+              ),
+            );
+
+          },
+          // tileColor: theme.greyClr,
+          leading: CircleAvatar(
+            backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+            child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
+          ),
+          title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
+          subtitle: Text('${data[index].data()['chapter']} chapter - ${data[index].data()['email']}', overflow: TextOverflow.ellipsis,),
+          trailing: const Icon(Icons.arrow_forward_ios),
+
+        );
+      }
+    );
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: db.GetUsers().getAllUsers(),
+      builder: (BuildContext context, snapshot) {
+        if (snapshot.hasData) {
+          final data = snapshot.data.docs;
+          return Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text('NEB Permissions', style: theme.TextThemes.headlineMedLarge(context)),
+              ),
+              _buildUserList(data),
+            ],
+          );
+        }
+        else if (snapshot.hasError) {
+          return const Center(child: Text('Oh no! An error occurred!'),);
+        }
+        else {
+          return _circularProgress();
+        }
+      }
+    );
+  }
+}
+
+
+// Route that displays switches for the user
+class NebSettingsScreen extends StatefulWidget {
+  const NebSettingsScreen({super.key, required this.uid, required this.nebStatus, required this.adminStatus, required this.superAdminStatus});
+  final String uid;
+  final bool nebStatus;
+  final bool adminStatus;
+  final bool superAdminStatus;
+  @override
+  State<NebSettingsScreen> createState() => _NebSettingsScreenState();
+}
+
+class _NebSettingsScreenState extends State<NebSettingsScreen> {
+  bool enabledNEB = false;
+  bool enabledAdmin = false;
+  bool enabledSuperAdmin = false;
+
+  @override
+  void initState() {
+    super.initState();
+    enabledNEB = widget.nebStatus;
+    enabledAdmin = widget.adminStatus;
+    enabledSuperAdmin = widget.superAdminStatus;
+  }
+
+  final MaterialStateProperty<Icon?> thumbIcon = MaterialStateProperty.resolveWith<Icon> (
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.selected)) {
+        return const Icon(Icons.check);
+      }
+      return const Icon(Icons.close);
+    }
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+
+      appBar: AppBar(
+        centerTitle: true,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+        //     onPressed: () {
+        //       service.ThemeService().switchTheme();
+        //     },
+        //   ),
+        // ],
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('NEB User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make NEB Member:'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enabledNEB,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledNEB = value;
+
+                    // add or remove NEB rights
+                    if (value) {
+                      db_neb.NebRights(uid: widget.uid).addRights();
+                    }
+                    else if (!value) {
+                      db_neb.NebRights(uid: widget.uid).removeRights();
+                    }
+
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make Admin:'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enabledAdmin,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledAdmin = value;
+
+                    // add or remove admin rights
+                    if (value) {
+                      db_neb.AdminRights(uid: widget.uid).addRights();
+                    }
+                    else if (!value) {
+                      db_neb.AdminRights(uid: widget.uid).removeRights();
+                    }
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              onTap: () {},
+              title: const Text('Make Super Admin:'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enabledSuperAdmin,
+                activeColor: theme.mintClr,
+                onChanged: (bool value) {
+                  setState(() {
+                    enabledSuperAdmin = value;
+
+                    // add or remove admin rights
+                    if (value) {
+                      db_neb.SuperAdminRights(uid: widget.uid).addRights();
+                    }
+                    else if (!value) {
+                      db_neb.SuperAdminRights(uid: widget.uid).removeRights();
+                    }
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
