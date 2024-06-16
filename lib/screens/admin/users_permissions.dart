@@ -55,6 +55,16 @@ class _UserlistState extends State<UserlistBody> {
         subtitle: const Text('User Subtitle'),
       ),
       itemBuilder: (context, index) {
+        Map<String, dynamic> userData = {};
+        userData['firstName'] = data[index]['firstName'];
+        userData['lastName'] = data[index]['lastName'];
+        userData['email'] = data[index]['email'];
+        userData['chapter'] = data[index]['chapter'];
+        userData['uid'] = data[index]['uid'];
+        userData['isActive'] = data[index]['isActive'];
+        userData['blogRights'] = data[index]['rights']['blog'];
+        userData['chatRights'] = data[index]['rights']['chat'];
+
         return ListTile(
           onTap: () {
 
@@ -62,32 +72,13 @@ class _UserlistState extends State<UserlistBody> {
               context,
               MaterialPageRoute<Widget>(
                 builder: (BuildContext context) {
-                  return FutureBuilder(
-                    future: Future.wait([
-                      db_users.BlogRights(uid: data[index]['uid']).rightsStatus(),
-                      db_users.ChatRights(uid: data[index]['uid']).rightsStatus(),
-                      db_users.ActiveRights(uid: data[index]['uid']).rightsStatus(),
-                    ]),
-                    builder: (BuildContext context, snapshot) {
-                      if (!snapshot.hasData) { _circularProgress(); }
-                      else if (snapshot.data == null) { _circularProgress(); }
-                      else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                        String uid = data[index].data()['uid'];
-                        bool blogStatus = snapshot.data![0];
-                        bool chatStatus = snapshot.data![1];
-                        bool activeStatus = snapshot.data![2];
-                        return UserSettingsScreen(
-                          uid: uid,
-                          blogStatus: blogStatus,
-                          chatStatus: chatStatus,
-                          activeStatus: activeStatus,
-                          username: '${data[index]['firstName']} ${data[index]['lastName']}',
-                        );
-                      }
-                      return _circularProgress();
-                    }
+                  return UserSettingsScreen(
+                    uid: userData['uid'],
+                    blogStatus: userData['blogRights'],
+                    chatStatus: userData['chatRights'],
+                    activeStatus: userData['isActive'],
+                    username: '${userData['firstName']} ${userData['lastName']}',
                   );
-
                 }
               ),
             );
@@ -95,10 +86,10 @@ class _UserlistState extends State<UserlistBody> {
           },
           leading: CircleAvatar(
             backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-            child: Text('${data[index]['firstName'][0]}${data[index]['lastName'][0]}'),
+            child: Text('${userData["firstName"][0]}${userData["lastName"][0]}'),
           ),
-          title: Text('${data[index]['firstName']} ${data[index]['lastName']}'),
-          subtitle: Text('${data[index]['chapter']} chapter - ${data[index]['email']}', overflow: TextOverflow.ellipsis,),
+          title: Text('${userData["firstName"]} ${userData["lastName"]}'),
+          subtitle: Text('${userData['chapter']} chapter - ${userData['email']}', overflow: TextOverflow.ellipsis,),
           trailing: const Icon(Icons.arrow_forward_ios),
 
         );
