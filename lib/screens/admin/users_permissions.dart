@@ -50,9 +50,9 @@ class _UserlistState extends State<UserlistBody> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: data.length,
-      prototypeItem: ListTile(
-        title: Text(data[0].data()['chapter']),
-        subtitle: const Text('User Subtitle'),
+      prototypeItem: const ListTile(
+        title: Text('chapter'),
+        subtitle: Text('User Subtitle'),
       ),
       itemBuilder: (context, index) {
         Map<String, dynamic> userData = {};
@@ -175,6 +175,14 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
