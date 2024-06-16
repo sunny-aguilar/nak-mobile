@@ -77,31 +77,13 @@ class _UserListBodyState extends State<UserListBody> {
               context,
               MaterialPageRoute<Widget>(
                 builder: (BuildContext context) {
-                  return FutureBuilder(
-                    future: Future.wait([
-                      db_neb.NebRights(uid: data[index].data()['uid']).nebStatus(),
-                      db_neb.AdminRights(uid: data[index].data()['uid']).adminStatus(),
-                      db_neb.SuperAdminRights(uid: data[index].data()['uid']).superAdminStatus(),
-                    ],),
-                    builder: (BuildContext context, snapshot) {
-                      if (!snapshot.hasData) { _circularProgress(); }
-                      else if (snapshot.data == null) { _circularProgress(); }
-                      else if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-                        String uid = data[index].data()['uid'];
-                        bool nebStatus = snapshot.data![0];
-                        bool adminStatus = snapshot.data![1];
-                        bool superAdminStatus = snapshot.data![2];
-                        return NebSettingsScreen(
-                          uid: uid,
-                          nebStatus: nebStatus,
-                          adminStatus: adminStatus,
-                          superAdminStatus: superAdminStatus,
-                        );
-                      }
-                      return _circularProgress();
-                    },
+                  return NebSettingsScreen(
+                    username: '${userData['firstName']} ${userData['lastName']}',
+                    uid: userData['uid'],
+                    nebStatus: userData['nebStatus'],
+                    adminStatus: userData['adminStatus'],
+                    superAdminStatus: userData['superAdminStatus'],
                   );
-
                 },
               ),
             );
@@ -153,7 +135,16 @@ class _UserListBodyState extends State<UserListBody> {
 
 // Route that displays switches for the user
 class NebSettingsScreen extends StatefulWidget {
-  const NebSettingsScreen({super.key, required this.uid, required this.nebStatus, required this.adminStatus, required this.superAdminStatus});
+  const NebSettingsScreen({
+    super.key,
+    required this.username,
+    required this.uid,
+    required this.nebStatus,
+    required this.adminStatus,
+    required this.superAdminStatus
+  })
+  ;
+  final String username;
   final String uid;
   final bool nebStatus;
   final bool adminStatus;
@@ -192,14 +183,14 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
         centerTitle: true,
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        // actions: <Widget>[
-        //   IconButton(
-        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-        //     onPressed: () {
-        //       service.ThemeService().switchTheme();
-        //     },
-        //   ),
-        // ],
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
       ),
 
       body: Padding(
@@ -208,6 +199,10 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text('NEB User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
+            ListTile(
+              leading: const Icon(Icons.account_circle_outlined),
+              title: Text(widget.username),
+            ),
             ListTile(
               onTap: () {},
               title: const Text('Make NEB Member:'),
