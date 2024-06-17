@@ -5,6 +5,7 @@ const Color blueClr = Color(0xff4E5ae8);
 const Color saphireClr = Color(0xff0F52BA);
 const Color azureClr = Color(0xff0080FF);
 const Color purpleClr = Color(0xff6200ea);
+const Color violetColor = Color(0xff7C4DFF);
 const Color darkBlue = Color(0xFF17203A);
 const Color mintClr = Color(0xff9CFC97);
 const Color pinkClr = Color(0xffFF4667);
