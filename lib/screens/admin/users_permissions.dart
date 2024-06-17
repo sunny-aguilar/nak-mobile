@@ -53,6 +53,7 @@ class _UserlistState extends State<UserlistBody> {
   RefreshIndicator _buildUserList(data) {
     return RefreshIndicator(
       onRefresh: _handleRefresh,
+      backgroundColor: theme.lightGrey,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: data.length,

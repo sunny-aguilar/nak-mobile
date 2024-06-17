@@ -58,6 +58,7 @@ class _UserListBodyState extends State<UserListBody> {
   RefreshIndicator _buildUserList(data) {
     return RefreshIndicator(
       onRefresh: _handleRefresh,
+      backgroundColor: theme.lightGrey,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: data.length,
@@ -105,7 +106,7 @@ class _UserListBodyState extends State<UserListBody> {
                 Icon(Icons.circle, color: userData['nebStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
                 Icon(Icons.circle, color: userData['adminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
                 Icon(Icons.circle, color: userData['superAdminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
-                Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}')
+                Text(' ${data[index].data()['firstName']} ${data[index].data()['lastName']}')
               ],
             ),
             subtitle: Text('${data[index].data()['chapter']} chapter - ${data[index].data()['email']}', overflow: TextOverflow.ellipsis,),
