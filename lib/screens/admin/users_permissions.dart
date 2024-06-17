@@ -91,6 +91,8 @@ class _UserlistState extends State<UserlistBody> {
           title: Row(
             children: <Widget>[
               Icon(Icons.circle, color: userData['isActive'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Icon(Icons.circle, color: userData['blogRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Icon(Icons.circle, color: userData['chatRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
               Text(' ${data[index].data()['firstName']} ${data[index].data()['lastName']}',),
             ],
           ),
