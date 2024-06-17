@@ -88,7 +88,12 @@ class _UserlistState extends State<UserlistBody> {
             backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
             child: Text('${userData["firstName"][0]}${userData["lastName"][0]}'),
           ),
-          title: Text('${userData["firstName"]} ${userData["lastName"]}'),
+          title: Row(
+            children: <Widget>[
+              Icon(Icons.circle, color: userData['isActive'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Text(' ${data[index].data()['firstName']} ${data[index].data()['lastName']}',),
+            ],
+          ),
           subtitle: Text('${userData['chapter']} chapter - ${userData['email']}', overflow: TextOverflow.ellipsis,),
           trailing: const Icon(Icons.arrow_forward_ios),
 

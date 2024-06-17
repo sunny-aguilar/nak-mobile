@@ -63,9 +63,8 @@ class _UserListBodyState extends State<UserListBody> {
         Map<String, dynamic> userData = {};
         userData['firstName'] = data[index]['firstName'];
         userData['lastName'] = data[index]['lastName'];
-        userData['email'] = data[index]['email'];
-        userData['chapter'] = data[index]['chapter'];
         userData['uid'] = data[index]['uid'];
+        userData['isActive'] = data[index]['isActive'];
         userData['nebStatus'] = data[index]['isNEB'];
         userData['adminStatus'] = data[index]['isAdmin'].contains('admin');
         userData['superAdminStatus'] = data[index]['isAdmin'].contains('superAdmin');
