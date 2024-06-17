@@ -35,6 +35,10 @@ class UserlistBody extends StatefulWidget {
 
 class _UserlistState extends State<UserlistBody> {
 
+  Future<void> _handleRefresh() async {
+    setState(() {});
+  }
+
   Center _circularProgress() {
     return const Center(
       child: SizedBox(
@@ -46,61 +50,64 @@ class _UserlistState extends State<UserlistBody> {
     );
   }
 
-  ListView _buildUserList(data) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: data.length,
-      prototypeItem: const ListTile(
-        title: Text('chapter'),
-        subtitle: Text('User Subtitle'),
+  RefreshIndicator _buildUserList(data) {
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: data.length,
+        prototypeItem: const ListTile(
+          title: Text('chapter'),
+          subtitle: Text('User Subtitle'),
+        ),
+        itemBuilder: (context, index) {
+          Map<String, dynamic> userData = {};
+          userData['firstName'] = data[index]['firstName'];
+          userData['lastName'] = data[index]['lastName'];
+          userData['email'] = data[index]['email'];
+          userData['chapter'] = data[index]['chapter'];
+          userData['uid'] = data[index]['uid'];
+          userData['isActive'] = data[index]['isActive'];
+          userData['blogRights'] = data[index]['rights']['blog'];
+          userData['chatRights'] = data[index]['rights']['chat'];
+
+          return ListTile(
+            onTap: () {
+
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return UserSettingsScreen(
+                      uid: userData['uid'],
+                      blogStatus: userData['blogRights'],
+                      chatStatus: userData['chatRights'],
+                      activeStatus: userData['isActive'],
+                      username: '${userData['firstName']} ${userData['lastName']}',
+                    );
+                  }
+                ),
+              );
+
+            },
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: Text('${userData["firstName"][0]}${userData["lastName"][0]}'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.circle, color: userData['isActive'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Icon(Icons.circle, color: userData['blogRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Icon(Icons.circle, color: userData['chatRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Text(' ${data[index].data()['firstName']} ${data[index].data()['lastName']}',),
+              ],
+            ),
+            subtitle: Text('${userData['chapter']} chapter - ${userData['email']}', overflow: TextOverflow.ellipsis,),
+            trailing: const Icon(Icons.arrow_forward_ios),
+
+          );
+        },
       ),
-      itemBuilder: (context, index) {
-        Map<String, dynamic> userData = {};
-        userData['firstName'] = data[index]['firstName'];
-        userData['lastName'] = data[index]['lastName'];
-        userData['email'] = data[index]['email'];
-        userData['chapter'] = data[index]['chapter'];
-        userData['uid'] = data[index]['uid'];
-        userData['isActive'] = data[index]['isActive'];
-        userData['blogRights'] = data[index]['rights']['blog'];
-        userData['chatRights'] = data[index]['rights']['chat'];
-
-        return ListTile(
-          onTap: () {
-
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return UserSettingsScreen(
-                    uid: userData['uid'],
-                    blogStatus: userData['blogRights'],
-                    chatStatus: userData['chatRights'],
-                    activeStatus: userData['isActive'],
-                    username: '${userData['firstName']} ${userData['lastName']}',
-                  );
-                }
-              ),
-            );
-
-          },
-          leading: CircleAvatar(
-            backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-            child: Text('${userData["firstName"][0]}${userData["lastName"][0]}'),
-          ),
-          title: Row(
-            children: <Widget>[
-              Icon(Icons.circle, color: userData['isActive'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Icon(Icons.circle, color: userData['blogRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Icon(Icons.circle, color: userData['chatRights'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Text(' ${data[index].data()['firstName']} ${data[index].data()['lastName']}',),
-            ],
-          ),
-          subtitle: Text('${userData['chapter']} chapter - ${userData['email']}', overflow: TextOverflow.ellipsis,),
-          trailing: const Icon(Icons.arrow_forward_ios),
-
-        );
-      },
     );
   }
 

@@ -93,7 +93,15 @@ class _UserListBodyState extends State<UserListBody> {
             backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
             child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
           ),
-          title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
+          // title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
+          title: Row(
+            children: [
+              Icon(Icons.circle, color: userData['nebStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Icon(Icons.circle, color: userData['adminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Icon(Icons.circle, color: userData['superAdminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+              Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}')
+            ],
+          ),
           subtitle: Text('${data[index].data()['chapter']} chapter - ${data[index].data()['email']}', overflow: TextOverflow.ellipsis,),
           trailing: const Icon(Icons.arrow_forward_ios),
 
