@@ -40,6 +40,10 @@ class UserListBody extends StatefulWidget {
 
 class _UserListBodyState extends State<UserListBody> {
 
+  Future<void> _handleRefresh() async {
+    setState(() {});
+  }
+
   Center _circularProgress() {
     return const Center(
       child: SizedBox(
@@ -51,62 +55,65 @@ class _UserListBodyState extends State<UserListBody> {
     );
   }
 
-  ListView _buildUserList(data) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: data.length,
-      prototypeItem: ListTile(
-        title: Text(data[0].data()['chapter']),
-        subtitle: const Text('User Subtitle', ),
+  RefreshIndicator _buildUserList(data) {
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      child: ListView.builder(
+        shrinkWrap: true,
+        itemCount: data.length,
+        prototypeItem: ListTile(
+          title: Text(data[0].data()['chapter']),
+          subtitle: const Text('User Subtitle', ),
+        ),
+        itemBuilder: (context, index) {
+          Map<String, dynamic> userData = {};
+          userData['firstName'] = data[index]['firstName'];
+          userData['lastName'] = data[index]['lastName'];
+          userData['uid'] = data[index]['uid'];
+          userData['isActive'] = data[index]['isActive'];
+          userData['nebStatus'] = data[index]['isNEB'];
+          userData['adminStatus'] = data[index]['isAdmin'].contains('admin');
+          userData['superAdminStatus'] = data[index]['isAdmin'].contains('superAdmin');
+
+          return ListTile(
+            onTap: () {
+
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return NebSettingsScreen(
+                      username: '${userData['firstName']} ${userData['lastName']}',
+                      uid: userData['uid'],
+                      nebStatus: userData['nebStatus'],
+                      adminStatus: userData['adminStatus'],
+                      superAdminStatus: userData['superAdminStatus'],
+                    );
+                  },
+                ),
+              );
+
+            },
+            // tileColor: theme.greyClr,
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
+            ),
+            // title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
+            title: Row(
+              children: [
+                Icon(Icons.circle, color: userData['nebStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Icon(Icons.circle, color: userData['adminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Icon(Icons.circle, color: userData['superAdminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
+                Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}')
+              ],
+            ),
+            subtitle: Text('${data[index].data()['chapter']} chapter - ${data[index].data()['email']}', overflow: TextOverflow.ellipsis,),
+            trailing: const Icon(Icons.arrow_forward_ios),
+
+          );
+        }
       ),
-      itemBuilder: (context, index) {
-        Map<String, dynamic> userData = {};
-        userData['firstName'] = data[index]['firstName'];
-        userData['lastName'] = data[index]['lastName'];
-        userData['uid'] = data[index]['uid'];
-        userData['isActive'] = data[index]['isActive'];
-        userData['nebStatus'] = data[index]['isNEB'];
-        userData['adminStatus'] = data[index]['isAdmin'].contains('admin');
-        userData['superAdminStatus'] = data[index]['isAdmin'].contains('superAdmin');
-
-        return ListTile(
-          onTap: () {
-
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return NebSettingsScreen(
-                    username: '${userData['firstName']} ${userData['lastName']}',
-                    uid: userData['uid'],
-                    nebStatus: userData['nebStatus'],
-                    adminStatus: userData['adminStatus'],
-                    superAdminStatus: userData['superAdminStatus'],
-                  );
-                },
-              ),
-            );
-
-          },
-          // tileColor: theme.greyClr,
-          leading: CircleAvatar(
-            backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-            child: Text('${data[index].data()['firstName'][0]}${data[index].data()['lastName'][0]}'),
-          ),
-          // title: Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}'),
-          title: Row(
-            children: [
-              Icon(Icons.circle, color: userData['nebStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Icon(Icons.circle, color: userData['adminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Icon(Icons.circle, color: userData['superAdminStatus'] ? theme.mintClr : theme.pinkClr, size: 16,),
-              Text('${data[index].data()['firstName']} ${data[index].data()['lastName']}')
-            ],
-          ),
-          subtitle: Text('${data[index].data()['chapter']} chapter - ${data[index].data()['email']}', overflow: TextOverflow.ellipsis,),
-          trailing: const Icon(Icons.arrow_forward_ios),
-
-        );
-      }
     );
   }
 
