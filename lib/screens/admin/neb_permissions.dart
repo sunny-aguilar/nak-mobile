@@ -5,13 +5,13 @@ import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/db/db_neb_permissions.dart' as db_neb;
 import 'package:nak_app/services/theme_service.dart' as service;
 
-class AddNebScreen extends StatefulWidget {
-  const AddNebScreen({super.key});
+class NebPermissionsScreen extends StatefulWidget {
+  const NebPermissionsScreen({super.key});
   @override
-  State<AddNebScreen> createState() => _AddNebScreenState();
+  State<NebPermissionsScreen> createState() => _AddNebScreenState();
 }
 
-class _AddNebScreenState extends State<AddNebScreen> {
+class _AddNebScreenState extends State<NebPermissionsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

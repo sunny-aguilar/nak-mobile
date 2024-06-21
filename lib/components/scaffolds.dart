@@ -72,7 +72,7 @@ class SpeedDialButton extends StatelessWidget {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute( builder: (BuildContext context) => const neb.AddNebScreen(), ),
+              MaterialPageRoute( builder: (BuildContext context) => const neb.NebPermissionsScreen(), ),
             );
           },
           // backgroundColor: theme.primaryClr,
