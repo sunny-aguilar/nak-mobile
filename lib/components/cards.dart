@@ -178,6 +178,7 @@ class StoryCardNetwork extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       // cteate a class to hold a modal template
                       const Padding(
@@ -194,7 +195,7 @@ class StoryCardNetwork extends StatelessWidget {
                         subtitle: RichText(
                           text: TextSpan(
                             children: <TextSpan>[
-                              TextSpan(text: '$storyHeadline\n', style: theme.TextThemes.monoBodyBoldSmall18(context)),
+                              // TextSpan(text: '$storyHeadline\n', style: theme.TextThemes.monoBodyBoldSmall18(context)),
                               TextSpan(text: date, style: theme.TextThemes.blogDate(context))
                             ]
                           ),
@@ -203,6 +204,10 @@ class StoryCardNetwork extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Divider(color: theme.dividerClr,),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(storyHeadline, style: theme.TextThemes.monoBodyBold600Med24(context)),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -255,6 +260,7 @@ class StoryCardNetwork extends StatelessWidget {
                 storyHeadline,
                 style: const TextStyle(
                   fontSize: 16,
+                  // fontFamily: 'Diatype'
                 ),
               ),
             ),

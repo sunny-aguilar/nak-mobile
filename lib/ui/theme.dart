@@ -601,11 +601,20 @@ class TextThemes{
     );
   }
 
-  static TextStyle monoBodyBoldSmall18(BuildContext context) {
+  static TextStyle monoBodyBold700Small18(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Diatype',
+      fontWeight: FontWeight.bold,
+      fontSize: 18,
+      color: Get.isDarkMode ? primaryClr : bodyClr
+    );
+  }
+
+  static TextStyle monoBodyBold600Med24(BuildContext context) {
     return TextStyle(
       fontFamily: 'Diatype',
       fontWeight: FontWeight.w600,
-      fontSize: 18,
+      fontSize: 24,
       color: Get.isDarkMode ? primaryClr : bodyClr
     );
   }
