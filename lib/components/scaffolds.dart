@@ -65,7 +65,7 @@ class SpeedDialButton extends StatelessWidget {
             );
           },
           // backgroundColor: theme.primaryClr,
-          label: 'NEB Permissions'
+          label: 'User Permissions'
         ),
         SpeedDialChild(
           child: const Icon(Icons.person),
@@ -76,7 +76,7 @@ class SpeedDialButton extends StatelessWidget {
             );
           },
           // backgroundColor: theme.primaryClr,
-          label: 'User Permissions'
+          label: 'NEB Permissions'
         ),
         SpeedDialChild(
           child: const Icon(CupertinoIcons.bubble_left_bubble_right_fill),
