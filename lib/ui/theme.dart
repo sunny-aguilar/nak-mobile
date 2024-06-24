@@ -19,6 +19,7 @@ const Color dividerClr = Color.fromARGB(255, 174, 174, 174);
 const Color greyClr = Colors.grey;
 const Color shawdowClr = Color.fromARGB(255, 98, 98, 98);
 const Color charcoalClr = Color.fromARGB(255, 73, 73, 73);
+const Color bodyClr = Color(0xff20211A);
 const Color darkGreyClr = Color.fromARGB(255, 45, 45, 45);
 const Color carbonClr = Color.fromARGB(255, 20, 20, 20);
 const Color blackClr = Color.fromARGB(255, 0, 0, 0);
@@ -582,7 +583,7 @@ class TextThemes{
   static TextStyle titleTextStyle(BuildContext context) {
     return const TextStyle(
       fontWeight: FontWeight.bold,
-      fontSize: 18.0,
+      fontSize: 17.0,
     );
   }
 
@@ -590,6 +591,36 @@ class TextThemes{
     return const TextStyle(
       fontWeight: FontWeight.normal,
       fontSize: 16,
+    );
+  }
+
+  static TextStyle monoBodySmall18(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Diatype',
+      fontSize: 18,
+    );
+  }
+
+  static TextStyle monoBodyBoldSmall18(BuildContext context) {
+    return TextStyle(
+      fontFamily: 'Diatype',
+      fontWeight: FontWeight.w600,
+      fontSize: 18,
+      color: Get.isDarkMode ? primaryClr : bodyClr
+    );
+  }
+
+  static TextStyle blogAuthorNames(BuildContext context) {
+    return TextStyle(
+      fontSize: 14,
+      color: Get.isDarkMode ? primaryClr : shawdowClr
+    );
+  }
+
+  static TextStyle blogDate(BuildContext context) {
+    return TextStyle(
+      fontSize: 14,
+      color: Get.isDarkMode ? primaryClr : shawdowClr
     );
   }
 }

@@ -123,3 +123,8 @@ flutter:
     - family: "SpaceMono"
       fonts:
         - asset: assets/fonts/SpaceMono-Regular.ttf
+    - family: "Diatype"
+      fonts:
+        - asset: assets/fonts/ABCDiatypeMono-Regular-Trial.otf
+        - asset: assets/fonts/ABCDiatypeMono-Medium-Trial.otf
+          weight: 700

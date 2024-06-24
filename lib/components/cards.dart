@@ -189,8 +189,18 @@ class StoryCardNetwork extends StatelessWidget {
                           backgroundImage: NetworkImage(userImage),
                           backgroundColor: Colors.grey,
                         ),
-                        title: Text(userName,),
-                        subtitle: Text(storyHeadline),
+                        title: Text(userName.toUpperCase(), style: theme.TextThemes.blogAuthorNames(context)),
+                        // subtitle: Text(storyHeadline, style: theme.TextThemes.monoBodyBoldSmall18(context)),
+                        subtitle: RichText(
+                          text: TextSpan(
+                            // text: '$storyHeadline\n',
+                            // style: theme.TextThemes.monoBodyBoldSmall18(context),
+                            children: <TextSpan>[
+                              TextSpan(text: '$storyHeadline\n', style: theme.TextThemes.monoBodyBoldSmall18(context)),
+                              TextSpan(text: date, style: theme.TextThemes.blogDate(context))
+                            ]
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
@@ -198,7 +208,7 @@ class StoryCardNetwork extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Text(storyText),
+                        child: Text(storyText, style: theme.TextThemes.monoBodySmall18(context)),
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
