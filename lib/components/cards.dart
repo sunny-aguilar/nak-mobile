@@ -193,8 +193,6 @@ class StoryCardNetwork extends StatelessWidget {
                         // subtitle: Text(storyHeadline, style: theme.TextThemes.monoBodyBoldSmall18(context)),
                         subtitle: RichText(
                           text: TextSpan(
-                            // text: '$storyHeadline\n',
-                            // style: theme.TextThemes.monoBodyBoldSmall18(context),
                             children: <TextSpan>[
                               TextSpan(text: '$storyHeadline\n', style: theme.TextThemes.monoBodyBoldSmall18(context)),
                               TextSpan(text: date, style: theme.TextThemes.blogDate(context))
