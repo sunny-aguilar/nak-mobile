@@ -237,6 +237,7 @@ class CustomTheme {
 
 /// Create theme data variables for text
 class TextThemes{
+  // Drawer Component Styles * * * * * * * * * * * * * * * * * * * *
   static TextStyle drawerTitle(BuildContext context) {
     return const TextStyle(
       color: whiteClr,
@@ -260,6 +261,7 @@ class TextThemes{
     );
   }
 
+  // Sign In Button Styles * * * * * * * * * * * * * * * * * * * *
   static TextStyle drawerSignInTxt(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
