@@ -88,3 +88,9 @@ Map<String, dynamic> obj = doc.data;
 - GooglePlay requires any subsequent app releases (updates) to have a new "versionName" and "versionCode".
 - In the "android" folder, find the local.properties where the edits can be made.
 - Only need to increment the "versionCode" by 1 for each new release.
+
+## Releasing on GooglePlay
+## App Bundle
+- You generate the app "bundle" on Android Studio (only open the android folder).
+- Click on the "Build" menu and select "Generate Signed App Bundle/APK
+- Just click through and make note of where the file was saved. This file is then uploaded to GooglePlay.
