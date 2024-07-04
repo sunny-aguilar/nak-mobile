@@ -84,4 +84,7 @@ Map<String, dynamic> obj = doc.data;
 - Encryption rules: on Info.Plist, add an entry under 'App Uses Non-Exemp Entryption' wiht a value of NO.
 
 ## Android Build System Notes
-
+### Version Number
+- GooglePlay requires any subsequent app releases (updates) to have a new "versionName" and "versionCode".
+- In the "android" folder, find the local.properties where the edits can be made.
+- Only need to increment the "versionCode" by 1 for each new release.
