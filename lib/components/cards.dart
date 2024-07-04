@@ -429,7 +429,7 @@ Card duesCard({required BuildContext context, required int index, required List 
           ListTile(
             title: Text(
               heading,
-              style: theme.TextThemes.duesTitle(context),
+              style: theme.TextThemes.headlineLarge28(context),
             ),
             subtitle: Text(
               subheading,

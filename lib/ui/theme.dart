@@ -279,13 +279,8 @@ class TextThemes{
     );
   }
 
-  static TextStyle duesTitle(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 28,
-    );
-  }
-
+  //////////////////////////////////////////////////////////////////
+  // Headline Styles
   static TextStyle headlineLarge(BuildContext context) {
     return const TextStyle(
       fontFamily: 'College',
@@ -297,6 +292,13 @@ class TextThemes{
     return const TextStyle(
       fontFamily: 'College',
       fontSize: 34,
+    );
+  }
+
+  static TextStyle headlineLarge28(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'College',
+      fontSize: 28,
     );
   }
 
@@ -353,6 +355,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Button Styles
   static TextStyle button1(BuildContext context) {
     return const TextStyle(
       // fontFamily: 'Lato',
@@ -367,6 +371,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Modal Styles
   static TextStyle modalText(BuildContext context) {
     return const TextStyle(
       fontFamily: 'College',
@@ -383,6 +389,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Resource Card Styles
   static TextStyle resourceTitle(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Clarendon',
@@ -451,6 +459,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Login Styles
   static TextStyle loginTitle(BuildContext context) {
     return const TextStyle(
       fontFamily: 'College',
