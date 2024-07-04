@@ -15,4 +15,4 @@ const footerText =
 const appleApiKey = 'appl_pnbvNaoqwlJkFpdaXOVABHoxRIt';
 
 //TO DO: add the Google API key for your app from the RevenueCat dashboard: https://app.revenuecat.com
-const googleApiKey = 'appl_pnbvNaoqwlJkFpdaXOVABHoxRIt';
+const googleApiKey = 'goog_pZETfOyajZjnMUSeXfKSPKCsuHY';
