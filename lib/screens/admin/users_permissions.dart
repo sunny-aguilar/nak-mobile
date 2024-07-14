@@ -12,7 +12,7 @@ class AllUsers extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        title: Text('USER PERMISSIONS', style: theme.TextThemes.headlineMedLarge(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -119,15 +119,7 @@ class _UserlistState extends State<UserlistBody> {
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData) {
           final data = snapshot.data.docs;
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('User Permissions', style: theme.TextThemes.headlineMedLarge(context)),
-              ),
-              _buildUserList(data),
-            ],
-          );
+          return _buildUserList(data);
         }
         else if (snapshot.hasError) {
           return const Center(child: Text('Oh no! An error occurred!'),);
