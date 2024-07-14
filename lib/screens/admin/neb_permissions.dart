@@ -17,7 +17,8 @@ class _AddNebScreenState extends State<NebPermissionsScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        // title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        title: Text('NEB USERS', style: theme.TextThemes.headlineMedLarge(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -126,15 +127,8 @@ class _UserListBodyState extends State<UserListBody> {
       builder: (BuildContext context, snapshot) {
         if (snapshot.hasData) {
           final data = snapshot.data.docs;
-          return Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text('NEB Permissions', style: theme.TextThemes.headlineMedLarge(context)),
-              ),
-              _buildUserList(data),
-            ],
-          );
+          return _buildUserList(data);
+
         }
         else if (snapshot.hasError) {
           return const Center(child: Text('Oh no! An error occurred!'),);
