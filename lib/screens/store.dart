@@ -138,7 +138,7 @@ class NakStore extends StatelessWidget {
                   style: theme.TextThemes.headlineSmall20(context), textAlign: TextAlign.center,
                 ),
                 Text(
-                  'store@nakinc.org.',
+                  'nak4design@nakinc.org.',
                   style: theme.TextThemes.headlineSmall20(context).copyWith(fontWeight: FontWeight.bold), textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40,),
