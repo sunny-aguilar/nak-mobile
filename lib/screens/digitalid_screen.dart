@@ -76,7 +76,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
         Container(
           height: 65,
           decoration: BoxDecoration(
-            color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
+            color: Get.isDarkMode ? theme.shawdowClr : theme.redClr,
             borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12),),
           ),
           child: Row(
@@ -189,7 +189,7 @@ class _DigitalIDScreenState extends State<DigitalIDScreen> {
         Container(
           height: 320,
           decoration: BoxDecoration(
-            color: Get.isDarkMode ? theme.shawdowClr : theme.pinkClr,
+            color: Get.isDarkMode ? theme.shawdowClr : theme.redClr,
             borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12), bottomRight: Radius.circular(12)),
           ),
           child: Center(
