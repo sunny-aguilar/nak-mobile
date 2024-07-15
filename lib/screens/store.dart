@@ -66,7 +66,7 @@ class NakStore extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.0)
                       ),
                     ),
-                    child: const Text('See Item'),
+                    child: Text('See Item', style: theme.TextThemes.headlineSmall20(context),),
                   ),
                 ),
                 const SizedBox(height: 40,),
@@ -97,7 +97,7 @@ class NakStore extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.0)
                       ),
                     ),
-                    child: const Text('See Item'),
+                    child: Text('See Item', style: theme.TextThemes.headlineSmall20(context),),
                   ),
                 ),
                 const SizedBox(height: 40,),
@@ -128,18 +128,24 @@ class NakStore extends StatelessWidget {
                         borderRadius: BorderRadius.circular(4.0)
                       ),
                     ),
-                    child: const Text('See Item'),
+                    child: Text('See Item', style: theme.TextThemes.headlineSmall20(context),),
                   ),
                 ),
                 const SizedBox(height: 40,),
                 Text('Custom Options', style: theme.TextThemes.headlineLarge(context),),
                 Text(
-                  'Most apparel can be customized to suit your needs. Although complex customizations are not being done, you can add simple customizations by simply contacting the store via email at ',
+                  'Most apparel can be customized to suit your needs. Although complex customizations are not being done, you can add simple customizations by contacting the NAKstore via email at ',
                   style: theme.TextThemes.headlineSmall20(context), textAlign: TextAlign.center,
                 ),
                 Text(
                   'nak4design@nakinc.org.',
                   style: theme.TextThemes.headlineSmall20(context).copyWith(fontWeight: FontWeight.bold), textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 20,),
+                Text('Pricing Options', style: theme.TextThemes.headlineLarge(context),),
+                Text(
+                  'See an item you like but don\'t necessarily want to pay for the brand? Email us to ask about other most cost effective options. We have other options available that are just as competitive.',
+                  style: theme.TextThemes.headlineSmall20(context), textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 40,),
               ],
