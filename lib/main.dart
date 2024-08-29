@@ -31,27 +31,9 @@ import 'package:nak_app/screens/chats/chat_rules.dart';
 import 'package:nak_app/screens/chats/chat_maintenance.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
-import 'package:purchases_flutter/purchases_flutter.dart';
-// import 'package:nak_app/components/revenuecat/store_config.dart';
-// import 'package:nak_app/components/revenuecat/constants.dart';
 
 void main() async {
-  // RevenueCat Store config
-  // if (Platform.isIOS) {
-  //   StoreConfig(
-  //     store: Store.appStore,
-  //     apiKey: appleApiKey,
-  //   );
-  // }
-  // else if (Platform.isAndroid) {
-  //   StoreConfig(
-  //     store: Store.playStore,
-  //     apiKey: googleApiKey,
-  //   );
-  // }
-
   WidgetsFlutterBinding.ensureInitialized();
-  // await _configureSDK();
   await GetStorage.init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -112,14 +94,3 @@ class App extends StatelessWidget {
     );
   }
 }
-
-// Future<void> _configureSDK() async {
-//   // Engable debug logs before calling 'configure'
-//   await Purchases.setLogLevel(LogLevel.debug);
-
-//   PurchasesConfiguration configuration;
-//   configuration = PurchasesConfiguration(StoreConfig.instance.apiKey)
-//     ..appUserID = null
-//     ..observerMode = false;
-//   await Purchases.configure(configuration);
-// }
