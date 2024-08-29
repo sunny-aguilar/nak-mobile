@@ -89,8 +89,7 @@ class App extends StatelessWidget {
       home: const SplashScreen(),
       theme: theme.CustomTheme.lightThemeData(context),     // theme: is the primary default theme
       darkTheme: theme.CustomTheme.darkThemeData(context),  // darkTheme: primary default dark theme
-      // themeMode: changes the default theme settings (light, dark)
-      themeMode: service.ThemeService().theme,
+      themeMode: service.ThemeService().theme,              // themeMode: changes the default theme settings (light, dark)
     );
   }
 }
