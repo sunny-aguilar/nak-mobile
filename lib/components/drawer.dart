@@ -7,11 +7,11 @@ import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/ui/theme.dart' as theme;
 
 // revenueCat packages
-import 'package:flutter/services.dart';
-import 'package:purchases_flutter/purchases_flutter.dart';
-import 'package:nak_app/components/revenuecat/paywall.dart';
-import 'package:nak_app/components/revenuecat/constants.dart';
-import 'package:nak_app/components/revenuecat/native_dialog.dart';
+// import 'package:flutter/services.dart';
+// import 'package:purchases_flutter/purchases_flutter.dart';
+// import 'package:nak_app/components/revenuecat/paywall.dart';
+// import 'package:nak_app/components/revenuecat/constants.dart';
+// import 'package:nak_app/components/revenuecat/native_dialog.dart';
 
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({super.key});
@@ -22,110 +22,110 @@ class DrawerComponent extends StatefulWidget {
 class _DrawerComponentState extends State<DrawerComponent> {
   final user = FirebaseAuth.instance.currentUser?.displayName;
 
-  bool _isLoading = false;
+  // bool _isLoading = false;
 
   // show Paywall
-  void performMagic(String menuItem) async {
+  // void performMagic(String menuItem) async {
     // bypass paywall if bro is active * * * * * * * * * * * * *
-    String userUID = FirebaseAuth.instance.currentUser!.uid;
-    if (await db_users.ActiveRights(uid: userUID).rightsStatus()) {
-      switch (menuItem) {
-        case 'id':
-          if (mounted) {
-            Navigator.pushNamed(context, '/id');
-          }
-        case 'profile':
-          if (mounted) {
-            Navigator.pushNamed(context, '/profile');
-          }
-        case 'resources':
-          if (mounted) {
-            Navigator.pushNamed(context, '/resources');
-          }
-      }
-      return;
-    }
+    // String userUID = FirebaseAuth.instance.currentUser!.uid;
+    // if (await db_users.ActiveRights(uid: userUID).rightsStatus()) {
+    //   switch (menuItem) {
+    //     case 'id':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/id');
+    //       }
+    //     case 'profile':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/profile');
+    //       }
+    //     case 'resources':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/resources');
+    //       }
+    //   }
+    //   return;
+    // }
     // * * * * * * * * * * * * * * * * * * * * * * * * * * *
 
-    setState(() {
-      _isLoading = true;
-    });
+    // setState(() {
+    //   _isLoading = true;
+    // });
 
-    CustomerInfo customerInfo = await Purchases.getCustomerInfo();
+    // CustomerInfo customerInfo = await Purchases.getCustomerInfo();
 
-    if (customerInfo.entitlements.all[entitlementID] != null &&
-        customerInfo.entitlements.all[entitlementID]?.isActive == true) {
-      // if user has entitlement, allow premium function
-      /* ADD PREMIUM FUNCTIONALITY HERE */
-      switch (menuItem) {
-        case 'id':
-          if (mounted) {
-            Navigator.pushNamed(context, '/id');
-          }
-        case 'profile':
-          if (mounted) {
-            Navigator.pushNamed(context, '/profile');
-          }
-        case 'resources':
-          if (mounted) {
-            Navigator.pushNamed(context, '/resources');
-          }
-      }
+    // if (customerInfo.entitlements.all[entitlementID] != null &&
+    //     customerInfo.entitlements.all[entitlementID]?.isActive == true) {
+    //   // if user has entitlement, allow premium function
+    //   /* ADD PREMIUM FUNCTIONALITY HERE */
+    //   switch (menuItem) {
+    //     case 'id':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/id');
+    //       }
+    //     case 'profile':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/profile');
+    //       }
+    //     case 'resources':
+    //       if (mounted) {
+    //         Navigator.pushNamed(context, '/resources');
+    //       }
+    //   }
 
-      setState(() {
-        _isLoading = false;
-      });
-    }
-    else {
-      Offerings? offerings;
-      try {
-        offerings = await Purchases.getOfferings();
-      }
-      on PlatformException catch (e) {
-        if (mounted) {
-          await showDialog(
-            context: context,
-            builder: (BuildContext context) => ShowDialogToDismiss(
-              title: 'Error',
-              content: e.message ?? 'Unknown error',
-              buttonText: 'OK'
-            )
-          );
-        }
-      }
+    //   setState(() {
+    //     _isLoading = false;
+    //   });
+    // }
+    // else {
+    //   Offerings? offerings;
+    //   try {
+    //     offerings = await Purchases.getOfferings();
+    //   }
+    //   on PlatformException catch (e) {
+    //     if (mounted) {
+    //       await showDialog(
+    //         context: context,
+    //         builder: (BuildContext context) => ShowDialogToDismiss(
+    //           title: 'Error',
+    //           content: e.message ?? 'Unknown error',
+    //           buttonText: 'OK'
+    //         )
+    //       );
+    //     }
+    //   }
 
-      setState(() {
-        _isLoading = false;
-      });
+      // setState(() {
+      //   _isLoading = false;
+      // });
 
-      if (offerings == null || offerings.current == null) {
-        // offerings are empty, show a message to user
-      }
-      else {
-        if (mounted) {
-          await showModalBottomSheet(
-            useRootNavigator: true,
-            isDismissible: true,
-            isScrollControlled: true,
-            backgroundColor: theme.kColorBackground,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-            ),
-            context: context,
-            builder: (BuildContext context) {
-              return StatefulBuilder(
-                builder: (BuildContext context, StateSetter setModalState) {
-                  return Paywall(
-                    offering: offerings!.current!,
-                  );
-                }
-              );
-            }
-          );
-        }
-      }
-    }
-  }
+      // if (offerings == null || offerings.current == null) {
+      //   // offerings are empty, show a message to user
+      // }
+      // else {
+      //   if (mounted) {
+      //     await showModalBottomSheet(
+      //       useRootNavigator: true,
+      //       isDismissible: true,
+      //       isScrollControlled: true,
+      //       backgroundColor: theme.kColorBackground,
+      //       shape: const RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
+      //       ),
+      //       context: context,
+      //       builder: (BuildContext context) {
+      //         return StatefulBuilder(
+      //           builder: (BuildContext context, StateSetter setModalState) {
+      //             return Paywall(
+      //               offering: offerings!.current!,
+      //             );
+      //           }
+      //         );
+      //       }
+      //     );
+      //   }
+      // }
+    // }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -177,7 +177,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.local_library,),
               title: Text('Resources', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => performMagic('resources'),
+              onTap: () => Navigator.pushNamed(context, '/resources')
             ),
             // ListTile(
             //   leading: const Icon(Icons.abc),
@@ -231,12 +231,12 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.qr_code),
               title: Text('Digital ID', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => performMagic('id'),
+              onTap: () => Navigator.pushNamed(context, '/id'),
             ),
             ListTile(
               leading: const Icon(Icons.badge),
               title: Text('My Profile', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () => performMagic('profile'),
+              onTap: () => Navigator.pushNamed(context, '/profile'),
             ),
             ListTile(
               leading: const Icon(Icons.settings),
