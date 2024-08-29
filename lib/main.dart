@@ -35,6 +35,8 @@ import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:nak_app/components/revenuecat/store_config.dart';
 import 'package:nak_app/components/revenuecat/constants.dart';
 
+// archive 0.1.27
+
 void main() async {
   // RevenueCat Store config
   if (Platform.isIOS) {
