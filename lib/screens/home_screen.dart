@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/drawer.dart' as drawer;
 import 'package:nak_app/components/featured_stories.dart' as featured;
-import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/db/db_ops.dart' as db;
-import 'package:nak_app/db/db_user_permissions.dart' as db_users;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
 import 'package:nak_app/screens/chats/chat_rules.dart';
-// import 'package:nak_app/db/db_revenuecat.dart' as db_rc;
-
-// import 'package:purchases_flutter/purchases_flutter.dart';
-// import 'package:nak_app/components/revenuecat/paywall.dart';
-// import 'package:nak_app/components/revenuecat/constants.dart';
-// import 'package:nak_app/components/revenuecat/native_dialog.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,93 +26,6 @@ class _HomeScreenState extends State<HomeScreen> {
       index = val;
     });
   }
-
-  // RevenueCat Paywall
-  // bool _isLoading = false;
-
-  // show Paywall
-  // void performMagic(val) async {
-
-  //   // bypass paywall if bro is NEB * * * * * * * * * * * * *
-  //   String userUID = FirebaseAuth.instance.currentUser!.uid;
-  //   if (await db_users.ActiveRights(uid: userUID).rightsStatus()) {
-  //     setState(() {
-  //       index = val;
-  //       _isLoading = false;
-  //     });
-  //     return;
-  //   }
-  //   // * * * * * * * * * * * * * * * * * * * * * * * * * * *
-
-  //   setState(() {
-  //     _isLoading = true;
-  //   });
-
-  //   CustomerInfo customerInfo = await Purchases.getCustomerInfo();
-
-  //   if (customerInfo.entitlements.all[entitlementID] != null &&
-  //       customerInfo.entitlements.all[entitlementID]?.isActive == true) {
-  //     // if user has entitlement, enter the chat room
-  //     setState(() {
-  //       index = val;
-  //       _isLoading = false;
-  //     });
-  //   }
-  //   else {
-  //     Offerings? offerings;
-  //     try {
-  //       offerings = await Purchases.getOfferings();
-  //     }
-  //     on PlatformException catch (e) {
-  //       if (mounted) {
-  //         // save any errors to DB RC logs
-  //         print('Save error log to database');
-  //         db_rc.RevenueCat().recordErrors(e);
-
-  //         // show error modal
-  //         await showDialog(
-  //           context: context,
-  //           builder: (BuildContext context) => ShowDialogToDismiss(
-  //             title: 'Error',
-  //             content: e.message ?? 'Unknown error',
-  //             buttonText: 'OK'
-  //           )
-  //         );
-  //       }
-  //     }
-
-  //     setState(() {
-  //       _isLoading = false;
-  //     });
-
-  //     if (offerings == null || offerings.current == null) {
-  //       // offerings are empty, show a message to user
-  //     }
-  //     else {
-  //       if (mounted) {
-  //         await showModalBottomSheet(
-  //           useRootNavigator: true,
-  //           isDismissible: true,
-  //           isScrollControlled: true,
-  //           backgroundColor: theme.kColorBackground,
-  //           shape: const RoundedRectangleBorder(
-  //             borderRadius: BorderRadius.vertical(top: Radius.circular(25.0)),
-  //           ),
-  //           context: context,
-  //           builder: (BuildContext context) {
-  //             return StatefulBuilder(
-  //               builder: (BuildContext context, StateSetter setModalState) {
-  //                 return Paywall(
-  //                   offering: offerings!.current!,
-  //                 );
-  //               }
-  //             );
-  //           }
-  //         );
-  //       }
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
