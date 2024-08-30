@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nak_app/components/auth_check.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
-import 'package:nak_app/components/revenuecat/constants.dart' as constants;
+import 'package:nak_app/components/constants.dart' as constants;
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

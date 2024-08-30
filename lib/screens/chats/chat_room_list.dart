@@ -5,7 +5,7 @@ import 'package:nak_app/db/db_chat.dart' as db;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/chats/rooms/chat_room.dart' as chat;
-import 'package:nak_app/components/revenuecat/constants.dart' as chat;
+import 'package:nak_app/components/constants.dart' as chat;
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key, required this.context});
