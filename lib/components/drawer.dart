@@ -51,7 +51,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.document_scanner_outlined),
               title: Text('National Docs', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () {},
+              onTap: () => Navigator.pushNamed(context, '/docs'),
             ),
             ListTile(
               leading: const Icon(Icons.shopping_cart,),

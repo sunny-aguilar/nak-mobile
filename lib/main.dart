@@ -11,6 +11,7 @@ import 'package:nak_app/screens/chapters_screen.dart';
 import 'package:nak_app/screens/intro_screen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/neb_screen.dart';
+import 'package:nak_app/screens/national_docs.dart';
 import 'package:nak_app/screens/store.dart';
 import 'package:nak_app/screens/resources_screen.dart';
 import 'package:nak_app/screens/resource_screen.dart';
@@ -53,6 +54,7 @@ class App extends StatelessWidget {
         '/chapters': (context) => const ChapterScreen(),
         '/dues': (context) => const DuesScreen(),
         '/board': (context) => const NationalBoard(),
+        '/docs': (context) => const DocsScreen(),
         '/store': (context) => const NakStore(),
         '/resources': (context) => const ResourcesScreen(),
         '/drugs': (context) => const ResourceScreen(),
