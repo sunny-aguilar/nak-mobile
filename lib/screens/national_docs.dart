@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
 
 class DocsScreen extends StatefulWidget {
   const DocsScreen({super.key});
@@ -24,6 +25,23 @@ class _DocsScreenState extends State<DocsScreen> {
             onPressed: () {
               service.ThemeService().switchTheme();
             },
+          ),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          Container(
+            height: 110,
+            // color: Colors.amber[100],
+            decoration: BoxDecoration(
+              color: theme.zincClr,
+            ),
+            child: const Center(child: Text('National Constitution'),),
+          ),
+          Container(
+            height: 120,
+            color: Colors.amber[500],
+            child: const Center(child: Text('National Bylaws'),),
           ),
         ],
       ),
