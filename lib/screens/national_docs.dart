@@ -30,10 +30,10 @@ class _DocsScreenState extends State<DocsScreen> {
       ),
       body: ListView(
         children: <Widget>[
+          const SizedBox(height: 10,),
           Container(
             height: 110,
-            // color: Colors.amber[100],
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: theme.zincClr,
             ),
             child: const Center(child: Text('National Constitution'),),
