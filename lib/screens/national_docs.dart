@@ -34,14 +34,13 @@ class _DocsScreenState extends State<DocsScreen> {
           Container(
             height: 110,
             decoration: const BoxDecoration(
-              color: theme.zincClr,
+              color: theme.primaryClr,
+              border: Border(
+                top: BorderSide(width: 1, color: theme.lightGrey),
+                bottom: BorderSide(width: 1, color: theme.lightGrey),
+              ),
             ),
             child: const Center(child: Text('National Constitution'),),
-          ),
-          Container(
-            height: 120,
-            color: Colors.amber[500],
-            child: const Center(child: Text('National Bylaws'),),
           ),
         ],
       ),
