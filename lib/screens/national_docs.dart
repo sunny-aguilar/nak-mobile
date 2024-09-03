@@ -31,16 +31,32 @@ class _DocsScreenState extends State<DocsScreen> {
       body: ListView(
         children: <Widget>[
           const SizedBox(height: 10,),
-          Container(
-            height: 110,
-            decoration: const BoxDecoration(
-              color: theme.primaryClr,
-              border: Border(
-                top: BorderSide(width: 1, color: theme.lightGrey),
-                bottom: BorderSide(width: 1, color: theme.lightGrey),
+          GestureDetector(
+            onTap: () {print('I was tapped');},
+            child: Container(
+              height: 100,
+              decoration: const BoxDecoration(
+                color: theme.primaryClr,
+                border: Border(
+                  top: BorderSide(width: 1, color: theme.dividerClr),
+                  bottom: BorderSide(width: 1, color: theme.dividerClr),
+                ),
               ),
+              child: const Center(child: Text('National Constitution'),),
             ),
-            child: const Center(child: Text('National Constitution'),),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: Container(
+              height: 100,
+              decoration: const BoxDecoration(
+                color: theme.primaryClr,
+                border: Border(
+                  bottom: BorderSide(width: 1, color: theme.dividerClr),
+                ),
+              ),
+              child: const Center(child: Text('National Bylaws'),),
+            ),
           ),
         ],
       ),
