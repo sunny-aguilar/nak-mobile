@@ -4,14 +4,8 @@ import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 
-class DocsScreen extends StatefulWidget {
+class DocsScreen extends StatelessWidget {
   const DocsScreen({super.key});
-
-  @override
-  State<DocsScreen> createState() => _DocsScreenState();
-}
-
-class _DocsScreenState extends State<DocsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,17 +133,21 @@ class PDFViewer extends StatefulWidget {
   State<PDFViewer> createState() => _PDFViewerState();
 }
 
+
 class _PDFViewerState extends State<PDFViewer> {
+  late PDFViewController pdfViewController;
   @override
   Widget build(BuildContext context) {
     return PDFView(
       filePath: widget.pdfPath,
-      autoSpacing: true,
-      enableSwipe: true,
-      pageSnap: true,
-      swipeHorizontal: true,
-      onError: (error) {print(error);},
-      onPageError: (page, error) {'$page: ${error.toString()}';},
+      autoSpacing: false,
+      enableSwipe: false,
+      pageSnap: false,
+      swipeHorizontal: false,
+      onError: (error) { print(error); },
+      onPageError: (page, error) { '$page: ${error.toString()}'; },
+      onViewCreated: (PDFViewController vc) { pdfViewController = vc; },
+      onPageChanged: (page, total) { print('page change: $page/$total'); },
     );
   }
 }
