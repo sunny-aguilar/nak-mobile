@@ -129,3 +129,26 @@ class BylawsScreen extends StatelessWidget {
     );
   }
 }
+
+
+class PDFViewer extends StatefulWidget {
+  const PDFViewer({super.key, required this.pdfPath});
+  final String pdfPath;
+  @override
+  State<PDFViewer> createState() => _PDFViewerState();
+}
+
+class _PDFViewerState extends State<PDFViewer> {
+  @override
+  Widget build(BuildContext context) {
+    return PDFView(
+      filePath: widget.pdfPath,
+      autoSpacing: true,
+      enableSwipe: true,
+      pageSnap: true,
+      swipeHorizontal: true,
+      onError: (error) {print(error);},
+      onPageError: (page, error) {'$page: ${error.toString()}';},
+    );
+  }
+}
