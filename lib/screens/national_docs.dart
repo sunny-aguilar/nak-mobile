@@ -102,6 +102,7 @@ class ConstitutionScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const PDFViewer(pdfPath: 'assets/docs/constitution.pdf',),
     );
   }
 }

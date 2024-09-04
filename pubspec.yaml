@@ -76,6 +76,7 @@ flutter:
     - assets/json/chapters.json
     - assets/json/dues.json
     - assets/json/board_members.json
+    - assets/docs/
 
   fonts:
     - family: TrajanPro
