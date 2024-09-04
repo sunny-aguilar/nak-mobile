@@ -32,7 +32,16 @@ class _DocsScreenState extends State<DocsScreen> {
         children: <Widget>[
           const SizedBox(height: 10,),
           GestureDetector(
-            onTap: () {print('I was tapped');},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const ConstitutionScreen();
+                  }
+                ),
+              );
+            },
             child: Container(
               height: 100,
               decoration: const BoxDecoration(
@@ -46,7 +55,16 @@ class _DocsScreenState extends State<DocsScreen> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const BylawsScreen();
+                  }
+                ),
+              );
+            },
             child: Container(
               height: 100,
               decoration: const BoxDecoration(
@@ -57,6 +75,53 @@ class _DocsScreenState extends State<DocsScreen> {
               ),
               child: const Center(child: Text('National Bylaws'),),
             ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ConstitutionScreen extends StatelessWidget {
+  const ConstitutionScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Constitution', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+class BylawsScreen extends StatelessWidget {
+  const BylawsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Bylaws', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
           ),
         ],
       ),
