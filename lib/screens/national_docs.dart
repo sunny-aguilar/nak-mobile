@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
+// import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 
@@ -121,33 +124,26 @@ class BylawsScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const PDFViewer(pdfPath: 'assets/docs/bylaws.pdf')
     );
   }
 }
 
 
-class PDFViewer extends StatefulWidget {
+class PDFViewer extends StatelessWidget {
   const PDFViewer({super.key, required this.pdfPath});
   final String pdfPath;
-  @override
-  State<PDFViewer> createState() => _PDFViewerState();
-}
 
-
-class _PDFViewerState extends State<PDFViewer> {
-  late PDFViewController pdfViewController;
   @override
   Widget build(BuildContext context) {
-    return PDFView(
-      filePath: widget.pdfPath,
-      autoSpacing: false,
-      enableSwipe: false,
-      pageSnap: false,
+    return PDF(
+      enableSwipe: true,
       swipeHorizontal: false,
-      onError: (error) { print(error); },
-      onPageError: (page, error) { '$page: ${error.toString()}'; },
-      onViewCreated: (PDFViewController vc) { pdfViewController = vc; },
-      onPageChanged: (page, total) { print('page change: $page/$total'); },
-    );
+      autoSpacing: true,
+      pageFling: false,
+      onError: (error) {
+        print('Error: ${error.toString}');
+      }
+    ).fromAsset(pdfPath);
   }
 }
