@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:flutter_pdfview/flutter_pdfview.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -42,9 +39,9 @@ class DocsScreen extends StatelessWidget {
             },
             child: Container(
               height: 100,
-              decoration: const BoxDecoration(
-                color: theme.primaryClr,
-                border: Border(
+              decoration: BoxDecoration(
+                color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                border: const Border(
                   top: BorderSide(width: 1, color: theme.dividerClr),
                   bottom: BorderSide(width: 1, color: theme.dividerClr),
                 ),
@@ -65,9 +62,9 @@ class DocsScreen extends StatelessWidget {
             },
             child: Container(
               height: 100,
-              decoration: const BoxDecoration(
-                color: theme.primaryClr,
-                border: Border(
+              decoration: BoxDecoration(
+                color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                border: const Border(
                   bottom: BorderSide(width: 1, color: theme.dividerClr),
                 ),
               ),
