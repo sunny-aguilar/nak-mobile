@@ -79,7 +79,6 @@ class DocsScreen extends StatelessWidget {
 
 class ConstitutionScreen extends StatelessWidget {
   const ConstitutionScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +103,6 @@ class ConstitutionScreen extends StatelessWidget {
 
 class BylawsScreen extends StatelessWidget {
   const BylawsScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,7 +128,6 @@ class BylawsScreen extends StatelessWidget {
 class PDFViewer extends StatelessWidget {
   const PDFViewer({super.key, required this.pdfPath});
   final String pdfPath;
-
   @override
   Widget build(BuildContext context) {
     return PDF(
