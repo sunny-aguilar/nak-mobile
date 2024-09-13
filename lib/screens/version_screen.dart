@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -55,13 +56,18 @@ class VersionScreen extends StatelessWidget {
               Text('Developed by: Sandro Aguilar, ID #33', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 45,),
               Text('CONTRIBUTORS', style: theme.TextThemes.versionHeadlineMed(context),),
-              const SizedBox(height: 6,),
-              const Row(
+              const SizedBox(height: 8,),
+              Row(
                 children: <Widget>[
-                  CircleAvatar(
-                    backgroundColor: theme.blackClr,
-                    backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/24646981?v=4&size=64'),
-                    radius: 30,
+                  GestureDetector(
+                    onTap: () {
+
+                    },
+                    child: const CircleAvatar(
+                      backgroundColor: theme.blackClr,
+                      backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/24646981?v=4&size=64'),
+                      radius: 30,
+                    ),
                   ),
                   SizedBox(width: 8,),
                   CircleAvatar(
@@ -91,7 +97,7 @@ class VersionScreen extends StatelessWidget {
                     }
                   }
                   launchInWebView(url: toLaunch);
-                  },
+                },
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
