@@ -55,7 +55,25 @@ class VersionScreen extends StatelessWidget {
               Text('Developed by: Sandro Aguilar, ID #33', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 45,),
               Text('THE TEAM', style: theme.TextThemes.versionHeadlineMed(context),),
-              const SizedBox(height: 4,),
+              const SizedBox(height: 6,),
+              Row(
+                children: <Widget>[
+                  CircleAvatar(
+                    backgroundColor: theme.blackClr,
+                    radius: 30,
+                  ),
+                  const SizedBox(width: 8,),
+                  CircleAvatar(
+                    backgroundColor: theme.blackClr,
+                    radius: 30,
+                  ),
+                  const SizedBox(width: 8,),
+                  CircleAvatar(
+                    backgroundColor: theme.blackClr,
+                    radius: 30,
+                  ),
+                ],
+              ),
               Text('Sandro, Carlos, Jason', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 20,),
               Text('SOURCE CODE', style: theme.TextThemes.versionHeadlineMed(context),),
