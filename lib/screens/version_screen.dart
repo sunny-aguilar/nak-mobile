@@ -75,14 +75,14 @@ class VersionScreen extends StatelessWidget {
                       radius: 30,
                     ),
                   ),
-                  SizedBox(width: 8,),
-                  CircleAvatar(
+                  const SizedBox(width: 8,),
+                  const CircleAvatar(
                     backgroundColor: theme.blackClr,
                     backgroundImage: AssetImage('assets/img/users/compliance_user.webp'),
                     radius: 30,
                   ),
-                  SizedBox(width: 8,),
-                  CircleAvatar(
+                  const SizedBox(width: 8,),
+                  const CircleAvatar(
                     backgroundColor: theme.blackClr,
                     backgroundImage: AssetImage('assets/img/users/jn_user.jpg'),
                     radius: 30,
