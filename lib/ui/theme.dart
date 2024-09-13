@@ -532,6 +532,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Version Screen Fonts
   static TextStyle versionYear(BuildContext contex) {
     return TextStyle(
       fontFamily: 'SpaceMono',
@@ -554,6 +556,16 @@ class TextThemes{
       fontFamily: 'Oswald',
       fontWeight: FontWeight.bold,
       fontSize: 60,
+      height: 0.90,
+      letterSpacing: 1.0,
+    );
+  }
+
+  static TextStyle versionHeadlineMed(BuildContext context) {
+    return const TextStyle(
+      fontFamily: 'Oswald',
+      fontWeight: FontWeight.bold,
+      fontSize: 20,
       height: 0.90,
       letterSpacing: 1.0,
     );

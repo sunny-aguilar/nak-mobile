@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/constants.dart' as constants;
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class VersionScreen extends StatelessWidget {
   const VersionScreen({super.key});
@@ -52,9 +54,32 @@ class VersionScreen extends StatelessWidget {
               const SizedBox(height: 20,),
               Text('Developed by: Sandro Aguilar, ID #33', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 45,),
-              Text('Source Code', style: theme.TextThemes.versionSlogan(context),),
+              Text('SOURCE CODE', style: theme.TextThemes.versionHeadlineMed(context),),
               const SizedBox(height: 4,),
-              Text('The NAK App is an open-source project hosted at Github.com.', style: theme.TextThemes.versionDesign(context),),
+              Text('The NAK App is an open-source project hosted on Github.com and is accessible to anyone willing to join the developer group.', style: theme.TextThemes.versionDesign(context),),
+              const SizedBox(height: 6,),
+              GestureDetector(
+                onTap: () {
+                  final Uri toLaunch = Uri(scheme: 'https', host: 'www.github.com', path: '/sunny-aguilar/nak-mobile');
+                  Future<void> launchInWebView({required Uri url}) async {
+                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                    throw Exception('Could not launch $url');
+                  }
+                }
+                launchInWebView(url: toLaunch);
+                },
+                child: const Row(
+                  children: <Widget>[
+                    FaIcon(FontAwesomeIcons.github),
+                    Text(' Github'),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 20,),
+              Text('SUPPORT THE APP', style: theme.TextThemes.versionHeadlineMed(context),),
+              const SizedBox(height: 6,),
+              Text('There are a ton of ways you can donate to the NAK app. We are looking for anyone with coding and testing skills. Send an email to developer@nakinc.org to ask learn more.', style: theme.TextThemes.versionDesign(context),),
+              const SizedBox(height: 60,),
             ],
           ),
         ),
