@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4E5ae8);
 const Color saphireClr = Color(0xff0F52BA);

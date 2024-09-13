@@ -58,20 +58,20 @@ class VersionScreen extends StatelessWidget {
               const SizedBox(height: 4,),
               Text('The NAK App is an open-source project hosted on Github.com and is accessible to anyone willing to join the developer group. Email developer@nakinc.org to get access to the repo.', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 6,),
-              GestureDetector(
-                onTap: () {
+              OutlinedButton(
+                onPressed: () {
                   final Uri toLaunch = Uri(scheme: 'https', host: 'www.github.com', path: '/sunny-aguilar/nak-mobile');
                   Future<void> launchInWebView({required Uri url}) async {
-                  if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
-                    throw Exception('Could not launch $url');
+                    if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                      throw Exception('Could not launch $url');
+                    }
                   }
-                }
-                launchInWebView(url: toLaunch);
-                },
+                  launchInWebView(url: toLaunch);
+                  },
                 child: const Row(
-                  children: <Widget>[
-                    FaIcon(FontAwesomeIcons.github),
-                    Text(' Github'),
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    FaIcon(FontAwesomeIcons.github, color: theme.azureClr,), SizedBox(width: 12,), Text('Github', style: TextStyle(color: theme.azureClr,), ),
                   ],
                 ),
               ),
