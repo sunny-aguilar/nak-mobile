@@ -54,6 +54,10 @@ class VersionScreen extends StatelessWidget {
               const SizedBox(height: 20,),
               Text('Developed by: Sandro Aguilar, ID #33', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 45,),
+              Text('THE TEAM', style: theme.TextThemes.versionHeadlineMed(context),),
+              const SizedBox(height: 4,),
+              Text('Sandro, Carlos, Jason', style: theme.TextThemes.versionDesign(context),),
+              const SizedBox(height: 20,),
               Text('SOURCE CODE', style: theme.TextThemes.versionHeadlineMed(context),),
               const SizedBox(height: 4,),
               Text('The NAK App is an open-source project hosted on Github.com and is accessible to anyone willing to join the developer group. Email developer@nakinc.org to get access to the repo.', style: theme.TextThemes.versionDesign(context),),
@@ -68,17 +72,17 @@ class VersionScreen extends StatelessWidget {
                   }
                   launchInWebView(url: toLaunch);
                   },
-                child: const Row(
+                child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    FaIcon(FontAwesomeIcons.github, color: theme.azureClr,), SizedBox(width: 12,), Text('Github', style: TextStyle(color: theme.azureClr,), ),
+                    FaIcon(FontAwesomeIcons.github, color: Get.isDarkMode ? theme.primaryClr : theme.blackClr,), const SizedBox(width: 12,), Text('Github', style: TextStyle(color: Get.isDarkMode ? theme.primaryClr : theme.blackClr,), ),
                   ],
                 ),
               ),
               const SizedBox(height: 20,),
               Text('SUPPORT THE APP', style: theme.TextThemes.versionHeadlineMed(context),),
               const SizedBox(height: 6,),
-              Text('There are a ton of ways you can donate to the NAK app. We are looking for anyone with coding and testing skills. Send an email to developer@nakinc.org to ask learn more.', style: theme.TextThemes.versionDesign(context),),
+              Text('There are a ton of ways you can donate to the NAK app. We are looking for anyone with coding and testing skills. Send an email to developer@nakinc.org to learn more.', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 60,),
             ],
           ),

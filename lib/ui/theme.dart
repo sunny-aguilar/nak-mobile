@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 const Color blueClr = Color(0xff4E5ae8);
 const Color saphireClr = Color(0xff0F52BA);
@@ -25,7 +26,7 @@ const Color graphiteClr = Color(0xff242D36);
 const Color carbonClr = Color.fromARGB(255, 20, 20, 20);
 const Color blackClr = Color.fromARGB(255, 0, 0, 0);
 const Color voidClr = Color(0xff151515);
-const kColorBackground = Color.fromRGBO(30, 28, 33, 1.0);
+const Color kColorBackground = Color.fromRGBO(30, 28, 33, 1.0);
 const Color whiteClr = Color(0xffFFFFFF);
 const Color offWhiteClr = Color.fromARGB(255, 254, 252, 243);
 const Color offWhiteClr2 = Color.fromARGB(255, 238, 233, 213);
