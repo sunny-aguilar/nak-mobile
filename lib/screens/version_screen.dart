@@ -56,7 +56,7 @@ class VersionScreen extends StatelessWidget {
               const SizedBox(height: 45,),
               Text('SOURCE CODE', style: theme.TextThemes.versionHeadlineMed(context),),
               const SizedBox(height: 4,),
-              Text('The NAK App is an open-source project hosted on Github.com and is accessible to anyone willing to join the developer group.', style: theme.TextThemes.versionDesign(context),),
+              Text('The NAK App is an open-source project hosted on Github.com and is accessible to anyone willing to join the developer group. Email developer@nakinc.org to get access to the repo.', style: theme.TextThemes.versionDesign(context),),
               const SizedBox(height: 6,),
               GestureDetector(
                 onTap: () {
