@@ -61,7 +61,13 @@ class VersionScreen extends StatelessWidget {
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-
+                      final Uri toLaunch = Uri(scheme: 'https', host: 'www.github.com', path: '/sunny-aguilar');
+                      Future<void> launchInWebView({required Uri url}) async {
+                        if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                          throw Exception('Could not launch $url');
+                        }
+                      }
+                      launchInWebView(url: toLaunch);
                     },
                     child: const CircleAvatar(
                       backgroundColor: theme.blackClr,
