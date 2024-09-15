@@ -1,5 +1,5 @@
 // app version number
-const String appVersion = 'v0.1.31';
+const String appVersion = 'v0.1.32';
 
 // room number enums
 enum Room { alumni, events, general }

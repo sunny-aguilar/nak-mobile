@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -18,8 +17,6 @@ class VersionScreen extends StatelessWidget {
         title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
-          // const Icon(Icons.message_outlined),
-          // const SizedBox(width: 10,),
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {
