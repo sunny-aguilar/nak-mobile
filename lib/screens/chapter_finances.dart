@@ -36,9 +36,18 @@ class FinanceBody extends StatelessWidget {
     return ListView(
       children: <Widget>[
         Container(
+          child: Text('Text describing chapter finances.'),
+        ),
+        Container(
+          decoration: const BoxDecoration(
+            color: theme.azureClr,
+          ),
           child: Text('Chapter Dues Tracker'),
         ),
         Container(
+          decoration: const BoxDecoration(
+            color: theme.azureClr,
+          ),
           child: Text('Chapter Dues Reports'),
         ),
       ],
