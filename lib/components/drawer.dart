@@ -44,6 +44,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
               onTap: () => Navigator.pushNamed(context, '/dues'),
             ),
             ListTile(
+              leading: const Icon(Icons.bar_chart),
+              title: Text('Chapter Finances', style: theme.TextThemes.drawerMenuNT(context),),
+            ),
+            ListTile(
               leading: const Icon(Icons.remember_me,),
               title: Text('National Board', style: theme.TextThemes.drawerMenuNT(context)),
               onTap: () => Navigator.pushNamed(context, '/board'),
