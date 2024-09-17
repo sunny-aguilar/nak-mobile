@@ -22,6 +22,26 @@ class ChapterFinances extends StatelessWidget {
           ),
         ],
       ),
+      body: const FinanceBody(),
+    );
+  }
+}
+
+
+class FinanceBody extends StatelessWidget {
+  const FinanceBody({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        Container(
+          child: Text('Chapter Dues Tracker'),
+        ),
+        Container(
+          child: Text('Chapter Dues Reports'),
+        ),
+      ],
     );
   }
 }
