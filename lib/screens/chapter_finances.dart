@@ -39,12 +39,14 @@ class FinanceBody extends StatelessWidget {
           child: Text('Text describing chapter finances.'),
         ),
         Container(
+          height: 50,
           decoration: const BoxDecoration(
             color: theme.azureClr,
           ),
           child: Text('Chapter Dues Tracker'),
         ),
         Container(
+          height: 50,
           decoration: const BoxDecoration(
             color: theme.azureClr,
           ),
