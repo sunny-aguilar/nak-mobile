@@ -38,6 +38,9 @@ class FinanceBody extends StatelessWidget {
         Container(
           child: Text('Text describing chapter finances.'),
         ),
+        Card(
+          child: Text('Card'),
+        ),
         Container(
           height: 50,
           decoration: const BoxDecoration(
