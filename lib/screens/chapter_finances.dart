@@ -35,7 +35,7 @@ class FinanceBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        const Card(
+        const Card.outlined(
           child: Column(
             children: <Widget>[
               SizedBox(height: 10,),
@@ -45,17 +45,26 @@ class FinanceBody extends StatelessWidget {
                   SizedBox(width: 20,),
                   Icon(Icons.trending_up, size: 50,),
                   SizedBox(width: 50,),
-                  Text('Row of text\nMore Text Row\nThird Row of text'),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Chapter Dues Tracker'),
+                      Text('second row of text'),
+                      Text('third row of text'),
+                    ],
+                  ),
                 ],
               ),
               SizedBox(height: 40,),
               Row(
                 children: <Widget>[
                   SizedBox(width: 20,),
-                  Icon(Icons.linked_camera),
+                  Icon(Icons.thumb_up_outlined),
+                  SizedBox(width: 10,),
                   Text('Like'),
                   SizedBox(width: 50,),
-                  Icon(Icons.comment),
+                  Icon(Icons.mode_comment_outlined),
+                  SizedBox(width: 10,),
                   Text('Comment'),
                 ],
               ),
