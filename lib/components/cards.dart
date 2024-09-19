@@ -613,7 +613,8 @@ class NotificationCard extends StatelessWidget {
 
 
 class ChapterFinancesCard extends StatelessWidget {
-  const ChapterFinancesCard({super.key});
+  const ChapterFinancesCard({super.key, required this.title,});
+  final String title;
 
   @override
   Widget build(BuildContext context) {
@@ -630,7 +631,7 @@ class ChapterFinancesCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text('Chapter Dues Tracker', style: theme.TextThemes.drawerMenu(context),),
+                  Text(title, style: theme.TextThemes.drawerMenu(context),),
                   Text('second row of text'),
                   Text('third row of text'),
                 ],

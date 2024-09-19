@@ -32,48 +32,14 @@ class ChapterFinances extends StatelessWidget {
 class FinanceBody extends StatelessWidget {
   const FinanceBody({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: <Widget>[
-        Card.outlined(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 10,),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(width: 20,),
-                  const Icon(Icons.trending_up, size: 50,),
-                  const SizedBox(width: 50,),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Chapter Dues Tracker', style: theme.TextThemes.drawerMenu(context),),
-                      Text('second row of text'),
-                      Text('third row of text'),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(height: 40,),
-              const Row(
-                children: <Widget>[
-                  const SizedBox(width: 20,),
-                  Icon(Icons.thumb_up_outlined),
-                  const SizedBox(width: 10,),
-                  Text('Like'),
-                  const SizedBox(width: 50,),
-                  Icon(Icons.mode_comment_outlined),
-                  const SizedBox(width: 10,),
-                  Text('Comment'),
-                ],
-              ),
-              const SizedBox(height: 15,),
-            ],
-          ),
-        ),
-        const cards.ChapterFinancesCard(),
+      children: const <Widget>[
+        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker',),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Report',),
       ],
     );
   }
