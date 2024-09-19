@@ -36,9 +36,9 @@ class FinanceBody extends StatelessWidget {
     return ListView(
       children: <Widget>[
         Container(
-          child: Text('Text describing chapter finances.'),
+          child: const Text('Text describing chapter finances.'),
         ),
-        Card(
+        const Card(
           child: Text('Card'),
         ),
         Container(
@@ -46,14 +46,14 @@ class FinanceBody extends StatelessWidget {
           decoration: const BoxDecoration(
             color: theme.azureClr,
           ),
-          child: Text('Chapter Dues Tracker'),
+          child: const Text('Chapter Dues Tracker'),
         ),
         Container(
           height: 50,
           decoration: const BoxDecoration(
             color: theme.azureClr,
           ),
-          child: Text('Chapter Dues Reports'),
+          child: const Text('Chapter Dues Reports'),
         ),
       ],
     );
