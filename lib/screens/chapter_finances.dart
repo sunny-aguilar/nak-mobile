@@ -38,8 +38,9 @@ class FinanceBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: const <Widget>[
-        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker',),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Report',),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up,),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard,),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.description,),
       ],
     );
   }

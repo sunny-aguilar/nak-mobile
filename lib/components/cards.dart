@@ -613,8 +613,9 @@ class NotificationCard extends StatelessWidget {
 
 
 class ChapterFinancesCard extends StatelessWidget {
-  const ChapterFinancesCard({super.key, required this.title,});
+  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon});
   final String title;
+  final IconData cardIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -626,7 +627,7 @@ class ChapterFinancesCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(width: 20,),
-              const Icon(Icons.trending_up, size: 50,),
+              Icon(cardIcon, size: 50,),
               const SizedBox(width: 50,),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
