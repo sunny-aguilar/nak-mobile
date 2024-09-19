@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/cards.dart' as cards;
 
 class ChapterFinances extends StatelessWidget {
   const ChapterFinances({super.key});
@@ -72,20 +73,7 @@ class FinanceBody extends StatelessWidget {
             ],
           ),
         ),
-        Container(
-          height: 50,
-          decoration: const BoxDecoration(
-            color: theme.primaryClr,
-          ),
-          child: const Text('Chapter Dues Tracker'),
-        ),
-        Container(
-          height: 50,
-          decoration: const BoxDecoration(
-            color: theme.azureClr,
-          ),
-          child: const Text('Chapter Dues Reports'),
-        ),
+        const cards.ChapterFinancesCard(),
       ],
     );
   }
