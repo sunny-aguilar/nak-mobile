@@ -641,13 +641,13 @@ class ChapterFinancesCard extends StatelessWidget {
           const SizedBox(height: 40,),
           const Row(
             children: <Widget>[
-              const SizedBox(width: 20,),
+              SizedBox(width: 20,),
               Icon(Icons.thumb_up_outlined),
-              const SizedBox(width: 10,),
+              SizedBox(width: 10,),
               Text('Like'),
-              const SizedBox(width: 50,),
+              SizedBox(width: 50,),
               Icon(Icons.mode_comment_outlined),
-              const SizedBox(width: 10,),
+              SizedBox(width: 10,),
               Text('Comment'),
             ],
           ),
