@@ -40,7 +40,7 @@ class FinanceBody extends StatelessWidget {
       children: const <Widget>[
         cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up,),
         cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard,),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.description,),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.content_paste,),
       ],
     );
   }
