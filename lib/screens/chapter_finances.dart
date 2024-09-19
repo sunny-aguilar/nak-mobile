@@ -35,16 +35,38 @@ class FinanceBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        Container(
-          child: const Text('Text describing chapter finances.'),
-        ),
         const Card(
-          child: Text('Card'),
+          child: Column(
+            children: <Widget>[
+              SizedBox(height: 10,),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(width: 20,),
+                  Icon(Icons.trending_up, size: 50,),
+                  SizedBox(width: 50,),
+                  Text('Row of text\nMore Text Row\nThird Row of text'),
+                ],
+              ),
+              SizedBox(height: 40,),
+              Row(
+                children: <Widget>[
+                  SizedBox(width: 20,),
+                  Icon(Icons.linked_camera),
+                  Text('Like'),
+                  SizedBox(width: 50,),
+                  Icon(Icons.comment),
+                  Text('Comment'),
+                ],
+              ),
+              SizedBox(height: 15,),
+            ],
+          ),
         ),
         Container(
           height: 50,
           decoration: const BoxDecoration(
-            color: theme.azureClr,
+            color: theme.primaryClr,
           ),
           child: const Text('Chapter Dues Tracker'),
         ),
