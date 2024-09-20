@@ -37,18 +37,18 @@ class FinanceBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up, screen: ()=> const DuesTrackerScreen(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard, screen: ()=> const DuesReportScreen(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const DuesGuide(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route, screen: ()=> const DuesGuide(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up, screen: ()=> const TrackerScreen(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard, screen: ()=> const ReportScreen(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const GuideScreen(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route, screen: ()=> const GuideScreen(),),
       ],
     );
   }
 }
 
 
-class DuesTrackerScreen extends StatelessWidget {
-  const DuesTrackerScreen({super.key});
+class TrackerScreen extends StatelessWidget {
+  const TrackerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +72,8 @@ class DuesTrackerScreen extends StatelessWidget {
 }
 
 
-class DuesGuide extends StatelessWidget {
-  const DuesGuide({super.key});
+class GuideScreen extends StatelessWidget {
+  const GuideScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -97,8 +97,8 @@ class DuesGuide extends StatelessWidget {
 }
 
 
-class DuesReportScreen extends StatelessWidget {
-  const DuesReportScreen({super.key});
+class ReportScreen extends StatelessWidget {
+  const ReportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
