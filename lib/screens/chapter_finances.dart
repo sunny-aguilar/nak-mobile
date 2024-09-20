@@ -36,19 +36,19 @@ class FinanceBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      children: const <Widget>[
-        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up,),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard,),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined,),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route,),
+      children: <Widget>[
+        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up, screen: ()=> const DuesTrackerScreen(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard, screen: ()=> const DuesReportScreen(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const DuesGuide(),),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route, screen: ()=> const DuesGuide(),),
       ],
     );
   }
 }
 
 
-class FinanceScreen extends StatelessWidget {
-  const FinanceScreen({super.key});
+class DuesTrackerScreen extends StatelessWidget {
+  const DuesTrackerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +56,56 @@ class FinanceScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Dues Tracker', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: Placeholder()
+    );
+  }
+}
+
+
+class DuesGuide extends StatelessWidget {
+  const DuesGuide({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Dues Guide', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: Placeholder()
+    );
+  }
+}
+
+
+class DuesReportScreen extends StatelessWidget {
+  const DuesReportScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Dues Report', style: theme.TextThemes.headlineMed(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(

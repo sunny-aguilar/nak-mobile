@@ -614,9 +614,10 @@ class NotificationCard extends StatelessWidget {
 
 
 class ChapterFinancesCard extends StatelessWidget {
-  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon});
+  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon, required this.screen});
   final String title;
   final IconData cardIcon;
+  final Function screen;
 
   @override
   Widget build(BuildContext context) {
@@ -630,7 +631,7 @@ class ChapterFinancesCard extends StatelessWidget {
             context,
             MaterialPageRoute<Widget>(
               builder: (BuildContext context) {
-                return const finance.FinanceScreen();
+                return screen();
               }
             )
           );
