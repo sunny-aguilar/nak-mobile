@@ -33,8 +33,6 @@ class ChapterFinances extends StatelessWidget {
 class FinanceBody extends StatelessWidget {
   const FinanceBody({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -44,6 +42,31 @@ class FinanceBody extends StatelessWidget {
         cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined,),
         cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route,),
       ],
+    );
+  }
+}
+
+
+class FinanceScreen extends StatelessWidget {
+  const FinanceScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Dues Tracker', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: Placeholder()
     );
   }
 }

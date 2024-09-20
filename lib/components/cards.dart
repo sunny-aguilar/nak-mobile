@@ -6,6 +6,7 @@ import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/neb_screen.dart';
 import 'package:nak_app/screens/blog/edit_blog.dart' as edit_blog;
+import 'package:nak_app/screens/chapter_finances.dart' as finance;
 
 
 class LargeGreyPictureCard extends StatelessWidget {
@@ -624,7 +625,15 @@ class ChapterFinancesCard extends StatelessWidget {
       child: InkWell(
         splashColor: theme.redClr,
         onTap: () {
-          print('I was clicked!');
+          // go to corresponding finance screen
+          Navigator.push(
+            context,
+            MaterialPageRoute<Widget>(
+              builder: (BuildContext context) {
+                return const finance.FinanceScreen();
+              }
+            )
+          );
         },
         child: Column(
           children: <Widget>[
