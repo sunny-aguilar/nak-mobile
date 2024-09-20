@@ -74,14 +74,11 @@ class TrackerScreen extends StatelessWidget {
 }
 
 
-class GuideScreen extends StatefulWidget {
+class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
-  @override
-  State<GuideScreen> createState() => _GuideScreenState();
-}
 
-class _GuideScreenState extends State<GuideScreen> {
   // check if there is an active internet connection
+  // final String url = 'https://drive.google.com/uc?export=view&id=1kXwp8RAsAU0MwKdolnGRZ-yBXCJm2jkm';
   final String url = 'https://drive.google.com/uc?export=view&id=1GVdr32DZ_NMGc6n8nad0GWgMzWqWevFd';
 
   Future<bool> checkInternet() async {
@@ -97,11 +94,6 @@ class _GuideScreenState extends State<GuideScreen> {
         child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
       ),
     );
-  }
-
-  Future<void> _handleRefresh() async {
-    await Future.delayed(Duration(milliseconds: 50));
-    setState(() {});
   }
 
   @override
@@ -120,45 +112,37 @@ class _GuideScreenState extends State<GuideScreen> {
           ),
         ],
       ),
-      body: RefreshIndicator(
-        onRefresh: _handleRefresh,
-        child: FutureBuilder(
-          future: checkInternet(),
-          builder: (BuildContext context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.done) {
-              // return PDF if URL link is working
-              if (snapshot.data!) {
-                return const PDF(
-                  enableSwipe: true,
-                  swipeHorizontal: false,
-                  autoSpacing: true,
-                  pageFling: false,
-                ).fromUrl(url);
-              }
-              else {
-                // return something else if URL link is not working
-                return const Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(Icons.wifi_off, size: 150,),
-                      Text('No Internet Connection!')
-                    ],
-                  ),
-                );
-              }
+      body: FutureBuilder(
+        future: checkInternet(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            // return PDF if URL link is working
+            print('Bool: ${snapshot.data}');
+            if (snapshot.data!) {
+              return const PDF(
+                enableSwipe: true,
+                swipeHorizontal: false,
+                autoSpacing: true,
+                pageFling: false,
+              ).fromUrl(url);
             }
-            else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
-            return _circularProgress();
-          },
-        ),
+            else {
+              // return something else if URL link is not working
+              return const Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.wifi_off, size: 150,),
+                    Text('No Internet Connection!')
+                  ],
+                ),
+              );
+            }
+          }
+          else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
+          return _circularProgress();
+        },
       )
-      // body: const PDF(
-      //   enableSwipe: true,
-      //   swipeHorizontal: false,
-      //   autoSpacing: true,
-      //   pageFling: false,
-      // ).fromUrl(url)
     );
   }
 }
