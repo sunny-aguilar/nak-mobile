@@ -75,6 +75,8 @@ class TrackerScreen extends StatelessWidget {
 class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
 
+  // check if there is an active internet connection
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
