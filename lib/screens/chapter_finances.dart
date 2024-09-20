@@ -41,7 +41,7 @@ class FinanceBody extends StatelessWidget {
       children: <Widget>[
         cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up, screen: ()=> const TrackerScreen(),),
         cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard, screen: ()=> const ReportScreen(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const GuideScreen(),),
+        // cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const GuideScreen(),),
         cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route, screen: ()=> const GuideScreen(),),
       ],
     );
@@ -78,12 +78,11 @@ class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
 
   // check if there is an active internet connection
-  // final String url = 'https://drive.google.com/uc?export=view&id=1kXwp8RAsAU0MwKdolnGRZ-yBXCJm2jkm';
   final String url = 'https://drive.google.com/uc?export=view&id=1GVdr32DZ_NMGc6n8nad0GWgMzWqWevFd';
 
   Future<bool> checkInternet() async {
     final response = await http.get(Uri.parse(url));
-    if (response.statusCode == 200) { return false; }
+    if (response.statusCode == 200) { return true; }
     else { return false; }
   }
 
@@ -117,7 +116,6 @@ class GuideScreen extends StatelessWidget {
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             // return PDF if URL link is working
-            print('Bool: ${snapshot.data}');
             if (snapshot.data!) {
               return const PDF(
                 enableSwipe: true,
@@ -128,12 +126,13 @@ class GuideScreen extends StatelessWidget {
             }
             else {
               // return something else if URL link is not working
-              return const Center(
+              return Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    Icon(Icons.wifi_off, size: 150,),
-                    Text('No Internet Connection!')
+                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
+                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
+                    const Text('No Internet Connection!'),
                   ],
                 ),
               );
