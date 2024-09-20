@@ -620,40 +620,47 @@ class ChapterFinancesCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
-      child: Column(
-        children: <Widget>[
-          const SizedBox(height: 10,),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(width: 20,),
-              Icon(cardIcon, size: 50,),
-              const SizedBox(width: 50,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(title, style: theme.TextThemes.drawerMenu(context),),
-                  Text('second row of text'),
-                  Text('third row of text'),
-                ],
-              ),
-            ],
-          ),
-          const SizedBox(height: 40,),
-          const Row(
-            children: <Widget>[
-              SizedBox(width: 20,),
-              Icon(Icons.thumb_up_outlined),
-              SizedBox(width: 10,),
-              Text('Like'),
-              SizedBox(width: 50,),
-              Icon(Icons.mode_comment_outlined),
-              SizedBox(width: 10,),
-              Text('Comment'),
-            ],
-          ),
-          const SizedBox(height: 15,),
-        ],
+      clipBehavior: Clip.hardEdge,
+      child: InkWell(
+        splashColor: theme.redClr,
+        onTap: () {
+          print('I was clicked!');
+        },
+        child: Column(
+          children: <Widget>[
+            const SizedBox(height: 10,),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                const SizedBox(width: 20,),
+                Icon(cardIcon, size: 50,),
+                const SizedBox(width: 50,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(title, style: theme.TextThemes.headlineSmall20(context),),
+                    Text('second row of text'),
+                    Text('third row of text'),
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(height: 40,),
+            const Row(
+              children: <Widget>[
+                SizedBox(width: 20,),
+                Icon(Icons.favorite_border_outlined),
+                SizedBox(width: 10,),
+                Text('Like'),
+                SizedBox(width: 50,),
+                Icon(Icons.mode_comment_outlined),
+                SizedBox(width: 10,),
+                Text('Comment'),
+              ],
+            ),
+            const SizedBox(height: 15,),
+          ],
+        ),
       ),
     );
   }

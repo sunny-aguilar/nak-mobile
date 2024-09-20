@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -40,7 +41,8 @@ class FinanceBody extends StatelessWidget {
       children: const <Widget>[
         cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up,),
         cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard,),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.content_paste,),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined,),
+        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route,),
       ],
     );
   }
