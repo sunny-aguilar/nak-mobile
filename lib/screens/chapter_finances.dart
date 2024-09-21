@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -52,6 +53,24 @@ class FinanceBody extends StatelessWidget {
 class TrackerScreen extends StatelessWidget {
   const TrackerScreen({super.key});
 
+  final String url = 'https://drive.google.com/uc?export=view&id=1kzmOzF5UXX4WX5fhUCRbg_juL5URGTJw';
+
+  Future<bool> _checkInternet() async {
+    // check if there is an active internet connection
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) { return true; }
+    else { return false; }
+  }
+
+  Center _circularProgress() {
+    return Center(
+      child: SizedBox(
+        height: 60, width: 60,
+        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +87,16 @@ class TrackerScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Placeholder()
+      body: FutureBuilder(
+        future: _checkInternet(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+            return Center(child: Text('Rendered successfully!'));
+          }
+          else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
+          return _circularProgress();
+        }
+      )
     );
   }
 }
@@ -77,10 +105,10 @@ class TrackerScreen extends StatelessWidget {
 class GuideScreen extends StatelessWidget {
   const GuideScreen({super.key});
 
-  // check if there is an active internet connection
   final String url = 'https://drive.google.com/uc?export=view&id=1GVdr32DZ_NMGc6n8nad0GWgMzWqWevFd';
 
   Future<bool> checkInternet() async {
+    // check if there is an active internet connection
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) { return true; }
     else { return false; }
