@@ -91,6 +91,8 @@ class TrackerScreen extends StatelessWidget {
         future: _checkInternet(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+            // add URL launcher here
+            
             return Center(child: Text('Rendered successfully!'));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
