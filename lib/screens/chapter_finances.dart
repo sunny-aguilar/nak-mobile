@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-import 'package:markdown_widget/markdown_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -117,6 +116,22 @@ class ReportScreen extends StatelessWidget {
 
   final String url = 'https://drive.google.com/uc?export=view&id=11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE';
 
+  Future<bool> _checkInternet() async {
+    // check if there is an active internet connection
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) { return true; }
+    else { return false; }
+  }
+
+  Center _circularProgress() {
+    return Center(
+      child: SizedBox(
+        height: 60, width: 60,
+        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,8 +149,22 @@ class ReportScreen extends StatelessWidget {
         ],
       ),
       body: FutureBuilder(
-        future: future,
-        builder: builder
+        future: _checkInternet(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
+            // return PDF if URL link is working
+            if (snapshot.data!) {
+              return const PDF(
+                enableSwipe: true,
+                swipeHorizontal: false,
+                autoSpacing: true,
+                pageFling: false,
+              ).fromUrl(url);
+            }
+          }
+          else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
+          return _circularProgress();
+        }
       )
     );
   }
