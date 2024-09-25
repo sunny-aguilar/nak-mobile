@@ -48,7 +48,7 @@ class FinanceBody extends StatelessWidget {
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Report',
           cardIcon: Icons.leaderboard,
-          screen: ()=> const ReportScreen(),
+          screen: ()=> const DuesReportScreen(),
           desc: 'View chapter dues monthly statement'),
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Guide',
@@ -127,10 +127,10 @@ class TrackerScreen extends StatelessWidget {
 }
 
 
-class ReportScreen extends StatelessWidget {
-  const ReportScreen({super.key});
+class DuesReportScreen extends StatelessWidget {
+  const DuesReportScreen({super.key});
 
-  final String url = 'https://drive.google.com/uc?export=view&id=11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE';
+  final String url = 'https://drive.google.com/uc?export=view&id=1uSORGn_oGy8K4I80dCXcC0msg5G8-xNc';
 
   Future<bool> _checkInternet() async {
     // check if there is an active internet connection
@@ -203,7 +203,7 @@ class ReportScreen extends StatelessWidget {
 class DuesGuideScreen extends StatelessWidget {
   const DuesGuideScreen({super.key});
 
-  final String url = 'https://drive.google.com/uc?export=view&id=1GVdr32DZ_NMGc6n8nad0GWgMzWqWevFd';
+  final String url = 'https://drive.google.com/uc?export=view&id=1MmzEeFsQDlZjwSu32xpb3eUBnQmou4mv';
 
   Future<bool> checkInternet() async {
     // check if there is an active internet connection
