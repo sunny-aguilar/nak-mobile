@@ -40,10 +40,21 @@ class FinanceBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        cards.ChapterFinancesCard(title: 'Chapter Dues Tracker', cardIcon: Icons.trending_up, screen: ()=> const TrackerScreen(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Report', cardIcon: Icons.leaderboard, screen: ()=> const ReportScreen(),),
-        // cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: Icons.route_outlined, screen: ()=> const GuideScreen(),),
-        cards.ChapterFinancesCard(title: 'Chapter Dues Guide', cardIcon: FontAwesomeIcons.route, screen: ()=> const GuideScreen(),),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Tracker',
+          cardIcon: Icons.trending_up,
+          screen: ()=> const TrackerScreen(),
+          desc: 'View charges and payments'),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Report',
+          cardIcon: Icons.leaderboard,
+          screen: ()=> const ReportScreen(),
+          desc: 'View chapter dues monthly statement'),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Guide',
+          cardIcon: FontAwesomeIcons.route,
+          screen: ()=> const GuideScreen(),
+          desc: 'Dues guidance for the year'),
       ],
     );
   }
@@ -115,8 +126,7 @@ class ReportScreen extends StatelessWidget {
   const ReportScreen({super.key});
 
   final String url = 'https://drive.google.com/uc?export=view&id=11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE';
-// https://drive.google.com/file/d/11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE/view?usp=sharing
-// https://drive.google.com/file/d/1uSORGn_oGy8K4I80dCXcC0msg5G8-xNc/view?usp=sharing
+
   Future<bool> _checkInternet() async {
     // check if there is an active internet connection
     final response = await http.get(Uri.parse(url));

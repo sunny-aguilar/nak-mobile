@@ -614,10 +614,11 @@ class NotificationCard extends StatelessWidget {
 
 
 class ChapterFinancesCard extends StatelessWidget {
-  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon, required this.screen});
+  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon, required this.screen, required this.desc});
   final String title;
   final IconData cardIcon;
   final Function screen;
+  final String desc;
 
   @override
   Widget build(BuildContext context) {
@@ -649,25 +650,25 @@ class ChapterFinancesCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(title, style: theme.TextThemes.headlineSmall20(context),),
-                    Text('second row of text'),
-                    Text('third row of text'),
+                    Text(desc),
+                    // Text('third row of text'),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 40,),
-            const Row(
-              children: <Widget>[
-                SizedBox(width: 20,),
-                Icon(Icons.favorite_border_outlined),
-                SizedBox(width: 10,),
-                Text('Like'),
-                SizedBox(width: 50,),
-                Icon(Icons.mode_comment_outlined),
-                SizedBox(width: 10,),
-                Text('Comment'),
-              ],
-            ),
+            // const SizedBox(height: 40,),
+            // const Row(
+            //   children: <Widget>[
+            //     SizedBox(width: 20,),
+            //     Icon(Icons.favorite_border_outlined),
+            //     SizedBox(width: 10,),
+            //     Text('Like'),
+            //     SizedBox(width: 50,),
+            //     Icon(Icons.mode_comment_outlined),
+            //     SizedBox(width: 10,),
+            //     Text('Comment'),
+            //   ],
+            // ),
             const SizedBox(height: 15,),
           ],
         ),
