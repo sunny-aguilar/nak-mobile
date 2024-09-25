@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
-// import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -91,9 +91,15 @@ class TrackerScreen extends StatelessWidget {
         future: _checkInternet(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
-            // add URL launcher here
-            
-            return Center(child: Text('Rendered successfully!'));
+            // URL launcher
+            final Uri toLaunch = Uri(scheme: 'https', host: 'drive.google.com', path: '/uc?export=view&id=1kzmOzF5UXX4WX5fhUCRbg_juL5URGTJw');
+            Future<void> launchInWebView({required Uri url}) async {
+              if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                throw Exception('Could not launch $url');
+              }
+            }
+            launchInWebView(url: toLaunch);
+            return const Center(child: Text('Rendered successfully!'));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
