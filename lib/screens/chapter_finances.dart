@@ -92,18 +92,18 @@ class TrackerScreen extends StatelessWidget {
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
             // URL launcher
-            // final Uri toLaunch = Uri(scheme: 'https', host: 'drive.google.com', path: '/uc?export=view&id=1kzmOzF5UXX4WX5fhUCRbg_juL5URGTJw');
-            // Future<void> launchInWebView({required Uri url}) async {
-            //   if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
-            //     throw Exception('Could not launch $url');
-            //   }
-            // }
-            // launchInWebView(url: toLaunch);
+            final Uri toLaunch = Uri(scheme: 'https', host: 'drive.google.com', path: '/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao');
+            Future<void> launchInWebView({required Uri url}) async {
+              if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+                throw Exception('Could not launch $url');
+              }
+            }
+            launchInWebView(url: toLaunch);
             // https://docs.google.com/spreadsheets/d/11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao/edit?usp=sharing
-            launchUrl(
-              Uri.parse('https://drive.google.com/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao'),
-              mode: LaunchMode.externalApplication,
-            );
+            // launchUrl(
+            //   Uri.parse('https://drive.google.com/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao'),
+            //   mode: LaunchMode.externalApplication,
+            // );
             return const Center(child: Text('Rendered successfully!'));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
