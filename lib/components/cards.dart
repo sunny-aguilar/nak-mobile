@@ -651,25 +651,25 @@ class ChapterFinancesCard extends StatelessWidget {
                   children: <Widget>[
                     Text(title, style: theme.TextThemes.headlineSmall20(context),),
                     Text(desc),
-                    // Text('2024 - 2025 Academic Year'),
+                    const Text('2024 - 2025 Academic Year'),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 40,),
-            Row(
+            const SizedBox(height: 30,),
+            const Row(
               children: <Widget>[
-                const SizedBox(width: 20,),
-                GestureDetector(
-                  onTap: () => print('I was tapped1'),
-                  child: const Icon(Icons.favorite_border_outlined)
-                ),
-                const SizedBox(width: 10,),
-                const Text('Like'),
-                const SizedBox(width: 50,),
-                const Icon(Icons.mode_comment_outlined),
-                const SizedBox(width: 10,),
-                const Text('Comment'),
+                // const SizedBox(width: 20,),
+                // GestureDetector(
+                //   onTap: () => print('I was tapped1'),
+                //   child: const Icon(Icons.favorite_border_outlined, size: 30,)
+                // ),
+                // const SizedBox(width: 10,),
+                // const Text('Like'),
+                // const SizedBox(width: 50,),
+                // const Icon(Icons.mode_comment_outlined, size: 30,),
+                // const SizedBox(width: 10,),
+                // const Text('Comment'),
               ],
             ),
             const SizedBox(height: 15,),

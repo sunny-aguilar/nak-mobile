@@ -53,8 +53,13 @@ class FinanceBody extends StatelessWidget {
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Guide',
           cardIcon: FontAwesomeIcons.route,
-          screen: ()=> const GuideScreen(),
+          screen: ()=> const DuesGuideScreen(),
           desc: 'Dues guidance for the year'),
+        cards.ChapterFinancesCard(
+          title: 'Fundraising Guide',
+          cardIcon: FontAwesomeIcons.route,
+          screen: ()=> const FundraisingGuideScreen(),
+          desc: 'A guide for chapter fundraising'),
       ],
     );
   }
@@ -195,8 +200,8 @@ class ReportScreen extends StatelessWidget {
 }
 
 
-class GuideScreen extends StatelessWidget {
-  const GuideScreen({super.key});
+class DuesGuideScreen extends StatelessWidget {
+  const DuesGuideScreen({super.key});
 
   final String url = 'https://drive.google.com/uc?export=view&id=1GVdr32DZ_NMGc6n8nad0GWgMzWqWevFd';
 
@@ -264,5 +269,14 @@ class GuideScreen extends StatelessWidget {
         },
       )
     );
+  }
+}
+
+class FundraisingGuideScreen extends StatelessWidget {
+  const FundraisingGuideScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
