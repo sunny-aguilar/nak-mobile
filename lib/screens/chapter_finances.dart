@@ -52,12 +52,12 @@ class FinanceBody extends StatelessWidget {
           desc: 'View chapter dues monthly statement'),
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Guide',
-          cardIcon: FontAwesomeIcons.route,
+          cardIcon: Icons.route_outlined,
           screen: ()=> const DuesGuideScreen(),
           desc: 'Dues guidance for the year'),
         cards.ChapterFinancesCard(
           title: 'Fundraising Guide',
-          cardIcon: FontAwesomeIcons.route,
+          cardIcon: FontAwesomeIcons.handHoldingDollar,
           screen: ()=> const FundraisingGuideScreen(),
           desc: 'A guide for chapter fundraising'),
       ],
@@ -275,8 +275,71 @@ class DuesGuideScreen extends StatelessWidget {
 class FundraisingGuideScreen extends StatelessWidget {
   const FundraisingGuideScreen({super.key});
 
+  final String url = 'https://drive.google.com/uc?export=view&id=1M1-AYrQQHrWtN_M7axjDO-3z1CFXlllq';
+// https://drive.google.com/file/d/1M1-AYrQQHrWtN_M7axjDO-3z1CFXlllq/view?usp=sharing
+  Future<bool> checkInternet() async {
+    // check if there is an active internet connection
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) { return true; }
+    else { return false; }
+  }
+
+  Center _circularProgress() {
+    return Center(
+      child: SizedBox(
+        height: 60, width: 60,
+        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Fundraising Guide', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: FutureBuilder(
+        future: checkInternet(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            // return PDF if URL link is working
+            if (snapshot.data!) {
+              return const PDF(
+                enableSwipe: true,
+                swipeHorizontal: false,
+                autoSpacing: true,
+                pageFling: false,
+              ).fromUrl(url);
+            }
+            else {
+              // return something else if URL link is not working
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
+                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
+                    const Text('No Internet Connection!'),
+                  ],
+                ),
+              );
+            }
+          }
+          else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
+          return _circularProgress();
+        },
+      ),
+    );
   }
 }
