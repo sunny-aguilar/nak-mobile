@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
+import 'package:markdown_widget/markdown_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -92,15 +93,15 @@ class TrackerScreen extends StatelessWidget {
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
             // URL launcher
-            // https://docs.google.com/spreadsheets/d/11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao/edit?usp=sharing
-            final Uri toLaunch = Uri(scheme: 'https', host: 'docs.google.com', path: '/spreadsheets/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao');
-            Future<void> launchInWebView({required Uri url}) async {
-              if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
+            const String httpsLink = 'https://docs.google.com/spreadsheets/d/11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao/edit?usp=sharing';
+;           Future<void> launchInWebView({required String url}) async {
+              final Uri urlParsed = Uri.parse(url);
+              if (!await launchUrl(urlParsed, mode: LaunchMode.inAppWebView)) {
                 throw Exception('Could not launch $url');
               }
             }
-            launchInWebView(url: toLaunch);
-            return const Center(child: Text('Rendered successfully!'));
+            launchInWebView(url: httpsLink);
+            return const Center(child: Text('Spreadsheet Rendered successfully!'));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
