@@ -114,8 +114,9 @@ class TrackerScreen extends StatelessWidget {
 class ReportScreen extends StatelessWidget {
   const ReportScreen({super.key});
 
-  final String url = 'https://drive.google.com/uc?export=view&id=1uSORGn_oGy8K4I80dCXcC0msg5G8';
-
+  final String url = 'https://drive.google.com/uc?export=view&id=11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE';
+// https://drive.google.com/file/d/11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE/view?usp=sharing
+// https://drive.google.com/file/d/1uSORGn_oGy8K4I80dCXcC0msg5G8-xNc/view?usp=sharing
   Future<bool> _checkInternet() async {
     // check if there is an active internet connection
     final response = await http.get(Uri.parse(url));
@@ -160,6 +161,19 @@ class ReportScreen extends StatelessWidget {
                 autoSpacing: true,
                 pageFling: false,
               ).fromUrl(url);
+            }
+            else {
+              // return something else if URL link is not working
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
+                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
+                    const Text('No Internet Connection!'),
+                  ],
+                ),
+              );
             }
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
