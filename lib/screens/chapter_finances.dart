@@ -101,11 +101,41 @@ class TrackerScreen extends StatelessWidget {
               }
             }
             launchInWebView(url: httpsLink);
-            return const Center(child: Text('Spreadsheet Rendered successfully!'));
+            return const Center(child: Icon(Icons.bar_chart, size: 150,));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
         }
+      )
+    );
+  }
+}
+
+
+class ReportScreen extends StatelessWidget {
+  const ReportScreen({super.key});
+
+  final String url = 'https://drive.google.com/uc?export=view&id=11PIxPV6x0PgqXLmddSSFIi3BvmbNzGQE';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Dues Report', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: FutureBuilder(
+        future: future,
+        builder: builder
       )
     );
   }
@@ -180,31 +210,6 @@ class GuideScreen extends StatelessWidget {
           return _circularProgress();
         },
       )
-    );
-  }
-}
-
-
-class ReportScreen extends StatelessWidget {
-  const ReportScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Dues Report', style: theme.TextThemes.headlineMed(context),),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        actions: <Widget>[
-          IconButton(
-            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
-            onPressed: () {
-              service.ThemeService().switchTheme();
-            },
-          ),
-        ],
-      ),
-      body: Placeholder()
     );
   }
 }
