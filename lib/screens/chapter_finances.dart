@@ -93,7 +93,7 @@ class TrackerScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
             // URL launcher
             // https://docs.google.com/spreadsheets/d/11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao/edit?usp=sharing
-            final Uri toLaunch = Uri(scheme: 'https', host: 'docs.google.com', path: '/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao');
+            final Uri toLaunch = Uri(scheme: 'https', host: 'docs.google.com', path: '/spreadsheets/uc?export=view&id=11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao');
             Future<void> launchInWebView({required Uri url}) async {
               if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
                 throw Exception('Could not launch $url');
