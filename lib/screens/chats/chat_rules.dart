@@ -86,7 +86,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
           ),
           const ListTile(
             leading: Icon(Icons.check_circle),
-            title: Text('Do not verbally abuse, harrass, attack, embarrass, or threaten anyone else in the chat room, no matter what they might say to you'),
+            title: Text('Do not verbally abuse, harrass, attack, embarrass, or threaten anyone else in the chat room, no matter what they might say to you.'),
           ),
           const ListTile(
             leading: Icon(Icons.check_circle),
@@ -98,7 +98,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
           ),
           const ListTile(
             leading: Icon(Icons.check_circle, color: theme.orangeClr),
-            title: Text('An orange bar means your chat privileges have been suspended. Contact neb@nakinc.org if you believe this is incorrect.',),
+            title: Text('An orange bar means your chat privileges have been suspended. Contact neb@nakinc.org.',),
           ),
           const SizedBox(height: 20,),
           Padding(

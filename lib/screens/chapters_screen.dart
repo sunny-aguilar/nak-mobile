@@ -68,9 +68,14 @@ class _ChapterScreensState extends State<ChapterScreen> {
                   backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.redClr,
                 ),
                 body: Center(
-                  child: Text(
-                    'An error occurred fetching chapter data. \nError: ${snapshot.error} occurred.',
-                    textAlign: TextAlign.center,
+                  child: Column(
+                    children: <Widget>[
+                      const Icon(Icons.wifi, size: 150,),
+                      Text(
+                        'An error occurred fetching chapter data. \nError: ${snapshot.error} occurred.',
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
               );
