@@ -57,6 +57,15 @@ class AuthCheck {
     return '';
   }
 
+  Future<bool> isSuperAdmin(String adminType) async {
+    Map<dynamic, dynamic> userData = await checkAuth();
+    List adminList = userData['isAdmin'];
+    if (adminList.contains('superAdmin')) {
+      return true;
+    }
+    return false;
+  }
+
 }
 
 

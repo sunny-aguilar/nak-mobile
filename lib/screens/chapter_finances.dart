@@ -5,6 +5,7 @@ import 'package:flutter_cached_pdfview/flutter_cached_pdfview.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/cards.dart' as cards;
 
@@ -71,10 +72,27 @@ class FinanceBody extends StatelessWidget {
 }
 
 
-class StatusScreen extends StatelessWidget {
+class StatusScreen extends StatefulWidget {
   const StatusScreen({super.key});
+  @override
+  State<StatusScreen> createState() => _StatusScreenState();
+}
 
+class _StatusScreenState extends State<StatusScreen> {
   final double iconSize = 30;
+
+  Future<bool> _isSuperAdmin = db.AuthCheck().isSuperAdmin('superAdmin');
+
+  Center _circularProgress() {
+    return const Center(
+      child: SizedBox(
+        height: 75, width: 75,
+        child: CircularProgressIndicator(
+          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,195 +110,212 @@ class StatusScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('F'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-                const Text(' Founding: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('A'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Alpha: Approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('B'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Beta: Approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('Γ'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Gamma: Approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('Δ'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Delta: Approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('E'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Epsilon: Approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('Z'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-                const Text(' Zeta: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('H'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-                const Text(' Eta: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('Θ'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Theta: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('I'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Iota: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('K'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Kappa: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('Λ'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Lambda: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('M'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Mu: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () { print('tapped'); },
-            enabled: true,
-          ),
-          ListTile(
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('N'),
-            ),
-            title: Row(
-              children: <Widget>[
-                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-                const Text(' Nu: Not approved')
-              ],
-            ),
-            trailing: const Icon(Icons.arrow_forward_ios),
-            onTap: () { print('tapped'); },
-            enabled: false, // resolve to boolean to ennable/disable tap
-          ),
-        ],
+      body: FutureBuilder(
+        future: _isSuperAdmin,
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasError) {
+              return const Center(child: Text('Error returning future'),);
+            }
+            else if (snapshot.hasData) {
+
+              // check if user is superAdmin
+              final bool isAdmin = snapshot.data!;
+
+              return ListView(
+                children: <Widget>[
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('F'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                        const Text(' Founding: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('A'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Alpha: Approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('B'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Beta: Approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('Γ'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Gamma: Approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('Δ'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Delta: Approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('E'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Epsilon: Approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('Z'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                        const Text(' Zeta: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('H'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                        const Text(' Eta: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('Θ'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Theta: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('I'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Iota: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('K'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Kappa: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('Λ'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Lambda: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('M'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Mu: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () { print('tapped'); },
+                    enabled: true,
+                  ),
+                  ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('N'),
+                    ),
+                    title: Row(
+                      children: <Widget>[
+                        Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                        const Text(' Nu: Not approved')
+                      ],
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () { print('tapped'); },
+                    enabled: false, // resolve to boolean to ennable/disable tap
+                  ),
+                ],
+              );
+            }
+          }
+          return const Center(child: Text('No data returned'),);
+        },
       )
     );
   }
