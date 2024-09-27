@@ -141,6 +141,19 @@ class StatusScreen extends StatelessWidget {
             title: Row(
               children: <Widget>[
                 Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Gamma: Approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('Δ'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
                 const Text(' Delta: Approved')
               ],
             ),
@@ -175,7 +188,7 @@ class StatusScreen extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('E'),
+              child: const Text('H'),
             ),
             title: Row(
               children: <Widget>[
@@ -188,7 +201,7 @@ class StatusScreen extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('T'),
+              child: const Text('Θ'),
             ),
             title: Row(
               children: <Widget>[
@@ -214,7 +227,20 @@ class StatusScreen extends StatelessWidget {
           ListTile(
             leading: CircleAvatar(
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: const Text('L'),
+              child: const Text('K'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Kappa: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('Λ'),
             ),
             title: Row(
               children: <Widget>[
