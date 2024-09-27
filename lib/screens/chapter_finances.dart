@@ -41,6 +41,11 @@ class FinanceBody extends StatelessWidget {
     return ListView(
       children: <Widget>[
         cards.ChapterFinancesCard(
+          title: 'Chapter Financial Status',
+          cardIcon: Icons.monitor_heart_outlined,
+          screen: ()=> const StatusScreen(),
+          desc: 'Charter renewal progress'),
+        cards.ChapterFinancesCard(
           title: 'Chapter Dues Tracker',
           cardIcon: Icons.trending_up,
           screen: ()=> const TrackerScreen(),
@@ -61,6 +66,192 @@ class FinanceBody extends StatelessWidget {
           screen: ()=> const FundraisingGuideScreen(),
           desc: 'A guide for chapter fundraising'),
       ],
+    );
+  }
+}
+
+
+class StatusScreen extends StatelessWidget {
+  const StatusScreen({super.key});
+
+  final double iconSize = 30;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Financial Status', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('F'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                const Text(' Founding: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('A'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Alpha: Approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('B'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Beta: Approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('Γ'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Delta: Approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('E'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Epsilon: Approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('Z'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                const Text(' Zeta: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('E'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
+                const Text(' Eta: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('T'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Theta: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('I'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Iota: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('L'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Lambda: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('M'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Mu: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+          ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: const Text('N'),
+            ),
+            title: Row(
+              children: <Widget>[
+                Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
+                const Text(' Nu: Not approved')
+              ],
+            ),
+            trailing: const Icon(Icons.arrow_forward_ios),
+          ),
+        ],
+      )
     );
   }
 }
@@ -116,7 +307,7 @@ class TrackerScreen extends StatelessWidget {
               }
             }
             launchInWebView(url: httpsLink);
-            return const Center(child: Icon(Icons.bar_chart, size: 150,));
+            return const Center(child: Icon(Icons.trending_up, size: 150,));
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
