@@ -236,6 +236,8 @@ class StatusScreen extends StatelessWidget {
               ],
             ),
             trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () { print('tapped'); },
+            enabled: true,
           ),
           ListTile(
             leading: CircleAvatar(
@@ -249,6 +251,8 @@ class StatusScreen extends StatelessWidget {
               ],
             ),
             trailing: const Icon(Icons.arrow_forward_ios),
+            onTap: () { print('tapped'); },
+            enabled: false, // resolve to boolean to ennable/disable tap
           ),
         ],
       )
