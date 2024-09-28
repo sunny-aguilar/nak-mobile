@@ -128,9 +128,28 @@ class _StatusScreenState extends State<StatusScreen> {
               final bool isAdmin = snapshot.data![0];
               // final String chapter = snapshot.data![1][0].id;
               final bool approval = snapshot.data![1][0].data()['financial.approval'];
+              final int count = snapshot.data![1].length;
+
               // print('data[1][0].data(): ${snapshot.data![1][0].data()}');
               // print('data[1][0].data(): ${snapshot.data![1][0].data()['financial.approval']}');
               // print('data[1][0].data(): ${snapshot.data![1][0].id}');
+
+              return ListView.builder(
+                shrinkWrap: true,
+                itemCount: count,
+                itemBuilder: (context, index) {
+                  // compile chapter data
+                  Map<String, dynamic> chapterData = {};
+                  chapterData['chapter'] = snapshot.data![1][index];
+
+                  return ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                      child: const Text('F'), // store greek letter in db and pull into here?
+                    ),
+                  );
+                }
+              );
 
 
               return ListView(
