@@ -126,7 +126,7 @@ class _StatusScreenState extends State<StatusScreen> {
 
               // check if user is superAdmin
               final bool isAdmin = snapshot.data![0];
-              final String chapter = snapshot.data![1][0].id;
+              // final String chapter = snapshot.data![1][0].id;
               final bool approval = snapshot.data![1][0].data()['financial.approval'];
               // print('data[1][0].data(): ${snapshot.data![1][0].data()}');
               // print('data[1][0].data(): ${snapshot.data![1][0].data()['financial.approval']}');
@@ -148,12 +148,14 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () {
+                      // get chapter data
+                      final String chapter = snapshot.data![1][0].data()['chapter'];
                       // go to route
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(
                           builder: (BuildContext context) {
-                            return const FinancialStatusScreen();
+                            return FinancialStatusScreen(chapter: chapter);
                           }
                         )
                       );
@@ -347,7 +349,8 @@ class _StatusScreenState extends State<StatusScreen> {
 
 
 class FinancialStatusScreen extends StatefulWidget {
-  const FinancialStatusScreen({super.key});
+  const FinancialStatusScreen({super.key, required this.chapter});
+  final String chapter;
   @override
   State<FinancialStatusScreen> createState() => _FinancialStatusScreenState();
 }
@@ -355,7 +358,21 @@ class FinancialStatusScreen extends StatefulWidget {
 class _FinancialStatusScreenState extends State<FinancialStatusScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('${widget.chapter} Status', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
 

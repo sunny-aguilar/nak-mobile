@@ -151,8 +151,7 @@ class NebSettingsScreen extends StatefulWidget {
     required this.nebStatus,
     required this.adminStatus,
     required this.superAdminStatus
-  })
-  ;
+  });
   final String username;
   final String uid;
   final bool nebStatus;
