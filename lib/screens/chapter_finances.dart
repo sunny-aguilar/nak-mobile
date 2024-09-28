@@ -149,7 +149,11 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                     title: Row(
                       children: <Widget>[
-                        Icon(chapterData['approval'] ? Icons.verified : Icons.report_problem_sharp, color: chapterData['approval'] ? theme.mintClr : theme.warningClr, size: iconSize),
+                        Icon(
+                          chapterData['approval'] ? Icons.verified : Icons.report_problem_sharp,
+                          color: chapterData['approval'] ? theme.mintClr : theme.warningClr,
+                          size: iconSize
+                        ),
                         Text(' ${chapterData['chapter']}')
                       ],
                     ),
