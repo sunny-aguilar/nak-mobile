@@ -136,7 +136,20 @@ class _StatusScreenState extends State<StatusScreen> {
                       ],
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      // go to route
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) {
+                            return const FinancialStatusScreen();
+                          }
+                        )
+                      );
+                    },
+                    enabled: isAdmin, //
                   ),
+
                   ListTile(
                     leading: CircleAvatar(
                       backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
@@ -308,7 +321,7 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () { print('tapped'); },
-                    enabled: false, // resolve to boolean to ennable/disable tap
+                    enabled: isAdmin, // resolve to boolean to ennable/disable tap
                   ),
                 ],
               );
@@ -318,6 +331,20 @@ class _StatusScreenState extends State<StatusScreen> {
         },
       )
     );
+  }
+}
+
+
+class FinancialStatusScreen extends StatefulWidget {
+  const FinancialStatusScreen({super.key});
+  @override
+  State<FinancialStatusScreen> createState() => _FinancialStatusScreenState();
+}
+
+class _FinancialStatusScreenState extends State<FinancialStatusScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
 
@@ -527,6 +554,7 @@ class DuesGuideScreen extends StatelessWidget {
     );
   }
 }
+
 
 class FundraisingGuideScreen extends StatelessWidget {
   const FundraisingGuideScreen({super.key});
