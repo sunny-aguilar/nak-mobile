@@ -154,7 +154,7 @@ class _StatusScreenState extends State<StatusScreen> {
                           color: chapterData['approval'] ? theme.mintClr : theme.warningClr,
                           size: iconSize
                         ),
-                        Text(' ${chapterData['chapter']}')
+                        Text(' ${chapterData['chapter']} - ${chapterData['approval'] ? 'approved' : 'not approved'}')
                       ],
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
