@@ -133,14 +133,6 @@ class _StatusScreenState extends State<StatusScreen> {
               String data = snapshot.data![1][0].data()['chapter'];
               print('data: $data');
 
-              print('All data: ${snapshot.data![1][1].data()['chapter']}');
-              print('All data: ${snapshot.data![1][2].data()['chapter']}');
-              print('All data: ${snapshot.data![1][3].data()['chapter']}');
-
-              // print('data[1][0].data(): ${snapshot.data![1][0].data()}');
-              // print('data[1][0].data(): ${snapshot.data![1][0].data()['financial.approval']}');
-              // print('data[1][0].data(): ${snapshot.data![1][0].id}');
-
               return ListView.builder(
                 shrinkWrap: true,
                 itemCount: count,
