@@ -127,7 +127,7 @@ class _StatusScreenState extends State<StatusScreen> {
               // check if user is superAdmin
               final bool isAdmin = snapshot.data![0];
               final String chapter = snapshot.data![1][0].id;
-              final String approval = snapshot.data![1][0].data()['financial.approval'];
+              final bool approval = snapshot.data![1][0].data()['financial.approval'];
               // print('data[1][0].data(): ${snapshot.data![1][0].data()}');
               // print('data[1][0].data(): ${snapshot.data![1][0].data()['financial.approval']}');
               // print('data[1][0].data(): ${snapshot.data![1][0].id}');
@@ -143,7 +143,7 @@ class _StatusScreenState extends State<StatusScreen> {
                     title: Row(
                       children: <Widget>[
                         Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-                        const Text(' Founding: Not approved')
+                        Text(' Founding: ${approval ? 'approved' : 'Not approved'}')
                       ],
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
