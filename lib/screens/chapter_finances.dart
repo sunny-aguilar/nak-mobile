@@ -126,9 +126,12 @@ class _StatusScreenState extends State<StatusScreen> {
 
               // check if user is superAdmin
               final bool isAdmin = snapshot.data![0];
-              // final String chapter = snapshot.data![1][0].id;
-              final bool approval = snapshot.data![1][0].data()['financial.approval'];
+
+              // check list count
               final int count = snapshot.data![1].length;
+
+              // final String chapter = snapshot.data![1][0].id;
+              // final bool approval = snapshot.data![1][0].data()['financial.approval'];
 
               String data = snapshot.data![1][0].data()['chapter'];
               print('data: $data');
@@ -159,7 +162,16 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     enabled: isAdmin,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<Widget>(
+                          builder: (BuildContext context) {
+                            return FinancialStatusScreen(chapter: chapterData['chapter']);
+                          }
+                        )
+                      );
+                    },
                   );
                 }
               );
