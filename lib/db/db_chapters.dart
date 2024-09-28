@@ -5,10 +5,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChapterStatus {
   FirebaseFirestore? _instance;
 
-  Future<Map> getFinancialStatus() async {
+  Future getFinancialStatus() async {
     _instance = FirebaseFirestore.instance;
     CollectionReference ref = _instance!.collection('chapters');
-    DocumentSnapshot snapshot = await ref.doc().get();
-    return snapshot.data() as Map;
+    QuerySnapshot snapshot = await ref.get();
+
+    _instance!.collection('chapters').get().then(
+      (querySnapshot) {
+        for (var docSnapshot in querySnapshot.docs) {
+          print('SS: ${docSnapshot.id} => ${docSnapshot.data()}');
+        }
+      }
+    );
+
+    return snapshot.docs;
   }
 }

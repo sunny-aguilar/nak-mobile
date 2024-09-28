@@ -6,6 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/db/db_ops.dart' as db;
+import 'package:nak_app/db/db_chapters.dart' as db_chapters;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/cards.dart' as cards;
 
@@ -81,7 +82,8 @@ class StatusScreen extends StatefulWidget {
 class _StatusScreenState extends State<StatusScreen> {
   final double iconSize = 30;
 
-  Future<bool> _isSuperAdmin = db.AuthCheck().isSuperAdmin('superAdmin');
+  final Future<bool> _isSuperAdmin = db.AuthCheck().isSuperAdmin('superAdmin');
+  final Future _chapterStatus = db_chapters.ChapterStatus().getFinancialStatus();
 
   Center _circularProgress() {
     return const Center(
@@ -111,7 +113,10 @@ class _StatusScreenState extends State<StatusScreen> {
         ],
       ),
       body: FutureBuilder(
-        future: _isSuperAdmin,
+        future: Future.wait([
+          _isSuperAdmin,
+          _chapterStatus,
+        ]),
         builder: (BuildContext context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             if (snapshot.hasError) {
@@ -120,7 +125,10 @@ class _StatusScreenState extends State<StatusScreen> {
             else if (snapshot.hasData) {
 
               // check if user is superAdmin
-              final bool isAdmin = snapshot.data!;
+              final bool isAdmin = snapshot.data![0];
+              print('data[1][0].data(): ${snapshot.data![1][0].data()}');
+              print('data[1][0].data(): ${snapshot.data![1][0].id}');
+
 
               return ListView(
                 children: <Widget>[
@@ -321,7 +329,7 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                     trailing: const Icon(Icons.arrow_forward_ios),
                     onTap: () { print('tapped'); },
-                    enabled: isAdmin, // resolve to boolean to ennable/disable tap
+                    enabled: false, // resolve to boolean to ennable/disable tap
                   ),
                 ],
               );
