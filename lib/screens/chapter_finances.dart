@@ -146,13 +146,6 @@ class _StatusScreenState extends State<StatusScreen> {
                 // check list count
                 final int count = snapshot.data![1].length;
 
-                // final String chapter = snapshot.data![1][0].id;
-                final bool approval = snapshot.data![1][0].data()['financialApproval'];
-                print('Founding approval: $approval');
-
-                // String data = snapshot.data![1][0].data()['chapter'];
-                // print('data: $data');
-
                 return ListView.builder(
                   itemCount: count,
                   itemBuilder: (context, index) {
