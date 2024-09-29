@@ -212,7 +212,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               title: Text(widget.username),
             ),
             ListTile(
-              onTap: () {},
+              // onTap: () {},
               title: const Text('Make NEB Member:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,
@@ -235,7 +235,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              // onTap: () {},
               title: const Text('Make Admin:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,
@@ -257,7 +257,7 @@ class _NebSettingsScreenState extends State<NebSettingsScreen> {
               ),
             ),
             ListTile(
-              onTap: () {},
+              // onTap: () {},
               title: const Text('Make Super Admin:'),
               trailing: Switch(
                 thumbIcon: thumbIcon,

@@ -35,39 +35,51 @@ class ChapterFinances extends StatelessWidget {
 }
 
 
-class FinanceBody extends StatelessWidget {
+class FinanceBody extends StatefulWidget {
   const FinanceBody({super.key});
 
   @override
+  State<FinanceBody> createState() => _FinanceBodyState();
+}
+
+class _FinanceBodyState extends State<FinanceBody> {
+  Future<void> _handleRefresh() async {
+    setState((){});
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        cards.ChapterFinancesCard(
-          title: 'Chapter Financial Status',
-          cardIcon: Icons.monitor_heart_outlined,
-          screen: ()=> const StatusScreen(),
-          desc: 'Charter renewal progress'),
-        cards.ChapterFinancesCard(
-          title: 'Chapter Dues Tracker',
-          cardIcon: Icons.trending_up,
-          screen: ()=> const TrackerScreen(),
-          desc: 'View charges and payments'),
-        cards.ChapterFinancesCard(
-          title: 'Chapter Dues Report',
-          cardIcon: Icons.leaderboard,
-          screen: ()=> const DuesReportScreen(),
-          desc: 'View chapter dues monthly statement'),
-        cards.ChapterFinancesCard(
-          title: 'Chapter Dues Guide',
-          cardIcon: Icons.route_outlined,
-          screen: ()=> const DuesGuideScreen(),
-          desc: 'Dues guidance for the year'),
-        cards.ChapterFinancesCard(
-          title: 'Fundraising Guide',
-          cardIcon: FontAwesomeIcons.handHoldingDollar,
-          screen: ()=> const FundraisingGuideScreen(),
-          desc: 'A guide for chapter fundraising'),
-      ],
+    return RefreshIndicator(
+      onRefresh: _handleRefresh,
+      child: ListView(
+        children: <Widget>[
+          cards.ChapterFinancesCard(
+            title: 'Chapter Financial Status',
+            cardIcon: Icons.monitor_heart_outlined,
+            screen: ()=> const StatusScreen(),
+            desc: 'Charter renewal progress'),
+          cards.ChapterFinancesCard(
+            title: 'Chapter Dues Tracker',
+            cardIcon: Icons.trending_up,
+            screen: ()=> const TrackerScreen(),
+            desc: 'View charges and payments'),
+          cards.ChapterFinancesCard(
+            title: 'Chapter Dues Report',
+            cardIcon: Icons.leaderboard,
+            screen: ()=> const DuesReportScreen(),
+            desc: 'View chapter dues monthly statement'),
+          cards.ChapterFinancesCard(
+            title: 'Chapter Dues Guide',
+            cardIcon: Icons.route_outlined,
+            screen: ()=> const DuesGuideScreen(),
+            desc: 'Dues guidance for the year'),
+          cards.ChapterFinancesCard(
+            title: 'Fundraising Guide',
+            cardIcon: FontAwesomeIcons.handHoldingDollar,
+            screen: ()=> const FundraisingGuideScreen(),
+            desc: 'A guide for chapter fundraising'),
+        ],
+      ),
     );
   }
 }
@@ -83,7 +95,9 @@ class _StatusScreenState extends State<StatusScreen> {
   final double iconSize = 30;
 
   final Future<bool> _isSuperAdmin = db.AuthCheck().isSuperAdmin('superAdmin');
-  final Future _chapterStatus = db_chapters.ChapterStatus().getFinancialStatus();
+  // final Future _chapterStatus = db_chapters.ChapterStatus().getFinancialStatus(); // dont do this! doesn't update
+
+  Future<void> _handleRefresh() async { setState((){}); }
 
   Center _circularProgress() {
     return const Center(
@@ -112,280 +126,78 @@ class _StatusScreenState extends State<StatusScreen> {
           ),
         ],
       ),
-      body: FutureBuilder(
-        future: Future.wait([
-          _isSuperAdmin,
-          _chapterStatus,
-        ]),
-        builder: (BuildContext context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.hasError) {
-              return const Center(child: Text('Error returning future'),);
+      body: RefreshIndicator(
+        onRefresh: _handleRefresh,
+        child: FutureBuilder(
+          future: Future.wait([
+            _isSuperAdmin,
+            db_chapters.ChapterStatus().getFinancialStatus(),
+          ]),
+          builder: (BuildContext context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return const Center(child: Text('Error with request.'),);
+              }
+              else if (snapshot.hasData) {
+
+                // check if user is superAdmin
+                final bool isAdmin = snapshot.data![0];
+
+                // check list count
+                final int count = snapshot.data![1].length;
+
+                // final String chapter = snapshot.data![1][0].id;
+                final bool approval = snapshot.data![1][0].data()['financialApproval'];
+                print('Founding approval: $approval');
+
+                // String data = snapshot.data![1][0].data()['chapter'];
+                // print('data: $data');
+
+                return ListView.builder(
+                  itemCount: count,
+                  itemBuilder: (context, index) {
+                    // compile chapter data
+                    Map<String, dynamic> chapterData = {};
+                    chapterData['chapter'] = snapshot.data![1][index].data()['chapter'];
+                    chapterData['char'] = snapshot.data![1][index].data()['char'];
+                    chapterData['financialApproval'] = snapshot.data![1][index].data()['financialApproval'];
+                    chapterData['id'] = snapshot.data![1][index].data()['id'];
+
+                    return ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                        child: Text('${chapterData['char']}', style: theme.TextThemes.headlineMed(context),), // store greek letter in db and pull into here?
+                      ),
+                      title: Row(
+                        children: <Widget>[
+                          Icon(
+                            chapterData['financialApproval'] ? Icons.verified : Icons.report_problem_sharp,
+                            color: chapterData['financialApproval'] ? theme.mintClr : theme.warningClr,
+                            size: iconSize
+                          ),
+                          Text(' ${chapterData['chapter']} - ${chapterData['financialApproval'] ? 'approved' : 'not approved'}', style: theme.TextThemes.headlineSmall16(context))
+                        ],
+                      ),
+                      trailing: const Icon(Icons.arrow_forward_ios),
+                      enabled: isAdmin,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute<Widget>(
+                            builder: (BuildContext context) {
+                              return FinancialStatusScreen(chapter: chapterData);
+                            }
+                          )
+                        );
+                      },
+                    );
+                  }
+                );
+              }
             }
-            else if (snapshot.hasData) {
-
-              // check if user is superAdmin
-              final bool isAdmin = snapshot.data![0];
-
-              // check list count
-              final int count = snapshot.data![1].length;
-
-              // final String chapter = snapshot.data![1][0].id;
-              // final bool approval = snapshot.data![1][0].data()['financial.approval'];
-
-              String data = snapshot.data![1][0].data()['chapter'];
-              print('data: $data');
-
-              return ListView.builder(
-                itemCount: count,
-                itemBuilder: (context, index) {
-                  // compile chapter data
-                  Map<String, dynamic> chapterData = {};
-                  chapterData['chapter'] = snapshot.data![1][index].data()['chapter'];
-                  chapterData['char'] = snapshot.data![1][index].data()['char'];
-                  chapterData['approval'] = snapshot.data![1][index].data()['financial.approval'];
-
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-                      child: Text('${chapterData['char']}'), // store greek letter in db and pull into here?
-                    ),
-                    title: Row(
-                      children: <Widget>[
-                        Icon(
-                          chapterData['approval'] ? Icons.verified : Icons.report_problem_sharp,
-                          color: chapterData['approval'] ? theme.mintClr : theme.warningClr,
-                          size: iconSize
-                        ),
-                        Text(' ${chapterData['chapter']} - ${chapterData['approval'] ? 'approved' : 'not approved'}')
-                      ],
-                    ),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    enabled: isAdmin,
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute<Widget>(
-                          builder: (BuildContext context) {
-                            return FinancialStatusScreen(chapter: chapterData['chapter']);
-                          }
-                        )
-                      );
-                    },
-                  );
-                }
-              );
-
-
-              // return ListView(
-              //   children: <Widget>[
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('F'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-              //           Text(' Founding: ${approval ? 'approved' : 'Not approved'}')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //       onTap: () {
-              //         // get chapter data
-              //         final String chapter = snapshot.data![1][0].data()['chapter'];
-              //         // go to route
-              //         Navigator.push(
-              //           context,
-              //           MaterialPageRoute<Widget>(
-              //             builder: (BuildContext context) {
-              //               return FinancialStatusScreen(chapter: chapter);
-              //             }
-              //           )
-              //         );
-              //       },
-              //       enabled: isAdmin, //
-              //     ),
-
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('A'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Alpha: Approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('B'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Beta: Approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('Γ'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Gamma: Approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('Δ'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Delta: Approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('E'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Epsilon: Approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('Z'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-              //           const Text(' Zeta: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('H'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.report_problem_sharp, color: theme.warningClr, size: iconSize,),
-              //           const Text(' Eta: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('Θ'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Theta: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('I'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Iota: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('K'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Kappa: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('Λ'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Lambda: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('M'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Mu: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //       onTap: () { print('tapped'); },
-              //       enabled: true,
-              //     ),
-              //     ListTile(
-              //       leading: CircleAvatar(
-              //         backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              //         child: const Text('N'),
-              //       ),
-              //       title: Row(
-              //         children: <Widget>[
-              //           Icon(Icons.verified, color: theme.mintClr, size: iconSize,),
-              //           const Text(' Nu: Not approved')
-              //         ],
-              //       ),
-              //       trailing: const Icon(Icons.arrow_forward_ios),
-              //       onTap: () { print('tapped'); },
-              //       enabled: false, // resolve to boolean to ennable/disable tap
-              //     ),
-              //   ],
-              // );
-            }
-          }
-          return const Center(child: Text('No data returned'),);
-        },
+            return const Center(child: Text('No data returned'),);
+          },
+        ),
       )
     );
   }
@@ -394,18 +206,35 @@ class _StatusScreenState extends State<StatusScreen> {
 
 class FinancialStatusScreen extends StatefulWidget {
   const FinancialStatusScreen({super.key, required this.chapter});
-  final String chapter;
+  final Map<String, dynamic> chapter;
   @override
   State<FinancialStatusScreen> createState() => _FinancialStatusScreenState();
 }
 
 class _FinancialStatusScreenState extends State<FinancialStatusScreen> {
+  bool enabledFinances = true;
+
+  @override
+  void initState() {
+    super.initState();
+    enabledFinances = widget.chapter['financialApproval'];
+  }
+
+  final WidgetStateProperty<Icon?> thumbIcon = WidgetStateProperty.resolveWith<Icon> (
+    (Set<WidgetState> states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Icon(Icons.check);
+      }
+      return const Icon(Icons.close);
+    }
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('${widget.chapter} Status', style: theme.TextThemes.headlineMed(context),),
+        title: Text('${widget.chapter['chapter']} Status', style: theme.TextThemes.headlineMed(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -416,6 +245,33 @@ class _FinancialStatusScreenState extends State<FinancialStatusScreen> {
           ),
         ],
       ),
+      body: Center(
+        child: ListView(
+          children: <Widget>[
+            ListTile(
+              title: const Text('Financial Approval:'),
+              trailing: Switch(
+                thumbIcon: thumbIcon,
+                value: enabledFinances,
+                activeColor: theme.mintClr,
+                onChanged: (bool val) {
+                  setState(() {
+                    enabledFinances = val;
+                  });
+
+                  // approve ore revoke financial approval
+                  if (val) {
+                    db_chapters.ChapterStatus().approveFinances(widget.chapter['id']);
+                  }
+                  else if (!val) {
+                    db_chapters.ChapterStatus().revokeFinances(widget.chapter['id']);
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+      )
     );
   }
 }
