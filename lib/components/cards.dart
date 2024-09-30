@@ -632,7 +632,7 @@ class ChapterFinancesCard extends StatelessWidget {
               style: TextButton.styleFrom(
                 textStyle: theme.TextThemes.headlineSmall20(context),
               ),
-              child: Text('Dismiss', style: TextStyle(color: theme.redClr),),
+              child: const Text('Dismiss', style: TextStyle(color: theme.redClr),),
               onPressed: (){
                 Navigator.of(context).pop();
               },
