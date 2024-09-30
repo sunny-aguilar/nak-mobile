@@ -620,6 +620,29 @@ class ChapterFinancesCard extends StatelessWidget {
   final Function screen;
   final String desc;
 
+  Future<void> _dialogBuilder(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('INFO'),
+          content: const Text('Modal content, use variable to hold text'),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: theme.TextThemes.headlineSmall20(context),
+              ),
+              child: Text('Dismiss', style: theme.TextThemes.headlineXSmall14(context),),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card.outlined(
@@ -664,6 +687,7 @@ class ChapterFinancesCard extends StatelessWidget {
                 GestureDetector(
                   onTap: () {
                     print('I was tapped1');
+                    _dialogBuilder(context);
                     // add a bottom modal card
                   },
                   child: const Icon(Icons.help_outline_outlined, size: 30,)
