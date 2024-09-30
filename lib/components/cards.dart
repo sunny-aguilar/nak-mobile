@@ -657,14 +657,18 @@ class ChapterFinancesCard extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 30,),
-            const Row(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                // const SizedBox(width: 20,),
-                // GestureDetector(
-                //   onTap: () => print('I was tapped1'),
-                //   child: const Icon(Icons.favorite_border_outlined, size: 30,)
-                // ),
-                // const SizedBox(width: 10,),
+                const SizedBox(width: 20,),
+                GestureDetector(
+                  onTap: () {
+                    print('I was tapped1');
+                    // add a bottom modal card
+                  },
+                  child: const Icon(Icons.info_outline, size: 30,)
+                ),
+                const SizedBox(width: 20,),
                 // const Text('Like'),
                 // const SizedBox(width: 50,),
                 // const Icon(Icons.mode_comment_outlined, size: 30,),
