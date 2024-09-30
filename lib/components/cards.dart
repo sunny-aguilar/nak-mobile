@@ -644,7 +644,7 @@ class ChapterFinancesCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(width: 20,),
-                Icon(cardIcon, size: 50, color: theme.redClr,),
+                Icon(cardIcon, size: 50, color: theme.redOfficial,),
                 const SizedBox(width: 50,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
