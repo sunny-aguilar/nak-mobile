@@ -690,7 +690,7 @@ class ChapterFinancesCard extends StatelessWidget {
                     _dialogBuilder(context);
                     // add a bottom modal card
                   },
-                  child: const Icon(Icons.help_outline_outlined, size: 30,)
+                  child: const Icon(Icons.help_outline_outlined, size: 30, color: theme.bronzeOfficial,)
                 ),
                 const SizedBox(width: 20,),
                 // const Text('Like'),
