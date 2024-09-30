@@ -625,14 +625,14 @@ class ChapterFinancesCard extends StatelessWidget {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('INFO'),
+          title: Text(title, style: theme.TextThemes.headlineSmall20(context),),
           content: const Text('Modal content, use variable to hold text'),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(
                 textStyle: theme.TextThemes.headlineSmall20(context),
               ),
-              child: Text('Dismiss', style: theme.TextThemes.headlineXSmall14(context),),
+              child: Text('Dismiss', style: TextStyle(color: theme.redClr),),
               onPressed: (){
                 Navigator.of(context).pop();
               },
