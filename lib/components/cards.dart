@@ -656,7 +656,7 @@ class ChapterFinancesCard extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 30,),
+            const SizedBox(height: 16,),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
@@ -666,7 +666,7 @@ class ChapterFinancesCard extends StatelessWidget {
                     print('I was tapped1');
                     // add a bottom modal card
                   },
-                  child: const Icon(Icons.info_outline, size: 30,)
+                  child: const Icon(Icons.help_outline_outlined, size: 30,)
                 ),
                 const SizedBox(width: 20,),
                 // const Text('Like'),
