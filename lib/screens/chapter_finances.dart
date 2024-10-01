@@ -150,10 +150,14 @@ class _StatusScreenState extends State<StatusScreen> {
                   itemBuilder: (context, index) {
                     // compile chapter data
                     Map<String, dynamic> chapterData = {};
-                    chapterData['chapter'] = snapshot.data![1][index].data()['chapter'];
-                    chapterData['char'] = snapshot.data![1][index].data()['char'];
-                    chapterData['financialApproval'] = snapshot.data![1][index].data()['financialApproval'];
-                    chapterData['id'] = snapshot.data![1][index].data()['id'];
+                    // chapterData['chapter'] = snapshot.data![1][index].data()['chapter'];
+                    // chapterData['char'] = snapshot.data![1][index].data()['char'];
+                    // chapterData['financialApproval'] = snapshot.data![1][index].data()['financialApproval'];
+                    // chapterData['id'] = snapshot.data![1][index].data()['id'];
+
+                    // Map<String, dynamic> chapterData = {};
+                    chapterData = snapshot.data![1][index].data();
+                    print('dat: ${chapterData}');
 
                     return ListTile(
                       leading: CircleAvatar(
