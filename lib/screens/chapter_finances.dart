@@ -103,7 +103,7 @@ class _StatusScreenState extends State<StatusScreen> {
       child: SizedBox(
         height: 75, width: 75,
         child: CircularProgressIndicator(
-          strokeWidth: 5, color: theme.redClr, backgroundColor: theme.lightGrey,
+          strokeWidth: 10, color: theme.redClr, backgroundColor: theme.lightGrey,
         ),
       ),
     );
@@ -157,7 +157,7 @@ class _StatusScreenState extends State<StatusScreen> {
 
                     // Map<String, dynamic> chapterData = {};
                     chapterData = snapshot.data![1][index].data();
-                    print('dat: ${chapterData}');
+                    // print('dat: ${chapterData}');
 
                     return ListTile(
                       leading: CircleAvatar(
@@ -191,7 +191,7 @@ class _StatusScreenState extends State<StatusScreen> {
                 );
               }
             }
-            return const Center(child: Text('No data returned'),);
+            return _circularProgress();
           },
         ),
       )
