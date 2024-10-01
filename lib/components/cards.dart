@@ -614,11 +614,13 @@ class NotificationCard extends StatelessWidget {
 
 
 class ChapterFinancesCard extends StatelessWidget {
-  const ChapterFinancesCard({super.key, required this.title, required this.cardIcon, required this.screen, required this.desc});
+  const ChapterFinancesCard({
+    super.key, required this.title, required this.cardIcon, required this.screen, required this.desc, required this.modalText});
   final String title;
   final IconData cardIcon;
   final Function screen;
   final String desc;
+  final String modalText;
 
   Future<void> _dialogBuilder(BuildContext context) {
     return showDialog<void>(
@@ -626,7 +628,7 @@ class ChapterFinancesCard extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(title, style: theme.TextThemes.headlineSmall20(context),),
-          content: const Text('Modal content, use variable to hold text'),
+          content: Text(modalText),
           actions: <Widget>[
             TextButton(
               style: TextButton.styleFrom(

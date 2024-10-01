@@ -35,51 +35,50 @@ class ChapterFinances extends StatelessWidget {
 }
 
 
-class FinanceBody extends StatefulWidget {
+class FinanceBody extends StatelessWidget {
   const FinanceBody({super.key});
+  final String cfs = 'Charters are renewed on a yearly basis and being in good financial standing is a requirement. This list provides the current financial standing of each chapter.';
 
-  @override
-  State<FinanceBody> createState() => _FinanceBodyState();
-}
-
-class _FinanceBodyState extends State<FinanceBody> {
-  Future<void> _handleRefresh() async {
-    setState((){});
-  }
+  final String cdt = '';
+  final String cdr = '';
+  final String cdg = '';
+  final String fg = '';
 
   @override
   Widget build(BuildContext context) {
-    return RefreshIndicator(
-      onRefresh: _handleRefresh,
-      child: ListView(
-        children: <Widget>[
-          cards.ChapterFinancesCard(
-            title: 'Chapter Financial Status',
-            cardIcon: Icons.monitor_heart_outlined,
-            screen: ()=> const StatusScreen(),
-            desc: 'Charter renewal progress'),
-          cards.ChapterFinancesCard(
-            title: 'Chapter Dues Tracker',
-            cardIcon: Icons.trending_up,
-            screen: ()=> const TrackerScreen(),
-            desc: 'View charges and payments'),
-          cards.ChapterFinancesCard(
-            title: 'Chapter Dues Report',
-            cardIcon: Icons.leaderboard,
-            screen: ()=> const DuesReportScreen(),
-            desc: 'View chapter dues monthly statement'),
-          cards.ChapterFinancesCard(
-            title: 'Chapter Dues Guide',
-            cardIcon: Icons.route_outlined,
-            screen: ()=> const DuesGuideScreen(),
-            desc: 'Dues guidance for the year'),
-          cards.ChapterFinancesCard(
-            title: 'Fundraising Guide',
-            cardIcon: FontAwesomeIcons.handHoldingDollar,
-            screen: ()=> const FundraisingGuideScreen(),
-            desc: 'A guide for chapter fundraising'),
-        ],
-      ),
+    return ListView(
+      children: <Widget>[
+        cards.ChapterFinancesCard(
+          title: 'Chapter Financial Status',
+          cardIcon: Icons.monitor_heart_outlined,
+          screen: ()=> const StatusScreen(),
+          desc: 'Charter renewal progress',
+          modalText: cfs,),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Tracker',
+          cardIcon: Icons.trending_up,
+          screen: ()=> const TrackerScreen(),
+          desc: 'View charges and payments',
+          modalText: cfs,),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Report',
+          cardIcon: Icons.leaderboard,
+          screen: ()=> const DuesReportScreen(),
+          desc: 'View chapter dues monthly statement',
+          modalText: cfs,),
+        cards.ChapterFinancesCard(
+          title: 'Chapter Dues Guide',
+          cardIcon: Icons.route_outlined,
+          screen: ()=> const DuesGuideScreen(),
+          desc: 'Dues guidance for the year',
+          modalText: cfs,),
+        cards.ChapterFinancesCard(
+          title: 'Fundraising Guide',
+          cardIcon: FontAwesomeIcons.handHoldingDollar,
+          screen: ()=> const FundraisingGuideScreen(),
+          desc: 'A guide for chapter fundraising',
+          modalText: cfs,),
+      ],
     );
   }
 }
