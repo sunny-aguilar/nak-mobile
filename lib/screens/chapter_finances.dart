@@ -37,12 +37,12 @@ class ChapterFinances extends StatelessWidget {
 
 class FinanceBody extends StatelessWidget {
   const FinanceBody({super.key});
-  final String cfs = 'Charters are renewed on a yearly basis and being in good financial standing is a requirement. This list provides the current financial standing of each chapter.';
 
-  final String cdt = '';
-  final String cdr = '';
-  final String cdg = '';
-  final String fg = '';
+  final String cfs = 'Charters are renewed on a yearly basis and being in good financial standing is a requirement. This list provides the current financial standing of each chapter.';
+  final String cdt = 'The tracker shows the dues assessed each year and the payments received applied towards those dues. You must have an @nakinc.org email address to access the document.';
+  final String cdr = 'The chapter dues report comes out monthly to reflect the total dues owed by each chapter.';
+  final String cdg = 'The chapter dues guide provide yearly guidance on the dues assessed by Nu Alpha Kappa including payment plans available and due dates.';
+  final String fg = 'This fundraising guide is meant to provide chapters a background on fundraising including ideas on the types of fundraisers.';
 
   @override
   Widget build(BuildContext context) {
@@ -59,25 +59,25 @@ class FinanceBody extends StatelessWidget {
           cardIcon: Icons.trending_up,
           screen: ()=> const TrackerScreen(),
           desc: 'View charges and payments',
-          modalText: cfs,),
+          modalText: cdt,),
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Report',
           cardIcon: Icons.leaderboard,
           screen: ()=> const DuesReportScreen(),
           desc: 'View chapter dues monthly statement',
-          modalText: cfs,),
+          modalText: cdr,),
         cards.ChapterFinancesCard(
           title: 'Chapter Dues Guide',
           cardIcon: Icons.route_outlined,
           screen: ()=> const DuesGuideScreen(),
           desc: 'Dues guidance for the year',
-          modalText: cfs,),
+          modalText: cdg,),
         cards.ChapterFinancesCard(
           title: 'Fundraising Guide',
           cardIcon: FontAwesomeIcons.handHoldingDollar,
           screen: ()=> const FundraisingGuideScreen(),
           desc: 'A guide for chapter fundraising',
-          modalText: cfs,),
+          modalText: fg,),
       ],
     );
   }
