@@ -200,7 +200,7 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Image.network(widget.selfie.length > 0 ? widget.selfie : 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/3-monkey-in-a-suit-wearing-glasses-marek-sroka.jpg'),
+              Image.network(widget.selfie.isNotEmpty ? widget.selfie : 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fmonk.jpg?alt=media&token=945b8517-1771-4ea6-81c2-df76dd1beed2'),
               Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
               ListTile(
                 leading: const Icon(Icons.account_circle_outlined),
