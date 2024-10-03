@@ -85,6 +85,7 @@ class _UserlistState extends State<UserlistBody> {
                       chatStatus: userData['chatRights'],
                       activeStatus: userData['isActive'],
                       username: '${userData['firstName']} ${userData['lastName']}',
+                      selfie: data[index]['selfie'],
                     );
                   }
                 ),
@@ -140,7 +141,8 @@ class UserSettingsScreen extends StatefulWidget {
     required this.blogStatus,
     required this.chatStatus,
     required this.activeStatus,
-    required this.username
+    required this.username,
+    required this.selfie,
   });
 
   final String uid;
@@ -148,6 +150,7 @@ class UserSettingsScreen extends StatefulWidget {
   final bool chatStatus;
   final bool activeStatus;
   final String username;
+  final String selfie;
 
   @override
   State<UserSettingsScreen> createState() => _UserSettingsScreenState();
@@ -191,80 +194,83 @@ class _UserSettingsScreenState extends State<UserSettingsScreen> {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
-            ListTile(
-              leading: const Icon(Icons.account_circle_outlined),
-              title: Text(widget.username),
-            ),
-            ListTile(
-              title: const Text('Active Bro'),
-              trailing: Switch(
-                thumbIcon: thumbIcon,
-                value: enableActive,
-                activeColor: theme.mintClr,
-                onChanged: (bool val) {
-                  setState(() {
-                    enableActive = val;
-
-                    // add or remove active status
-                    if (val) {
-                      db_users.ActiveRights(uid: widget.uid).addRights();
-                    }
-                    else if (!val) {
-                      db_users.ActiveRights(uid: widget.uid).removeRights();
-                    }
-                  });
-                },
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 30.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Image.network(widget.selfie.length > 0 ? widget.selfie : 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/3-monkey-in-a-suit-wearing-glasses-marek-sroka.jpg'),
+              Text('User Settings', textAlign: TextAlign.center, style: theme.TextThemes.drawerMenuNT(context),),
+              ListTile(
+                leading: const Icon(Icons.account_circle_outlined),
+                title: Text(widget.username),
               ),
-            ),
-            ListTile(
-              title: const Text('Give blog rights:'),
-              trailing: Switch(
-                thumbIcon: thumbIcon,
-                value: enableBlog,
-                activeColor: theme.mintClr,
-                onChanged: (bool val) {
-                  setState(() {
-                    enableBlog = val;
+              ListTile(
+                title: const Text('Active Bro'),
+                trailing: Switch(
+                  thumbIcon: thumbIcon,
+                  value: enableActive,
+                  activeColor: theme.mintClr,
+                  onChanged: (bool val) {
+                    setState(() {
+                      enableActive = val;
 
-                    // add or remove NEB rights
-                    if (val) {
-                      db_users.BlogRights(uid: widget.uid).addRights();
-                    }
-                    else if (!val) {
-                      db_users.BlogRights(uid: widget.uid).removeRights();
-                    }
-                  });
-                }
+                      // add or remove active status
+                      if (val) {
+                        db_users.ActiveRights(uid: widget.uid).addRights();
+                      }
+                      else if (!val) {
+                        db_users.ActiveRights(uid: widget.uid).removeRights();
+                      }
+                    });
+                  },
+                ),
               ),
-            ),
-            ListTile(
-              title: const Text('Give chat rights:'),
-              trailing: Switch(
-                thumbIcon: thumbIcon,
-                value: enableChat,
-                activeColor: theme.mintClr,
-                onChanged: (bool val) {
-                  setState(() {
-                    enableChat = val;
+              ListTile(
+                title: const Text('Give blog rights:'),
+                trailing: Switch(
+                  thumbIcon: thumbIcon,
+                  value: enableBlog,
+                  activeColor: theme.mintClr,
+                  onChanged: (bool val) {
+                    setState(() {
+                      enableBlog = val;
 
-                    // add or remove NEB rights
-                    if (val) {
-                      db_users.ChatRights(uid: widget.uid).addRights();
-                    }
-                    else if (!val) {
-                      db_users.ChatRights(uid: widget.uid).removeRights();
-                    }
-                  });
-                }
+                      // add or remove NEB rights
+                      if (val) {
+                        db_users.BlogRights(uid: widget.uid).addRights();
+                      }
+                      else if (!val) {
+                        db_users.BlogRights(uid: widget.uid).removeRights();
+                      }
+                    });
+                  }
+                ),
               ),
-            ),
-          ],
+              ListTile(
+                title: const Text('Give chat rights:'),
+                trailing: Switch(
+                  thumbIcon: thumbIcon,
+                  value: enableChat,
+                  activeColor: theme.mintClr,
+                  onChanged: (bool val) {
+                    setState(() {
+                      enableChat = val;
+
+                      // add or remove NEB rights
+                      if (val) {
+                        db_users.ChatRights(uid: widget.uid).addRights();
+                      }
+                      else if (!val) {
+                        db_users.ChatRights(uid: widget.uid).removeRights();
+                      }
+                    });
+                  }
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
