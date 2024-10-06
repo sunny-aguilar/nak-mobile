@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
@@ -37,6 +38,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 // style: Theme.of(context).textTheme.titleLarge!
               ),
               onTap: () => Navigator.pushNamed(context, '/chapters'),
+            ),
+            ListTile(
+              leading: const Icon(CupertinoIcons.person_alt),
+              title: Text('Brothers', style: theme.TextThemes.drawerMenuNT(context)),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money,),
