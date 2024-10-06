@@ -38,7 +38,7 @@ class BroScreen extends StatelessWidget {
                 child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
               ),
             ),
-            const MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ,)
+            MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),)
           ],
         ),
       ),
