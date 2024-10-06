@@ -42,6 +42,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(CupertinoIcons.person_alt),
               title: Text('Brothers', style: theme.TextThemes.drawerMenuNT(context)),
+              onTap: () => Navigator.pushNamed(context, '/bros'),
             ),
             ListTile(
               leading: const Icon(Icons.attach_money,),
