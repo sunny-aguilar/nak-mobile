@@ -13,7 +13,7 @@ class BroScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('USER PERMISSIONS', style: theme.TextThemes.headlineMedLarge(context),),
+        title: Text('BROTHERS', style: theme.TextThemes.headlineMedLarge(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -21,6 +21,14 @@ class BroScreen extends StatelessWidget {
             onPressed: () => service.ThemeService().switchTheme(),
           ),
         ],
+      ),
+      drawer: const Drawer(
+        backgroundColor: theme.darkGreyClr,
+        child: Column(
+          children: <Widget>[
+            Icon(Icons.person, color: theme.primaryClr, size: 64)
+          ],
+        ),
       ),
       body: const Placeholder(),
     );
