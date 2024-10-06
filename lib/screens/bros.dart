@@ -22,11 +22,22 @@ class BroScreen extends StatelessWidget {
           ),
         ],
       ),
-      drawer: const Drawer(
-        backgroundColor: theme.darkGreyClr,
+      drawer: Drawer(
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: Column(
           children: <Widget>[
-            Icon(Icons.person, color: theme.primaryClr, size: 64)
+            Theme(
+              // wrapped DrawerHeder to remove bottom border line
+              data: Theme.of(context).copyWith(
+                dividerTheme: const DividerThemeData(color: Colors.transparent),
+              ),
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                ),
+                child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
+              ),
+            ),
           ],
         ),
       ),
