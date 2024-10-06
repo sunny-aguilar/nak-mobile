@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 class BroScreen extends StatelessWidget {
   const BroScreen({super.key});
 
+  // navigate to profile page
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +45,10 @@ class BroScreen extends StatelessWidget {
             MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
 
             // user profile
-            MenuListItem(icon: Icons.home, text: 'P R O F I L E', onTap: ()=> Navigator.pop(context),),
+            MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> Navigator.pop(context),),
+
+            // back to NAK App
+            MenuListItem(icon: Icons.arrow_back_ios_new, text: 'N A K   A P P', onTap: ()=> Navigator.pop(context),),
           ],
         ),
       ),
