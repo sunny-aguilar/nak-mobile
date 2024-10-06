@@ -8,6 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nak_app/splash_screen.dart';
 import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/chapters_screen.dart';
+import 'package:nak_app/screens/bros.dart';
 import 'package:nak_app/screens/intro_screen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/chapter_finances.dart';
@@ -53,6 +54,7 @@ class App extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/intro': (context) => const IntroScreen(),
         '/chapters': (context) => const ChapterScreen(),
+        '/bros': (context) => const BroScreen(),
         '/dues': (context) => const DuesScreen(),
         '/finances': (context) => const ChapterFinances(),
         '/board': (context) => const NationalBoard(),

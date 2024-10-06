@@ -22,6 +22,7 @@ class BroScreen extends StatelessWidget {
           ),
         ],
       ),
+      body: const Placeholder(),
     );
   }
 }
