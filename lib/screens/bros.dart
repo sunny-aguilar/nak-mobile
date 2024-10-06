@@ -38,14 +38,31 @@ class BroScreen extends StatelessWidget {
                 child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
               ),
             ),
-            ListTile(
-              leading: const Icon(Icons.holiday_village),
-              title: Text('Profiles'),
-            ),
+            const MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ,)
           ],
         ),
       ),
       body: const Placeholder(),
+    );
+  }
+}
+
+
+class MenuListItem extends StatelessWidget {
+  const MenuListItem({super.key, required this.icon, required this.text, required this.onTap});
+  final IconData icon;
+  final String text;
+  final void Function()? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0),
+      child: ListTile(
+        leading: Icon(icon),
+        title: Text(text),
+        onTap: onTap,
+      ),
     );
   }
 }
