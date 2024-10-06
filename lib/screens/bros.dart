@@ -38,6 +38,10 @@ class BroScreen extends StatelessWidget {
                 child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
               ),
             ),
+            ListTile(
+              leading: const Icon(Icons.holiday_village),
+              title: Text('Profiles'),
+            ),
           ],
         ),
       ),
