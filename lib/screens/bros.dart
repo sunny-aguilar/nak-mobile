@@ -43,7 +43,7 @@ class BroScreen extends StatelessWidget {
             MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
 
             // user profile
-            MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
+            MenuListItem(icon: Icons.home, text: 'P R O F I L E', onTap: ()=> Navigator.pop(context),),
           ],
         ),
       ),
