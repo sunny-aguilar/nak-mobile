@@ -1,19 +1,21 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/screens/social/profile.dart' as profile;
 
 
-import 'package:flutter/material.dart';
+
 
 class BroScreen extends StatelessWidget {
   const BroScreen({super.key});
 
   // navigate to profile page
-  void gotToProfilePage(context) {
+  void goToProfilePage(context) {
     // pop menu drawer
     Navigator.pop(context);
     // go to profile page
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> const profile.ProfilePageScreen()));
   }
 
   @override
@@ -51,10 +53,10 @@ class BroScreen extends StatelessWidget {
             MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
 
             // user profile
-            MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> Navigator.pop(context),),
+            MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> goToProfilePage(context),),
 
             // back to NAK App
-            MenuListItem(icon: Icons.arrow_back_ios_new, text: 'N A K   A P P', onTap: ()=> Navigator.pop(context),),
+            MenuListItem(icon: Icons.arrow_back_ios_new, text: 'N A K   A P P', onTap: ()=> Navigator.pushNamed(context, '/home'),),
           ],
         ),
       ),

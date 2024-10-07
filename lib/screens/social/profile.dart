@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
+
+
+
+
+class ProfilePageScreen extends StatelessWidget {
+  const ProfilePageScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('My Profile', style: theme.TextThemes.headlineMedLarge(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () => service.ThemeService().switchTheme(),
+          ),
+        ],
+      ),
+      body: const Placeholder(),
+    );
+  }
+}
