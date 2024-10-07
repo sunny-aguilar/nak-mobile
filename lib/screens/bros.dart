@@ -9,6 +9,12 @@ class BroScreen extends StatelessWidget {
   const BroScreen({super.key});
 
   // navigate to profile page
+  void gotToProfilePage(context) {
+    // pop menu drawer
+    Navigator.pop(context);
+    // go to profile page
+    Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePage()));
+  }
 
   @override
   Widget build(BuildContext context) {
