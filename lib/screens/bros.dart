@@ -23,7 +23,7 @@ class BroScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('BROTHERS', style: theme.TextThemes.headlineMedLarge(context),),
+        title: Text('NAK SPACE', style: theme.TextThemes.headlineMedLarge(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -35,28 +35,33 @@ class BroScreen extends StatelessWidget {
       drawer: Drawer(
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: Column(
-          children: <Widget>[
-            Theme(
-              // wrapped DrawerHeder to remove bottom border line
-              data: Theme.of(context).copyWith(
-                dividerTheme: const DividerThemeData(color: Colors.transparent),
-              ),
-              child: DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              children: <Widget>[
+                Theme(
+                  // wrapped DrawerHeder to remove bottom border line
+                  data: Theme.of(context).copyWith(
+                    dividerTheme: const DividerThemeData(color: Colors.transparent),
+                  ),
+                  child: DrawerHeader(
+                    decoration: BoxDecoration(
+                      color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                    ),
+                    child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
+                  ),
                 ),
-                child: Icon(Icons.person, color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr, size: 64),
-              ),
+                // home page
+                MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
+                // user profile
+                MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> goToProfilePage(context),),
+              ],
             ),
-
-            // home page
-            MenuListItem(icon: Icons.home, text: 'H O M E', onTap: ()=> Navigator.pop(context),),
-
-            // user profile
-            MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> goToProfilePage(context),),
-
             // back to NAK App
-            MenuListItem(icon: Icons.arrow_back_ios_new, text: 'N A K   A P P', onTap: ()=> Navigator.pushNamed(context, '/home'),),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 60.0),
+              child: MenuListItem(icon: Icons.logout_outlined, text: 'N A K   A P P', onTap: ()=> Navigator.pushNamed(context, '/home'),),
+            ),
           ],
         ),
       ),
