@@ -241,6 +241,24 @@ class CustomTheme {
 /// Create theme data variables for text
 class TextThemes{
   //////////////////////////////////////////////////////////////////
+  // Font Face Styles
+  static TextStyle fontCollege(BuildContext context) { return const TextStyle(fontFamily: 'College',); }
+  static TextStyle fontDiatype(BuildContext context) { return const TextStyle(fontFamily: 'Diatype',); }
+  static TextStyle fontClarendon(BuildContext context) { return const TextStyle(fontFamily: 'Clarendon',); }
+  static TextStyle fontOswald(BuildContext context) { return const TextStyle(fontFamily: 'Oswald',); }
+  static TextStyle fontLato(BuildContext context) { return const TextStyle(fontFamily: 'Lato',); }
+  static TextStyle fontLuloClean(BuildContext context) { return const TextStyle(fontFamily: 'LuloClean',); }
+  static TextStyle fontGeorgia(BuildContext context) { return const TextStyle(fontFamily: 'Georgia',); }
+  static TextStyle fontBebas(BuildContext context) { return const TextStyle(fontFamily: 'Bebas',); }
+  // Size Styles
+  static TextStyle size8(BuildContext context) { return const TextStyle(fontSize: 8,); }
+  static TextStyle size10(BuildContext context) { return const TextStyle(fontSize: 10,); }
+  static TextStyle size12(BuildContext context) { return const TextStyle(fontSize: 12,); }
+  static TextStyle size14(BuildContext context) { return const TextStyle(fontSize: 14,); }
+  static TextStyle size16(BuildContext context) { return const TextStyle(fontSize: 16,); }
+
+
+  //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
   static TextStyle drawerTitle(BuildContext context) {
     return const TextStyle(
@@ -542,6 +560,12 @@ class TextThemes{
     );
   }
 
+  static TextStyle bodyMed10(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 10,
+    );
+  }
+
   //////////////////////////////////////////////////////////////////
   // Version Screen Fonts
   static TextStyle versionYear(BuildContext contex) {
@@ -597,7 +621,7 @@ class TextThemes{
   }
 
   //////////////////////////////////////////////////////////////////
-  // Chay Screen Fonts
+  // Chat Screen Fonts
   static TextStyle chatWarning(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
