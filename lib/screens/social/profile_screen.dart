@@ -23,7 +23,18 @@ class ProfilePageScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Placeholder(),
+      body: ListView(
+        children: <Widget>[
+          const SizedBox(height: 50,),
+          Icon(Icons.person, size: 72,),
+          Text(
+            'Current User',
+            textAlign: TextAlign.center,
+            style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
+          ),
+          const SizedBox(height: 50,),
+        ],
+      ),
     );
   }
 }
