@@ -62,7 +62,7 @@ class InfoTextBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(sectionName,),
+              Text(sectionName, style: theme.TextThemes.fontCollege(context).copyWith(fontSize: 14, color: theme.shawdowClr),),
               IconButton(onPressed: (){}, icon: const Icon(Icons.settings, color: theme.shawdowClr,))
             ],
           ),
