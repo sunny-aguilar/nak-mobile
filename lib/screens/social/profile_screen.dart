@@ -39,3 +39,15 @@ class ProfilePageScreen extends StatelessWidget {
     );
   }
 }
+
+
+class InfoTextBox extends StatelessWidget {
+  const InfoTextBox({super.key, required this.text, required this.sectionName});
+  final String text;
+  final String sectionName;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
