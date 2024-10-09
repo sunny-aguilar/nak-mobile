@@ -265,6 +265,15 @@ class TextThemes{
   static TextStyle size34(BuildContext context) { return const TextStyle(fontSize: 34,); }
   static TextStyle size36(BuildContext context) { return const TextStyle(fontSize: 36,); }
   static TextStyle size48(BuildContext context) { return const TextStyle(fontSize: 48,); }
+  // Face & Size Styles
+  static TextStyle fontCollegeNN(BuildContext context, double size) { return TextStyle(fontFamily: 'College', fontSize: size); }
+  static TextStyle fontDiatypeNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Diatype', fontSize: size); }
+  static TextStyle fontClarendonNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Clarendon', fontSize: size); }
+  static TextStyle fontOswaldeNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Oswald', fontSize: size); }
+  static TextStyle fontLatoNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Lato', fontSize: size); }
+  static TextStyle fontLuloCleanNN(BuildContext context, double size) { return TextStyle(fontFamily: 'LuloClean', fontSize: size); }
+  static TextStyle fontGeorgiaNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Georgia', fontSize: size); }
+  static TextStyle fontBebasNN(BuildContext context, double size) { return TextStyle(fontFamily: 'Bebas', fontSize: size); }
 
   //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
