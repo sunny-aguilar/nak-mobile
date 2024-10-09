@@ -51,7 +51,7 @@ class InfoTextBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
-      padding: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
+      padding: const EdgeInsets.only(left: 15, right: 5, bottom: 15),
       decoration: BoxDecoration(
         color: Get.isDarkMode ? theme.graphiteClr : theme.lightGrey,
         borderRadius: BorderRadius.circular(8.0),
