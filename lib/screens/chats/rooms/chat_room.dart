@@ -355,7 +355,7 @@ class ChatBubble extends StatelessWidget {
                 ? isCurrentUser
                 ? theme.redClr : theme.charcoalClr
                 : isCurrentUser
-                ? theme.redClr : theme.chatGregyClr,
+                ? theme.redClr : theme.chatGreyClr,
             ),
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 10.0),

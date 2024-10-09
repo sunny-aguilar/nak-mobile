@@ -34,7 +34,7 @@ class ProfilePageScreen extends StatelessWidget {
             style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
           ),
           const SizedBox(height: 50,),
-          InfoTextBox(text: 'Sandro Aguilar', sectionName: 'Name'),
+          const InfoTextBox(text: 'Sandro Aguilar', sectionName: 'Name'),
         ],
       ),
     );
@@ -53,7 +53,7 @@ class InfoTextBox extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       padding: const EdgeInsets.only(left: 15, right: 5, bottom: 15),
       decoration: BoxDecoration(
-        color: Get.isDarkMode ? theme.graphiteClr : theme.lightGrey,
+        color: Get.isDarkMode ? theme.graphiteClr : theme.chatGreyClr,
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: Column(
@@ -62,7 +62,7 @@ class InfoTextBox extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(sectionName),
+              Text(sectionName,),
               IconButton(onPressed: (){}, icon: const Icon(Icons.settings, color: theme.shawdowClr,))
             ],
           ),
