@@ -63,7 +63,7 @@ class InfoTextBox extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(sectionName),
-              IconButton(onPressed: (){}, icon: const Icon(Icons.settings))
+              IconButton(onPressed: (){}, icon: const Icon(Icons.settings, color: theme.shawdowClr,))
             ],
           ),
           Text(text),
