@@ -26,7 +26,8 @@ class ProfilePageScreen extends StatelessWidget {
       body: ListView(
         children: <Widget>[
           const SizedBox(height: 50,),
-          Icon(Icons.person, size: 72,),
+          const Icon(Icons.person, size: 72,),
+          const SizedBox(height: 30,),
           Text(
             'Current User',
             textAlign: TextAlign.center,
