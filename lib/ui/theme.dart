@@ -256,38 +256,29 @@ class TextThemes{
   static TextStyle size12(BuildContext context) { return const TextStyle(fontSize: 12,); }
   static TextStyle size14(BuildContext context) { return const TextStyle(fontSize: 14,); }
   static TextStyle size16(BuildContext context) { return const TextStyle(fontSize: 16,); }
-
+  static TextStyle size18(BuildContext context) { return const TextStyle(fontSize: 18,); }
+  static TextStyle size20(BuildContext context) { return const TextStyle(fontSize: 20,); }
+  static TextStyle size22(BuildContext context) { return const TextStyle(fontSize: 22,); }
+  static TextStyle size24(BuildContext context) { return const TextStyle(fontSize: 24,); }
+  static TextStyle size26(BuildContext context) { return const TextStyle(fontSize: 26,); }
+  static TextStyle size28(BuildContext context) { return const TextStyle(fontSize: 28,); }
+  static TextStyle size34(BuildContext context) { return const TextStyle(fontSize: 34,); }
+  static TextStyle size36(BuildContext context) { return const TextStyle(fontSize: 36,); }
+  static TextStyle size48(BuildContext context) { return const TextStyle(fontSize: 48,); }
 
   //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
   static TextStyle drawerTitle(BuildContext context) {
-    return const TextStyle(
-      color: whiteClr,
-      fontFamily: 'College',
-      fontSize: 26,
-    );
+    return const TextStyle(color: whiteClr, fontFamily: 'College', fontSize: 26,);
   }
-
   static TextStyle drawerMenu(BuildContext context) {
-    return const TextStyle(
-      color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 20,
-    );
+    return const TextStyle(color: darkGreyClr, fontFamily: 'College', fontSize: 20,);
   }
-
   static TextStyle drawerMenuNT(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 20,
-    );
+    return const TextStyle( fontFamily: 'College', fontSize: 20,);
   }
-
   static TextStyle drawerSignInTxt(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontSize: 14,
-    );
+    return const TextStyle(fontFamily: 'Lato', fontSize: 14,);
   }
 
   //////////////////////////////////////////////////////////////////
@@ -303,105 +294,40 @@ class TextThemes{
   //////////////////////////////////////////////////////////////////
   // Headline Styles
   static TextStyle headlineLarge(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 38,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 38,); }
   static TextStyle headlineLargeMed(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 34,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 34,); }
   static TextStyle headlineLarge28(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 28,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 28,); }
   static TextStyle headlineMedLarge(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 26,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 26,); }
   static TextStyle headlineMed(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 22,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 22,); }
   static TextStyle headlineSmall20(BuildContext context) {
-    return const TextStyle(
-      // color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 20,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 20,); }
   static TextStyle headlineSmall(BuildContext context) {
-    return const TextStyle(
-      // color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 18,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 18,); }
   static TextStyle headlineSmall16(BuildContext context) {
-    return const TextStyle(
-      // color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 16,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 16,); }
   static TextStyle headlineXSmall14(BuildContext context) {
-    return const TextStyle(
-      // color: darkGreyClr,
-      fontFamily: 'College',
-      fontSize: 14,
-    );
-  }
-
+    return const TextStyle(fontFamily: 'College', fontSize: 14,); }
   static TextStyle headline(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontSize: 14,
-    );
-  }
+    return const TextStyle(fontFamily: 'Lato', fontSize: 14,); }
 
   //////////////////////////////////////////////////////////////////
   // Button Styles
   static TextStyle button1(BuildContext context) {
-    return const TextStyle(
-      // fontFamily: 'Lato',
-      fontSize: 20,
-    );
+    return const TextStyle(fontSize: 20,);
   }
-
   static TextStyle button2(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontSize: 16,
-    );
+    return const TextStyle(fontFamily: 'Lato', fontSize: 16,);
   }
 
   //////////////////////////////////////////////////////////////////
   // Modal Styles
   static TextStyle modalText(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 22,
-      // color: darkGreyClr,
-    );
+    return const TextStyle(fontFamily: 'College', fontSize: 22,);
   }
-
   static TextStyle modalBody(BuildContext context) {
     return const TextStyle(
       fontFamily: 'College',
@@ -413,69 +339,39 @@ class TextThemes{
   //////////////////////////////////////////////////////////////////
   // Resource Card Styles
   static TextStyle resourceTitle(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Clarendon',
-      fontSize: 36,
-      // color: darkGreyClr,
-    );
+    return const TextStyle(fontFamily: 'Clarendon', fontSize: 36,);
   }
 
   static TextStyle resourceHeadline(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'LuloClean',
-      fontSize: 10,
-      // color: darkGreyClr,
-    );
+    return const TextStyle(fontFamily: 'LuloClean', fontSize: 10,);
   }
 
   static TextStyle resourceBody(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Georgia',
-      fontSize: 14,
-      // color: darkGreyClr,
-    );
+    return const TextStyle(fontFamily: 'Georgia', fontSize: 14,);
   }
 
   static TextStyle idTitle(BuildContext context) {
-    return TextStyle(
-      fontFamily: 'College',
-      fontSize: 20,
-      color: Get.isDarkMode ? primaryClr : primaryClr,
-    );
+    return TextStyle(fontFamily: 'College', fontSize: 20, color: Get.isDarkMode ? primaryClr : primaryClr,);
   }
 
   static TextStyle idUserName(BuildContext context) {
-    return TextStyle(
-      fontFamily: 'Oswald',
-      fontWeight: FontWeight.bold,
-      fontSize: 20,
-      color: Get.isDarkMode ? primaryClr : primaryClr,
-    );
+    return TextStyle(fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 20, color: Get.isDarkMode ? primaryClr : primaryClr,);
   }
 
   static TextStyle idLabel(BuildContext context) {
-    return TextStyle(
-      fontFamily: 'Oswald',
-      // fontWeight: FontWeight.bold,
-      fontSize: 15,
-      color: Get.isDarkMode ? primaryClr : primaryClr,
-    );
+    return TextStyle(fontFamily: 'Oswald', fontSize: 15, color: Get.isDarkMode ? primaryClr : primaryClr,);
   }
 
   static TextStyle idBody(BuildContext context) {
     return TextStyle(
-      fontFamily: 'Oswald',
-      fontWeight: FontWeight.bold,
-      fontSize: 14,
+      fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 14,
       color: Get.isDarkMode ? primaryClr : primaryClr,
     );
   }
 
   static TextStyle idImageTitle(BuildContext context) {
     return TextStyle(
-      fontFamily: 'Oswald',
-      fontWeight: FontWeight.bold,
-      fontSize: 22,
+      fontFamily: 'Oswald', fontWeight: FontWeight.bold, fontSize: 22,
       color: Get.isDarkMode ? primaryClr : darkGreyClr,
     );
   }
@@ -483,88 +379,30 @@ class TextThemes{
   //////////////////////////////////////////////////////////////////
   // Login Styles
   static TextStyle loginTitle(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'College',
-      fontSize: 44,
-    );
+    return const TextStyle(fontFamily: 'College', fontSize: 44,);
   }
-
   static TextStyle loginHeadline(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Bebas',
-      fontSize: 22,
-    );
+    return const TextStyle(fontFamily: 'Bebas', fontSize: 22,);
   }
-
   static TextStyle loginBody(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-    );
+    return const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.bold, fontSize: 18,);
   }
-
   static TextStyle loginDescription(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.bold,
-      fontSize: 15,
-    );
+    return const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.bold, fontSize: 15,);
   }
-
   static TextStyle linkBody(BuildContext context) {
-    return const TextStyle(
-      fontFamily: 'Lato',
-      fontWeight: FontWeight.bold,
-      fontSize: 18,
-      color: azureClr,
-    );
+    return const TextStyle(fontFamily: 'Lato', fontWeight: FontWeight.bold, fontSize: 18, color: azureClr,);
   }
 
   //////////////////////////////////////////////////////////////////
   // Paragraph Fonts
-  static TextStyle bodyLarge24(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 24,
-    );
-  }
-
-  static TextStyle bodyLargeBold(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 18,
-      fontWeight: FontWeight.bold
-    );
-  }
-
-  static TextStyle bodyLarge(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 18,
-    );
-  }
-
-  static TextStyle bodyMedLarge(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 15,
-    );
-  }
-
-  static TextStyle bodyMed14(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 14,
-    );
-  }
-
-  static TextStyle bodyMed12(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 12,
-    );
-  }
-
-  static TextStyle bodyMed10(BuildContext contex) {
-    return const TextStyle(
-      fontSize: 10,
-    );
-  }
+  static TextStyle bodyLarge24(BuildContext contex) { return const TextStyle(fontSize: 24,); }
+  static TextStyle bodyLargeBold(BuildContext contex) { return const TextStyle(fontSize: 18, fontWeight: FontWeight.bold); }
+  static TextStyle bodyLarge(BuildContext contex) { return const TextStyle(fontSize: 18,); }
+  static TextStyle bodyMedLarge(BuildContext contex) { return const TextStyle(fontSize: 15,); }
+  static TextStyle bodyMed14(BuildContext contex) { return const TextStyle(fontSize: 14,); }
+  static TextStyle bodyMed12(BuildContext contex) { return const TextStyle(fontSize: 12,); }
+  static TextStyle bodyMed10(BuildContext contex) { return const TextStyle(fontSize: 10,); }
 
   //////////////////////////////////////////////////////////////////
   // Version Screen Fonts
