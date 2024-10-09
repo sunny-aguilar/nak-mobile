@@ -503,6 +503,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Paragraph Fonts
   static TextStyle bodyLarge24(BuildContext contex) {
     return const TextStyle(
       fontSize: 24,
@@ -528,7 +530,13 @@ class TextThemes{
     );
   }
 
-  static TextStyle bodyMed(BuildContext contex) {
+  static TextStyle bodyMed14(BuildContext contex) {
+    return const TextStyle(
+      fontSize: 14,
+    );
+  }
+
+  static TextStyle bodyMed12(BuildContext contex) {
     return const TextStyle(
       fontSize: 12,
     );
@@ -588,6 +596,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Chay Screen Fonts
   static TextStyle chatWarning(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Lato',
@@ -623,6 +633,8 @@ class TextThemes{
     );
   }
 
+  //////////////////////////////////////////////////////////////////
+  // Body Fonts
   static TextStyle monoBodySmall18(BuildContext context) {
     return const TextStyle(
       fontFamily: 'Diatype',
