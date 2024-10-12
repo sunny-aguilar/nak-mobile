@@ -26,20 +26,26 @@ class ProfilePageScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          const SizedBox(height: 50,),
-          const Icon(Icons.person, size: 72,),
-          const SizedBox(height: 30,),
-          Text(
-            'Current User',
-            textAlign: TextAlign.center,
-            style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
-          ),
-          const SizedBox(height: 50,),
-          const InfoTextBox(text: 'Sandro Aguilar', sectionName: 'Name'),
-        ],
-      ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance.collection,
+        builder: builder
+      )
+
+
+      // body: ListView(
+      //   children: <Widget>[
+      //     const SizedBox(height: 50,),
+      //     const Icon(Icons.person, size: 72,),
+      //     const SizedBox(height: 30,),
+      //     Text(
+      //       'Current User',
+      //       textAlign: TextAlign.center,
+      //       style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
+      //     ),
+      //     const SizedBox(height: 50,),
+      //     const InfoTextBox(text: 'Sandro Aguilar', sectionName: 'Name'),
+      //   ],
+      // ),
     );
   }
 }
