@@ -49,12 +49,12 @@ class ProfilePageScreen extends StatelessWidget {
                 const Icon(Icons.person, size: 72,),
                 const SizedBox(height: 30,),
                 Text(
-                  userData['chapter'],
+                  userData['email'],
                   textAlign: TextAlign.center,
                   style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
                 ),
                 const SizedBox(height: 50,),
-                const InfoTextBox(text: 'Sandro Aguilar', sectionName: 'Name'),
+                InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Name'),
               ],
             );
           }
