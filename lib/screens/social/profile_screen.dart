@@ -9,6 +9,9 @@ import 'package:nak_app/ui/theme.dart' as theme;
 class ProfilePageScreen extends StatelessWidget {
   const ProfilePageScreen({super.key});
 
+  // edit fields
+  Future<void> editField(String field) async {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
