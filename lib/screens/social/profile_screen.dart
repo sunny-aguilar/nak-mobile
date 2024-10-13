@@ -46,7 +46,15 @@ class ProfilePageScreen extends StatelessWidget {
             return ListView(
               children: <Widget>[
                 const SizedBox(height: 50,),
-                const Icon(Icons.person, size: 72,),
+                // const Icon(Icons.person, size: 72,),
+                const Stack(
+                  children: <Widget>[
+                    CircleAvatar(
+                  backgroundColor: theme.azureClr,
+                  radius: 120,
+                ),
+                  ],
+                ),
                 const SizedBox(height: 30,),
                 Text(
                   userData['email'],
@@ -55,6 +63,7 @@ class ProfilePageScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 50,),
                 InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Name'),
+                InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Major'),
               ],
             );
           }
