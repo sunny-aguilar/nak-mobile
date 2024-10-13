@@ -41,12 +41,11 @@ class ProfilePageScreen extends StatelessWidget {
         stream: social_db.SocialUsers().getUserData(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
+
             final userData = snapshot.data!.data() as Map<String, dynamic>;
 
             return ListView(
               children: <Widget>[
-                const SizedBox(height: 50,),
-                // const Icon(Icons.person, size: 72,),
                 Stack(
                   alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
@@ -60,10 +59,6 @@ class ProfilePageScreen extends StatelessWidget {
                       height: 135,
                       decoration: const BoxDecoration(color: theme.primaryClr),
                     ),
-                    // const CircleAvatar(
-                    //   backgroundColor: theme.azureClr,
-                    //   radius: 120,
-                    // ),
                     Container(
                       width: 270.0,
                       height: 270.0,
