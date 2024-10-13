@@ -52,16 +52,17 @@ class ProfilePageScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 320,
-                      decoration: const BoxDecoration(color: theme.greyClr),
+                      decoration: const BoxDecoration(color: theme.redClr),
                       child: Image.asset('assets/img/nak_letters.png', alignment: Alignment.topCenter,),
                     ),
                     Container(
                       width: double.infinity,
                       height: 135,
-                      decoration: const BoxDecoration(color: theme.primaryClr),
+                      decoration: BoxDecoration(color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr),
                     ),
                     CircleAvatar(
-                      backgroundColor: theme.primaryClr, radius: MediaQuery.sizeOf(context).width * .33,
+                      backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+                      radius: MediaQuery.sizeOf(context).width * .33,
                       child: CircleAvatar(
                         backgroundColor: theme.redOfficial, radius: MediaQuery.sizeOf(context).width * .315,
                         backgroundImage: NetworkImage(userData['selfie']),
