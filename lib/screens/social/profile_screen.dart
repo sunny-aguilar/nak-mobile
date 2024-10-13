@@ -47,12 +47,23 @@ class ProfilePageScreen extends StatelessWidget {
               children: <Widget>[
                 const SizedBox(height: 50,),
                 // const Icon(Icons.person, size: 72,),
-                const Stack(
+                Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
                   children: <Widget>[
-                    CircleAvatar(
-                  backgroundColor: theme.azureClr,
-                  radius: 120,
-                ),
+                    Container(
+                      width: double.infinity,
+                      height: 300,
+                      decoration: BoxDecoration(color: theme.charcoalClr),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 100,
+                      decoration: BoxDecoration(color: theme.primaryClr),
+                    ),
+                    const CircleAvatar(
+                      backgroundColor: theme.azureClr,
+                      radius: 120,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 30,),
