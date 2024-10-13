@@ -57,7 +57,7 @@ class ProfilePageScreen extends StatelessWidget {
                     ),
                     Container(
                       width: double.infinity,
-                      height: 170,
+                      height: 135,
                       decoration: const BoxDecoration(color: theme.primaryClr),
                     ),
                     // const CircleAvatar(
@@ -68,7 +68,7 @@ class ProfilePageScreen extends StatelessWidget {
                       width: 270.0,
                       height: 270.0,
                       decoration: BoxDecoration(
-                        color: theme.azureClr,
+                        color: theme.pinkClr,
                         borderRadius: const BorderRadius.all(Radius.circular(170)),
                         border: Border.all(
                           color: theme.primaryClr,
