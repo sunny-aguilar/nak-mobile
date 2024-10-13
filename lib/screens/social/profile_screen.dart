@@ -59,16 +59,10 @@ class ProfilePageScreen extends StatelessWidget {
                       height: 135,
                       decoration: const BoxDecoration(color: theme.primaryClr),
                     ),
-                    Container(
-                      width: 270.0,
-                      height: 270.0,
-                      decoration: BoxDecoration(
-                        color: theme.pinkClr,
-                        borderRadius: const BorderRadius.all(Radius.circular(170)),
-                        border: Border.all(
-                          color: theme.primaryClr,
-                          width: 5,
-                        )
+                    CircleAvatar(
+                      backgroundColor: theme.primaryClr, radius: MediaQuery.sizeOf(context).width * .33,
+                      child: CircleAvatar(
+                        backgroundColor: theme.pinkClr, radius: MediaQuery.sizeOf(context).width * .315,
                       ),
                     ),
                   ],
