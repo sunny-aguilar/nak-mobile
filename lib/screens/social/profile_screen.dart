@@ -52,17 +52,29 @@ class ProfilePageScreen extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: double.infinity,
-                      height: 300,
-                      decoration: BoxDecoration(color: theme.charcoalClr),
+                      height: 320,
+                      decoration: const BoxDecoration(color: theme.greyClr),
                     ),
                     Container(
                       width: double.infinity,
-                      height: 100,
-                      decoration: BoxDecoration(color: theme.primaryClr),
+                      height: 170,
+                      decoration: const BoxDecoration(color: theme.primaryClr),
                     ),
-                    const CircleAvatar(
-                      backgroundColor: theme.azureClr,
-                      radius: 120,
+                    // const CircleAvatar(
+                    //   backgroundColor: theme.azureClr,
+                    //   radius: 120,
+                    // ),
+                    Container(
+                      width: 270.0,
+                      height: 270.0,
+                      decoration: BoxDecoration(
+                        color: theme.azureClr,
+                        borderRadius: const BorderRadius.all(Radius.circular(170)),
+                        border: Border.all(
+                          color: theme.primaryClr,
+                          width: 5,
+                        )
+                      ),
                     ),
                   ],
                 ),
