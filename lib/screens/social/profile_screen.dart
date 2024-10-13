@@ -64,12 +64,12 @@ class ProfilePageScreen extends StatelessWidget {
                       backgroundColor: theme.primaryClr, radius: MediaQuery.sizeOf(context).width * .33,
                       child: CircleAvatar(
                         backgroundColor: theme.redOfficial, radius: MediaQuery.sizeOf(context).width * .315,
-                        child: Stack(
+                        child: const Stack(
                           children: <Widget>[
                             Align(
                               alignment: Alignment.bottomRight,
                               child: CircleAvatar(
-                                radius: 33,
+                                radius: 32,
                                 backgroundColor: theme.lightGrey,
                                 child: Icon(Icons.photo_camera, color: theme.darkGreyClr, size: 32,),
                               ),
