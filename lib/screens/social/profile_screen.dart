@@ -53,6 +53,7 @@ class ProfilePageScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 320,
                       decoration: const BoxDecoration(color: theme.greyClr),
+                      child: Image.asset('assets/img/nak_letters.png', alignment: Alignment.topCenter,),
                     ),
                     Container(
                       width: double.infinity,
@@ -62,20 +63,21 @@ class ProfilePageScreen extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: theme.primaryClr, radius: MediaQuery.sizeOf(context).width * .33,
                       child: CircleAvatar(
-                        backgroundColor: theme.pinkClr, radius: MediaQuery.sizeOf(context).width * .315,
+                        backgroundColor: theme.redOfficial, radius: MediaQuery.sizeOf(context).width * .315,
                       ),
                     ),
                   ],
                 ),
                 const SizedBox(height: 30,),
                 Text(
-                  userData['email'],
+                  '${userData['firstName']} ${userData['lastName']}',
                   textAlign: TextAlign.center,
                   style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
                 ),
                 const SizedBox(height: 50,),
                 InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Name'),
                 InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Major'),
+                InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Workplace'),
               ],
             );
           }
