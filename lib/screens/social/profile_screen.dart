@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -72,9 +73,10 @@ class ProfilePageScreen extends StatelessWidget {
                             Align(
                               alignment: Alignment.bottomRight,
                               child: CircleAvatar(
-                                radius: 32,
+                                radius: 30,
                                 backgroundColor: theme.lightGrey,
-                                child: Icon(Icons.photo_camera, color: theme.darkGreyClr, size: 32,),
+                                // child: Icon(Icons.photo_camera, color: theme.darkGreyClr, size: 32,),
+                                child: Icon(CupertinoIcons.camera_fill, color: theme.darkGreyClr, size: 32,),
                               ),
                             )
                           ],
