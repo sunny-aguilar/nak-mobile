@@ -52,8 +52,8 @@ class ProfilePageScreen extends StatelessWidget {
                   children: <Widget>[
                     Container(
                       width: double.infinity,
-                      height: 320,
-                      padding: const EdgeInsets.only(top: 16),
+                      height: 380,
+                      padding: const EdgeInsets.only(top: 40),
                       decoration: const BoxDecoration(color: theme.redClr),
                       child: Image.asset('assets/img/nak_letters.png', alignment: Alignment.topCenter,),
                     ),
