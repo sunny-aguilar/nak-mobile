@@ -52,6 +52,7 @@ class ProfilePageScreen extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: 320,
+                      padding: const EdgeInsets.only(top: 16),
                       decoration: const BoxDecoration(color: theme.redClr),
                       child: Image.asset('assets/img/nak_letters.png', alignment: Alignment.topCenter,),
                     ),
@@ -82,11 +83,11 @@ class ProfilePageScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 30,),
+                const SizedBox(height: 20,),
                 Text(
                   '${userData['firstName']} ${userData['lastName']}',
                   textAlign: TextAlign.center,
-                  style: theme.TextThemes.headlineMedLarge(context).copyWith(color: theme.shawdowClr),
+                  style: theme.TextThemes.fontCollegeNN(context, 34).copyWith(color: theme.zincClr),
                 ),
                 const SizedBox(height: 10,),
                 InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Name'),
