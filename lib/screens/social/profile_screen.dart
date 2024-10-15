@@ -85,11 +85,14 @@ class ProfilePageScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 18,),
                 Text(
                   '${userData['firstName']} ${userData['lastName']}',
                   textAlign: TextAlign.center,
                   style: theme.TextThemes.fontCollegeNN(context, 34).copyWith(color: theme.zincClr),
+                ),
+                const Divider(
+                  thickness: 12,
                 ),
                 const SizedBox(height: 10,),
                 InfoTextBox(text: '${userData['firstName']} ${userData['lastName']}', sectionName: 'Name'),
