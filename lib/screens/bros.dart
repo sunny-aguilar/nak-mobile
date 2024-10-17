@@ -56,7 +56,7 @@ class BroScreen extends StatelessWidget {
                 // user profile
                 MenuListItem(icon: Icons.remember_me, text: 'P R O F I L E', onTap: ()=> goToProfilePage(context),),
                 // brother list
-                MenuListItem(icon: Icons.person, text: 'B R O T H E R S', onTap: ()=> goToProfilePage(context)),
+                MenuListItem(icon: Icons.group, text: 'B R O T H E R S', onTap: ()=> goToProfilePage(context)),
               ],
             ),
             // back to NAK App
