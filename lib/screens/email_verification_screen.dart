@@ -57,7 +57,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
               const SizedBox(height: 40,),
               Text('Verify your email address', style: theme.TextThemes.headlineMedLarge(context),),
               const SizedBox(height: 25,),
-              Text('We have just sent you an email verification link. Please check your email and click on that link to verify your email address.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
+              Text('We have just sent you an email verification link. Please check your @nakinc.org email and click on that link to verify your email address.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
               const SizedBox(height: 20,),
               Text('If you are not auto redirected after verification, click on the Continue button.', textAlign: TextAlign.center, style: theme.TextThemes.bodyLarge(context),),
               const SizedBox(height: 40,),
