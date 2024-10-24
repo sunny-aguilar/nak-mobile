@@ -7,6 +7,7 @@ import 'package:nak_app/db/db_social.dart' as social_db;
 
 
 
+
 class ProfilePageScreen extends StatelessWidget {
   const ProfilePageScreen({super.key});
 
