@@ -46,7 +46,6 @@ class ProfilePageScreen extends StatelessWidget {
 
             final userData = snapshot.data!.data() as Map<String, dynamic>;
 
-
             return ListView(
               children: <Widget>[
                 Stack(
