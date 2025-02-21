@@ -24,21 +24,31 @@ class ComplianceScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child:  Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 10,),
-            const Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,),
-            Stack(
-              children: <Widget>[
-                Container(color: Colors.red,),
-                Container(color: Colors.blue,)
-              ],
-            )
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          const SizedBox(height: 10,),
+          Stack(
+            // first element starts at the bottom of stack
+            children: <Widget>[
+              Container(color: Colors.grey, height: 280, width: double.infinity,),
+              Container(color: Colors.red, height: 180, width: double.infinity,),
+              Positioned(
+                bottom: 60.0,
+                left: 0.0,
+                child: Container(
+                  height: 140, width: 110,
+                  decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(topRight: Radius.circular(18.0), bottomRight: Radius.circular(18.0))
+                  ),
+                )
+              ),
+            ],
+          ),
+          const Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,),
+        ],
       ),
     );
   }
