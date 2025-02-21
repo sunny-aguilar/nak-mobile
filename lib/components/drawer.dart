@@ -51,7 +51,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const FaIcon(FontAwesomeIcons.listCheck,),
               title: Text('Chapter Compliance', style: theme.TextThemes.drawerMenuNT(context),),
-              onTap: () => Navigator.pushNamed(context, '/finances'),
+              onTap: () => Navigator.pushNamed(context, '/compliance'),
             ),
             ListTile(
               leading: const Icon(Icons.remember_me,),
