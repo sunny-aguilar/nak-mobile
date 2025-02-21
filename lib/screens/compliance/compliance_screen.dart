@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
+
 
 class ComplianceScreen extends StatelessWidget {
   const ComplianceScreen({super.key});
@@ -11,7 +13,7 @@ class ComplianceScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 38,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        title: Text('Chapter Compliance', style: theme.TextThemes.headlineMed(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -21,6 +23,15 @@ class ComplianceScreen extends StatelessWidget {
             },
           ),
         ],
+      ),
+      body: const Padding(
+        padding: EdgeInsets.all(8.0),
+        child:  Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Text('Chapter compliance is the heart of our operations.')
+          ],
+        ),
       ),
     );
   }
