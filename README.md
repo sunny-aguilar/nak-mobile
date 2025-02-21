@@ -22,8 +22,7 @@ These commands will remove and re-install flutter dependencies.
 - flutter clean
 - flutter pub get
 
-## Flutter Dart Fix
-These commands will identify errors/warnings/deprecated code in Flutter.
+## Flutter Dart Fix0l identify errors/warnings/deprecated code in Flutter.
 - dart fix --dry-run
 - dart fix --apply
 
