@@ -13,7 +13,7 @@ class ComplianceScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 38,
-        title: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context),),
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -32,19 +32,24 @@ class ComplianceScreen extends StatelessWidget {
           Stack(
             // first element starts at the bottom of stack
             children: <Widget>[
-              Container(color: Colors.grey, height: 280, width: double.infinity,),
-              Container(color: Colors.red, height: 180, width: double.infinity,),
+              Container(color: theme.primaryClr.withAlpha(0), height: 280, width: double.infinity,),
+              Container(color: theme.redOfficial, height: 180, width: double.infinity,),
               Positioned(
                 bottom: 60.0,
                 left: 0.0,
                 child: Container(
-                  height: 140, width: 110,
+                  height: 136, width: 110,
                   decoration: const BoxDecoration(
-                    color: Colors.blue,
+                    color: theme.bronzeOfficial,
                     borderRadius: BorderRadius.only(topRight: Radius.circular(18.0), bottomRight: Radius.circular(18.0))
                   ),
                 )
               ),
+              Positioned(
+                top: 100.0,
+                left: 140.0,
+                child: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context).copyWith(color: theme.primaryClr),)
+              )
             ],
           ),
           const Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,),
