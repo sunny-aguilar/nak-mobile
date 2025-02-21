@@ -48,11 +48,22 @@ class ComplianceScreen extends StatelessWidget {
               Positioned(
                 top: 100.0,
                 left: 140.0,
-                child: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context).copyWith(color: theme.primaryClr),)
+                // child: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context).copyWith(color: theme.primaryClr),)
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(text: 'Chapter Compliance\n', style: theme.TextThemes.headlineSmall20(context)),
+                      TextSpan(text: '2024-2025 '),
+                      TextSpan(text: 'Academic Year'),
+                    ]
+                  ),
+                )
               )
             ],
           ),
-          const Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,),
+          const Text('Compliance Task', textAlign: TextAlign.center,),
+          const Text('Chapters', textAlign: TextAlign.center,),
+          const Text('Intake Directors', textAlign: TextAlign.center,),
         ],
       ),
     );
