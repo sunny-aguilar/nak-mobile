@@ -22,6 +22,11 @@ These commands will remove and re-install flutter dependencies.
 - flutter clean
 - flutter pub get
 
+### CocoaPods Upgrade
+Cocoapods is being managed by Homebrew. "flutter doctor" will tell you if CocoaPods is out of date. First update Homebrew (brew update), then update Cocoapods with "brew upgrade cocoapods && brew cleanup cocoapods".
+- brew update
+- brew upgrade cocoapods && brew cleanup cocoapods
+
 ## Flutter Dart Fix0l identify errors/warnings/deprecated code in Flutter.
 - dart fix --dry-run
 - dart fix --apply
