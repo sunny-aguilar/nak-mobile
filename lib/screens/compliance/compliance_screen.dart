@@ -13,7 +13,7 @@ class ComplianceScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 38,
-        title: Text('Chapter Compliance', style: theme.TextThemes.headlineMed(context),),
+        title: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -24,13 +24,19 @@ class ComplianceScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(8.0),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 10,),
-            Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,)
+            const SizedBox(height: 10,),
+            const Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,),
+            Stack(
+              children: <Widget>[
+                Container(color: Colors.red,),
+                Container(color: Colors.blue,)
+              ],
+            )
           ],
         ),
       ),
