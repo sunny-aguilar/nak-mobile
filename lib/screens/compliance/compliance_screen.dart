@@ -29,7 +29,8 @@ class ComplianceScreen extends StatelessWidget {
         child:  Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.')
+            SizedBox(height: 10,),
+            Text('Chapter compliance is how chapters establish themselves on a yearly basis in order to be recognized by the national fraternity and their university.', textAlign: TextAlign.center,)
           ],
         ),
       ),
