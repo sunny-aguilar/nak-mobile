@@ -53,8 +53,8 @@ class ComplianceScreen extends StatelessWidget {
                   text: TextSpan(
                     children: <TextSpan>[
                       TextSpan(text: 'Chapter Compliance\n', style: theme.TextThemes.headlineSmall20(context)),
-                      TextSpan(text: '2024-2025 '),
-                      TextSpan(text: 'Academic Year'),
+                      const TextSpan(text: '2024-2025 '),
+                      const TextSpan(text: 'Academic Year'),
                     ]
                   ),
                 )
@@ -62,6 +62,16 @@ class ComplianceScreen extends StatelessWidget {
             ],
           ),
           const Text('Compliance Task', textAlign: TextAlign.center,),
+          Expanded(
+            child: ListView(
+              padding: const EdgeInsets.all(8.0),
+              // shrinkWrap: true,
+              children: <Widget>[
+                ListTile(leading: Icon(Icons.map), title: Text('For Chapters')),
+                ListTile(leading: Icon(Icons.map), title: Text('For Chapters')),
+              ],
+            ),
+          ),
           const Text('Chapters', textAlign: TextAlign.center,),
           const Text('Intake Directors', textAlign: TextAlign.center,),
         ],
