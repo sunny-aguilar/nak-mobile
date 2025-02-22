@@ -241,6 +241,15 @@ class CustomTheme {
 /// Create theme data variables for text
 class TextThemes{
   //////////////////////////////////////////////////////////////////
+  static TextStyle collegeText(BuildContext context) { return const TextStyle(fontFamily: 'College'); }
+  static TextStyle latoText(BuildContext context) { return const TextStyle(fontFamily: 'Lato'); }
+  static TextStyle clarendonText(BuildContext context) { return const TextStyle(fontFamily: 'Clarendon'); }
+  static TextStyle georgiaText(BuildContext context) { return const TextStyle(fontFamily: 'Georgia'); }
+  static TextStyle oswaldText(BuildContext context) { return const TextStyle(fontFamily: 'Oswald'); }
+  static TextStyle bebasText(BuildContext context) { return const TextStyle(fontFamily: 'Bebas'); }
+  static TextStyle diatypeText(BuildContext context) { return const TextStyle(fontFamily: 'Diatype'); }
+
+  //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
   static TextStyle drawerTitle(BuildContext context) {
     return const TextStyle(

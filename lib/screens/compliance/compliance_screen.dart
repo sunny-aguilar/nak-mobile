@@ -6,7 +6,6 @@ import 'package:nak_app/ui/theme.dart' as theme;
 
 class ComplianceScreen extends StatelessWidget {
   const ComplianceScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,19 +60,98 @@ class ComplianceScreen extends StatelessWidget {
               )
             ],
           ),
-          const Text('Compliance Task', textAlign: TextAlign.center,),
+          Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: Text('Compliance Task', style: theme.TextThemes.oswaldText(context).copyWith(fontSize: 24.0),),
+          ),
           Expanded(
             child: ListView(
               padding: const EdgeInsets.all(8.0),
               // shrinkWrap: true,
               children: <Widget>[
-                ListTile(leading: Icon(Icons.map), title: Text('For Chapters')),
-                ListTile(leading: Icon(Icons.map), title: Text('For Chapters')),
+                ListTile(
+                  leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
+                  tileColor: theme.dividerClr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<Widget>(
+                        builder: (BuildContext context) {
+                          return const ChapterComplianceScreen();
+                        }
+                      )
+                    );
+                  },
+                ),
+                const SizedBox(height: 5.0,),
+                ListTile(
+                  leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
+                  tileColor: theme.dividerClr,
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute<Widget>(
+                        builder: (BuildContext context) {
+                          return const DirectorScreen();
+                        }
+                      )
+                    );
+                  },
+                ),
               ],
             ),
           ),
-          const Text('Chapters', textAlign: TextAlign.center,),
-          const Text('Intake Directors', textAlign: TextAlign.center,),
+        ],
+      ),
+    );
+  }
+}
+
+
+class ChapterComplianceScreen extends StatelessWidget {
+  const ChapterComplianceScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class DirectorScreen extends StatelessWidget {
+  const DirectorScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
         ],
       ),
     );
