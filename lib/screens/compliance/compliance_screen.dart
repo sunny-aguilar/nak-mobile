@@ -101,16 +101,16 @@ class ComplianceScreen extends StatelessWidget {
                 Container(
                   // container used to give card a height
                   height: 200,
-                  child: const Card(
+                  child: Card(
                     color: theme.primaryClr,
                     elevation: 5.0, // shadow
-                    shape: RoundedRectangleBorder(
+                    shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
                       side: BorderSide(color: theme.greyClr, width: 4.0),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text('Chapters Start Here'),
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('Chapters Start Here', style: theme.TextThemes.headlineMedLarge(context),),
                     ),
                   ),
                 ),
@@ -118,9 +118,15 @@ class ComplianceScreen extends StatelessWidget {
                   // container used to give card a height
                   height: 200,
                   child: Card(
+                    color: theme.primaryClr,
+                    elevation: 5.0, // shadow
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      side: BorderSide(color: theme.greyClr, width: 4.0),
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text('Directors Start Here'),
+                      child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),),
                     ),
                   ),
                 ),
