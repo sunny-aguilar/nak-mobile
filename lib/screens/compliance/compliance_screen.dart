@@ -66,12 +66,12 @@ class ComplianceScreen extends StatelessWidget {
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 24.0, top: 10.0, right: 24.0),
               // shrinkWrap: true,
               children: <Widget>[
                 ListTile(
                   leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
-                  tileColor: theme.dividerClr,
+                  tileColor: theme.lightRedClr,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -86,7 +86,7 @@ class ComplianceScreen extends StatelessWidget {
                 const SizedBox(height: 5.0,),
                 ListTile(
                   leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
-                  tileColor: theme.dividerClr,
+                  tileColor: theme.lightRedClr,
                   onTap: () {
                     Navigator.push(
                       context,
