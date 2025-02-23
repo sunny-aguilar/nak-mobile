@@ -105,7 +105,8 @@ class ComplianceScreen extends StatelessWidget {
                     color: theme.charcoalClr,
                     elevation: 5.0, // shadow
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                      side: BorderSide(color: theme.carmoisineClr, width: 4.0),
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
