@@ -61,17 +61,17 @@ class ComplianceScreen extends StatelessWidget {
             ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 24.0),
+            padding: const EdgeInsets.only(left: 30.0),
             child: Text('Compliance Task', style: theme.TextThemes.oswaldText(context).copyWith(fontSize: 24.0),),
           ),
           Expanded(
             child: ListView(
-              padding: const EdgeInsets.only(left: 24.0, top: 10.0, right: 24.0),
+              padding: const EdgeInsets.only(left: 30.0, top: 10.0, right: 24.0),
               // shrinkWrap: true,
               children: <Widget>[
                 ListTile(
                   leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
-                  tileColor: theme.lightRedClr,
+                  tileColor: theme.chatGregyClr,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -86,7 +86,7 @@ class ComplianceScreen extends StatelessWidget {
                 const SizedBox(height: 5.0,),
                 ListTile(
                   leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
-                  tileColor: theme.lightRedClr,
+                  tileColor: theme.chatGregyClr,
                   onTap: () {
                     Navigator.push(
                       context,
@@ -97,6 +97,31 @@ class ComplianceScreen extends StatelessWidget {
                       )
                     );
                   },
+                ),
+                Container(
+                  // container used to give card a height
+                  height: 200,
+                  child: const Card(
+                    color: theme.charcoalClr,
+                    elevation: 5.0, // shadow
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8.0))
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(16.0),
+                      child: Text('Chapters Start Here'),
+                    ),
+                  ),
+                ),
+                Container(
+                  // container used to give card a height
+                  height: 200,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('Directors Start Here'),
+                    ),
+                  ),
                 ),
               ],
             ),
