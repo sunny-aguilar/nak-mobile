@@ -102,11 +102,11 @@ class ComplianceScreen extends StatelessWidget {
                   // container used to give card a height
                   height: 200,
                   child: const Card(
-                    color: theme.charcoalClr,
+                    color: theme.primaryClr,
                     elevation: 5.0, // shadow
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                      side: BorderSide(color: theme.carmoisineClr, width: 4.0),
+                      side: BorderSide(color: theme.greyClr, width: 4.0),
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(16.0),
