@@ -249,6 +249,17 @@ class TextThemes{
   static TextStyle bebasText(BuildContext context) { return const TextStyle(fontFamily: 'Bebas'); }
   static TextStyle diatypeText(BuildContext context) { return const TextStyle(fontFamily: 'Diatype'); }
 
+  static TextStyle size10(BuildContext context) { return const TextStyle(fontSize: 10.0); }
+  static TextStyle size11(BuildContext context) { return const TextStyle(fontSize: 11.0); }
+  static TextStyle size12(BuildContext context) { return const TextStyle(fontSize: 12.0); }
+  static TextStyle size14(BuildContext context) { return const TextStyle(fontSize: 14.0); }
+  static TextStyle size15(BuildContext context) { return const TextStyle(fontSize: 15.0); }
+  static TextStyle size16(BuildContext context) { return const TextStyle(fontSize: 16.0); }
+  static TextStyle size18(BuildContext context) { return const TextStyle(fontSize: 18.0); }
+  static TextStyle size20(BuildContext context) { return const TextStyle(fontSize: 20.0); }
+
+  static TextStyle colorDark(BuildContext context) { return const TextStyle(color: darkGreyClr); }
+
   //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
   static TextStyle drawerTitle(BuildContext context) {

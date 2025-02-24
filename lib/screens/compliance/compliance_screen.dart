@@ -61,9 +61,9 @@ class ComplianceScreen extends StatelessWidget {
                 )
               ],
             ),
-            const SizedBox( height: 20,),
+            const SizedBox( height: 2,),
             Padding(
-              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
                 height: 300,
                 width: double.infinity,
@@ -73,26 +73,41 @@ class ComplianceScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Image.asset('assets/img/cd_dues.webp'),
-                      const ListTile(
-                        title: Text('Chapters Start Here'),
-                        subtitle: Text('Card subtitle text'),
+                      ListTile(
+                        title: const Text('Chapters Start Here'),
+                        subtitle: Text('Log in here to managed your chapter compliance', style: theme.TextThemes.size11(context),),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(12.0),
-                      //   child: Text('Some Text',),
-                      // ),
                       Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: const EdgeInsets.only(right: 10.0),
                         child: OverflowBar(
-                          alignment: MainAxisAlignment.start,
+                          alignment: MainAxisAlignment.end,
                           children: <Widget>[
                             TextButton(
                               style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
                               onPressed: (){},
-                              child: const Text('START'),
+                              child: Text('LOG IN', style: theme.TextThemes.size20(context),),
                             ),
-                            // FilledButton(style:TextButton.styleFrom(backgroundColor: theme.redOfficial), onPressed: (){}, child: Text('FILLED')),
-                            // OutlinedButton(onPressed: (){}, child: Text('FILLED')),
+                            // FilledButton(
+                            //   style:TextButton.styleFrom(
+                            //     backgroundColor: theme.redOfficial,
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
+                            //     )
+                            //   ),
+                            //   onPressed: (){},
+                            //   child: Text('LOG IN')
+                            // ),
+                            // SizedBox(width: 4,),
+                            // OutlinedButton(
+                            //   style:TextButton.styleFrom(
+                            //     // backgroundColor: theme.redOfficial,
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
+                            //     )
+                            //   ),
+                            //   onPressed: (){},
+                            //   child: Text('LOG IN', style: theme.TextThemes.colorDark(context),)
+                            // ),
                           ],
                         ),
                       ),
@@ -103,7 +118,7 @@ class ComplianceScreen extends StatelessWidget {
             ),
             const SizedBox( height: 20,),
             Padding(
-              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
                 // container used to give card a height
                 height: 200,
