@@ -61,22 +61,42 @@ class ComplianceScreen extends StatelessWidget {
                 )
               ],
             ),
+            const SizedBox( height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 30.0, right: 30.0),
               child: SizedBox(
-                // container used to give card a height
-                height: 200,
+                height: 300,
                 width: double.infinity,
                 child: Card(
-                  color: theme.primaryClr,
-                  elevation: 5.0, // shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    side: BorderSide(color: theme.greyClr, width: 4.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text('Chapters Start Here', style: theme.TextThemes.headlineMedLarge(context),),
+                  clipBehavior: Clip.antiAlias,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('assets/img/cd_dues.webp'),
+                      const ListTile(
+                        title: Text('Chapters Start Here'),
+                        subtitle: Text('Card subtitle text'),
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(12.0),
+                      //   child: Text('Some Text',),
+                      // ),
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: OverflowBar(
+                          alignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            TextButton(
+                              style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
+                              onPressed: (){},
+                              child: const Text('START'),
+                            ),
+                            // FilledButton(style:TextButton.styleFrom(backgroundColor: theme.redOfficial), onPressed: (){}, child: Text('FILLED')),
+                            // OutlinedButton(onPressed: (){}, child: Text('FILLED')),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -92,16 +112,17 @@ class ComplianceScreen extends StatelessWidget {
                   color: theme.primaryClr,
                   elevation: 5.0, // shadow
                   shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                    side: BorderSide(color: theme.greyClr, width: 4.0),
+                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
+                    side: BorderSide(color: theme.greyClr, width: 1.0),
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),),
+                    child: Center(child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),)),
                   ),
                 ),
               ),
             ),
+            const SizedBox( height: 40,),
             // Expanded(
             //   child: ListView(
             //     padding: const EdgeInsets.only(left: 30.0, top: 10.0, right: 30.0),
