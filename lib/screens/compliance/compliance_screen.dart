@@ -69,6 +69,7 @@ class ComplianceScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
+                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -120,23 +121,78 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                // container used to give card a height
-                height: 200,
+                height: 300,
                 width: double.infinity,
                 child: Card(
-                  color: theme.primaryClr,
-                  elevation: 5.0, // shadow
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                    side: BorderSide(color: theme.greyClr, width: 1.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Center(child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),)),
+                  clipBehavior: Clip.antiAlias,
+                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('assets/img/cd_dues.webp'),
+                      ListTile(
+                        title: const Text('Chapters Start Here'),
+                        subtitle: Text('Log in here to managed your chapter compliance', style: theme.TextThemes.size11(context),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: OverflowBar(
+                          alignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            TextButton(
+                              style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
+                              onPressed: (){},
+                              child: Text('LOG IN', style: theme.TextThemes.size20(context),),
+                            ),
+                            // FilledButton(
+                            //   style:TextButton.styleFrom(
+                            //     backgroundColor: theme.redOfficial,
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
+                            //     )
+                            //   ),
+                            //   onPressed: (){},
+                            //   child: Text('LOG IN')
+                            // ),
+                            // SizedBox(width: 4,),
+                            // OutlinedButton(
+                            //   style:TextButton.styleFrom(
+                            //     // backgroundColor: theme.redOfficial,
+                            //     shape: const RoundedRectangleBorder(
+                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
+                            //     )
+                            //   ),
+                            //   onPressed: (){},
+                            //   child: Text('LOG IN', style: theme.TextThemes.colorDark(context),)
+                            // ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
+            // Padding(
+            //   padding: const EdgeInsets.only(left: 26.0, right: 26.0),
+            //   child: SizedBox(
+            //     // container used to give card a height
+            //     height: 200,
+            //     width: double.infinity,
+            //     child: Card(
+            //       color: theme.primaryClr,
+            //       elevation: 5.0, // shadow
+            //       shape: const RoundedRectangleBorder(
+            //         borderRadius: BorderRadius.all(Radius.circular(6.0)),
+            //         side: BorderSide(color: theme.greyClr, width: 1.0),
+            //       ),
+            //       child: Padding(
+            //         padding: const EdgeInsets.all(16.0),
+            //         child: Center(child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),)),
+            //       ),
+            //     ),
+            //   ),
+            // ),
             const SizedBox( height: 40,),
             // Expanded(
             //   child: ListView(
