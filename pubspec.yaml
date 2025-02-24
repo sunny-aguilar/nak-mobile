@@ -74,6 +74,7 @@ flutter:
     - assets/img/title_thumbnails/
     - assets/img/resource_thumbnails/
     - assets/img/id/
+    - assets/img/bg/
     - assets/json/chapters.json
     - assets/json/dues.json
     - assets/json/board_members.json

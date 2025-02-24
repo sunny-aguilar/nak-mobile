@@ -65,7 +65,7 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                height: 300,
+                height: 340,
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
@@ -73,7 +73,7 @@ class ComplianceScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Image.asset('assets/img/cd_dues.webp'),
+                      Image.asset('assets/img/bg/compliance.bg.jpg'),
                       ListTile(
                         title: const Text('Chapters Start Here'),
                         subtitle: Text('Log in here to managed your chapter compliance', style: theme.TextThemes.size11(context),),
@@ -88,27 +88,6 @@ class ComplianceScreen extends StatelessWidget {
                               onPressed: (){},
                               child: Text('LOG IN', style: theme.TextThemes.size20(context),),
                             ),
-                            // FilledButton(
-                            //   style:TextButton.styleFrom(
-                            //     backgroundColor: theme.redOfficial,
-                            //     shape: const RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
-                            //     )
-                            //   ),
-                            //   onPressed: (){},
-                            //   child: Text('LOG IN')
-                            // ),
-                            // SizedBox(width: 4,),
-                            // OutlinedButton(
-                            //   style:TextButton.styleFrom(
-                            //     // backgroundColor: theme.redOfficial,
-                            //     shape: const RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
-                            //     )
-                            //   ),
-                            //   onPressed: (){},
-                            //   child: Text('LOG IN', style: theme.TextThemes.colorDark(context),)
-                            // ),
                           ],
                         ),
                       ),
@@ -173,99 +152,34 @@ class ComplianceScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 26.0, right: 26.0),
-            //   child: SizedBox(
-            //     // container used to give card a height
-            //     height: 200,
-            //     width: double.infinity,
-            //     child: Card(
-            //       color: theme.primaryClr,
-            //       elevation: 5.0, // shadow
-            //       shape: const RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.all(Radius.circular(6.0)),
-            //         side: BorderSide(color: theme.greyClr, width: 1.0),
-            //       ),
-            //       child: Padding(
-            //         padding: const EdgeInsets.all(16.0),
-            //         child: Center(child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),)),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             const SizedBox( height: 40,),
-            // Expanded(
-            //   child: ListView(
-            //     padding: const EdgeInsets.only(left: 30.0, top: 10.0, right: 30.0),
-            //     // shrinkWrap: true,
-            //     children: <Widget>[
-            //       ListTile(
-            //         leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
-            //         tileColor: theme.chatGregyClr,
-            //         onTap: () {
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute<Widget>(
-            //               builder: (BuildContext context) {
-            //                 return const ChapterComplianceScreen();
-            //               }
-            //             )
-            //           );
-            //         },
-            //       ),
-            //       const SizedBox(height: 5.0,),
-            //       ListTile(
-            //         leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
-            //         tileColor: theme.chatGregyClr,
-            //         onTap: () {
-            //           Navigator.push(
-            //             context,
-            //             MaterialPageRoute<Widget>(
-            //               builder: (BuildContext context) {
-            //                 return const DirectorScreen();
-            //               }
-            //             )
-            //           );
-            //         },
-            //       ),
-            //       Padding(
-            //         padding: const EdgeInsets.only(left: 4.0),
-            //         child: Text('Compliance Task', style: theme.TextThemes.oswaldText(context).copyWith(fontSize: 24.0),),
-            //       ),
-            //       SizedBox(
-            //         // container used to give card a height
-            //         height: 200,
-            //         child: Card(
-            //           color: theme.primaryClr,
-            //           elevation: 5.0, // shadow
-            //           shape: const RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            //             side: BorderSide(color: theme.greyClr, width: 4.0),
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(16.0),
-            //             child: Text('Chapters Start Here', style: theme.TextThemes.headlineMedLarge(context),),
-            //           ),
-            //         ),
-            //       ),
-            //       SizedBox(
-            //         // container used to give card a height
-            //         height: 200,
-            //         child: Card(
-            //           color: theme.primaryClr,
-            //           elevation: 5.0, // shadow
-            //           shape: const RoundedRectangleBorder(
-            //             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            //             side: BorderSide(color: theme.greyClr, width: 4.0),
-            //           ),
-            //           child: Padding(
-            //             padding: const EdgeInsets.all(16.0),
-            //             child: Text('Directors Start Here', style: theme.TextThemes.headlineMedLarge(context),),
-            //           ),
-            //         ),
-            //       ),
-            //     ],
-            //   ),
+            // ListTile(
+            //   leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
+            //   tileColor: theme.chatGregyClr,
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute<Widget>(
+            //         builder: (BuildContext context) {
+            //           return const ChapterComplianceScreen();
+            //         }
+            //       )
+            //     );
+            //   },
+            // ),
+            // ListTile(
+            //   leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
+            //   tileColor: theme.chatGregyClr,
+            //   onTap: () {
+            //     Navigator.push(
+            //       context,
+            //       MaterialPageRoute<Widget>(
+            //         builder: (BuildContext context) {
+            //           return const DirectorScreen();
+            //         }
+            //       )
+            //     );
+            //   },
             // ),
           ],
         ),
