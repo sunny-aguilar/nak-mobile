@@ -119,8 +119,8 @@ class ComplianceScreen extends StatelessWidget {
                     children: <Widget>[
                       Image.asset('assets/img/bg/directors.bg.jpg'),
                       ListTile(
-                        title: const Text('Chapters Start Here'),
-                        subtitle: Text('Log in here to managed your chapter compliance', style: theme.TextThemes.size11(context),),
+                        title: const Text('Directors Start Here'),
+                        subtitle: Text('Log in here to managed chapter compliance', style: theme.TextThemes.size11(context),),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(right: 10.0),
