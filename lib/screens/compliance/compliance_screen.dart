@@ -196,7 +196,7 @@ class ChapterComplianceScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon:  Get.isDarkMode ? const Icon(Icons.arrow_back_ios_new) : const Icon(Icons.arrow_back_ios_new),
+            icon:  Get.isDarkMode ? const Icon(Icons.logout) : const Icon(Icons.logout),
           ),
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
@@ -229,7 +229,7 @@ class DirectorScreen extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon:  Get.isDarkMode ? const Icon(Icons.arrow_back_ios_new) : const Icon(Icons.arrow_back_ios_new),
+            icon:  Get.isDarkMode ? const Icon(Icons.logout) : const Icon(Icons.logout),
           ),
           IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
