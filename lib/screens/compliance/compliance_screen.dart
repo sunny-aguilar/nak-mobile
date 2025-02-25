@@ -171,34 +171,6 @@ class ComplianceScreen extends StatelessWidget {
               ),
             ),
             const SizedBox( height: 40,),
-            // ListTile(
-            //   leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
-            //   tileColor: theme.chatGregyClr,
-            //   onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute<Widget>(
-                //     builder: (BuildContext context) {
-                //       return const ChapterComplianceScreen();
-                //     }
-                //   )
-                // );
-            //   },
-            // ),
-            // ListTile(
-            //   leading: const Icon(Icons.assessment), title: const Text('FOR COMPLIANCE VP'),
-            //   tileColor: theme.chatGregyClr,
-            //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute<Widget>(
-            //         builder: (BuildContext context) {
-            //           return const DirectorScreen();
-            //         }
-            //       )
-            //     );
-            //   },
-            // ),
           ],
         ),
       ),
