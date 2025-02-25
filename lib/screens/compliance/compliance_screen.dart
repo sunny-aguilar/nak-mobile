@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/drawers.dart' as drawer;
 
 
 class ComplianceScreen extends StatelessWidget {
@@ -192,6 +193,12 @@ class ChapterComplianceScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon:  Get.isDarkMode ? const Icon(Icons.arrow_back_ios_new) : const Icon(Icons.arrow_back_ios_new),
+          ),
+          IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {
               service.ThemeService().switchTheme();
@@ -199,6 +206,7 @@ class ChapterComplianceScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const drawer.DrawerChapterCompliance(),
     );
   }
 }
@@ -218,6 +226,12 @@ class DirectorScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon:  Get.isDarkMode ? const Icon(Icons.arrow_back_ios_new) : const Icon(Icons.arrow_back_ios_new),
+          ),
+          IconButton(
             icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
             onPressed: () {
               service.ThemeService().switchTheme();
@@ -225,6 +239,7 @@ class DirectorScreen extends StatelessWidget {
           ),
         ],
       ),
+      drawer: const drawer.DrawerDirectorCompliance(),
     );
   }
 }
