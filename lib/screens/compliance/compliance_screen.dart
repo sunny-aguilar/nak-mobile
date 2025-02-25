@@ -85,7 +85,16 @@ class ComplianceScreen extends StatelessWidget {
                           children: <Widget>[
                             TextButton(
                               style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<Widget>(
+                                    builder: (BuildContext context) {
+                                      return const ChapterComplianceScreen();
+                                    }
+                                  )
+                                );
+                              },
                               child: Text('LOG IN', style: theme.TextThemes.size20(context),),
                             ),
                           ],
@@ -157,14 +166,14 @@ class ComplianceScreen extends StatelessWidget {
             //   leading: const Icon(Icons.assessment), title: const Text('FOR CHAPTERS'),
             //   tileColor: theme.chatGregyClr,
             //   onTap: () {
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute<Widget>(
-            //         builder: (BuildContext context) {
-            //           return const ChapterComplianceScreen();
-            //         }
-            //       )
-            //     );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute<Widget>(
+                //     builder: (BuildContext context) {
+                //       return const ChapterComplianceScreen();
+                //     }
+                //   )
+                // );
             //   },
             // ),
             // ListTile(
