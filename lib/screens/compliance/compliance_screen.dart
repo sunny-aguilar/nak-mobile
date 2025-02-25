@@ -129,7 +129,16 @@ class ComplianceScreen extends StatelessWidget {
                           children: <Widget>[
                             TextButton(
                               style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<Widget>(
+                                    builder: (BuildContext context) {
+                                      return const DirectorScreen();
+                                    }
+                                  )
+                                );
+                              },
                               child: Text('LOG IN', style: theme.TextThemes.size20(context),),
                             ),
                             // FilledButton(
