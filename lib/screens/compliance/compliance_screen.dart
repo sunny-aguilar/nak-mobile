@@ -40,7 +40,7 @@ class ComplianceScreen extends StatelessWidget {
                   child: Container(
                     height: 136, width: 110,
                     decoration: const BoxDecoration(
-                      color: theme.bronzeOfficial,
+                      color: theme.offWhiteClr2,
                       borderRadius: BorderRadius.only(topRight: Radius.circular(18.0), bottomRight: Radius.circular(18.0))
                     ),
                   )
@@ -109,7 +109,7 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                height: 300,
+                height: 340,
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
@@ -117,7 +117,7 @@ class ComplianceScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Image.asset('assets/img/cd_dues.webp'),
+                      Image.asset('assets/img/bg/directors.bg.jpg'),
                       ListTile(
                         title: const Text('Chapters Start Here'),
                         subtitle: Text('Log in here to managed your chapter compliance', style: theme.TextThemes.size11(context),),
