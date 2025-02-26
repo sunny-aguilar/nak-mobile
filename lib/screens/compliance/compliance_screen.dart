@@ -49,7 +49,6 @@ class ComplianceScreen extends StatelessWidget {
                 Positioned(
                   top: 100.0,
                   left: 140.0,
-                  // child: Text('Chapter Compliance', style: theme.TextThemes.headlineSmall20(context).copyWith(color: theme.primaryClr),)
                   child: RichText(
                     text: TextSpan(
                       children: <TextSpan>[
