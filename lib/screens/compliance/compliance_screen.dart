@@ -54,7 +54,7 @@ class ComplianceScreen extends StatelessWidget {
                     text: TextSpan(
                       children: <TextSpan>[
                         TextSpan(text: 'Chapter Compliance\n', style: theme.TextThemes.headlineSmall20(context)),
-                        const TextSpan(text: '2024-2025 '),
+                        const TextSpan(text: '2025-2026 '),
                         const TextSpan(text: 'Academic Year'),
                       ]
                     ),
@@ -63,6 +63,50 @@ class ComplianceScreen extends StatelessWidget {
               ],
             ),
             const SizedBox( height: 2,),
+            Padding(
+              padding: const EdgeInsets.only(left: 26.0, right: 26.0),
+              child: SizedBox(
+                height: 340,
+                width: double.infinity,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('assets/img/bg/status.bg.webp'),
+                      ListTile(
+                        title: const Text('Chapter Status Tracker'),
+                        subtitle: Text('Review chapter compliance progress and status', style: theme.TextThemes.size11(context),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: OverflowBar(
+                          alignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            TextButton(
+                              style: TextButton.styleFrom(foregroundColor: theme.redOfficial),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute<Widget>(
+                                    builder: (BuildContext context) {
+                                      return const ChapterComplianceScreen();
+                                    }
+                                  )
+                                );
+                              },
+                              child: Text('LOG IN', style: theme.TextThemes.size20(context),),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox( height: 20,),
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
