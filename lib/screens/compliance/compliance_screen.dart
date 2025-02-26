@@ -95,7 +95,7 @@ class ComplianceScreen extends StatelessWidget {
                                   )
                                 );
                               },
-                              child: Text('LOG IN', style: theme.TextThemes.size20(context),),
+                              child: Text('CHECK STATUS', style: theme.TextThemes.size20(context),),
                             ),
                           ],
                         ),
