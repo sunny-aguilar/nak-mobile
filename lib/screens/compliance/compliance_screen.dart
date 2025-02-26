@@ -224,6 +224,38 @@ class ComplianceScreen extends StatelessWidget {
 }
 
 
+class StatusComplianceScreen extends StatelessWidget {
+  const StatusComplianceScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon:  Get.isDarkMode ? const Icon(Icons.logout) : const Icon(Icons.logout),
+          ),
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      drawer: const drawer.DrawerChapterCompliance(),
+    );
+  }
+}
+
+
 class ChapterComplianceScreen extends StatelessWidget {
   const ChapterComplianceScreen({super.key});
 
