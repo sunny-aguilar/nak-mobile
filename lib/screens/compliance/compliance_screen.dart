@@ -251,7 +251,24 @@ class StatusComplianceScreen extends StatelessWidget {
         ],
       ),
       drawer: const drawer.DrawerChapterCompliance(),
-      body: Center(child:  Text('Hello World!', style: theme.TextThemes.headlineLarge(context).copyWith(color: theme.redOfficial),),),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 50.0),
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              TimelineTile(
+                isFirst: true,
+              ),
+              TimelineTile(),
+              TimelineTile(),
+              TimelineTile(
+                isLast: true,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
