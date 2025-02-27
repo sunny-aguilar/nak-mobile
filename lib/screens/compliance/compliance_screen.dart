@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:timeline_tile/timeline_tile.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/drawers.dart' as drawer;
@@ -90,7 +91,7 @@ class ComplianceScreen extends StatelessWidget {
                                   context,
                                   MaterialPageRoute<Widget>(
                                     builder: (BuildContext context) {
-                                      return const ChapterComplianceScreen();
+                                      return const StatusComplianceScreen();
                                     }
                                   )
                                 );
@@ -250,6 +251,7 @@ class StatusComplianceScreen extends StatelessWidget {
         ],
       ),
       drawer: const drawer.DrawerChapterCompliance(),
+      body: Center(child:  Text('Hello World!', style: theme.TextThemes.headlineLarge(context).copyWith(color: theme.redOfficial),),),
     );
   }
 }

@@ -46,10 +46,10 @@ class Themes{
       onPrimary: greyClr,
       secondary: greyClr,
       onSecondary: greyClr,
-      background: primaryClr,         // main screen color
+      // background: primaryClr,        // main screen color
       onBackground: greyClr,
       surface: primaryClr,            // card color
-      onSurface: blackClr,      // font, icons color
+      onSurface: blackClr,            // font, icons color
       error: greyClr,
       onError: greyClr,
     ),
