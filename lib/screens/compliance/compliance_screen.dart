@@ -293,7 +293,10 @@ class ComplianceTimeline extends StatelessWidget {
         indicatorStyle: IndicatorStyle(
           width: 40.0,
           color: isPast ? theme.redOfficial : theme.greyClr,
-          iconStyle: IconStyle(iconData: Icons.done, color: theme.primaryClr)
+          iconStyle: IconStyle(
+            iconData: Icons.done,
+            color: isPast ? theme.primaryClr : theme.greyClr
+          )
         ),
       ),
     );
