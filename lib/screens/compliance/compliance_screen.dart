@@ -231,21 +231,6 @@ class StatusComplianceScreen extends StatelessWidget {
       ),
       drawer: const drawer.DrawerChapterCompliance(),
       body: const ChapterList(),
-      // body: Padding(
-      //   padding: const EdgeInsets.symmetric(horizontal: 50.0),
-      //   child: ListView(
-      //     shrinkWrap: true,
-      //     children: const <Widget>[
-      //       ComplianceTimeline(isFirst: true, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
-      //       ComplianceTimeline(isFirst: false, islast: true, isPast: false, eventCard: Text('Compliance Activity')),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
