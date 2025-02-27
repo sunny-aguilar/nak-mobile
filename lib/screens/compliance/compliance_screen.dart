@@ -255,93 +255,96 @@ class ChapterList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        ListTile(
-          title: const Text('Founding'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-        ListTile(
-          title: const Text('Alpha'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-        ListTile(
-          title: const Text('Beta'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-        ListTile(
-          title: const Text('Gamma'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-        ListTile(
-          title: const Text('Delta'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-        ListTile(
-          title: const Text('Epsilon'),
-          trailing: const Icon(Icons.arrow_forward),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute<Widget>(
-                builder: (BuildContext context) {
-                  return const TimelineScreen();
-                }
-              )
-            );
-          },
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      child: ListView(
+        children: <Widget>[
+          ListTile(
+            title: const Text('Founding'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Alpha'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Beta'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Gamma'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Delta'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('Epsilon'),
+            trailing: const Icon(Icons.arrow_forward),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(
+                  builder: (BuildContext context) {
+                    return const TimelineScreen();
+                  }
+                )
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }
