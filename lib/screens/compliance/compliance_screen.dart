@@ -186,27 +186,6 @@ class ComplianceScreen extends StatelessWidget {
                               },
                               child: Text('LOG IN', style: theme.TextThemes.size20(context),),
                             ),
-                            // FilledButton(
-                            //   style:TextButton.styleFrom(
-                            //     backgroundColor: theme.redOfficial,
-                            //     shape: const RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
-                            //     )
-                            //   ),
-                            //   onPressed: (){},
-                            //   child: Text('LOG IN')
-                            // ),
-                            // SizedBox(width: 4,),
-                            // OutlinedButton(
-                            //   style:TextButton.styleFrom(
-                            //     // backgroundColor: theme.redOfficial,
-                            //     shape: const RoundedRectangleBorder(
-                            //       borderRadius: BorderRadius.all(Radius.circular(4.0))
-                            //     )
-                            //   ),
-                            //   onPressed: (){},
-                            //   child: Text('LOG IN', style: theme.TextThemes.colorDark(context),)
-                            // ),
                           ],
                         ),
                       ),
@@ -251,19 +230,19 @@ class StatusComplianceScreen extends StatelessWidget {
         ],
       ),
       drawer: const drawer.DrawerChapterCompliance(),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 50.0),
-          child: ListView(
-            shrinkWrap: true,
-            children: const <Widget>[
-              ComplianceTimeline(isFirst: true, islast: false, isPast: true),
-              ComplianceTimeline(isFirst: false, islast: false, isPast: true),
-              ComplianceTimeline(isFirst: false, islast: false, isPast: false),
-              ComplianceTimeline(isFirst: false, islast: false, isPast: false),
-              ComplianceTimeline(isFirst: false, islast: true, isPast: false),
-            ],
-          ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 50.0),
+        child: ListView(
+          shrinkWrap: true,
+          children: const <Widget>[
+            ComplianceTimeline(isFirst: true, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+            ComplianceTimeline(isFirst: false, islast: true, isPast: false, eventCard: Text('Compliance Activity')),
+          ],
         ),
       ),
     );
@@ -277,19 +256,23 @@ class ComplianceTimeline extends StatelessWidget {
     required this.isFirst,
     required this.islast,
     required this.isPast,
+    required this.eventCard
   });
   final bool isFirst;
   final bool islast;
   final bool isPast;
+  final eventCard;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 125,
+      height: 180,
       child: TimelineTile(
         isFirst: isFirst,
         isLast: islast,
+        // decorate the lines
         beforeLineStyle: LineStyle(color: isPast ? theme.redOfficial : theme.greyClr),
+        // decorate the icon
         indicatorStyle: IndicatorStyle(
           width: 40.0,
           color: isPast ? theme.redOfficial : theme.greyClr,
@@ -298,7 +281,30 @@ class ComplianceTimeline extends StatelessWidget {
             color: isPast ? theme.primaryClr : theme.greyClr
           )
         ),
+        // event card
+        endChild: EventCard(isPast: isPast, child: eventCard,),
       ),
+    );
+  }
+}
+
+
+class EventCard extends StatelessWidget {
+  const EventCard({super.key, required this.isPast, required this.child});
+  final bool isPast;
+  final child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 170,
+      margin: const EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
+      decoration: BoxDecoration(
+        color: isPast ? theme.redOfficial : theme.greyClr,
+        borderRadius: BorderRadius.circular(8)
+      ),
+      child: child,
     );
   }
 }

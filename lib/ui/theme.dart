@@ -260,6 +260,7 @@ class TextThemes{
   static TextStyle size20(BuildContext context) { return const TextStyle(fontSize: 20.0); }
 
   static TextStyle colorDark(BuildContext context) { return const TextStyle(color: darkGreyClr); }
+  static TextStyle colorPrimary(BuildContext context) { return const TextStyle(color: primaryClr); }
 
   //////////////////////////////////////////////////////////////////
   // Drawer Component Styles
