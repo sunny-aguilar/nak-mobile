@@ -230,6 +230,72 @@ class StatusComplianceScreen extends StatelessWidget {
         ],
       ),
       drawer: const drawer.DrawerChapterCompliance(),
+      body: const ChapterList(),
+      // body: Padding(
+      //   padding: const EdgeInsets.symmetric(horizontal: 50.0),
+      //   child: ListView(
+      //     shrinkWrap: true,
+      //     children: const <Widget>[
+      //       ComplianceTimeline(isFirst: true, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: false, isPast: true, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: false, isPast: false, eventCard: Text('Compliance Activity')),
+      //       ComplianceTimeline(isFirst: false, islast: true, isPast: false, eventCard: Text('Compliance Activity')),
+      //     ],
+      //   ),
+      // ),
+    );
+  }
+}
+
+class ChapterList extends StatelessWidget {
+  const ChapterList({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: <Widget>[
+        ListTile(
+          title: const Text('Founding'),
+          trailing: const Icon(Icons.arrow_forward),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext context) {
+                  return const TimelineScreen();
+                }
+              )
+            );
+          },
+        )
+      ],
+    );
+  }
+}
+
+class TimelineScreen extends StatelessWidget {
+  const TimelineScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 50.0),
         child: ListView(
