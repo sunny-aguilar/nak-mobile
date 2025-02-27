@@ -256,17 +256,44 @@ class StatusComplianceScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 50.0),
           child: ListView(
             shrinkWrap: true,
-            children: <Widget>[
-              TimelineTile(
-                isFirst: true,
-              ),
-              TimelineTile(),
-              TimelineTile(),
-              TimelineTile(
-                isLast: true,
-              ),
+            children: const <Widget>[
+              ComplianceTimeline(isFirst: true, islast: false, isPast: true),
+              ComplianceTimeline(isFirst: false, islast: false, isPast: true),
+              ComplianceTimeline(isFirst: false, islast: false, isPast: false),
+              ComplianceTimeline(isFirst: false, islast: false, isPast: false),
+              ComplianceTimeline(isFirst: false, islast: true, isPast: false),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+class ComplianceTimeline extends StatelessWidget {
+  const ComplianceTimeline({
+    super.key,
+    required this.isFirst,
+    required this.islast,
+    required this.isPast,
+  });
+  final bool isFirst;
+  final bool islast;
+  final bool isPast;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 125,
+      child: TimelineTile(
+        isFirst: isFirst,
+        isLast: islast,
+        beforeLineStyle: LineStyle(color: isPast ? theme.redOfficial : theme.greyClr),
+        indicatorStyle: IndicatorStyle(
+          width: 40.0,
+          color: isPast ? theme.redOfficial : theme.greyClr,
+          iconStyle: IconStyle(iconData: Icons.done, color: theme.primaryClr)
         ),
       ),
     );
