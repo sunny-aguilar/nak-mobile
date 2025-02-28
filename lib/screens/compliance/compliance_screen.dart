@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/drawers.dart' as drawer;
@@ -245,6 +246,7 @@ class ChapterList extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           ListTile(
+            leading: const Icon(Icons.signal_cellular_alt_2_bar_outlined),
             title: const Text('Founding'),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
@@ -259,6 +261,7 @@ class ChapterList extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.signal_cellular_alt),
             title: const Text('Alpha'),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
@@ -273,6 +276,7 @@ class ChapterList extends StatelessWidget {
             },
           ),
           ListTile(
+            leading: const Icon(Icons.signal_cellular_alt_1_bar),
             title: const Text('Beta'),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
