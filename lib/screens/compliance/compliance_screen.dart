@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:timeline_tile/timeline_tile.dart';
-import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:nak_app/components/radial_gauge.dart' as guage;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/drawers.dart' as drawer;
@@ -242,92 +242,83 @@ class ChapterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
       child: ListView(
         children: <Widget>[
           ListTile(
-            leading: const Icon(Icons.signal_cellular_alt_2_bar_outlined),
-            title: const Text('Founding'),
+            leading: const guage.ComplianceGuage(progressValue: 100,),
+            title: Text('Founding', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },
           ),
           ListTile(
-            leading: const Icon(Icons.signal_cellular_alt),
-            title: const Text('Alpha'),
+            leading: const guage.ComplianceGuage(progressValue: 25,),
+            title: Text('Alpha', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },
           ),
           ListTile(
-            leading: const Icon(Icons.signal_cellular_alt_1_bar),
-            title: const Text('Beta'),
+            leading: const guage.ComplianceGuage(progressValue: 90,),
+            title: Text('Beta', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },
           ),
           ListTile(
-            title: const Text('Gamma'),
+            leading: const guage.ComplianceGuage(progressValue: 50,),
+            title: Text('Gamma', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },
           ),
           ListTile(
-            title: const Text('Delta'),
+            leading: const guage.ComplianceGuage(progressValue: 100,),
+            title: Text('Delta', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },
           ),
           ListTile(
-            title: const Text('Epsilon'),
+            leading: const guage.ComplianceGuage(progressValue: 10,),
+            title: Text('Epsilon', style: theme.TextThemes.size20(context),),
             trailing: const Icon(Icons.arrow_forward),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute<Widget>(
-                  builder: (BuildContext context) {
-                    return const TimelineScreen();
-                  }
+                  builder: (BuildContext context) { return const TimelineScreen(); }
                 )
               );
             },

@@ -250,6 +250,9 @@ class TextThemes{
   static TextStyle bebasText(BuildContext context) { return const TextStyle(fontFamily: 'Bebas'); }
   static TextStyle diatypeText(BuildContext context) { return const TextStyle(fontFamily: 'Diatype'); }
 
+  static TextStyle size6(BuildContext context) { return const TextStyle(fontSize: 6.0); }
+  static TextStyle size7(BuildContext context) { return const TextStyle(fontSize: 7.0); }
+  static TextStyle size8(BuildContext context) { return const TextStyle(fontSize: 8.0); }
   static TextStyle size10(BuildContext context) { return const TextStyle(fontSize: 10.0); }
   static TextStyle size11(BuildContext context) { return const TextStyle(fontSize: 11.0); }
   static TextStyle size12(BuildContext context) { return const TextStyle(fontSize: 12.0); }
