@@ -238,6 +238,7 @@ class StatusComplianceScreen extends StatelessWidget {
 
 class ChapterList extends StatelessWidget {
   const ChapterList({super.key});
+  final double spacer = 18.0;
 
   @override
   Widget build(BuildContext context) {
@@ -258,6 +259,7 @@ class ChapterList extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: spacer,),
           ListTile(
             leading: const guage.ComplianceGuage(progressValue: 25,),
             title: Text('Alpha', style: theme.TextThemes.size20(context),),
@@ -271,6 +273,7 @@ class ChapterList extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: spacer,),
           ListTile(
             leading: const guage.ComplianceGuage(progressValue: 90,),
             title: Text('Beta', style: theme.TextThemes.size20(context),),
@@ -284,6 +287,7 @@ class ChapterList extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: spacer,),
           ListTile(
             leading: const guage.ComplianceGuage(progressValue: 50,),
             title: Text('Gamma', style: theme.TextThemes.size20(context),),
@@ -297,6 +301,7 @@ class ChapterList extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: spacer,),
           ListTile(
             leading: const guage.ComplianceGuage(progressValue: 100,),
             title: Text('Delta', style: theme.TextThemes.size20(context),),
@@ -310,6 +315,7 @@ class ChapterList extends StatelessWidget {
               );
             },
           ),
+          SizedBox(height: spacer,),
           ListTile(
             leading: const guage.ComplianceGuage(progressValue: 10,),
             title: Text('Epsilon', style: theme.TextThemes.size20(context),),

@@ -38,7 +38,7 @@ class ComplianceGuage extends StatelessWidget {
               GaugeAnnotation(
                 positionFactor: 0.1,
                 angle: 90,
-                widget: Text('${progressValue.toStringAsFixed(0)}/100', style: theme.TextThemes.size8(context),),
+                widget: Text('${progressValue.toStringAsFixed(0)}%', style: theme.TextThemes.size10(context),),
               )
             ],
           ),
