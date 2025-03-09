@@ -51,7 +51,7 @@ class _BlogStreamState extends State<BlogStream> {
         // list to for ListView (will hold all home screen widgets (carousel + blog))
         List<Widget> clientWidgets = [];
 
-        // add carousel Widgetto list
+        // add carousel Widget to list
         List<Widget> carouselList = [
           const carousel.CarouselComponent(),
           const SizedBox(height: 4,),
