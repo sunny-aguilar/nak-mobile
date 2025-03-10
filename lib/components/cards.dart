@@ -45,7 +45,7 @@ class LargeGreyPictureCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(userImage), // <--- Error when URL is missing from user
+              backgroundImage: NetworkImage(userImage),
               backgroundColor: Colors.grey,
             ),
             title: Text(

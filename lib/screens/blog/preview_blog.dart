@@ -107,6 +107,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
 
+    // <--- User selfie URL
     String userImagePath = data['selfie'].isEmpty ? 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fmonk.jpg?alt=media&token=945b8517-1771-4ea6-81c2-df76dd1beed2': data['selfie'];
 
     return Column(
