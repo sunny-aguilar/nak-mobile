@@ -107,15 +107,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
 
-    String userImagePath = '';
-
-    print('Selfie: ${data['selfie'].length}');
-    userImagePath = data['selfie'].isEmpty ?? 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Ftreasurer.jpg?alt=media&token=735f90ab-41fa-41b6-b7ef-59aabaf8fd29';
-    // if (data['selfie'].length < 1) {
-    //   userImagePath = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Ftreasurer.jpg?alt=media&token=735f90ab-41fa-41b6-b7ef-59aabaf8fd29';
-    // }
-
-    print('SELFIE PATH:${userImagePath}');
+    String userImagePath = data['selfie'].isEmpty ? 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Fmonk.jpg?alt=media&token=945b8517-1771-4ea6-81c2-df76dd1beed2': data['selfie'];
 
     return Column(
       children: <Widget>[
