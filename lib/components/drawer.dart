@@ -48,11 +48,11 @@ class _DrawerComponentState extends State<DrawerComponent> {
               title: Text('Chapter Finances', style: theme.TextThemes.drawerMenuNT(context),),
               onTap: () => Navigator.pushNamed(context, '/finances'),
             ),
-            ListTile(
-              leading: const FaIcon(FontAwesomeIcons.listCheck,),
-              title: Text('Chapter Compliance', style: theme.TextThemes.drawerMenuNT(context),),
-              onTap: () => Navigator.pushNamed(context, '/compliance'),
-            ),
+            // ListTile(
+            //   leading: const FaIcon(FontAwesomeIcons.listCheck,),
+            //   title: Text('Chapter Compliance', style: theme.TextThemes.drawerMenuNT(context),),
+            //   onTap: () => Navigator.pushNamed(context, '/compliance'),
+            // ),
             ListTile(
               leading: const Icon(Icons.remember_me,),
               title: Text('National Board', style: theme.TextThemes.drawerMenuNT(context)),
