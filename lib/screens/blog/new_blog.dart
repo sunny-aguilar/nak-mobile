@@ -198,8 +198,6 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
                       // function that will prepare the blog preview
                       // - have it take you to another page to show the preview
                       // - after preview, either go back and edit or post and route to home page
-                      // TODO: FIX BUG WHERE USER DOES NOT UPLOAD A PHOTO, ERROR IS CAUSED BY FIRESTORE STORAGE
-                      // TODO: FIX line 'path: path ?? 'path/to/img.png',
                       String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
                       Navigator.pushNamed(
                         context,
