@@ -67,7 +67,7 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                height: 340,
+                height: 360,
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
@@ -111,7 +111,7 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                height: 340,
+                height: 360,
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
@@ -155,7 +155,7 @@ class ComplianceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 26.0, right: 26.0),
               child: SizedBox(
-                height: 340,
+                height: 360,
                 width: double.infinity,
                 child: Card(
                   clipBehavior: Clip.antiAlias,
