@@ -112,6 +112,7 @@ class _BlogStreamState extends State<BlogStream> {
 
         // return listview to to be displayed
         return ListView(
+          cacheExtent: 3000,
           children: clientWidgets,
         );
       }
