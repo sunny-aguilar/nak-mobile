@@ -79,6 +79,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
       'title': screenArgs.title,
       'url': _imageUrl,
       'body': screenArgs.body,
+      'link': screenArgs.links,
       'date': screenArgs.date,
       'userUID': userUID,
       // 'userSelfie':   // only add if absolutely necessary
@@ -106,18 +107,29 @@ class _PreviewBlogState extends State<PreviewBlog> {
     final args = ModalRoute.of(context)!.settings.arguments as screenargs.BlogArgs;
     String date = DateFormat.yMMMMd('en_US').format(DateTime.now());
 
+    String userImagePath = '';
+
+    print('Selfie: ${data['selfie'].length}');
+    userImagePath = data['selfie'].isEmpty ?? 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Ftreasurer.jpg?alt=media&token=735f90ab-41fa-41b6-b7ef-59aabaf8fd29';
+    // if (data['selfie'].length < 1) {
+    //   userImagePath = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/selfies%2Ftreasurer.jpg?alt=media&token=735f90ab-41fa-41b6-b7ef-59aabaf8fd29';
+    // }
+
+    print('SELFIE PATH:${userImagePath}');
+
     return Column(
       children: <Widget>[
 
         // show Card with data
         const SizedBox(height: 20),
         cards.LargeGreyPictureCard(
-          userImage: '${data['selfie']}',
+          userImage: userImagePath,
           userName: '${data['firstName']} ${data['lastName']}',
           storyHeadline: args.title,
           image: args.path,
           date: date,
           storyText: args.body,
+          link: args.links,
         ),
         const SizedBox(height: 25,),
 

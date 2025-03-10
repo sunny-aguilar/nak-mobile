@@ -22,6 +22,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
   // text controllers
   final TextEditingController _titleCtrl = TextEditingController();
   final TextEditingController _bodyCtrl = TextEditingController();
+  final TextEditingController _linksCtrl = TextEditingController();
 
   // image picker
   final ImagePicker _imagePicker = ImagePicker();
@@ -31,6 +32,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
   dynamic _pickImageError;
 
 
+  // pick image from phone gallery
   Future<void> _pickImageFromGallery() async {
     try {
       final image = await _imagePicker.pickImage(source: ImageSource.gallery);
@@ -45,6 +47,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
     }
   }
 
+  // take a picture and use that image
   Future<void> _pickImageFromCamera() async {
     try {
       final image = await _imagePicker.pickImage( source: ImageSource.camera);
@@ -105,6 +108,12 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
                 child: form.ParagraphFormField(ctrl: _bodyCtrl, label: 'Blog Text', vText: 'Please enter the blog text.',),
               ),
               const SizedBox(height: 25,),
+
+              // Links textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                 child: form.LinksFormField(ctrl: _linksCtrl, label: 'Links Text', vText: 'Please enter any links.',),
+              ),
 
 
               // image text
@@ -198,6 +207,7 @@ class _NewBlogScreenState extends State<NewBlogScreen> {
                         arguments: args.BlogArgs(
                           title: _titleCtrl.text.trim(),
                           body: _bodyCtrl.text.trim(),
+                          links: _linksCtrl.text.trim(),
                           date: date,
                           path: path ?? 'assets/img/stories/default_blog_image.png',
                         ),

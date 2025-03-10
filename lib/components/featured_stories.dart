@@ -98,6 +98,7 @@ class _BlogStreamState extends State<BlogStream> {
                             storyHeadline: blog['title'],
                             image: blog['url'],
                             storyText: blog['body'],
+                            link: blog['link'],
                             date: blog['date'],
                           );
                   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/buttons.dart' as buttons;
@@ -15,6 +16,7 @@ class LargeGreyPictureCard extends StatelessWidget {
   final String image;
   final String date;
   final String storyText;
+  final String link;
   const LargeGreyPictureCard({
     super.key,
     required this.userImage,
@@ -23,6 +25,7 @@ class LargeGreyPictureCard extends StatelessWidget {
     required this.image,
     required this.date,
     required this.storyText,
+    required this.link,
   });
 
   @override
@@ -42,7 +45,7 @@ class LargeGreyPictureCard extends StatelessWidget {
         children: [
           ListTile(
             leading: CircleAvatar(
-              backgroundImage: NetworkImage(userImage),
+              backgroundImage: NetworkImage(userImage), // <--- Error when URL is missing from user
               backgroundColor: Colors.grey,
             ),
             title: Text(
@@ -99,6 +102,16 @@ class LargeGreyPictureCard extends StatelessWidget {
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(storyText),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: InkWell(
+                                  child: Text(link),
+                                  onTap: () => launchUrl(
+                                    Uri.parse(link),
+                                    mode: LaunchMode.externalApplication,
+                                  ),
+                                ),
+                              ),
                               const Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Divider(color: theme.dividerClr),
@@ -146,6 +159,7 @@ class StoryCardNetwork extends StatelessWidget {
   final String image;
   final String date;
   final String storyText;
+  final String link;
   const StoryCardNetwork({
     super.key,
     required this.userImage,
@@ -154,6 +168,7 @@ class StoryCardNetwork extends StatelessWidget {
     required this.image,
     required this.date,
     required this.storyText,
+    required this.link,
   });
 
   @override
@@ -212,6 +227,16 @@ class StoryCardNetwork extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Text(storyText, style: theme.TextThemes.monoBodySmall18(context)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: InkWell(
+                          child: Text(link),
+                          onTap: () => launchUrl(
+                            Uri.parse(link),
+                            mode: LaunchMode.externalApplication,
+                          ),
+                        ),
                       ),
                       const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
