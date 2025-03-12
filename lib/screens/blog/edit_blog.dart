@@ -260,7 +260,7 @@ class _EditBlogState extends State<EditBlog> {
                     // show snackbar
                     if (_editBlogFormKey.currentState!.validate()) {
                       // update blog
-                      db_blog.Blog().updateBlogEntry(widget.docID, _titleCtl.text.trim(), _bodyCtl.text.trim());
+                      db_blog.Blog().updateBlogEntry(widget.docID, _titleCtl.text.trim(), _bodyCtl.text.trim(), _linkCtl.text.trim());
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Submitting the edits...'),),

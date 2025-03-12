@@ -105,7 +105,7 @@ class LargeGreyPictureCard extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: InkWell(
-                                  child: Text(link),
+                                  child: Text(link, style: theme.TextThemes.colorRedClr(context),),
                                   onTap: () => launchUrl(
                                     Uri.parse(link),
                                     mode: LaunchMode.externalApplication,

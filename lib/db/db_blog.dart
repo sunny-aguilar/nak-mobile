@@ -11,11 +11,12 @@ class Blog {
     return query.docs;
   }
 
-  Future<void> updateBlogEntry(String docID,String title, String body) async {
+  Future<void> updateBlogEntry(String docID,String title, String body, String link) async {
     _instance = FirebaseFirestore.instance;
     final data = {
       'title': title,
       'body': body,
+      'link': link,
     };
     final reference = _instance!.collection('blog').doc(docID);
     await reference.set(data, SetOptions(merge: true));
