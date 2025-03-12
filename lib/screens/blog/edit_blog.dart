@@ -244,7 +244,7 @@ class _EditBlogState extends State<EditBlog> {
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Please enter a link (or enter *)';
+                      return 'Please enter a link (if none, enter *)';
                     }
                     return null;
                   },
@@ -257,15 +257,19 @@ class _EditBlogState extends State<EditBlog> {
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                   child: const Text('Submit Edits'),
                   onPressed: () {
-
-                    // update blog
-                    db_blog.Blog().updateBlogEntry(widget.docID, _titleCtl.text.trim(), _bodyCtl.text.trim());
-                    Navigator.pop(context);
-
                     // show snackbar
                     if (_editBlogFormKey.currentState!.validate()) {
+                      // update blog
+                      db_blog.Blog().updateBlogEntry(widget.docID, _titleCtl.text.trim(), _bodyCtl.text.trim());
+                      Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Submitting the edits...'),),
+                      );
+                    }
+                    else {
+                      // validation failed message
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Please make sure all fields have been entered!'),),
                       );
                     }
                   },
