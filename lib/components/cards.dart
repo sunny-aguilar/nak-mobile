@@ -222,7 +222,7 @@ class StoryCardNetwork extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
-                        child: Text(storyHeadline, style: theme.TextThemes.monoBodyBold600Med24(context)),
+                        child: Text(storyHeadline, style: theme.TextThemes.chapterCardTitle(context)),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(12.0),
@@ -231,7 +231,7 @@ class StoryCardNetwork extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: InkWell(
-                          child: Text(link),
+                          child: Text(link, style: theme.TextThemes.colorRedClr(context),),
                           onTap: () => launchUrl(
                             Uri.parse(link),
                             mode: LaunchMode.externalApplication,
