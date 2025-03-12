@@ -85,6 +85,7 @@ class _EditBlogScreenState extends State<BlogList> {
                                 return EditBlog(
                                   title: blog[index]['title'],
                                   body: blog[index]['body'],
+                                  link: blog[index]['link'],
                                   docID: blog[index]['docID'],
                                   url: blog[index]['url'],
                                 );
@@ -117,11 +118,13 @@ class EditBlog extends StatefulWidget {
   const EditBlog({super.key,
     required this.title,
     required this.body,
+    required this.link,
     required this.docID,
     required this.url}
   );
   final String title;
   final String body;
+  final String link;
   final String docID;
   final String url;
   @override
@@ -134,18 +137,21 @@ class _EditBlogState extends State<EditBlog> {
   // Controllers
   TextEditingController _titleCtl = TextEditingController();
   TextEditingController _bodyCtl = TextEditingController();
+  TextEditingController _linkCtl = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     _titleCtl = TextEditingController(text: widget.title);
     _bodyCtl = TextEditingController(text: widget.body);
+    _linkCtl = TextEditingController(text: widget.link);
   }
 
   @override
   void dispose() {
     _titleCtl.dispose();
     _bodyCtl.dispose();
+    _linkCtl.dispose();
     super.dispose();
   }
 
@@ -221,6 +227,24 @@ class _EditBlogState extends State<EditBlog> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter a title';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 30,),
+
+
+                // link text input
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Link',
+                    helperText: 'Edit the link'
+                  ),
+                  controller: _linkCtl,
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a link (or enter *)';
                     }
                     return null;
                   },
