@@ -57,15 +57,12 @@ class _DirectoryState extends State<Directory> {
           ),
         ],
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            
-          ]
-        )
-      )
+      body: ListView.builder(
+        itemCount: 26,
+        itemBuilder: (context, index) {
+          return ListTile(title: Text('testing list'));
+        }
+      ),
     );
   }
 }
