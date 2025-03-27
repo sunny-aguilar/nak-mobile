@@ -29,7 +29,7 @@ class Directory extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const SizedBox(height: 10,),
+            
           ]
         )
       )
