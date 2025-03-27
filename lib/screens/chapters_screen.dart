@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:nak_app/components/cards.dart';
+import 'package:nak_app/components/cards.dart' as card;
 import 'package:nak_app/ui/theme.dart' as theme;
 
 
@@ -122,7 +122,7 @@ class _ChapterScreensState extends State<ChapterScreen> {
             );
           }
 
-          // default screen if no data is return
+          // default screen if no data is returned
           return Scaffold(
             appBar: AppBar(
               title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
@@ -147,7 +147,7 @@ class ChapterCardList extends StatelessWidget {
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
-          return chapterCard(context: context, index: index, chapters: chapters);
+          return card.chapterCard(context: context, index: index, chapters: chapters);
         },
         childCount: chapterCount,
       ),
