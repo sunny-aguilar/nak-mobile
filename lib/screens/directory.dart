@@ -25,7 +25,16 @@ class Directory extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(child: Text('Directory Main Page'),)
+      body: Column(
+        children: <Widget>[
+          Container(
+            child: Center(child: Text('View Brothers'),),
+          ),
+          Container(
+            child: Center(child: Text('Add a Brother'),),
+          ),
+        ],
+      )
     );
   }
 }
