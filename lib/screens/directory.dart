@@ -1,11 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 
 
-class Directory extends StatelessWidget {
+class Directory extends StatefulWidget {
   const Directory({super.key});
+  @override
+  State<Directory> createState() => _DirectoryState();
+}
+
+class _DirectoryState extends State<Directory> {
+  List _chapters = [];
+  late Future<String> _download;
+
+  Future<String> _readJson() async{
+    // json loaded externally from G drive, developer@nakinc.org
+    String url = 'https://drive.google.com/uc?export=view&id=1TO7ucgL_lg_ipfW8KUniRzevlRU3vd5F';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final parsedJson = jsonDecode(response.body);
+      setState(() => _chapters = parsedJson['chapters'] );
+    }
+    else {
+      throw Exception('Failed to load chapter data');
+    }
+    return 'Data fetched by _readJson()';
+    // json loaded from internally from asset bundle
+    // final String response = await rootBundle.loadString('assets/json/chapters.json');
+    // final data = await json.decode(response);
+    // setState( () => _chapters = data['chapters'] );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _download = _readJson();
+  }
 
   @override
   Widget build(BuildContext context) {
