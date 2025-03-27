@@ -5,14 +5,23 @@ import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 
-
-class Directory extends StatefulWidget {
+class Directory extends StatelessWidget {
   const Directory({super.key});
+
   @override
-  State<Directory> createState() => _DirectoryState();
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
 
-class _DirectoryState extends State<Directory> {
+
+class ChapterList extends StatefulWidget {
+  const ChapterList({super.key});
+  @override
+  State<ChapterList> createState() => _ChapterListState();
+}
+
+class _ChapterListState extends State<ChapterList> {
   List _chapters = [];
   late Future<String> _download;
 
