@@ -8,7 +8,7 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:nak_app/splash_screen.dart';
 import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/chapters_screen.dart';
-import 'package:nak_app/screens/directory.dart';
+import 'package:nak_app/screens/directory/directory.dart';
 import 'package:nak_app/screens/intro_screen.dart';
 import 'package:nak_app/screens/dues_screen.dart';
 import 'package:nak_app/screens/chapter_finances.dart';
