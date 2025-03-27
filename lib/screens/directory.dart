@@ -24,6 +24,15 @@ class Directory extends StatelessWidget {
           ),
         ],
       ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 10,),
+          ]
+        )
+      )
     );
   }
 }
