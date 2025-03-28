@@ -104,7 +104,7 @@ class MyBarGraph extends StatelessWidget {
                 toY: data.y,
                 color: theme.darkGreyClr,
                 width: 10,
-                borderRadius: BorderRadius.circular(2),
+                borderRadius: BorderRadius.circular(0),
               )
             ]
           ),
