@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 
 
 class IndividualBar {
@@ -98,7 +99,14 @@ class MyBarGraph extends StatelessWidget {
         barGroups: myBarData.barData.map(
           (data) => BarChartGroupData(
             x: data.x,
-            barRods: [BarChartRodData(toY: data.y)]
+            barRods: [
+              BarChartRodData(
+                toY: data.y,
+                color: theme.darkGreyClr,
+                width: 10,
+                borderRadius: BorderRadius.circular(2),
+              )
+            ]
           ),
         ).toList(),
       )
