@@ -3,11 +3,17 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/screens/directory/chart.dart' as chart;
 
 
-class Directory extends StatelessWidget {
+class Directory extends StatefulWidget {
   const Directory({super.key});
 
+  @override
+  State<Directory> createState() => _DirectoryState();
+}
+
+class _DirectoryState extends State<Directory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,21 +37,28 @@ class Directory extends StatelessWidget {
 }
 
 
-class DirectoryDashboard extends StatelessWidget {
+class DirectoryDashboard extends StatefulWidget {
   const DirectoryDashboard({super.key});
+  @override
+  State<DirectoryDashboard> createState() => _DirectoryDashboardState();
+}
+
+class _DirectoryDashboardState extends State<DirectoryDashboard> {
+  List<double> chapterBrothers = [
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-        children: <Widget>[
-          Container(
-            child: Center(child: Text('View Brothers'),),
-          ),
-          Container(
-            child: Center(child: Text('Add a Brother'),),
-          ),
-        ],
-      );
+    return Center(
+      child: Container(
+        height: 200,
+        width: 400,
+        child: Center(
+          child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+        ),
+      ),
+    );
   }
 }
 

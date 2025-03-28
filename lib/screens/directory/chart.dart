@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
 
 
 class IndividualBar {
@@ -33,7 +34,23 @@ class BarData {
   final double iota;
 
   List<IndividualBar> barData = [];
+
+  void initializedBarData() {
+    barData = [
+      IndividualBar(x: 0, y: founding),
+      IndividualBar(x: 0, y: alpha),
+      IndividualBar(x: 0, y: beta),
+      IndividualBar(x: 0, y: gamma),
+      IndividualBar(x: 0, y: delta),
+      IndividualBar(x: 0, y: epsilon),
+      IndividualBar(x: 0, y: zeta),
+      IndividualBar(x: 0, y: eta),
+      IndividualBar(x: 0, y: theta),
+      IndividualBar(x: 0, y: iota),
+    ];
+  }
 }
+
 
 class BarGraph extends StatefulWidget {
   const BarGraph({super.key});
@@ -49,5 +66,31 @@ class _BarGraphState extends State<BarGraph> {
   @override
   Widget build(BuildContext context) {
     return const Placeholder();
+  }
+}
+
+
+class MyBarGraph extends StatelessWidget {
+  const MyBarGraph({super.key, required this.chapterBrothers});
+  final List chapterBrothers;
+
+  @override
+  Widget build(BuildContext context) {
+    BarData myBarData = BarData(founding: chapterBrothers[0], alpha: chapterBrothers[1], beta: chapterBrothers[2], gamma: chapterBrothers[3], delta: chapterBrothers[4], epsilon: chapterBrothers[5], zeta: chapterBrothers[6], eta: chapterBrothers[7], theta: chapterBrothers[8], iota: chapterBrothers[9]);
+
+    myBarData.initializedBarData();
+
+    return BarChart(
+      BarChartData(
+        maxY: 200,
+        minY:0,
+        barGroups: myBarData.barData.map(
+          (data) => BarChartGroupData(
+            x: data.x,
+            barRods: [BarChartRodData(toY: data.y)]
+          ),
+        ).toList(),
+      )
+    );
   }
 }
