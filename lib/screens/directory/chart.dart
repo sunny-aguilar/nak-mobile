@@ -38,15 +38,15 @@ class BarData {
   void initializedBarData() {
     barData = [
       IndividualBar(x: 0, y: founding),
-      IndividualBar(x: 0, y: alpha),
-      IndividualBar(x: 0, y: beta),
-      IndividualBar(x: 0, y: gamma),
-      IndividualBar(x: 0, y: delta),
-      IndividualBar(x: 0, y: epsilon),
-      IndividualBar(x: 0, y: zeta),
-      IndividualBar(x: 0, y: eta),
-      IndividualBar(x: 0, y: theta),
-      IndividualBar(x: 0, y: iota),
+      IndividualBar(x: 1, y: alpha),
+      IndividualBar(x: 2, y: beta),
+      IndividualBar(x: 3, y: gamma),
+      IndividualBar(x: 4, y: delta),
+      IndividualBar(x: 5, y: epsilon),
+      IndividualBar(x: 6, y: zeta),
+      IndividualBar(x: 7, y: eta),
+      IndividualBar(x: 8, y: theta),
+      IndividualBar(x: 9, y: iota),
     ];
   }
 }
@@ -76,7 +76,18 @@ class MyBarGraph extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BarData myBarData = BarData(founding: chapterBrothers[0], alpha: chapterBrothers[1], beta: chapterBrothers[2], gamma: chapterBrothers[3], delta: chapterBrothers[4], epsilon: chapterBrothers[5], zeta: chapterBrothers[6], eta: chapterBrothers[7], theta: chapterBrothers[8], iota: chapterBrothers[9]);
+    BarData myBarData = BarData(
+      founding: chapterBrothers[0],
+      alpha: chapterBrothers[1],
+      beta: chapterBrothers[2],
+      gamma: chapterBrothers[3],
+      delta: chapterBrothers[4],
+      epsilon: chapterBrothers[5],
+      zeta: chapterBrothers[6],
+      eta: chapterBrothers[7],
+      theta: chapterBrothers[8],
+      iota: chapterBrothers[9]
+    );
 
     myBarData.initializedBarData();
 
