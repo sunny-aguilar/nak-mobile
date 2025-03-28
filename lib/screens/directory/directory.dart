@@ -45,7 +45,7 @@ class DirectoryDashboard extends StatefulWidget {
 
 class _DirectoryDashboardState extends State<DirectoryDashboard> {
   List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,90,150,80,130
   ];
 
   @override

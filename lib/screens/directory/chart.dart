@@ -34,6 +34,8 @@ class BarData {
     required this.tau,
     required this.upsilon,
     required this.phi,
+    required this.chi,
+    required this.psi,
   });
   final double founding;
   final double alpha;
@@ -57,6 +59,8 @@ class BarData {
   final double tau;
   final double upsilon;
   final double phi;
+  final double chi;
+  final double psi;
 
   List<IndividualBar> barData = [];
 
@@ -84,6 +88,8 @@ class BarData {
       IndividualBar(x: 19, y: tau),
       IndividualBar(x: 20, y: upsilon),
       IndividualBar(x: 21, y: phi),
+      IndividualBar(x: 22, y: chi),
+      IndividualBar(x: 23, y: psi),
     ];
   }
 }
@@ -97,7 +103,7 @@ class BarGraph extends StatefulWidget {
 
 class _BarGraphState extends State<BarGraph> {
   List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,40,60,110,120,140,100,
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,90,150,80,130
   ];
 
   @override
@@ -134,8 +140,10 @@ class MyBarGraph extends StatelessWidget {
       rho: chapterBrothers[17],
       sigma: chapterBrothers[18],
       tau: chapterBrothers[19],
-      upsilon: chapterBrothers[19],
-      phi: chapterBrothers[19],
+      upsilon: chapterBrothers[20],
+      phi: chapterBrothers[21],
+      chi: chapterBrothers[22],
+      psi: chapterBrothers[23],
     );
 
     myBarData.initializedBarData();
