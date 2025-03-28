@@ -54,19 +54,16 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      scrollDirection: Axis.vertical,
-      children: <Widget>[
-        Center(
-          child: Container(
-            height: 200,
-            width: 400,
-            child: Center(
-              child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
-            ),
+    return Column(
+      children: [
+        Container(
+          height: 170,
+          width: double.infinity,
+          child: Center(
+            child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
           ),
         ),
-      ]
+      ],
     );
   }
 }

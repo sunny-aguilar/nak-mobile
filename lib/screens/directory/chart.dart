@@ -5,8 +5,8 @@ import 'package:nak_app/ui/theme.dart' as theme;
 
 class IndividualBar {
   IndividualBar({required this.x, required this.y});
-  final int x;
-  final double y;
+  final int x;    // position on x axis
+  final double y; // position on y axis
 }
 
 
@@ -104,24 +104,6 @@ class BarData {
 }
 
 
-class BarGraph extends StatefulWidget {
-  const BarGraph({super.key});
-  @override
-  State<BarGraph> createState() => _BarGraphState();
-}
-
-class _BarGraphState extends State<BarGraph> {
-  List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,90,150,80,130,60,100,120,
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-
 class MyBarGraph extends StatelessWidget {
   const MyBarGraph({super.key, required this.chapterBrothers});
   final List chapterBrothers;
@@ -166,6 +148,21 @@ class MyBarGraph extends StatelessWidget {
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
+
+        barTouchData: BarTouchData(
+            touchTooltipData: BarTouchTooltipData(
+            getTooltipColor: (_) => theme.redClr,
+            tooltipHorizontalAlignment: FLHorizontalAlignment.right,
+            tooltipMargin: -10,
+            getTooltipItem: (group, groupIndex, rod, rodIndex) {
+              return BarTooltipItem(
+                'txt',
+                TextStyle(fontSize: 16)
+              );
+            },
+          ),
+        ),
+
         titlesData: FlTitlesData(
           show: true,
           topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -185,7 +182,7 @@ class MyBarGraph extends StatelessWidget {
               BarChartRodData(
                 toY: data.y,
                 color: theme.darkGreyClr,
-                width: 12,
+                width: 8,
                 borderRadius: BorderRadius.circular(0),
               )
             ]
