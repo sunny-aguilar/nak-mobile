@@ -81,7 +81,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   height: 170,
                   width: MediaQuery.sizeOf(context).width,
                   child: Card(
-                    color: theme.uiRedClr,
+                    color: Get.isDarkMode ? theme.uiRedClr : theme.uiGrey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6)
                     ),
@@ -94,7 +94,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 Positioned(
                   top: 10,
                   left: 12,
-                  child: Text('Brothers per chapter', style: TextStyle(color: theme.primaryClr),)
+                  child: Text('Brothers at each chapter', style: TextStyle(color: theme.primaryClr),)
                 ),
               ],
             ),
@@ -109,7 +109,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
               children: <Widget>[
                 SizedBox(
                   height: 150,
-                  width: 180,
+                  width: 170,
                   child: Card(
                     color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(
@@ -126,7 +126,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 ),
                 SizedBox(
                   height: 150,
-                  width: 180,
+                  width: 170,
                   child: Card(
                     color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(

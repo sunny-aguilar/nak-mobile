@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 
@@ -152,7 +153,7 @@ class MyBarGraph extends StatelessWidget {
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
-        backgroundColor: theme.uiRedClr,
+        backgroundColor: Get.isDarkMode ? theme.uiRedClr : theme.uiGrey,
         barTouchData: BarTouchData(
             touchTooltipData: BarTouchTooltipData(
             getTooltipColor: (_) => theme.redClr,
@@ -185,7 +186,8 @@ class MyBarGraph extends StatelessWidget {
             barRods: [
               BarChartRodData(
                 toY: data.y,
-                color: theme.primaryClr,
+                // color: theme.softWhiteUI,
+                color: Get.isDarkMode ? theme.softWhiteUI : theme.uiRedClr,
                 width: 8,
                 borderRadius: BorderRadius.circular(4),
               )
@@ -198,22 +200,30 @@ class MyBarGraph extends StatelessWidget {
 }
 
 
+TextStyle chartLabelText() {
+  return TextStyle(
+    fontSize: 10,
+    color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+  );
+}
+
+
 Widget getBottomTitles(double value, TitleMeta meta) {
   Widget text;
   double fontSize = 10;
 
   switch (value.toInt()) {
     case 0:
-      text = Text('F', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('F', style: chartLabelText());
       break;
     case 1:
-      text = Text('A', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('A', style: chartLabelText());
       break;
     case 2:
-      text = Text('B', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('B', style: chartLabelText());
       break;
     case 3:
-      text = Text('Γ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Γ', style: chartLabelText());
       break;
     case 4:
       text = Text('Δ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));

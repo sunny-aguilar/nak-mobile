@@ -16,6 +16,7 @@ const Color orangeClr = Color.fromARGB(255, 255, 152, 0);
 const Color warningClr = Color.fromARGB(255, 255, 153, 11);
 const Color lightRedClr =Color.fromARGB(255, 250, 218, 220);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
+const Color softWhiteUI = Color.fromARGB(180, 255, 255, 255);
 const Color uiGrey = Color.fromARGB(255, 248, 248, 248);
 const Color greyUI = Color.fromARGB(255, 56, 61, 67);
 const Color chatGregyClr = Color.fromARGB(255, 234, 234, 234);
@@ -687,6 +688,14 @@ class TextThemes{
         fontSize: 40,
         fontWeight: FontWeight.w900,
         color: Get.isDarkMode ? primaryClr : charcoalClr,
+    );
+  }
+
+  //////// Directory Themes
+  static TextStyle chartLabels(BuildContext context) {
+    return TextStyle(
+        fontSize: 10,
+        color: Get.isDarkMode ? primaryClr : darkGreyClr,
     );
   }
 
