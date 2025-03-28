@@ -36,6 +36,9 @@ class BarData {
     required this.phi,
     required this.chi,
     required this.psi,
+    required this.aa,
+    required this.ab,
+    required this.ag,
   });
   final double founding;
   final double alpha;
@@ -61,6 +64,9 @@ class BarData {
   final double phi;
   final double chi;
   final double psi;
+  final double aa;
+  final double ab;
+  final double ag;
 
   List<IndividualBar> barData = [];
 
@@ -90,6 +96,9 @@ class BarData {
       IndividualBar(x: 21, y: phi),
       IndividualBar(x: 22, y: chi),
       IndividualBar(x: 23, y: psi),
+      IndividualBar(x: 24, y: aa),
+      IndividualBar(x: 25, y: ab),
+      IndividualBar(x: 26, y: ag),
     ];
   }
 }
@@ -103,7 +112,7 @@ class BarGraph extends StatefulWidget {
 
 class _BarGraphState extends State<BarGraph> {
   List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,90,150,80,130
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,90,150,80,130,60,100,120,
   ];
 
   @override
@@ -144,6 +153,9 @@ class MyBarGraph extends StatelessWidget {
       phi: chapterBrothers[21],
       chi: chapterBrothers[22],
       psi: chapterBrothers[23],
+      aa: chapterBrothers[24],
+      ab: chapterBrothers[25],
+      ag: chapterBrothers[26],
     );
 
     myBarData.initializedBarData();
@@ -187,94 +199,95 @@ class MyBarGraph extends StatelessWidget {
 
 Widget getBottomTitles(double value, TitleMeta meta) {
   Widget text;
+  double fontSize = 10;
 
   switch (value.toInt()) {
     case 0:
-      text = const Text('F');
+      text = Text('F', style: TextStyle(fontSize: fontSize));
       break;
     case 1:
-      text = const Text('A');
+      text = Text('A', style: TextStyle(fontSize: fontSize));
       break;
     case 2:
-      text = const Text('B');
+      text = Text('B', style: TextStyle(fontSize: fontSize));
       break;
     case 3:
-      text = const Text('Γ');
+      text = Text('Γ', style: TextStyle(fontSize: fontSize));
       break;
     case 4:
-      text = const Text('Δ');
+      text = Text('Δ', style: TextStyle(fontSize: fontSize));
       break;
     case 5:
-      text = const Text('E');
+      text = Text('E', style: TextStyle(fontSize: fontSize));
       break;
     case 6:
-      text = const Text('Z');
+      text = Text('Z', style: TextStyle(fontSize: fontSize));
       break;
     case 7:
-      text = const Text('H');
+      text = Text('H', style: TextStyle(fontSize: fontSize));
       break;
     case 8:
-      text = const Text('Θ');
+      text = Text('Θ', style: TextStyle(fontSize: fontSize));
       break;
     case 9:
-      text = const Text('I');
+      text = Text('I', style: TextStyle(fontSize: fontSize));
       break;
     case 10:
-      text = const Text('K');
+      text = Text('K', style: TextStyle(fontSize: fontSize));
       break;
     case 11:
-      text = const Text('Λ');
+      text = Text('Λ', style: TextStyle(fontSize: fontSize));
       break;
     case 12:
-      text = const Text('M');
+      text = Text('M', style: TextStyle(fontSize: fontSize));
       break;
     case 13:
-      text = const Text('N');
+      text = Text('N', style: TextStyle(fontSize: fontSize));
       break;
     case 14:
-      text = const Text('Ξ');
+      text = Text('Ξ', style: TextStyle(fontSize: fontSize));
       break;
     case 15:
-      text = const Text('O');
+      text = Text('O', style: TextStyle(fontSize: fontSize));
       break;
     case 16:
-      text = const Text('Π');
+      text = Text('Π', style: TextStyle(fontSize: fontSize));
       break;
     case 17:
-      text = const Text('P');
+      text = Text('P', style: TextStyle(fontSize: fontSize));
       break;
     case 18:
-      text = const Text('Σ');
+      text = Text('Σ', style: TextStyle(fontSize: fontSize));
       break;
     case 19:
-      text = const Text('T');
+      text = Text('T', style: TextStyle(fontSize: fontSize));
       break;
     case 20:
-      text = const Text('Y');
+      text = Text('Y', style: TextStyle(fontSize: fontSize));
       break;
     case 21:
-      text = const Text('Φ');
+      text = Text('Φ', style: TextStyle(fontSize: fontSize));
       break;
     case 22:
-      text = const Text('X');
+      text = Text('X', style: TextStyle(fontSize: fontSize));
       break;
     case 23:
-      text = const Text('Ψ');
+      text = Text('Ψ', style: TextStyle(fontSize: fontSize));
       break;
     case 24:
-      text = const Text('AA');
+      text = Text('AA', style: TextStyle(fontSize: fontSize));
       break;
     case 25:
-      text = const Text('AB');
+      text = Text('AB', style: TextStyle(fontSize: fontSize));
       break;
     case 26:
-      text = const Text('AΓ');
+      text = Text('AΓ', style: TextStyle(fontSize: fontSize));
       break;
     case 27:
-      text = const Text('AΔ');
+      text = Text('AΔ', style: TextStyle(fontSize: fontSize));
       break;
     default:
-      text = const Text('');
+      text = Text('');
   }
 
   return SideTitleWidget(
