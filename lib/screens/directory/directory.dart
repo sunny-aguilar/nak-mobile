@@ -55,77 +55,115 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 20,),
-          Text('Brother\nDirectory', style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 40, fontWeight: FontWeight.w900),),
-          Container(
-            height: 170,
-            width: double.infinity,
-            child: Center(
-              child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 20,),
+            Text('Brother\nDirectory', style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 40, fontWeight: FontWeight.w900),),
+            SizedBox(
+              height: 170,
+              width: MediaQuery.sizeOf(context).width,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(3)
+                ),
+                child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+              ),
             ),
-          ),
-          const SizedBox(height: 30,),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              SizedBox(
-                height: 220,
-                width: MediaQuery.sizeOf(context).width * .450,
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Image.asset('assets/img/ad_dues.webp'),
-                      ListTile(
-                        title: const Text('View Brothers'),
-                        subtitle: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
-                      ),
-                      // add navigator here to go to the next page
-                      //
-                      //
-                      //
-                      //
-                      //
-                      // add navigator here to go to the next page
-                    ]
+            const SizedBox(height: 30,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                SizedBox(
+                  height: 180,
+                  width: 180,
+                  child: Card(
+                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4)
+                    ),
+                    child: Column(),
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 220,
-                width: MediaQuery.sizeOf(context).width * .45,
-                child: Card(
-                  clipBehavior: Clip.antiAlias,
-                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Image.asset('assets/img/ad_dues.webp'),
-                      ListTile(
-                        title: const Text('Add a Brother'),
-                        subtitle: Text('Don\'t see a name? Add the bro to the directory!', style: theme.TextThemes.size11(context),),
-                      ),
-                      // add navigator here to go to the next page
-                      //
-                      //
-                      //
-                      //
-                      //
-                      // add navigator here to go to the next page
-                    ]
+                SizedBox(
+                  height: 180,
+                  width: 180,
+                  child: Card(
+                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(4)
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+            const SizedBox(height: 30,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(
+                  height: 220,
+                  width: MediaQuery.sizeOf(context).width * .450,
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Image.asset('assets/img/ad_dues.webp'),
+                        ListTile(
+                          title: const Text('View Brothers'),
+                          subtitle: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
+                        ),
+                        // add navigator here to go to the next page
+                        //
+                        //
+                        //
+                        //
+                        //
+                        // add navigator here to go to the next page
+                      ]
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 220,
+                  width: MediaQuery.sizeOf(context).width * .45,
+                  child: Card(
+                    clipBehavior: Clip.antiAlias,
+                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Image.asset('assets/img/ad_dues.webp'),
+                        ListTile(
+                          title: const Text('Add a Brother'),
+                          subtitle: Text('Don\'t see a name? Add the bro to the directory!', style: theme.TextThemes.size11(context),),
+                        ),
+                        // add navigator here to go to the next page
+                        //
+                        //
+                        //
+                        //
+                        //
+                        // add navigator here to go to the next page
+                      ]
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
