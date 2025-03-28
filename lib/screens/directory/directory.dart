@@ -82,7 +82,18 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Image.asset('assets/img/bg/status.bg.webp'),
+                      Image.asset('assets/img/nak_letters.png'),
+                      ListTile(
+                        title: const Text('View Brothers'),
+                        subtitle: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
+                      ),
+                      // add navigator here to go to the next page
+                      //
+                      //
+                      //
+                      //
+                      //
+                      // add navigator here to go to the next page
                     ]
                   ),
                 ),
