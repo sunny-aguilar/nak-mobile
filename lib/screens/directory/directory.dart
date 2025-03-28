@@ -45,19 +45,23 @@ class DirectoryDashboard extends StatefulWidget {
 
 class _DirectoryDashboardState extends State<DirectoryDashboard> {
   List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,60,110,120,
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Container(
-        height: 200,
-        width: 400,
-        child: Center(
-          child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+    return ListView(
+      children: <Widget>[
+        Center(
+          child: Container(
+            height: 200,
+            width: 400,
+            child: Center(
+              child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+            ),
+          ),
         ),
-      ),
+      ]
     );
   }
 }

@@ -26,6 +26,14 @@ class BarData {
     required this.lambda,
     required this.mu,
     required this.nu,
+    required this.xi,
+    required this.omicron,
+    required this.pi,
+    required this.rho,
+    required this.sigma,
+    required this.tau,
+    required this.upsilon,
+    required this.phi,
   });
   final double founding;
   final double alpha;
@@ -41,6 +49,14 @@ class BarData {
   final double lambda;
   final double mu;
   final double nu;
+  final double xi;
+  final double omicron;
+  final double pi;
+  final double rho;
+  final double sigma;
+  final double tau;
+  final double upsilon;
+  final double phi;
 
   List<IndividualBar> barData = [];
 
@@ -59,7 +75,15 @@ class BarData {
       IndividualBar(x: 10, y: kappa),
       IndividualBar(x: 11, y: lambda),
       IndividualBar(x: 12, y: mu),
-      IndividualBar(x: 12, y: nu),
+      IndividualBar(x: 13, y: nu),
+      IndividualBar(x: 14, y: xi),
+      IndividualBar(x: 15, y: omicron),
+      IndividualBar(x: 16, y: pi),
+      IndividualBar(x: 17, y: rho),
+      IndividualBar(x: 18, y: sigma),
+      IndividualBar(x: 19, y: tau),
+      IndividualBar(x: 20, y: upsilon),
+      IndividualBar(x: 21, y: phi),
     ];
   }
 }
@@ -73,7 +97,7 @@ class BarGraph extends StatefulWidget {
 
 class _BarGraphState extends State<BarGraph> {
   List<double> chapterBrothers = [
-    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70
+    100,120,90,150,110,70,50,110,130,140,120,80,90,60,100,130,70,40,60,110,120,140,100,
   ];
 
   @override
@@ -100,10 +124,18 @@ class MyBarGraph extends StatelessWidget {
       eta: chapterBrothers[7],
       theta: chapterBrothers[8],
       iota: chapterBrothers[9],
-      kappa: chapterBrothers[9],
-      lambda: chapterBrothers[9],
-      mu: chapterBrothers[9],
-      nu: chapterBrothers[9],
+      kappa: chapterBrothers[10],
+      lambda: chapterBrothers[11],
+      mu: chapterBrothers[12],
+      nu: chapterBrothers[13],
+      xi: chapterBrothers[14],
+      omicron: chapterBrothers[15],
+      pi: chapterBrothers[16],
+      rho: chapterBrothers[17],
+      sigma: chapterBrothers[18],
+      tau: chapterBrothers[19],
+      upsilon: chapterBrothers[19],
+      phi: chapterBrothers[19],
     );
 
     myBarData.initializedBarData();
