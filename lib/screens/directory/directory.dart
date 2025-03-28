@@ -15,6 +15,8 @@ class Directory extends StatefulWidget {
 }
 
 class _DirectoryState extends State<Directory> {
+  void _handleThemeChange() => setState((){});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,14 +35,15 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: const DirectoryDashboard(),
+      body: DirectoryDashboard(onChange: _handleThemeChange,),
     );
   }
 }
 
 
 class DirectoryDashboard extends StatefulWidget {
-  const DirectoryDashboard({super.key});
+  const DirectoryDashboard({super.key, required this.onChange});
+  final Function onChange;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
@@ -108,14 +111,14 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   height: 150,
                   width: 180,
                   child: Card(
-                    color: Get.isDarkMode ? theme.bodyClr : theme.uiGrey,
+                    color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('3,001', style: theme.TextThemes.size36(context),),
+                        Text('3,001', style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
                         Text('Total Brothers')
                       ],
                     ),
@@ -125,14 +128,14 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   height: 150,
                   width: 180,
                   child: Card(
-                    color: Get.isDarkMode ? theme.bodyClr : theme.uiGrey,
+                    color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12)
                     ),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('27', style: theme.TextThemes.size36(context),),
+                        Text('27', style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
                         Text('Total Chapters')
                       ],
                     ),
@@ -154,7 +157,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   width: MediaQuery.sizeOf(context).width * .450,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
-                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)
                     ),
@@ -163,7 +166,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       children: <Widget>[
                         Image.asset('assets/img/ad_dues.webp'),
                         ListTile(
-                          title: const Text('View Brothers'),
+                          title: const Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold),),
                           subtitle: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
                         ),
                         // add navigator here to go to the next page
@@ -182,7 +185,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   width: MediaQuery.sizeOf(context).width * .45,
                   child: Card(
                     clipBehavior: Clip.antiAlias,
-                    color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                    color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)
                     ),
@@ -191,7 +194,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       children: <Widget>[
                         Image.asset('assets/img/ad_dues.webp'),
                         ListTile(
-                          title: const Text('Add a Brother'),
+                          title: const Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold),),
                           subtitle: Text('Don\'t see a name? Add the bro to the directory!', style: theme.TextThemes.size11(context),),
                         ),
                         // add navigator here to go to the next page

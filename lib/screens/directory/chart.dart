@@ -204,88 +204,88 @@ Widget getBottomTitles(double value, TitleMeta meta) {
 
   switch (value.toInt()) {
     case 0:
-      text = Text('F', style: TextStyle(fontSize: fontSize));
+      text = Text('F', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 1:
-      text = Text('A', style: TextStyle(fontSize: fontSize));
+      text = Text('A', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 2:
-      text = Text('B', style: TextStyle(fontSize: fontSize));
+      text = Text('B', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 3:
-      text = Text('Γ', style: TextStyle(fontSize: fontSize));
+      text = Text('Γ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 4:
-      text = Text('Δ', style: TextStyle(fontSize: fontSize));
+      text = Text('Δ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 5:
-      text = Text('E', style: TextStyle(fontSize: fontSize));
+      text = Text('E', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 6:
-      text = Text('Z', style: TextStyle(fontSize: fontSize));
+      text = Text('Z', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 7:
-      text = Text('H', style: TextStyle(fontSize: fontSize));
+      text = Text('H', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 8:
-      text = Text('Θ', style: TextStyle(fontSize: fontSize));
+      text = Text('Θ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 9:
-      text = Text('I', style: TextStyle(fontSize: fontSize));
+      text = Text('I', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 10:
-      text = Text('K', style: TextStyle(fontSize: fontSize));
+      text = Text('K', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 11:
-      text = Text('Λ', style: TextStyle(fontSize: fontSize));
+      text = Text('Λ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 12:
-      text = Text('M', style: TextStyle(fontSize: fontSize));
+      text = Text('M', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 13:
-      text = Text('N', style: TextStyle(fontSize: fontSize));
+      text = Text('N', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 14:
-      text = Text('Ξ', style: TextStyle(fontSize: fontSize));
+      text = Text('Ξ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 15:
-      text = Text('O', style: TextStyle(fontSize: fontSize));
+      text = Text('O', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 16:
-      text = Text('Π', style: TextStyle(fontSize: fontSize));
+      text = Text('Π', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 17:
-      text = Text('P', style: TextStyle(fontSize: fontSize));
+      text = Text('P', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 18:
-      text = Text('Σ', style: TextStyle(fontSize: fontSize));
+      text = Text('Σ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 19:
-      text = Text('T', style: TextStyle(fontSize: fontSize));
+      text = Text('T', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 20:
-      text = Text('Y', style: TextStyle(fontSize: fontSize));
+      text = Text('Y', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 21:
-      text = Text('Φ', style: TextStyle(fontSize: fontSize));
+      text = Text('Φ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 22:
-      text = Text('X', style: TextStyle(fontSize: fontSize));
+      text = Text('X', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 23:
-      text = Text('Ψ', style: TextStyle(fontSize: fontSize));
+      text = Text('Ψ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 24:
-      text = Text('AA', style: TextStyle(fontSize: fontSize));
+      text = Text('AA', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 25:
-      text = Text('AB', style: TextStyle(fontSize: fontSize));
+      text = Text('AB', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 26:
-      text = Text('AΓ', style: TextStyle(fontSize: fontSize));
+      text = Text('AΓ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     case 27:
-      text = Text('AΔ', style: TextStyle(fontSize: fontSize));
+      text = Text('AΔ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
       break;
     default:
       text = Text('');
