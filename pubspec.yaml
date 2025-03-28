@@ -134,3 +134,7 @@ flutter:
         - asset: assets/fonts/ABCDiatypeMono-Regular-Trial.otf
         - asset: assets/fonts/ABCDiatypeMono-Medium-Trial.otf
           weight: 700
+    - family: "Gabarito"
+      fonts:
+        - asset: assets/fonts/Gabarito-Regular.ttf
+        - weight: 700

@@ -249,6 +249,9 @@ class TextThemes{
   static TextStyle oswaldText(BuildContext context) { return const TextStyle(fontFamily: 'Oswald'); }
   static TextStyle bebasText(BuildContext context) { return const TextStyle(fontFamily: 'Bebas'); }
   static TextStyle diatypeText(BuildContext context) { return const TextStyle(fontFamily: 'Diatype'); }
+  static TextStyle spaceMonoText(BuildContext context) { return const TextStyle(fontFamily: 'SpaceMono'); }
+  static TextStyle leagueSpartanText(BuildContext context) { return const TextStyle(fontFamily: 'LeagueSpartan'); }
+  static TextStyle gabaritoText(BuildContext context) { return const TextStyle(fontFamily: 'Gabarito'); }
 
   static TextStyle size6(BuildContext context) { return const TextStyle(fontSize: 6.0); }
   static TextStyle size7(BuildContext context) { return const TextStyle(fontSize: 7.0); }

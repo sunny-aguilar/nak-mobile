@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
 
 
@@ -54,16 +55,44 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 170,
-          width: double.infinity,
-          child: Center(
-            child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(height: 20,),
+          Text('Brother\nDirectory', style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 40, fontWeight: FontWeight.w900),),
+          Container(
+            height: 170,
+            width: double.infinity,
+            child: Center(
+              child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: 220,
+                width: 200,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  color: Get.isDarkMode ? theme.bodyClr : theme.primaryClr,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Image.asset('assets/img/bg/status.bg.webp'),
+                    ]
+                  ),
+                ),
+              ),
+              Text('View Brothers'),
+              Text('Add Brother'),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
