@@ -39,6 +39,7 @@ class BarData {
     required this.aa,
     required this.ab,
     required this.ag,
+    required this.ad,
   });
   final double founding;
   final double alpha;
@@ -67,6 +68,7 @@ class BarData {
   final double aa;
   final double ab;
   final double ag;
+  final double ad;
 
   List<IndividualBar> barData = [];
 
@@ -99,6 +101,7 @@ class BarData {
       IndividualBar(x: 24, y: aa),
       IndividualBar(x: 25, y: ab),
       IndividualBar(x: 26, y: ag),
+      IndividualBar(x: 27, y: ad),
     ];
   }
 }
@@ -138,6 +141,7 @@ class MyBarGraph extends StatelessWidget {
       aa: chapterBrothers[24],
       ab: chapterBrothers[25],
       ag: chapterBrothers[26],
+      ad: chapterBrothers[27],
     );
 
     myBarData.initializedBarData();
@@ -148,7 +152,7 @@ class MyBarGraph extends StatelessWidget {
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
-
+        backgroundColor: theme.uiRedClr,
         barTouchData: BarTouchData(
             touchTooltipData: BarTouchTooltipData(
             getTooltipColor: (_) => theme.redClr,
@@ -181,9 +185,9 @@ class MyBarGraph extends StatelessWidget {
             barRods: [
               BarChartRodData(
                 toY: data.y,
-                color: theme.darkGreyClr,
+                color: theme.primaryClr,
                 width: 8,
-                borderRadius: BorderRadius.circular(0),
+                borderRadius: BorderRadius.circular(4),
               )
             ]
           ),

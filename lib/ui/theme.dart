@@ -10,11 +10,13 @@ const Color darkBlue = Color(0xFF17203A);
 const Color mintClr = Color(0xff9CFC97);
 const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
+const Color uiRedClr = Color.fromARGB(255, 237, 56, 73);
 const Color carmoisineClr = Color.fromARGB(255, 179, 28, 69);
 const Color orangeClr = Color.fromARGB(255, 255, 152, 0);
 const Color warningClr = Color.fromARGB(255, 255, 153, 11);
 const Color lightRedClr =Color.fromARGB(255, 250, 218, 220);
 const Color roseClr = Color.fromARGB(255, 208, 200, 255);
+const Color uiGrey = Color.fromARGB(255, 248, 248, 248);
 const Color chatGregyClr = Color.fromARGB(255, 234, 234, 234);
 const Color lightGrey = Color.fromARGB(255, 218, 218, 218);
 const Color dividerClr = Color.fromARGB(255, 174, 174, 174);
@@ -265,6 +267,7 @@ class TextThemes{
   static TextStyle size16(BuildContext context) { return const TextStyle(fontSize: 16.0); }
   static TextStyle size18(BuildContext context) { return const TextStyle(fontSize: 18.0); }
   static TextStyle size20(BuildContext context) { return const TextStyle(fontSize: 20.0); }
+  static TextStyle size36(BuildContext context) { return const TextStyle(fontSize: 36.0); }
 
   static TextStyle colorDark(BuildContext context) { return const TextStyle(color: darkGreyClr); }
   static TextStyle colorPrimary(BuildContext context) { return const TextStyle(color: primaryClr); }
@@ -674,6 +677,15 @@ class TextThemes{
       fontWeight: FontWeight.w600,
       fontSize: 24,
       color: Get.isDarkMode ? primaryClr : bodyClr
+    );
+  }
+
+  static TextStyle gabaritoSize40(BuildContext context) {
+    return TextStyle(
+        fontFamily: 'Gabarito',
+        fontSize: 40,
+        fontWeight: FontWeight.w900,
+        color: Get.isDarkMode ? primaryClr : charcoalClr,
     );
   }
 
