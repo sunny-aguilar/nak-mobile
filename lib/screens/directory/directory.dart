@@ -54,11 +54,20 @@ class _DirectoryState extends State<Directory> {
     // setState((){});
   }
 
+  void initializeDirectory() async {
+    db.Directory().getDirectoryData().then((val) {
+      chapterCount = val.chapterCount;
+      broCount = val.broCount;
+      setState((){});
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    initializeChapterCount();
-    initializeBroCount();
+    // initializeChapterCount();
+    // initializeBroCount();
+    initializeDirectory();
   }
 
   @override

@@ -67,8 +67,7 @@ class Directory {
   }
 
   Future<({int broCount, int chapterCount})> getDirectoryData() async {
-    ({int broCount, int chapterCount}) record = (broCount: 10, chapterCount: 100);
-
+    ({int broCount, int chapterCount}) record = (broCount: await getBroCount(),chapterCount: await getChapterCount());
     return record;
   }
 }
