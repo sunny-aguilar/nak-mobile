@@ -36,24 +36,24 @@ class Directory {
     return chapterCount;
   }
 
-  void getBroCount() async {
+  Future<int> getBroCount() async {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
     // print('${directoryCollection.docs[0].data()}');
-    int totalBrothers = 0;
+    int broCount = 0;
     for (final c in directoryCollection.docs) {
       // print('Chapter: ${c.data()}');
-      Map<String, dynamic> broCount = {};
-      broCount = c.data() as Map<String, dynamic>;
+      Map<String, dynamic> totalBrothers = {};
+      totalBrothers = c.data() as Map<String, dynamic>;
       print('**************************************');
       // print('Size: ${snapshot.data()}');
-      print('Chapter info: ${broCount['chapter']}');
-      print('Chapter line: ${broCount['chapterNumber']}');
-      print('Chapter bros: ${broCount['brother']}');
-      print('Bro Count: ${broCount['brother'].length}');
-      totalBrothers += broCount['brother'].length as int;
+      print('Chapter info: ${totalBrothers['chapter']}');
+      print('Chapter line: ${totalBrothers['chapterNumber']}');
+      print('Chapter bros: ${totalBrothers['brother']}');
+      print('Bro Count: ${totalBrothers['brother'].length}');
+      broCount += totalBrothers['brother'].length as int;
     }
-      print('Total bro Count: $totalBrothers');
+      print('Total bro Count: $broCount');
 
     // This gets the number of bros at each chapter
     // final chapterRef = _instance!.collection('directory');
@@ -63,7 +63,12 @@ class Directory {
     // chapter = snapshot.data() as Map<String, dynamic>;
     // print('ss: ${chapter['brother'].length}');
 
+    return broCount;
+  }
 
-    // return broCount;
+  Future<({int broCount, int chapterCount})> getDirectoryData() async {
+    ({int broCount, int chapterCount}) record = (broCount: 10, chapterCount: 100);
+
+    return record;
   }
 }

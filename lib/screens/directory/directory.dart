@@ -17,6 +17,7 @@ class Directory extends StatefulWidget {
 class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
+  late int broCount = 0;
 
   void initializeBroCount() async {
     // db.Directory().getChaptersTest();
@@ -35,7 +36,10 @@ class _DirectoryState extends State<Directory> {
     // print('Brother: ${chapter['brother']}')
 
     // Initialize bro count
-    db.Directory().getBroCount();
+    db.Directory().getBroCount().then((val) {
+      broCount = val;
+      setState(() {});
+    });
   }
 
   void initializeChapterCount() async {
@@ -75,16 +79,17 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount,),
+      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount),
     );
   }
 }
 
 
 class DirectoryDashboard extends StatefulWidget {
-  const DirectoryDashboard({super.key, required this.onChange, required this.chapterCount});
+  const DirectoryDashboard({super.key, required this.onChange, required this.chapterCount, required this.broCount});
   final Function onChange;
   final int chapterCount;
+  final int broCount;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
@@ -159,7 +164,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('3,001', style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
+                        Text(widget.broCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
                         Text('Total Brothers')
                       ],
                     ),
