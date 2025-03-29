@@ -12,6 +12,7 @@ class Directory {
     });
   }
 
+  // Gets all chapter (docs) in collection (directory)
   Future<List> getChapters() async {
     _instance = FirebaseFirestore.instance;
     final chaptersRef = _instance!.collection('directory');
@@ -19,11 +20,19 @@ class Directory {
     return query.docs;
   }
 
-  // void getOneChapter
-  Future<Map<String, dynamic>> getChapter() async {
+  // Gets a chapter (document) within the directory (collection)
+  Future<Map> getChapter(String chapter) async {
     _instance = FirebaseFirestore.instance;
     final chapterRef = _instance!.collection('directory');
-    DocumentSnapshot snapshot = await chapterRef.doc('01.alpha').get();
-    return snapshot.data as Map<String, dynamic>;
+    DocumentSnapshot snapshot = await chapterRef.doc(chapter).get();
+    return snapshot.data() as Map;
+  }
+
+  // Gets the chapter count
+  Future<int> getChapterCount() async {
+    _instance = FirebaseFirestore.instance;
+    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    int chapterCount = directoryCollection.size;
+    return chapterCount;
   }
 }

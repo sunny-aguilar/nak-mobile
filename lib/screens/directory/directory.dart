@@ -16,13 +16,25 @@ class Directory extends StatefulWidget {
 
 class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
+  late int chapterCount = 0;
 
   void getChapterList() async {
-    // final chapterList = await db.Directory().getChapters();
-    // print(chapterList[0].data());
+    // Prints all chapters (docs) in collection (directory)
+    final chapterList = await db.Directory().getChapters();
+    print(chapterList[0].data());
+    for (final ele in chapterList) {
+      print('Ele: ${ele.data()}');
+    }
 
-    final chapter = await db.Directory().getChapter();
-    print('Get chapter: ${chapter['brother']}');
+    // Returns specified chapter data
+    final chapter = await db.Directory().getChapter('01.alpha');
+    print('Brother: ${chapter['brother']}');
+
+    // Returns total chapter count
+    // Initialize chapter count
+    print('Total Chapters: ${await db.Directory().getChapterCount()}');
+    chapterCount = await db.Directory().getChapterCount();
+
   }
 
   @override
