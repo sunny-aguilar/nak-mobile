@@ -30,14 +30,17 @@ class _DirectoryState extends State<Directory> {
     // final chapter = await db.Directory().getChapter('01.alpha');
     // print('Brother: ${chapter['brother']}');
 
-    // Returns total chapter count
     // Initialize chapter count
     print('Total Chapters: ${await db.Directory().getChapterCount()}');
-    // chapterCount = await db.Directory().getChapterCount();
+
+    // Get chapter count and rebuild widget #OPTION 1
     db.Directory().getChapterCount().then((val) {
       chapterCount = val;
       setState((){});
     });
+
+    // Get chapter count and rebuild widget #OPTION 2
+    // chapterCount = await db.Directory().getChapterCount();
     // setState((){});
 
     // Initialize bro count
