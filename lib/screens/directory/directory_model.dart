@@ -41,9 +41,26 @@ class Directory {
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
     // print('${directoryCollection.docs[0].data()}');
     for (final c in directoryCollection.docs) {
-      print('c: ${c.data()}');
-      print('Size: ${c.data()}');
+      // print('Chapter: ${c.data()}');
+      Map<String, dynamic> broCount = {};
+      broCount = c.data() as Map<String, dynamic>;
+      print('**************************************');
+      print('Chapter info: ${broCount['chapter']}');
+      print('Chapter line: ${broCount['chapterNumber']}');
+      print('Chapter bros: ${broCount['brother']}');
+      print('Bro Count: ${broCount['brother'].length}');
+      // print('Size: ${snapshot.data()}');
     }
+
+    // This gets the number of bros at each chapter
+    // final chapterRef = _instance!.collection('directory');
+    // DocumentSnapshot snapshot = await chapterRef.doc('00.founding').get();
+    // print('SS: ${snapshot.data()}');
+    // Map<String, dynamic> chapter = {};
+    // chapter = snapshot.data() as Map<String, dynamic>;
+    // print('ss: ${chapter['brother'].length}');
+
+
     // return broCount;
   }
 }
