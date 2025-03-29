@@ -13,8 +13,17 @@ class Directory {
   }
 
   Future<List> getChapters() async {
-    final chapters = _instance!.collection('directory');
-    final query = await chapters.get();
+    _instance = FirebaseFirestore.instance;
+    final chaptersRef = _instance!.collection('directory');
+    final query = await chaptersRef.get();
     return query.docs;
+  }
+
+  // void getOneChapter
+  Future<Map<String, dynamic>> getChapter() async {
+    _instance = FirebaseFirestore.instance;
+    final chapterRef = _instance!.collection('directory');
+    DocumentSnapshot snapshot = await chapterRef.doc('01.alpha').get();
+    return snapshot.data as Map<String, dynamic>;
   }
 }
