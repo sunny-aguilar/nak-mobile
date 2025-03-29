@@ -143,7 +143,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 Positioned(
                   top: 10,
                   left: 12,
-                  child: Text('Brothers at each chapter', style: TextStyle(color: theme.primaryClr),)
+                  child: Text('Brothers at each chapter', style: TextStyle(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr),)
                 ),
               ],
             ),

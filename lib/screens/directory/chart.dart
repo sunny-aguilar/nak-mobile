@@ -226,76 +226,76 @@ Widget getBottomTitles(double value, TitleMeta meta) {
       text = Text('Γ', style: chartLabelText());
       break;
     case 4:
-      text = Text('Δ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Δ', style: chartLabelText());
       break;
     case 5:
-      text = Text('E', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('E', style: chartLabelText());
       break;
     case 6:
-      text = Text('Z', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Z', style: chartLabelText());
       break;
     case 7:
-      text = Text('H', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('H', style: chartLabelText());
       break;
     case 8:
-      text = Text('Θ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Θ', style: chartLabelText());
       break;
     case 9:
-      text = Text('I', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('I', style: chartLabelText());
       break;
     case 10:
-      text = Text('K', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('K', style: chartLabelText());
       break;
     case 11:
-      text = Text('Λ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Λ', style: chartLabelText());
       break;
     case 12:
-      text = Text('M', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('M', style: chartLabelText());
       break;
     case 13:
-      text = Text('N', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('N', style: chartLabelText());
       break;
     case 14:
-      text = Text('Ξ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Ξ', style: chartLabelText());
       break;
     case 15:
-      text = Text('O', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('O', style: chartLabelText());
       break;
     case 16:
-      text = Text('Π', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Π', style: chartLabelText());
       break;
     case 17:
-      text = Text('P', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('P', style: chartLabelText());
       break;
     case 18:
-      text = Text('Σ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Σ', style: chartLabelText());
       break;
     case 19:
-      text = Text('T', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('T', style: chartLabelText());
       break;
     case 20:
-      text = Text('Y', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Y', style: chartLabelText());
       break;
     case 21:
-      text = Text('Φ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Φ', style: chartLabelText());
       break;
     case 22:
-      text = Text('X', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('X', style: chartLabelText());
       break;
     case 23:
-      text = Text('Ψ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('Ψ', style: chartLabelText());
       break;
     case 24:
-      text = Text('AA', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('AA', style: chartLabelText());
       break;
     case 25:
-      text = Text('AB', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('AB', style: chartLabelText());
       break;
     case 26:
-      text = Text('AΓ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('AΓ', style: chartLabelText());
       break;
     case 27:
-      text = Text('AΔ', style: TextStyle(fontSize: fontSize).copyWith(color: theme.primaryClr));
+      text = Text('AΔ', style: chartLabelText());
       break;
     default:
       text = Text('');
