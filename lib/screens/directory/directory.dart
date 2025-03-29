@@ -105,11 +105,11 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
             //
             //
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 SizedBox(
                   height: 150,
-                  width: 170,
+                  width: MediaQuery.sizeOf(context).width * .450,
                   child: Card(
                     color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(
@@ -126,7 +126,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 ),
                 SizedBox(
                   height: 150,
-                  width: 170,
+                  width: MediaQuery.sizeOf(context).width * .450,
                   child: Card(
                     color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                     shape: RoundedRectangleBorder(
