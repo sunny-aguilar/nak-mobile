@@ -5,17 +5,25 @@ import 'package:http/http.dart' as http;
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
+import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 
 class Directory extends StatefulWidget {
   const Directory({super.key});
-
   @override
   State<Directory> createState() => _DirectoryState();
 }
 
 class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
+
+  @override
+  void initState() {
+    super.initState();
+    // Initializzation code here
+    db.Directory().getChapters();
+    // print(chapterList);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +85,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
             //
             Stack(
               children: <Widget>[
-                Container(
+                SizedBox(
                   height: 170,
                   width: MediaQuery.sizeOf(context).width,
                   child: Card(
