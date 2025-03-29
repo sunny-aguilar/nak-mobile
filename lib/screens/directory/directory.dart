@@ -39,15 +39,13 @@ class _DirectoryState extends State<Directory> {
   }
 
   void initializeChapterCount() async {
-    // Initialize chapter count
     print('Total Chapters: ${await db.Directory().getChapterCount()}');
-
-    // Get chapter count and rebuild widget #OPTION 1
+    // #OPTION 1 - Get chapter count and rebuild widget
     db.Directory().getChapterCount().then((val) {
       chapterCount = val;
       setState((){});
     });
-    // Get chapter count and rebuild widget #OPTION 2
+    // #OPTION 2 - Get chapter count and rebuild widget
     // chapterCount = await db.Directory().getChapterCount();
     // setState((){});
   }
