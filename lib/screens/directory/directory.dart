@@ -6,7 +6,6 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
-import 'package:nak_app/screens/directory/inherited_dir.dart';
 
 
 class Directory extends StatefulWidget {
@@ -34,12 +33,12 @@ class _DirectoryState extends State<Directory> {
     // Returns total chapter count
     // Initialize chapter count
     print('Total Chapters: ${await db.Directory().getChapterCount()}');
-    chapterCount = await db.Directory().getChapterCount();
-    // db.Directory().getChapterCount().then((val) {
-    //   chapterCount = val;
-    //   setState((){});
-    // });
-    setState((){});
+    // chapterCount = await db.Directory().getChapterCount();
+    db.Directory().getChapterCount().then((val) {
+      chapterCount = val;
+      setState((){});
+    });
+    // setState((){});
 
     // Initialize bro count
     db.Directory().getBroCount();
@@ -98,8 +97,6 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    // int chapterCount = InheritedDirectory.of(context).chapterCount;  // <--- inherited data
-
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
