@@ -35,4 +35,15 @@ class Directory {
     int chapterCount = directoryCollection.size;
     return chapterCount;
   }
+
+  void getBroCount() async {
+    _instance = FirebaseFirestore.instance;
+    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    // print('${directoryCollection.docs[0].data()}');
+    for (final c in directoryCollection.docs) {
+      print('${c.data()}');
+      print('Size: ${c.data()}');
+    }
+    // return broCount;
+  }
 }
