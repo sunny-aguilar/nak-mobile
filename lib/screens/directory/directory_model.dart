@@ -41,7 +41,7 @@ class Directory {
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
     // print('${directoryCollection.docs[0].data()}');
     for (final c in directoryCollection.docs) {
-      print('${c.data()}');
+      print('c: ${c.data()}');
       print('Size: ${c.data()}');
     }
     // return broCount;

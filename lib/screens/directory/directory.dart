@@ -19,7 +19,7 @@ class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
 
-  void getChapterList() async {
+  void initializeBroData() async {
     // Prints all chapters (docs) in collection (directory)
     // final chapterList = await db.Directory().getChapters();
     // print(chapterList[0].data());
@@ -35,6 +35,10 @@ class _DirectoryState extends State<Directory> {
     // Initialize chapter count
     print('Total Chapters: ${await db.Directory().getChapterCount()}');
     chapterCount = await db.Directory().getChapterCount();
+    // db.Directory().getChapterCount().then((val) {
+    //   chapterCount = val;
+    //   setState((){});
+    // });
     setState((){});
 
     // Initialize bro count
@@ -47,7 +51,7 @@ class _DirectoryState extends State<Directory> {
     // db.Directory().getChaptersTest();
     // final chapterList = await db.Directory().getChapters();
     // print(chapterList);
-    getChapterList();
+    initializeBroData();
 
   }
 
