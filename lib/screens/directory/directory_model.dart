@@ -40,17 +40,20 @@ class Directory {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
     // print('${directoryCollection.docs[0].data()}');
+    int totalBrothers = 0;
     for (final c in directoryCollection.docs) {
       // print('Chapter: ${c.data()}');
       Map<String, dynamic> broCount = {};
       broCount = c.data() as Map<String, dynamic>;
       print('**************************************');
+      // print('Size: ${snapshot.data()}');
       print('Chapter info: ${broCount['chapter']}');
       print('Chapter line: ${broCount['chapterNumber']}');
       print('Chapter bros: ${broCount['brother']}');
       print('Bro Count: ${broCount['brother'].length}');
-      // print('Size: ${snapshot.data()}');
+      totalBrothers += broCount['brother'].length as int;
     }
+      print('Total bro Count: $totalBrothers');
 
     // This gets the number of bros at each chapter
     // final chapterRef = _instance!.collection('directory');
