@@ -21,6 +21,7 @@ class _DirectoryState extends State<Directory> {
   void initState() {
     super.initState();
     // Initializzation code here
+    db.Directory().getChaptersTest();
     db.Directory().getChapters();
     // print(chapterList);
   }
