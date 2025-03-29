@@ -6,6 +6,7 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
+import 'package:nak_app/screens/directory/inherited_dir.dart';
 
 
 class Directory extends StatefulWidget {
@@ -34,13 +35,12 @@ class _DirectoryState extends State<Directory> {
     // Initialize chapter count
     print('Total Chapters: ${await db.Directory().getChapterCount()}');
     chapterCount = await db.Directory().getChapterCount();
-
+    setState((){});
   }
 
   @override
   void initState() {
     super.initState();
-    // Initializzation code here
     // db.Directory().getChaptersTest();
     // final chapterList = await db.Directory().getChapters();
     // print(chapterList);
@@ -65,15 +65,16 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: DirectoryDashboard(onChange: _handleThemeChange,),
+      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount,),
     );
   }
 }
 
 
 class DirectoryDashboard extends StatefulWidget {
-  const DirectoryDashboard({super.key, required this.onChange});
+  const DirectoryDashboard({super.key, required this.onChange, required this.chapterCount});
   final Function onChange;
+  final int chapterCount;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
@@ -89,6 +90,8 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
+    // int chapterCount = InheritedDirectory.of(context).chapterCount;  // <--- inherited data
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -165,7 +168,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text('27', style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
+                        Text(widget.chapterCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
                         Text('Total Chapters')
                       ],
                     ),
