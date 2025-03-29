@@ -42,17 +42,13 @@ class _DirectoryState extends State<Directory> {
     });
   }
 
-  void initializeChapterCount() async {
-    print('Total Chapters: ${await db.Directory().getChapterCount()}');
-    // #OPTION 1 - Get chapter count and rebuild widget
-    db.Directory().getChapterCount().then((val) {
-      chapterCount = val;
-      setState((){});
-    });
-    // #OPTION 2 - Get chapter count and rebuild widget
-    // chapterCount = await db.Directory().getChapterCount();
-    // setState((){});
-  }
+  // void initializeChapterCount() async {
+  //   print('Total Chapters: ${await db.Directory().getChapterCount()}');
+  //   db.Directory().getChapterCount().then((val) {
+  //     chapterCount = val;
+  //     setState((){});
+  //   });
+  // }
 
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
@@ -65,8 +61,6 @@ class _DirectoryState extends State<Directory> {
   @override
   void initState() {
     super.initState();
-    // initializeChapterCount();
-    // initializeBroCount();
     initializeDirectory();
   }
 
