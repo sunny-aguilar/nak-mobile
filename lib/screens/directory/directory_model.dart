@@ -45,15 +45,15 @@ class Directory {
       // print('Chapter: ${c.data()}');
       Map<String, dynamic> totalBrothers = {};
       totalBrothers = c.data() as Map<String, dynamic>;
-      print('**************************************');
+      // print('**************************************');
       // print('Size: ${snapshot.data()}');
-      print('Chapter info: ${totalBrothers['chapter']}');
-      print('Chapter line: ${totalBrothers['chapterNumber']}');
-      print('Chapter bros: ${totalBrothers['brother']}');
-      print('Bro Count: ${totalBrothers['brother'].length}');
+      // print('Chapter info: ${totalBrothers['chapter']}');
+      // print('Chapter line: ${totalBrothers['chapterNumber']}');
+      // print('Chapter bros: ${totalBrothers['brother']}');
+      // print('Bro Count: ${totalBrothers['brother'].length}');
       broCount += totalBrothers['brother'].length as int;
     }
-      print('Total bro Count: $broCount');
+      // print('Total bro Count: $broCount');
 
     // This gets the number of bros at each chapter
     // final chapterRef = _instance!.collection('directory');
@@ -69,5 +69,9 @@ class Directory {
   Future<({int broCount, int chapterCount})> getDirectoryData() async {
     ({int broCount, int chapterCount}) record = (broCount: await getBroCount(),chapterCount: await getChapterCount());
     return record;
+  }
+
+  void addChapter() async {
+    
   }
 }
