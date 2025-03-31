@@ -71,7 +71,20 @@ class Directory {
     return record;
   }
 
-  void addChapter() async {
-    
+  void getChapterBroCount() async {
+    _instance = FirebaseFirestore.instance;
+    final chapterRef = _instance!.collection('directory');
+    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    for (final chapter in directoryCollection.docs) {
+      // print('Chart: ${chapter.data()}');
+      // get chapter & bro data
+      Map<String, dynamic> bros = chapter.data() as Map<String, dynamic>;
+      print('Chart: Chapter: ${bros['chapter']} - total: ${bros['brother'].length}');
+      String chapterName = bros['chapter'];
+      int broCount = bros['brother'].length;
+    }
   }
+
+  void addChapter() async {}
+  void addBrother() async {}
 }

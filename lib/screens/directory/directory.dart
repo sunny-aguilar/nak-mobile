@@ -19,6 +19,7 @@ class _DirectoryState extends State<Directory> {
   late int chapterCount = 0;
   late int broCount = 0;
 
+  // TO DO: this function can be deleted
   void initializeBroCount() async {
     // db.Directory().getChaptersTest();
     // final chapterList = await db.Directory().getChapters();
@@ -56,6 +57,8 @@ class _DirectoryState extends State<Directory> {
       broCount = val.broCount;
       setState((){});
     });
+
+    db.Directory().getChapterBroCount();
   }
 
   @override
