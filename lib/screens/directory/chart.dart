@@ -210,7 +210,7 @@ TextStyle chartLabelText() {
 
 Widget getBottomTitles(double value, TitleMeta meta) {
   Widget text;
-  double fontSize = 10;
+  // double fontSize = 10;
 
   switch (value.toInt()) {
     case 0:

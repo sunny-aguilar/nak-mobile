@@ -146,7 +146,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: chart.MyBarGraph(chapterBrothers: chapterBrothers,),
+                      child: chart.MyBarGraph(chapterBrothers: widget.graphData,),
                     ),
                   ),
                 ),

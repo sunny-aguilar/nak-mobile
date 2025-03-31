@@ -87,20 +87,16 @@ class Directory {
     data.forEach((key, val) {
       var count = val.broCount.toDouble();
       graphCount.add(count);
-      // print('Key: $key - Num: $val.broCount');
     });
-    // print('data: ${data}');
-    cleanData(data);
-    return graphCount;
+
+    return cleanData(data);
   }
 
   List<double> cleanData(Map data) {
     List<double> graphCount = [];
-    // print('data: ${data['0']}');
-    // print('length: ${data.length}');
+
 
     data.forEach((key, val) {
-      // print('Key: $key - Val: $val');
       graphCount.add(val.broCount.toDouble());
     });
     print('GraphCount: $graphCount');
