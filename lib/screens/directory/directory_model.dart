@@ -66,7 +66,7 @@ class Directory {
     return broCount;
   }
 
-  Future<Map<String, dynamic>> getGraphCount() async {
+  Future<List<double>> getGraphCount() async {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
 
@@ -82,27 +82,35 @@ class Directory {
       // add info into data
       data[chapterNumber] = (chapterName: chapterName, broCount: broCount);
     }
+
+    List<double> graphCount = [];
+    data.forEach((key, val) {
+      var count = val.broCount.toDouble();
+      graphCount.add(count);
+      // print('Key: $key - Num: $val.broCount');
+    });
     // print('data: ${data}');
-    // cleanData(data);
-    return data;
+    cleanData(data);
+    return graphCount;
   }
 
-  List<int> cleanData(Map data) {
-    List<int> graphCount = [];
+  List<double> cleanData(Map data) {
+    List<double> graphCount = [];
     // print('data: ${data['0']}');
     // print('length: ${data.length}');
 
     data.forEach((key, val) {
       // print('Key: $key - Val: $val');
-      graphCount.add(val.broCount);
+      graphCount.add(val.broCount.toDouble());
     });
     print('GraphCount: $graphCount');
+    print('Type: ${graphCount[0].runtimeType}');
     return graphCount;
 
   }
 
-  Future<({int broCount, int chapterCount, Map graphData})> getDirectoryData() async {
-    ({int broCount, int chapterCount, Map graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getGraphCount());
+  Future<({int broCount, int chapterCount, List<double> graphData})> getDirectoryData() async {
+    ({int broCount, int chapterCount, List<double> graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getGraphCount());
     return record;
   }
 

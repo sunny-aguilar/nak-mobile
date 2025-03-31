@@ -18,8 +18,8 @@ class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
   late int broCount = 0;
-  // late List graphData = [];
-  late Map graphData = {};
+  late List<double> graphData = [];
+  // late Map graphData = {};
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
@@ -102,7 +102,7 @@ class DirectoryDashboard extends StatefulWidget {
   final Function onChange;
   final int chapterCount;
   final int broCount;
-  final Map graphData;
+  final List<double> graphData;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
