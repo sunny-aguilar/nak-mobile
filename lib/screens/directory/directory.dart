@@ -18,6 +18,7 @@ class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
   late int broCount = 0;
+  late Map graphData;
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
@@ -55,6 +56,7 @@ class _DirectoryState extends State<Directory> {
     db.Directory().getDirectoryData().then((val) {
       chapterCount = val.chapterCount;
       broCount = val.broCount;
+      graphData = val.graphData;
       setState((){});
     });
 
@@ -85,17 +87,21 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount),
+      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount, graphData: graphData),
     );
   }
 }
 
 
 class DirectoryDashboard extends StatefulWidget {
-  const DirectoryDashboard({super.key, required this.onChange, required this.chapterCount, required this.broCount});
+  const DirectoryDashboard({
+    super.key, required this.onChange, required this.chapterCount,
+    required this.broCount, required this.graphData
+  });
   final Function onChange;
   final int chapterCount;
   final int broCount;
+  final Map graphData;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
