@@ -66,7 +66,7 @@ class Directory {
     return broCount;
   }
 
-  Future<Map<String, dynamic>> getChapterBroCount() async {
+  Future<Map<String, dynamic>> getGraphCount() async {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
 
@@ -82,12 +82,22 @@ class Directory {
       // add info into data
       data[chapterNumber] = (chapterName: chapterName, broCount: broCount);
     }
-    print('data: ${data}');
+    // print('data: ${data}');
+    cleanData(data);
     return data;
   }
 
+  void cleanData(Map data) {
+    List<int> broCount = [];
+    print('data: ${data['0']}');
+    print('length: ${data.length}');
+
+    // for (final count in data) {}
+
+  }
+
   Future<({int broCount, int chapterCount, Map graphData})> getDirectoryData() async {
-    ({int broCount, int chapterCount, Map graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getChapterBroCount());
+    ({int broCount, int chapterCount, Map graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getGraphCount());
     return record;
   }
 

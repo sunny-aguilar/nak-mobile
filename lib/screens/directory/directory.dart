@@ -18,7 +18,8 @@ class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
   late int broCount = 0;
-  late Map graphData;
+  // late List graphData = [];
+  late Map graphData = {};
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
@@ -60,7 +61,7 @@ class _DirectoryState extends State<Directory> {
       setState((){});
     });
 
-    db.Directory().getChapterBroCount();
+    // db.Directory().getChapterBroCount();
   }
 
   @override
