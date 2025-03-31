@@ -83,16 +83,21 @@ class Directory {
       data[chapterNumber] = (chapterName: chapterName, broCount: broCount);
     }
     // print('data: ${data}');
-    cleanData(data);
+    // cleanData(data);
     return data;
   }
 
-  void cleanData(Map data) {
-    List<int> broCount = [];
-    print('data: ${data['0']}');
-    print('length: ${data.length}');
+  List<int> cleanData(Map data) {
+    List<int> graphCount = [];
+    // print('data: ${data['0']}');
+    // print('length: ${data.length}');
 
-    // for (final count in data) {}
+    data.forEach((key, val) {
+      // print('Key: $key - Val: $val');
+      graphCount.add(val.broCount);
+    });
+    print('GraphCount: $graphCount');
+    return graphCount;
 
   }
 
