@@ -56,8 +56,7 @@ class _DirectoryState extends State<Directory> {
 
   void intializeViewBroData() async {
     db.Directory().broData().then((val) {
-      // print('View data: $val');
-      // viewData = val;
+      viewData = val;
     });
   }
 
@@ -96,7 +95,7 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount, graphData: graphData),
+      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount, graphData: graphData, viewData: viewData,),
     );
   }
 }
@@ -105,12 +104,13 @@ class _DirectoryState extends State<Directory> {
 class DirectoryDashboard extends StatefulWidget {
   const DirectoryDashboard({
     super.key, required this.onChange, required this.chapterCount,
-    required this.broCount, required this.graphData
+    required this.broCount, required this.graphData, required this.viewData,
   });
   final Function onChange;
   final int chapterCount;
   final int broCount;
   final List<double> graphData;
+  final Map viewData;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
@@ -243,7 +243,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                             Navigator.push(
                             context,
                             MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                              return const bros.ViewBrothersScreen();
+                              return bros.ViewBrothersScreen(viewData: widget.viewData,);
                             })
                           );
                           },

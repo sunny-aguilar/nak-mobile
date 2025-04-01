@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class ViewBrothersScreen extends StatelessWidget {
-  const ViewBrothersScreen({super.key});
+  const ViewBrothersScreen({super.key, required this.viewData});
+  final Map viewData;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +21,16 @@ class ViewBrothersScreen extends StatelessWidget {
               service.ThemeService().switchTheme();
             },
           ),
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          ListTile(
+            title: Text('Somelist'),
+            onTap: () {
+              print('View Data: $viewData');
+            },
+          )
         ],
       ),
     );
