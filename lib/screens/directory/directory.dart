@@ -19,6 +19,7 @@ class _DirectoryState extends State<Directory> {
   late int chapterCount = 0;
   late int broCount = 0;
   late List<double> graphData = List<double>.generate(28, (i) => i.toDouble());
+
   // TO DO: this function can be deleted
   void initializeBroCount() async {
     // db.Directory().getChaptersTest();
