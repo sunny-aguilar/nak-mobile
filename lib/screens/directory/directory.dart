@@ -18,9 +18,7 @@ class _DirectoryState extends State<Directory> {
   void _handleThemeChange() => setState((){});
   late int chapterCount = 0;
   late int broCount = 0;
-  late List<double> graphData = [];
-  // late Map graphData = {};
-
+  late List<double> graphData = List<double>.generate(28, (i) => i.toDouble());
   // TO DO: this function can be deleted
   void initializeBroCount() async {
     // db.Directory().getChaptersTest();
@@ -60,7 +58,6 @@ class _DirectoryState extends State<Directory> {
       graphData = val.graphData;
       setState((){});
     });
-
     // db.Directory().getChapterBroCount();
   }
 
@@ -109,17 +106,21 @@ class DirectoryDashboard extends StatefulWidget {
 
 class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
+
+  // ERROR WHEN LOADING GRAPH BUT GOES AWAY -> DO NULL CHECK FIRST?
   // Graph data (replaced by widget.graphData)
-  // List<double> chapterBrothers = [
-  //   100,120,90,150,110,70,
-  //   50,110,130,140,120,80,
-  //   90,60,100,130,70,60,
-  //   110,120,90,150,80,130,
-  //   60,100,120,20
-  // ];
+  List<double> chapterBrothers = [
+    100,120,90,150,110,70,
+    50,110,130,140,120,80,
+    90,60,100,130,70,60,
+    110,120,90,150,80,130,
+    60,100,120,20
+  ];
 
   @override
   Widget build(BuildContext context) {
+    print('Null: ${widget.graphData}');
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),

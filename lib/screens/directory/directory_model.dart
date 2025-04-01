@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Directory {
   FirebaseFirestore? _instance;
 
+
   void getChaptersTest() async {
     _instance = FirebaseFirestore.instance;
     await _instance!.collection('directory').get().then((event){
@@ -12,6 +13,7 @@ class Directory {
     });
   }
 
+
   // Gets all chapter (docs) in collection (directory)
   Future<List> getChapters() async {
     _instance = FirebaseFirestore.instance;
@@ -19,6 +21,7 @@ class Directory {
     final query = await chaptersRef.get();
     return query.docs;
   }
+
 
   // Gets a chapter (document) within the directory (collection)
   Future<Map> getChapter(String chapter) async {
@@ -28,6 +31,7 @@ class Directory {
     return snapshot.data() as Map;
   }
 
+
   // Gets the chapter count
   Future<int> getChapterCount() async {
     _instance = FirebaseFirestore.instance;
@@ -35,6 +39,7 @@ class Directory {
     int chapterCount = directoryCollection.size;
     return chapterCount;
   }
+
 
   Future<int> getBroCount() async {
     _instance = FirebaseFirestore.instance;
@@ -66,6 +71,7 @@ class Directory {
     return broCount;
   }
 
+
   Future<List<double>> getGraphCount() async {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
@@ -92,6 +98,7 @@ class Directory {
     return cleanData(data);
   }
 
+
   List<double> cleanData(Map data) {
     List<double> graphCount = [];
 
@@ -105,10 +112,12 @@ class Directory {
 
   }
 
+
   Future<({int broCount, int chapterCount, List<double> graphData})> getDirectoryData() async {
     ({int broCount, int chapterCount, List<double> graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getGraphCount());
     return record;
   }
+
 
   void addChapter() async {}
   void addBrother() async {}
