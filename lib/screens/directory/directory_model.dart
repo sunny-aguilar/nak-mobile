@@ -106,8 +106,8 @@ class Directory {
     data.forEach((key, val) {
       graphCount.add(val.broCount.toDouble());
     });
-    print('GraphCount: $graphCount');
-    print('Type: ${graphCount[0].runtimeType}');
+    // print('GraphCount: $graphCount');
+    // print('Type: ${graphCount[0].runtimeType}');
     return graphCount;
 
   }
@@ -116,6 +116,32 @@ class Directory {
   Future<({int broCount, int chapterCount, List<double> graphData})> getDirectoryData() async {
     ({int broCount, int chapterCount, List<double> graphData}) record = (broCount: await getBroCount(), chapterCount: await getChapterCount(), graphData: await getGraphCount());
     return record;
+  }
+
+
+  Future<Map> broData() async {
+    _instance = FirebaseFirestore.instance;
+    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    Map<String, dynamic> data = {};
+    for (final chapter in directoryCollection.docs) {
+      Map<String, dynamic> bros = chapter.data() as Map<String, dynamic>;
+      String chapterNumber = bros['chapterNumber'].toString();
+      data[chapterNumber] = bros;
+      String chapterName = bros['chapter'];
+      int broCount = bros['brother'].length;
+      Map brothers = bros['brother'];
+      String chapNum = bros['chapterNumber'].toString();
+      // print('View ChNum: $chapterNumber');
+      // print('View CName: $chapterName');
+      // print('View BCt: $broCount');
+      // print('View Bros: $brothers');
+      print('Data: $bros');
+
+      // add info into data
+      data[chapterNumber] = (chapterName: chapterName, broCount: broCount, chapNum: chapNum, bros: brothers);
+    }
+
+    return data;
   }
 
 

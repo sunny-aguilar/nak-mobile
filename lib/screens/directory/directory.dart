@@ -6,6 +6,7 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
+import 'package:nak_app/screens/directory/view_bros.dart' as bros;
 
 
 class Directory extends StatefulWidget {
@@ -19,6 +20,7 @@ class _DirectoryState extends State<Directory> {
   late int chapterCount = 0;
   late int broCount = 0;
   late List<double> graphData = List<double>.generate(28, (i) => i.toDouble());
+  late Map viewData = {};
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
@@ -50,7 +52,14 @@ class _DirectoryState extends State<Directory> {
   //     chapterCount = val;
   //     setState((){});
   //   });
-  // }
+  // }]
+
+  void intializeViewBroData() async {
+    db.Directory().broData().then((val) {
+      // print('View data: $val');
+      // viewData = val;
+    });
+  }
 
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
@@ -66,6 +75,7 @@ class _DirectoryState extends State<Directory> {
   void initState() {
     super.initState();
     initializeDirectory();
+    intializeViewBroData();
   }
 
   @override
@@ -120,8 +130,6 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
 
   @override
   Widget build(BuildContext context) {
-    print('Null: ${widget.graphData}');
-
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -231,14 +239,15 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                         ListTile(
                           title: const Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold),),
                           subtitle: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
+                          onTap: () {
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                              return const bros.ViewBrothersScreen();
+                            })
+                          );
+                          },
                         ),
-                        // add navigator here to go to the next page
-                        //
-                        //
-                        //
-                        //
-                        //
-                        // add navigator here to go to the next page
                       ]
                     ),
                   ),
