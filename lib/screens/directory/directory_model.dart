@@ -131,16 +131,9 @@ class Directory {
       int broCount = bros['brother'].length;
       Map brothers = bros['brother'];
       String chapNum = bros['chapterNumber'].toString();
-      // print('View ChNum: $chapterNumber');
-      // print('View CName: $chapterName');
-      // print('View BCt: $broCount');
-      // print('View Bros: $brothers');
-      print('Data: $bros');
-
       // add info into data
       data[chapterNumber] = (chapterName: chapterName, broCount: broCount, chapNum: chapNum, bros: brothers);
     }
-
     return data;
   }
 
