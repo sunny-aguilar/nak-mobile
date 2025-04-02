@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -110,7 +111,17 @@ class BarData {
 
 class MyBarGraph extends StatelessWidget {
   const MyBarGraph({super.key, required this.chapterBrothers});
-  final List chapterBrothers;
+  final List chapterBrothers; // auto grow graph based on largest list (chapter size)
+
+  double getLargest(List arr) {
+    double largest = 0;
+    for (final num in arr) {
+      if (num > largest) {
+        largest = num;
+      }
+    }
+    return 10.0;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +160,7 @@ class MyBarGraph extends StatelessWidget {
 
     return BarChart(
       BarChartData(
-        maxY: 20,   // increase this size as the chapter bro count grows...
+        maxY: getLargest(chapterBrothers),   // increase this size as the chapter bro count grows...
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
