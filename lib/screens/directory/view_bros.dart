@@ -49,7 +49,7 @@ class ViewBrothersScreen extends StatelessWidget {
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
               child: Text(greekLetter(index)),
             ),
-            title: Text(chapterName(index)),
+            title: Text('${chapterName(index)} Chapter'),
             subtitle: Text('${viewData[index.toString()].broCount.toString()} Brothers Listed'),
             trailing: Icon(Icons.arrow_forward_ios),
           );
@@ -98,12 +98,13 @@ class ChapterBros extends StatelessWidget {
       body: ListView.builder(
         itemCount: broList.bros.length,
         itemBuilder: (context, index) {
-          String key = broList.bros.keys.elementAt(index);
 
           List<String> broNumber = lineNumbers(index);
           print(broList.bros[broNumber[index]]);
           String name = broList.bros[broNumber[index]]['name'];
           String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
+          String chapClass = broList.bros[broNumber[index]]['class'];
+          chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
           return ListTile(
             onTap: () {
@@ -113,7 +114,7 @@ class ChapterBros extends StatelessWidget {
               );
             },
             title: Text(name),
-            subtitle: Text(lineNumber),
+            subtitle: Text('$chapClass class, line number: $lineNumber'),
             trailing: Icon(Icons.arrow_forward_ios),
           );
         },
