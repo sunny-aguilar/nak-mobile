@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
 
 class ViewBrothersScreen extends StatelessWidget {
   const ViewBrothersScreen({super.key, required this.viewData});
   final Map viewData;
+
+  String chapterName(int index) {
+    String chapter = viewData[index.toString()].chapterName;
+    chapter = chapter[0].toUpperCase() + chapter.substring(1);
+    return chapter;
+  }
+
+  String greekLetter(int index) {
+    String greekLetter = viewData[index.toString()].greek;
+    return greekLetter;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +35,27 @@ class ViewBrothersScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView(
-        children: <Widget>[
-          ListTile(
-            title: Text('Somelist'),
-            onTap: () {
-              print('View Data: $viewData');
-            },
-          )
-        ],
+      body: ListView.builder(
+        itemCount: viewData.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: CircleAvatar(
+              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+              child: Text(greekLetter(index)),
+            ),
+            title: Text(chapterName(index)),
+            subtitle: Text('9 brothers'),
+            trailing: Icon(Icons.arrow_forward_ios),
+          );
+        },
+        // children: <Widget>[
+        //   ListTile(
+        //     title: Text('Somelist'),
+        //     onTap: () {
+        //       print('View Data: $viewData');
+        //     },
+        //   )
+        // ],
       ),
     );
   }

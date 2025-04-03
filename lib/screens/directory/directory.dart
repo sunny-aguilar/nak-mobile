@@ -247,7 +247,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                           Image.asset('assets/img/ad_dues.webp'),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
-                            child: Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                            child: Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, right: 16),
@@ -275,7 +275,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                           Image.asset('assets/img/ad_dues.webp'),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
-                            child: Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),),
+                            child: Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, right: 16),

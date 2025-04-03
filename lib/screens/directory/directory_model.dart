@@ -131,8 +131,9 @@ class Directory {
       int broCount = bros['brother'].length;
       Map brothers = bros['brother'];
       String chapNum = bros['chapterNumber'].toString();
+      String greek = bros['greekLtr'];
       // add info into data
-      data[chapterNumber] = (chapterName: chapterName, broCount: broCount, chapNum: chapNum, bros: brothers);
+      data[chapterNumber] = (chapterName: chapterName, broCount: broCount, chapNum: chapNum, bros: brothers, greek: greek);
     }
     return data;
   }
