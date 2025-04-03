@@ -106,10 +106,45 @@ class ChapterBros extends StatelessWidget {
           String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
 
           return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(builder: (BuildContext context) => ViewBro(broData: broList.bros[broNumber[index]],) )
+              );
+            },
             title: Text(name),
             subtitle: Text(lineNumber),
+            trailing: Icon(Icons.arrow_forward_ios),
           );
         },
+      )
+    );
+  }
+}
+
+class ViewBro extends StatelessWidget {
+  const ViewBro({super.key, required this.broData});
+  final broData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: Center(
+        child: Text('Bro Data: ${broData}'),
       )
     );
   }
