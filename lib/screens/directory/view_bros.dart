@@ -39,24 +39,78 @@ class ViewBrothersScreen extends StatelessWidget {
         itemCount: viewData.length,
         itemBuilder: (context, index) {
           return ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<Widget>(builder: (BuildContext context) => ChapterBros(broList: viewData[index.toString()]) )
+              );
+            },
             leading: CircleAvatar(
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
               child: Text(greekLetter(index)),
             ),
             title: Text(chapterName(index)),
-            subtitle: Text('9 brothers'),
+            subtitle: Text('${viewData[index.toString()].broCount.toString()} Brothers Listed'),
             trailing: Icon(Icons.arrow_forward_ios),
           );
         },
-        // children: <Widget>[
-        //   ListTile(
-        //     title: Text('Somelist'),
-        //     onTap: () {
-        //       print('View Data: $viewData');
-        //     },
-        //   )
-        // ],
       ),
+    );
+  }
+}
+
+
+class ChapterBros extends StatelessWidget {
+  const ChapterBros({super.key, required this.broList});
+  final broList;
+
+  List<String> lineNumbers(index) {
+    List numberList = [];
+    List<String> stringList = [];
+
+    broList.bros.forEach((key, val) {
+      numberList.add(int.parse(key));
+    });
+    numberList.sort();
+
+    stringList = numberList.map((val) => val.toString()).toList();
+
+    return stringList;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        toolbarHeight: 38,
+        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: ListView.builder(
+        itemCount: broList.bros.length,
+        itemBuilder: (context, index) {
+          String key = broList.bros.keys.elementAt(index);
+
+          List<String> broNumber = lineNumbers(index);
+          print(broList.bros[broNumber[index]]);
+          String name = broList.bros[broNumber[index]]['name'];
+          String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
+
+          return ListTile(
+            title: Text(name),
+            subtitle: Text(lineNumber),
+          );
+        },
+      )
     );
   }
 }
