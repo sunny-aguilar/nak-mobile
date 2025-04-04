@@ -145,7 +145,7 @@ class ViewBro extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text('Bro Data: ${broData}'),
+        child: Text('Bro Data: $broData'),
       )
     );
   }
