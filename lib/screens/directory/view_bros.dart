@@ -149,46 +149,113 @@ class ViewBro extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(50.0),
-        child: Column(
-          children: <Widget>[
-            Row(
-              children: <Widget>[
-                CircleAvatar(
-                  radius: 63,
-                  backgroundColor: theme.zincClr,
-                  child: CircleAvatar(
-                    radius: 54,
-                    backgroundColor: theme.uiRedClr,
-                    foregroundColor: theme.primaryClr,
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: CircleAvatar(
-                            radius: 18,
-                            backgroundColor: theme.greyUI,
-                            child: Icon(Icons.camera_alt),
-                          ),
-                        )
-                      ],
-                    ),
+      body: BroProfile(broData: broData,),
+      // body: Padding(
+      //   padding: const EdgeInsets.all(50.0),
+      //   child: Column(
+      //     children: <Widget>[
+      //       Row(
+      //         children: <Widget>[
+      //           CircleAvatar(
+      //             radius: 62,
+      //             backgroundColor: theme.zincClr,
+      //             child: CircleAvatar(
+      //               radius: 54,
+      //               backgroundColor: theme.uiRedClr,
+      //               foregroundColor: theme.primaryClr,
+      //               child: Stack(
+      //                 children: <Widget>[
+      //                   Align(
+      //                     alignment: Alignment.bottomRight,
+      //                     child: CircleAvatar(
+      //                       radius: 18,
+      //                       backgroundColor: theme.greyUI,
+      //                       child: Icon(Icons.camera_alt),
+      //                     ),
+      //                   )
+      //                 ],
+      //               ),
+      //             ),
+      //           ),
+      //           const SizedBox(width: 10,),
+      //           Column(
+      //             crossAxisAlignment: CrossAxisAlignment.start,
+      //             children: <Widget>[
+      //               Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+      //               Text(chapterClass),
+      //               Text(chapterNumber),
+      //             ],
+      //           ),
+      //         ],
+      //       ),
+      //       Text('Last edited by: name here'),
+      //     ],
+      //   ),
+      // ),
+    );
+  }
+}
+
+class BroProfile extends StatelessWidget {
+  const BroProfile({super.key, required this.broData});
+  final Map<String, dynamic> broData;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: <Widget>[
+          Stack(
+            alignment: Alignment.bottomCenter,
+            children: <Widget>[
+              Align(
+                child: Container(
+                  height: 230,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: theme.redClr,
+                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
                   ),
                 ),
-                const SizedBox(width: 10,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-                    Text(chapterClass),
-                    Text(chapterNumber),
-                  ],
+              ),
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  height: 60,
+                  width: 150,
+                  color: theme.bronzeOfficial,
+                  child: Text('Bronze Box'),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+              CircleAvatar(
+                radius: 62,
+                backgroundColor: theme.zincClr,
+                child: CircleAvatar(
+                  radius: 54,
+                  backgroundColor: theme.uiRedClr,
+                  foregroundColor: theme.primaryClr,
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundColor: theme.greyUI,
+                          child: Icon(Icons.camera_alt),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 10,),
+          Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+          Text(broData['class']),
+          Text(broData['lineNumber'].toString()),
+        ],
       ),
     );
   }
