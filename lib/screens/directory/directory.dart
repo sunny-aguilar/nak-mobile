@@ -231,7 +231,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ChapterListScreen(viewData: widget.viewData,);
+                          return bros.ChapterListScreen(viewData: widget.viewData, editBro: false,);
                         })
                       );
                     },
@@ -266,7 +266,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ChapterListScreen(viewData: widget.viewData,);
+                          return bros.ChapterListScreen(viewData: widget.viewData, editBro: true,);
                         })
                       );
                     },
