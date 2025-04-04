@@ -150,8 +150,14 @@ class Directory {
 
   void addBrother() async {}
 
-  void editBrother(Map data, String chapterID) async {
+  void editBrother(Map broData, String chapterID) async {
     _instance = FirebaseFirestore.instance;
+    final data = {
+      'name': broData['name'],
+      'className': broData['className'],
+      'lineNumber': broData['className'],
+    };
     final ref = _instance!.collection('directory').doc(chapterID);
+    await ref.update({'brother.1.className': 'testing'});
   }
 }

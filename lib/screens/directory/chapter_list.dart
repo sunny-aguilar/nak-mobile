@@ -114,7 +114,7 @@ class BroListScreen extends StatelessWidget {
           // print(broList.bros[broNumber[index]]);dw
           String name = broList.bros[broNumber[index]]['name'];
           String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
-          String chapClass = broList.bros[broNumber[index]]['class'];
+          String chapClass = broList.bros[broNumber[index]]['className'];
           chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
           return ListTile(
