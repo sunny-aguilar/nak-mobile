@@ -150,7 +150,7 @@ class ViewBro extends StatelessWidget {
         child: Column(
           children: <Widget>[
             Row(
-              children: [
+              children: <Widget>[
                 CircleAvatar(
                   radius: 50,
                   backgroundColor: theme.uiRedClr,
@@ -160,7 +160,7 @@ class ViewBro extends StatelessWidget {
                 const SizedBox(width: 10,),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  children: <Widget>[
                     Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
                     Text('Email'),
                   ],
