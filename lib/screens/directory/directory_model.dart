@@ -132,13 +132,26 @@ class Directory {
       Map brothers = bros['brother'];
       String chapNum = bros['chapterNumber'].toString();
       String greek = bros['greekLtr'];
+      String chapterID = bros['chapterID'];
+
       // add info into data
-      data[chapterNumber] = (chapterName: chapterName, broCount: broCount, chapNum: chapNum, bros: brothers, greek: greek);
+      data[chapterNumber] = (
+        chapterName: chapterName,
+        broCount: broCount,
+        chapNum: chapNum,
+        bros: brothers,
+        greek: greek,
+        chapterID: chapterID
+      );
     }
     return data;
   }
 
 
-  void addChapter() async {}
   void addBrother() async {}
+
+  void editBrother(Map data) async {
+    _instance = FirebaseFirestore.instance;
+    final ref = _instance!.collection('directory').doc();
+  }
 }

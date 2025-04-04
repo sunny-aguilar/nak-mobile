@@ -23,6 +23,8 @@ class ChapterListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('All Data $viewData');
+    print('chapterID: ${viewData['0'].chapterID}');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -45,7 +47,11 @@ class ChapterListScreen extends StatelessWidget {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(broList: viewData[index.toString()], editBro: editBro,))
+                MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(
+                  broList: viewData[index.toString()],
+                  chapterID: viewData[index.toString()].chapterID,
+                  editBro: editBro,
+                ))
               );
             },
             leading: CircleAvatar(
@@ -64,8 +70,9 @@ class ChapterListScreen extends StatelessWidget {
 
 
 class BroListScreen extends StatelessWidget {
-  const BroListScreen({super.key, required this.broList, required this.editBro});
+  const BroListScreen({super.key, required this.broList, required this.chapterID, required this.editBro});
   final broList;
+  final String chapterID;
   final bool editBro;
 
   List<String> lineNumbers(index) {

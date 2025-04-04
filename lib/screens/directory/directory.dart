@@ -54,12 +54,6 @@ class _DirectoryState extends State<Directory> {
   //   });
   // }]
 
-  void intializeViewBroData() async {
-    db.Directory().broData().then((val) {
-      viewData = val;
-    });
-  }
-
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
       chapterCount = val.chapterCount;
@@ -68,6 +62,12 @@ class _DirectoryState extends State<Directory> {
       setState((){});
     });
     // db.Directory().getChapterBroCount();
+  }
+
+  void intializeViewBroData() async {
+    db.Directory().broData().then((val) {
+      viewData = val;
+    });
   }
 
   @override

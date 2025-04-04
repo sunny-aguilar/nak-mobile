@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
-import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/components/buttons.dart' as buttons;
+import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatelessWidget {
   const AddBro({super.key, required this.broData});
@@ -41,11 +42,13 @@ class _EditBroDataState extends State<EditBroData> {
   final _editDirectoryFormKey = GlobalKey<FormState>();
   final TextEditingController _nameCtl = TextEditingController();
   final TextEditingController _classCtl = TextEditingController();
+  final TextEditingController _numberCtl = TextEditingController();
 
   @override
   void dispose() {
     _nameCtl.dispose();
     _classCtl.dispose();
+    _numberCtl.dispose();
     super.dispose();
   }
 
@@ -101,7 +104,7 @@ class _EditBroDataState extends State<EditBroData> {
                     labelText: 'Line number',
                     helperText: 'Line number'
                   ),
-                  controller: _classCtl,
+                  controller: _numberCtl,
                   keyboardType: TextInputType.number,
                   validator: (val) {
                     if ((val == null || val.isEmpty) && val.runtimeType != num) {
@@ -111,6 +114,29 @@ class _EditBroDataState extends State<EditBroData> {
                   },
                 ),
                 const SizedBox(height: 20,),
+
+                TextButton(
+                  style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
+                  child: Text('Submit Edits'),
+                  onPressed: () {
+                    // add DB functions here to save data
+                    Map<String, dynamic> data = {};
+                    data['name'] = _nameCtl.text.trim();
+                    data['className'] = _classCtl.text.trim();
+                    data['lineNumber'] = _numberCtl.text.trim();
+                    db.Directory().editBrother(data);
+
+
+                    // show snackbar
+                    if (_editDirectoryFormKey.currentState!.validate()) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Submitting the edits...'),),
+                      );
+                      // go back to previous screen
+                      Navigator.pop(context);
+                    }
+                  },
+                ),
 
 
               ],

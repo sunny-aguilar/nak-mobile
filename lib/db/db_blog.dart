@@ -11,6 +11,7 @@ class Blog {
     return query.docs;
   }
 
+
   Future<void> updateBlogEntry(String docID,String title, String body) async {
     _instance = FirebaseFirestore.instance;
     final data = {
