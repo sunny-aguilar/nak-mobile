@@ -202,62 +202,63 @@ class BroProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        Stack(
-          alignment: Alignment.bottomCenter,
-          children: <Widget>[
-            Align(
-              // child: Container(height: 260,),
-              child: Container(height: 260, color: theme.zincClr,),
-            ),
-            Positioned(
-              top: 0,
-              left: 0,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Stack(
+            alignment: Alignment(1, 1),
+            children: <Widget>[
+              Align(
+                child: Container(height: 260,),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
                 child: Container(
                   height: 200,
+                  // width: 350,
                   width: MediaQuery.sizeOf(context).width,
                   decoration: BoxDecoration(
-                    color: theme.redClr,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))
+                    color: theme.greyUI,
+                    // borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))
                   ),
+                  child: IntrinsicWidth(child: Container()),
                 ),
               ),
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: CircleAvatar(
-                radius: 82,
-                backgroundColor: theme.primaryClr,
+              Align(
+                // alignment: Alignment.bottomCenter,
                 child: CircleAvatar(
-                  radius: 74,
-                  backgroundColor: theme.uiRedClr,
-                  foregroundColor: theme.primaryClr,
-                  child: Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: CircleAvatar(
-                          radius: 18,
-                          backgroundColor: theme.greyUI,
-                          child: Icon(Icons.camera_alt),
-                        ),
-                      )
-                    ],
+                  radius: 90,
+                  backgroundColor: theme.primaryClr,
+                  child: CircleAvatar(
+                    radius: 80,
+                    backgroundColor: theme.greyUI,
+                    foregroundColor: theme.primaryClr,
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: CircleAvatar(
+                            radius: 20,
+                            backgroundColor: theme.pinkClr,
+                            child: Icon(Icons.camera_alt, color: theme.primaryClr,),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10,),
-        Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-        Text(broData['class']),
-        Text(broData['lineNumber'].toString()),
-      ],
+            ],
+          ),
+          SizedBox(height: 10,),
+          Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+          Text(broData['class']),
+          Text(broData['lineNumber'].toString()),
+        ],
+      ),
     );
   }
 }
