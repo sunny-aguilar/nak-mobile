@@ -5,8 +5,9 @@ import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatelessWidget {
-  const AddBro({super.key, required this.broData});
+  const AddBro({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
+  final String chapterID;
 
   @override
   Widget build(BuildContext context) {

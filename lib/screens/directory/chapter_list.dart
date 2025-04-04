@@ -123,7 +123,7 @@ class BroListScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => add_bro.AddBro(broData: broList.bros[broNumber[index]],)
+                    builder: (BuildContext context) => add_bro.AddBro(broData: broList.bros[broNumber[index]], chapterID: chapterID,)
                   )
                 );
               }
@@ -131,7 +131,7 @@ class BroListScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => view_bros.ViewBro(broData: broList.bros[broNumber[index]],)
+                    builder: (BuildContext context) => view_bros.ViewBro(broData: broList.bros[broNumber[index]], chapterID: chapterID,)
                   )
                 );
               }

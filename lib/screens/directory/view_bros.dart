@@ -5,8 +5,9 @@ import 'package:nak_app/ui/theme.dart' as theme;
 
 
 class ViewBro extends StatelessWidget {
-  const ViewBro({super.key, required this.broData});
+  const ViewBro({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
+  final String chapterID;
 
   @override
   Widget build(BuildContext context) {
