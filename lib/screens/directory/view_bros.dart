@@ -202,37 +202,33 @@ class BroProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(50.0),
-      child: Column(
-        children: <Widget>[
-          Stack(
-            alignment: Alignment.bottomCenter,
-            children: <Widget>[
-              Align(
-                child: Container(
-                  height: 230,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: theme.redClr,
-                    borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
-                  ),
+    return Column(
+      children: <Widget>[
+        Stack(
+          alignment: Alignment.bottomCenter,
+          children: <Widget>[
+            Align(
+              child: Container(height: 260,),
+            ),
+            Positioned(
+              top: 0,
+              left: 0,
+              child: Container(
+                height: 200,
+                width: MediaQuery.sizeOf(context).width * 0.7,
+                decoration: BoxDecoration(
+                  color: theme.redClr,
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10))
                 ),
               ),
-              Align(
-                alignment: Alignment.topCenter,
-                child: Container(
-                  height: 60,
-                  width: 150,
-                  color: theme.bronzeOfficial,
-                  child: Text('Bronze Box'),
-                ),
-              ),
-              CircleAvatar(
-                radius: 62,
-                backgroundColor: theme.zincClr,
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: CircleAvatar(
+                radius: 82,
+                backgroundColor: theme.primaryClr,
                 child: CircleAvatar(
-                  radius: 54,
+                  radius: 74,
                   backgroundColor: theme.uiRedClr,
                   foregroundColor: theme.primaryClr,
                   child: Stack(
@@ -249,14 +245,14 @@ class BroProfile extends StatelessWidget {
                   ),
                 ),
               ),
-            ],
-          ),
-          SizedBox(height: 10,),
-          Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-          Text(broData['class']),
-          Text(broData['lineNumber'].toString()),
-        ],
-      ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10,),
+        Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+        Text(broData['class']),
+        Text(broData['lineNumber'].toString()),
+      ],
     );
   }
 }
