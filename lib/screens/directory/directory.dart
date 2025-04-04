@@ -6,7 +6,7 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/chart.dart' as chart;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
-import 'package:nak_app/screens/directory/view_bros.dart' as bros;
+import 'package:nak_app/screens/directory/chapter_list.dart' as bros;
 
 
 class Directory extends StatefulWidget {
@@ -231,7 +231,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ViewBrothersScreen(viewData: widget.viewData,);
+                          return bros.ChapterListScreen(viewData: widget.viewData,);
                         })
                       );
                     },
@@ -266,7 +266,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ViewBrothersScreen(viewData: widget.viewData,);
+                          return bros.ChapterListScreen(viewData: widget.viewData,);
                         })
                       );
                     },
