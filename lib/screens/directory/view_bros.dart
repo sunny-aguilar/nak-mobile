@@ -100,7 +100,7 @@ class ChapterBros extends StatelessWidget {
         itemBuilder: (context, index) {
 
           List<String> broNumber = lineNumbers(index);
-          print(broList.bros[broNumber[index]]);
+          // print(broList.bros[broNumber[index]]);dw
           String name = broList.bros[broNumber[index]]['name'];
           String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
           String chapClass = broList.bros[broNumber[index]]['class'];
@@ -113,8 +113,8 @@ class ChapterBros extends StatelessWidget {
                 MaterialPageRoute<Widget>(builder: (BuildContext context) => ViewBro(broData: broList.bros[broNumber[index]],) )
               );
             },
-            title: Text(name),
-            subtitle: Text('$chapClass class, line number: $lineNumber'),
+            title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+            subtitle: Text('$chapClass class #$lineNumber'),
             trailing: Icon(Icons.arrow_forward_ios),
           );
         },
