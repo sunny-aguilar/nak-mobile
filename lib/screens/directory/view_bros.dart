@@ -10,11 +10,6 @@ class ViewBro extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Bro Data: $broData');
-
-    String chapterClass = '${broData['class']} class';
-    String chapterNumber = 'line #${broData['lineNumber']}';
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

@@ -112,18 +112,20 @@ class BroListScreen extends StatelessWidget {
 
           return ListTile(
             onTap: () {
-              print('Edit: $editBro');
               if (editBro) {
-                print('Editing bro...');
                 Navigator.push(
                   context,
-                  MaterialPageRoute<Widget>(builder: (BuildContext context) => add_bro.AddBro(broData: broList.bros[broNumber[index]],) )
+                  MaterialPageRoute<Widget>(
+                    builder: (BuildContext context) => add_bro.AddBro(broData: broList.bros[broNumber[index]],)
+                  )
                 );
               }
               else{
                 Navigator.push(
                   context,
-                  MaterialPageRoute<Widget>(builder: (BuildContext context) => view_bros.ViewBro(broData: broList.bros[broNumber[index]],) )
+                  MaterialPageRoute<Widget>(
+                    builder: (BuildContext context) => view_bros.ViewBro(broData: broList.bros[broNumber[index]],)
+                  )
                 );
               }
             },
