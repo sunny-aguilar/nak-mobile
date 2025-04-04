@@ -26,15 +26,16 @@ class AddBro extends StatelessWidget {
           ),
         ],
       ),
-      body: EditBroData(broData: broData,),
+      body: EditBroData(broData: broData, chapterID: chapterID,),
     );
   }
 }
 
 
 class EditBroData extends StatefulWidget {
-  const EditBroData({super.key, required this.broData});
+  const EditBroData({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
+  final String chapterID;
   @override
   State<EditBroData> createState() => _EditBroDataState();
 }
@@ -125,7 +126,7 @@ class _EditBroDataState extends State<EditBroData> {
                     data['name'] = _nameCtl.text.trim();
                     data['className'] = _classCtl.text.trim();
                     data['lineNumber'] = _numberCtl.text.trim();
-                    db.Directory().editBrother(data);
+                    db.Directory().editBrother(data, widget.chapterID);
 
 
                     // show snackbar

@@ -150,8 +150,8 @@ class Directory {
 
   void addBrother() async {}
 
-  void editBrother(Map data) async {
+  void editBrother(Map data, String chapterID) async {
     _instance = FirebaseFirestore.instance;
-    final ref = _instance!.collection('directory').doc();
+    final ref = _instance!.collection('directory').doc(chapterID);
   }
 }
