@@ -262,7 +262,14 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                   height: 220,
                   width: MediaQuery.sizeOf(context).width * .45,
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                          return bros.ViewBrothersScreen(viewData: widget.viewData,);
+                        })
+                      );
+                    },
                     child: Card(
                       clipBehavior: Clip.antiAlias,
                       color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
@@ -281,13 +288,6 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                             padding: const EdgeInsets.only(left: 16, right: 16),
                             child: Text('Don\'t see a name? Add the bro to the directory.', style: theme.TextThemes.size11(context),),
                           ),
-                          // add navigator here to go to the next page
-                          //
-                          //
-                          //
-                          //
-                          //
-                          // add navigator here to go to the next page
                         ]
                       ),
                     ),

@@ -150,48 +150,6 @@ class ViewBro extends StatelessWidget {
         ],
       ),
       body: BroProfile(broData: broData,),
-      // body: Padding(
-      //   padding: const EdgeInsets.all(50.0),
-      //   child: Column(
-      //     children: <Widget>[
-      //       Row(
-      //         children: <Widget>[
-      //           CircleAvatar(
-      //             radius: 62,
-      //             backgroundColor: theme.zincClr,
-      //             child: CircleAvatar(
-      //               radius: 54,
-      //               backgroundColor: theme.uiRedClr,
-      //               foregroundColor: theme.primaryClr,
-      //               child: Stack(
-      //                 children: <Widget>[
-      //                   Align(
-      //                     alignment: Alignment.bottomRight,
-      //                     child: CircleAvatar(
-      //                       radius: 18,
-      //                       backgroundColor: theme.greyUI,
-      //                       child: Icon(Icons.camera_alt),
-      //                     ),
-      //                   )
-      //                 ],
-      //               ),
-      //             ),
-      //           ),
-      //           const SizedBox(width: 10,),
-      //           Column(
-      //             crossAxisAlignment: CrossAxisAlignment.start,
-      //             children: <Widget>[
-      //               Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-      //               Text(chapterClass),
-      //               Text(chapterNumber),
-      //             ],
-      //           ),
-      //         ],
-      //       ),
-      //       Text('Last edited by: name here'),
-      //     ],
-      //   ),
-      // ),
     );
   }
 }
@@ -200,8 +158,17 @@ class BroProfile extends StatelessWidget {
   const BroProfile({super.key, required this.broData});
   final Map<String, dynamic> broData;
 
+  // capitalize a string
+  String _capitalize(String text) {
+    return '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    String chapterClass = '${broData['class']} class';
+    String chapterNumber = 'line #${broData['lineNumber']}';
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -234,7 +201,7 @@ class BroProfile extends StatelessWidget {
                   backgroundColor: theme.primaryClr,
                   child: CircleAvatar(
                     radius: 80,
-                    backgroundColor: theme.greyUI,
+                    backgroundColor: theme.redClr,
                     foregroundColor: theme.primaryClr,
                     child: Stack(
                       children: <Widget>[
@@ -242,7 +209,7 @@ class BroProfile extends StatelessWidget {
                           alignment: Alignment.bottomRight,
                           child: CircleAvatar(
                             radius: 20,
-                            backgroundColor: theme.pinkClr,
+                            backgroundColor: theme.greyUI,
                             child: Icon(Icons.camera_alt, color: theme.primaryClr,),
                           ),
                         )
@@ -255,8 +222,8 @@ class BroProfile extends StatelessWidget {
           ),
           SizedBox(height: 10,),
           Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-          Text(broData['class']),
-          Text(broData['lineNumber'].toString()),
+          Text(_capitalize(chapterClass)),
+          Text(chapterNumber),
         ],
       ),
     );
