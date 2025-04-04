@@ -151,45 +151,25 @@ class ViewBro extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                // Stack(
-                //   clipBehavior: Clip.none,
-                //   fit: StackFit.loose,
-                //   children: [
-                //     CircleAvatar(
-                //       radius: 50,
-                //       backgroundColor: theme.uiRedClr,
-                //       foregroundColor: theme.primaryClr,
-                //       child: Text('FL', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 30,),),
-                //     ),
-                //     Positioned(
-                //       bottom: 0,
-                //       right: -25,
-                //       child: RawMaterialButton(
-                //         onPressed: () {},
-                //         elevation: 2.0,
-                //         fillColor: theme.blackClr,
-                //         shape: CircleBorder(),
-                //         padding: EdgeInsets.all(6.0),
-                //         child: const Icon(Icons.camera),
-                //       )
-                //     ),
-                //   ]
-                // ),
                 CircleAvatar(
-                  radius: 54,
-                  backgroundColor: theme.uiRedClr,
-                  foregroundColor: theme.primaryClr,
-                  child: Stack(
-                    children: <Widget>[
-                      Align(
-                        alignment: Alignment.bottomRight,
-                        child: CircleAvatar(
-                          radius: 18,
-                          backgroundColor: theme.greyUI,
-                          child: Icon(Icons.camera_alt),
-                        ),
-                      )
-                    ],
+                  radius: 64,
+                  backgroundColor: theme.greyClr,
+                  child: CircleAvatar(
+                    radius: 54,
+                    backgroundColor: theme.uiRedClr,
+                    foregroundColor: theme.primaryClr,
+                    child: Stack(
+                      children: <Widget>[
+                        Align(
+                          alignment: Alignment.bottomRight,
+                          child: CircleAvatar(
+                            radius: 18,
+                            backgroundColor: theme.greyUI,
+                            child: Icon(Icons.camera_alt),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(width: 10,),
