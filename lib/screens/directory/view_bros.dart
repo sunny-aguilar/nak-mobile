@@ -130,6 +130,10 @@ class ViewBro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('Bro Data: $broData');
+
+    String chapterClass = '${broData['class']} class';
+    String chapterNumber = 'line #${broData['lineNumber']}';
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -152,8 +156,8 @@ class ViewBro extends StatelessWidget {
             Row(
               children: <Widget>[
                 CircleAvatar(
-                  radius: 64,
-                  backgroundColor: theme.greyClr,
+                  radius: 63,
+                  backgroundColor: theme.zincClr,
                   child: CircleAvatar(
                     radius: 54,
                     backgroundColor: theme.uiRedClr,
@@ -177,7 +181,8 @@ class ViewBro extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-                    Text('Email'),
+                    Text(chapterClass),
+                    Text(chapterNumber),
                   ],
                 ),
               ],
