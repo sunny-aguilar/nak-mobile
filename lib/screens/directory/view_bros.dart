@@ -125,10 +125,11 @@ class ChapterBros extends StatelessWidget {
 
 class ViewBro extends StatelessWidget {
   const ViewBro({super.key, required this.broData});
-  final broData;
+  final Map<String, dynamic> broData;
 
   @override
   Widget build(BuildContext context) {
+    print('Bro Data: $broData');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -144,9 +145,31 @@ class ViewBro extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: Text('Bro Data: $broData'),
-      )
+      body: Padding(
+        padding: const EdgeInsets.all(50.0),
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 50,
+                  backgroundColor: theme.uiRedClr,
+                  foregroundColor: theme.primaryClr,
+                  child: Text('FL', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 30,),),
+                ),
+                const SizedBox(width: 10,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+                    Text('Email'),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
