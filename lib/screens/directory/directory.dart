@@ -24,35 +24,12 @@ class _DirectoryState extends State<Directory> {
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
-    // db.Directory().getChaptersTest();
-    // final chapterList = await db.Directory().getChapters();
-    // print(chapterList);
-
-    // Prints all chapters (docs) in collection (directory)
-    // final chapterList = await db.Directory().getChapters();
-    // print(chapterList[0].data());
-    // for (final ele in chapterList) {
-    //   print('Ele: ${ele.data()}');
-    // }
-
-    // Returns specified chapter data
-    // final chapter = await db.Directory().getChapter('01.alpha');
-    // print('Brother: ${chapter['brother']}')
-
     // Initialize bro count
     db.Directory().getBroCount().then((val) {
       broCount = val;
       setState(() {});
     });
   }
-
-  // void initializeChapterCount() async {
-  //   print('Total Chapters: ${await db.Directory().getChapterCount()}');
-  //   db.Directory().getChapterCount().then((val) {
-  //     chapterCount = val;
-  //     setState((){});
-  //   });
-  // }]
 
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
@@ -95,7 +72,13 @@ class _DirectoryState extends State<Directory> {
         ],
       ),
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
-      body: DirectoryDashboard(onChange: _handleThemeChange, chapterCount: chapterCount, broCount: broCount, graphData: graphData, viewData: viewData,),
+      body: DirectoryDashboard(
+        onChange: _handleThemeChange,
+        chapterCount: chapterCount, broCount:
+        broCount,
+        graphData: graphData,
+        viewData: viewData,
+      ),
     );
   }
 }
@@ -295,6 +278,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 ),
               ],
             ),
+            Container(height: 400,)
           ],
         ),
       ),

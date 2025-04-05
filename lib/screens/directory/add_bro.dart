@@ -5,10 +5,9 @@ import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatelessWidget {
-  const AddBro({super.key, required this.broData, required this.chapterID, required this.updateList});
+  const AddBro({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
   final String chapterID;
-  final Function updateList;
 
 
   @override
@@ -28,17 +27,16 @@ class AddBro extends StatelessWidget {
           ),
         ],
       ),
-      body: EditBroData(broData: broData, chapterID: chapterID, updateList: updateList,),
+      body: EditBroData(broData: broData, chapterID: chapterID),
     );
   }
 }
 
 
 class EditBroData extends StatefulWidget {
-  const EditBroData({super.key, required this.broData, required this.chapterID, required this.updateList});
+  const EditBroData({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
   final String chapterID;
-  final Function updateList;
   @override
   State<EditBroData> createState() => _EditBroDataState();
 }
@@ -146,10 +144,6 @@ class _EditBroDataState extends State<EditBroData> {
                       );
                       // go back to previous screen
                       Navigator.pop(context);
-
-                      // update list state
-                      widget.updateList();
-                      setState(() {});
                     }
                   },
                 ),

@@ -92,12 +92,6 @@ class _BroListScreenState extends State<BroListScreen> {
     return stringList;
   }
 
-  void _updateList() {
-    // update state
-    setState((){});
-    print('State was updated!');
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,7 +135,6 @@ class _BroListScreenState extends State<BroListScreen> {
                     builder: (BuildContext context) => add_bro.AddBro(
                       broData: widget.broList.bros[broNumber[index]],
                       chapterID: widget.chapterID,
-                      updateList: _updateList,
                     )
                   )
                 );
