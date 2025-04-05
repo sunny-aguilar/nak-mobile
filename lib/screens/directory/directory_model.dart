@@ -151,13 +151,16 @@ class Directory {
   void addBrother() async {}
 
   void editBrother(Map broData, String chapterID) async {
+    // check if bro already exist before editing
     _instance = FirebaseFirestore.instance;
+    String broNum = broData['lineNumber'];
     final data = {
-      'name': broData['name'],
-      'className': broData['className'],
-      'lineNumber': broData['className'],
+      'brother.$broNum.name': broData['name'],
+      'brother.$broNum.className': broData['className'],
+      'brother.$broNum.lineNumber': broData['lineNumber'],
     };
+
     final ref = _instance!.collection('directory').doc(chapterID);
-    await ref.update({'brother.1.className': 'testing'});
+    await ref.update(data);
   }
 }

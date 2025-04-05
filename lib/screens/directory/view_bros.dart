@@ -43,7 +43,7 @@ class BroProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('Bro Data: $broData');
+
     String chapterClass = '${broData['class']} class';
     String chapterNumber = 'line #${broData['lineNumber']}';
 

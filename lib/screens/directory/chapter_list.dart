@@ -23,8 +23,6 @@ class ChapterListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('All Data $viewData');
-    print('chapterID: ${viewData['0'].chapterID}');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -68,18 +66,23 @@ class ChapterListScreen extends StatelessWidget {
   }
 }
 
-
-class BroListScreen extends StatelessWidget {
+// FIX STATE SO THAT NAMES UPDATE
+class BroListScreen extends StatefulWidget {
   const BroListScreen({super.key, required this.broList, required this.chapterID, required this.editBro});
   final broList;
   final String chapterID;
   final bool editBro;
 
+  @override
+  State<BroListScreen> createState() => _BroListScreenState();
+}
+
+class _BroListScreenState extends State<BroListScreen> {
   List<String> lineNumbers(index) {
     List numberList = [];
     List<String> stringList = [];
 
-    broList.bros.forEach((key, val) {
+    widget.broList.bros.forEach((key, val) {
       numberList.add(int.parse(key));
     });
     numberList.sort();
@@ -87,6 +90,12 @@ class BroListScreen extends StatelessWidget {
     stringList = numberList.map((val) => val.toString()).toList();
 
     return stringList;
+  }
+
+  void _updateList() {
+    // update state
+    setState((){});
+    print('State was updated!');
   }
 
   @override
@@ -107,23 +116,33 @@ class BroListScreen extends StatelessWidget {
         ],
       ),
       body: ListView.builder(
-        itemCount: broList.bros.length,
+        itemCount: widget.broList.bros.length + 1,
         itemBuilder: (context, index) {
+          if (index == 0) {
+            return ListTile(
+              tileColor: theme.greyClr,
+              title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+            );
+          }
+          index -= 1;
 
           List<String> broNumber = lineNumbers(index);
-          // print(broList.bros[broNumber[index]]);dw
-          String name = broList.bros[broNumber[index]]['name'];
-          String lineNumber = broList.bros[broNumber[index]]['lineNumber'].toString();
-          String chapClass = broList.bros[broNumber[index]]['className'];
+          String name = widget.broList.bros[broNumber[index]]['name'];
+          String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
+          String chapClass = widget.broList.bros[broNumber[index]]['className'];
           chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
           return ListTile(
             onTap: () {
-              if (editBro) {
+              if (widget.editBro) {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => add_bro.AddBro(broData: broList.bros[broNumber[index]], chapterID: chapterID,)
+                    builder: (BuildContext context) => add_bro.AddBro(
+                      broData: widget.broList.bros[broNumber[index]],
+                      chapterID: widget.chapterID,
+                      updateList: _updateList,
+                    )
                   )
                 );
               }
@@ -131,7 +150,7 @@ class BroListScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => view_bros.ViewBro(broData: broList.bros[broNumber[index]], chapterID: chapterID,)
+                    builder: (BuildContext context) => view_bros.ViewBro(broData: widget.broList.bros[broNumber[index]], chapterID: widget.chapterID,)
                   )
                 );
               }

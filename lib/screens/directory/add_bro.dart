@@ -5,9 +5,11 @@ import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatelessWidget {
-  const AddBro({super.key, required this.broData, required this.chapterID});
+  const AddBro({super.key, required this.broData, required this.chapterID, required this.updateList});
   final Map<String, dynamic> broData;
   final String chapterID;
+  final Function updateList;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,25 +28,34 @@ class AddBro extends StatelessWidget {
           ),
         ],
       ),
-      body: EditBroData(broData: broData, chapterID: chapterID,),
+      body: EditBroData(broData: broData, chapterID: chapterID, updateList: updateList,),
     );
   }
 }
 
 
 class EditBroData extends StatefulWidget {
-  const EditBroData({super.key, required this.broData, required this.chapterID});
+  const EditBroData({super.key, required this.broData, required this.chapterID, required this.updateList});
   final Map<String, dynamic> broData;
   final String chapterID;
+  final Function updateList;
   @override
   State<EditBroData> createState() => _EditBroDataState();
 }
 
 class _EditBroDataState extends State<EditBroData> {
   final _editDirectoryFormKey = GlobalKey<FormState>();
-  final TextEditingController _nameCtl = TextEditingController();
-  final TextEditingController _classCtl = TextEditingController();
-  final TextEditingController _numberCtl = TextEditingController();
+  TextEditingController _nameCtl = TextEditingController();
+  TextEditingController _classCtl = TextEditingController();
+  TextEditingController _numberCtl = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _nameCtl = TextEditingController(text: widget.broData['name']);
+    _classCtl = TextEditingController(text: widget.broData['className']);
+    _numberCtl = TextEditingController(text: widget.broData['lineNumber']);
+  }
 
   @override
   void dispose() {
@@ -66,7 +77,7 @@ class _EditBroDataState extends State<EditBroData> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 const SizedBox(height: 20,),
-                Text('Add or Edit a Bro'),
+                Text('Edit a Bro'),
                 const SizedBox(height: 10,),
 
                 TextFormField(
@@ -121,13 +132,12 @@ class _EditBroDataState extends State<EditBroData> {
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                   child: Text('Submit Edits'),
                   onPressed: () {
-                    // add DB functions here to save data
+                    // save edited bro data
                     Map<String, dynamic> data = {};
                     data['name'] = _nameCtl.text.trim();
                     data['className'] = _classCtl.text.trim();
                     data['lineNumber'] = _numberCtl.text.trim();
                     db.Directory().editBrother(data, widget.chapterID);
-
 
                     // show snackbar
                     if (_editDirectoryFormKey.currentState!.validate()) {
@@ -136,6 +146,10 @@ class _EditBroDataState extends State<EditBroData> {
                       );
                       // go back to previous screen
                       Navigator.pop(context);
+
+                      // update list state
+                      widget.updateList();
+                      setState(() {});
                     }
                   },
                 ),
