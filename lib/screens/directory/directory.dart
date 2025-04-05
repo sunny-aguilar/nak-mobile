@@ -20,7 +20,7 @@ class _DirectoryState extends State<Directory> {
   late int chapterCount = 0;
   late int broCount = 0;
   late List<double> graphData = List<double>.generate(28, (i) => i.toDouble());
-  late Map viewData = {};
+  // late Map viewData = {};
 
   // TO DO: this function can be deleted
   void initializeBroCount() async {
@@ -41,17 +41,17 @@ class _DirectoryState extends State<Directory> {
     // db.Directory().getChapterBroCount();
   }
 
-  void intializeViewBroData() async {
-    db.Directory().broData().then((val) {
-      viewData = val;
-    });
-  }
+  // void intializeViewBroData() async {
+  //   db.Directory().broData().then((val) {
+  //     viewData = val;
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
     initializeDirectory();
-    intializeViewBroData();
+    // intializeViewBroData();
   }
 
   @override
@@ -77,7 +77,7 @@ class _DirectoryState extends State<Directory> {
         chapterCount: chapterCount, broCount:
         broCount,
         graphData: graphData,
-        viewData: viewData,
+        // viewData: viewData,
       ),
     );
   }
@@ -87,13 +87,13 @@ class _DirectoryState extends State<Directory> {
 class DirectoryDashboard extends StatefulWidget {
   const DirectoryDashboard({
     super.key, required this.onChange, required this.chapterCount,
-    required this.broCount, required this.graphData, required this.viewData,
+    required this.broCount, required this.graphData, /*required this.viewData*/
   });
   final Function onChange;
   final int chapterCount;
   final int broCount;
   final List<double> graphData;
-  final Map viewData;
+  // final Map viewData;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
@@ -214,7 +214,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ChapterListScreen(viewData: widget.viewData, editBro: false,);
+                          return bros.ChapterListScreen(/*viewData: widget.viewData,*/ editBro: false,);
                         })
                       );
                     },
@@ -249,7 +249,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       Navigator.push(
                         context,
                         MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                          return bros.ChapterListScreen(viewData: widget.viewData, editBro: true,);
+                          return bros.ChapterListScreen(/*viewData: widget.viewData,*/ editBro: true,);
                         })
                       );
                     },

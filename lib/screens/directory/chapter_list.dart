@@ -6,8 +6,8 @@ import 'package:nak_app/screens/directory/view_bros.dart' as view_bros;
 import 'package:nak_app/screens/directory/add_bro.dart' as add_bro;
 
 class ChapterListScreen extends StatelessWidget {
-  const ChapterListScreen({super.key, required this.viewData, required this.editBro});
-  final Map viewData;
+  const ChapterListScreen({super.key, /*required this.viewData,*/ required this.editBro});
+  // final Map viewData;
   final bool editBro;
 
   String chapterName(int index) {
