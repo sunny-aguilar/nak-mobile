@@ -107,12 +107,13 @@ class BroListScreen extends StatefulWidget {
 }
 
 class _BroListScreenState extends State<BroListScreen> {
-  Map viewData = {0: (broCount: 1, bros: {'1': {'classsName': 'pending...', 'lineNumber': 0, 'name': '...'}}, chapNum: 0, chapterID: '...', chapterName: '...',  greek: '...')};
+  Map viewData = {};
 
   List<String> lineNumbers(index) {
     List numberList = [];
     List<String> stringList = [];
     viewData[index.toString()].bros.forEach((key, val) {
+      print('Key to add: $key - val: $val');
       numberList.add(int.parse(key));
     });
     numberList.sort();
@@ -157,7 +158,10 @@ class _BroListScreenState extends State<BroListScreen> {
       body: RefreshIndicator(
         backgroundColor: theme.redClr,
         onRefresh: _handleRefresh,
-        child: ListView.builder(
+        child:
+          viewData.isEmpty  // prevent list from showing up as null
+          ? Center(child: Text('Loading...'),)
+          : ListView.builder(
           itemCount: widget.broList.bros.length + 1,
           itemBuilder: (context, index) {
             if (index == 0) {
@@ -192,13 +196,15 @@ class _BroListScreenState extends State<BroListScreen> {
                 ),
               );
             }
+
+            print('\n\nOG Index: $index');
             index -= 1;
-            print('Index: $index ******************\n');
-            print('All Data******************\n: $viewData');
+            print('Index: $index\n');
+            // print('All Data******************\n: $viewData');
             // print('\n********\n');
-            // print('Bros: ${viewData[widget.chapterNum].bros}');
-            List<String> broNumber = lineNumbers(index);
-            // print('BroNumber: $broNumber');
+            print('Bros: ${viewData[widget.chapterNum].bros}');
+            List<String> broNumber = lineNumbers(widget.chapterNum);
+            print('BroNumber: $broNumber');
             String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
             // print('Name: $name');
             String lineNumber = viewData[widget.chapterNum].bros[broNumber[index]]['lineNumber'].toString();
