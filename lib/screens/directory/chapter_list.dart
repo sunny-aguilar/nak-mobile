@@ -107,7 +107,7 @@ class BroListScreen extends StatefulWidget {
 }
 
 class _BroListScreenState extends State<BroListScreen> {
-  Map viewData = {};
+  Map viewData = {0: (broCount: 1, bros: {'1': {'classsName': 'pending...', 'lineNumber': 0, 'name': '...'}}, chapNum: 0, chapterID: '...', chapterName: '...',  greek: '...')};
 
   List<String> lineNumbers(index) {
     List numberList = [];
@@ -159,31 +159,42 @@ class _BroListScreenState extends State<BroListScreen> {
         onRefresh: _handleRefresh,
         child: ListView.builder(
           itemCount: widget.broList.bros.length + 1,
-          // itemCount: widget.broList.bros.length,
           itemBuilder: (context, index) {
             if (index == 0) {
-              // return ListTile(
-              //   tileColor: theme.greyClr,
-              //   title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-              // );
-              return Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    // Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-                    // ListTile(
-                    //   tileColor: theme.greyClr,
-                    //   title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-                    // ),
-                    Align(alignment: Alignment.center, child: Text('Pull down to refresh list')),
-                    Align(alignment: Alignment.center, child: Icon(Icons.arrow_circle_down)),
-                  ],
+              return Padding(
+                padding: const EdgeInsets.all(0.0),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      SizedBox(height: 10,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: RichText(
+                            text: TextSpan(
+                              children: [
+                                WidgetSpan(child: Icon(Icons.arrow_circle_down, size: 17,)),
+                                TextSpan(
+                                  text:' refresh list',
+                                  style: theme.TextThemes.collegeText(context).copyWith(color: theme.darkGreyClr)
+                                ),
+                              ]
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               );
             }
             index -= 1;
-            // print('Index: $index ******************\n');
-            // print('All Data******************\n: $viewData');
+            print('Index: $index ******************\n');
+            print('All Data******************\n: $viewData');
             // print('\n********\n');
             // print('Bros: ${viewData[widget.chapterNum].bros}');
             List<String> broNumber = lineNumbers(index);
