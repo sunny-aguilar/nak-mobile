@@ -4,37 +4,11 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
-class AddBro extends StatefulWidget {
+class AddBro extends StatelessWidget {
   const AddBro({super.key, required this.broLineNumber, required this.broDatassss, required this.chapterID});
   final String broLineNumber;
   final Map<String, dynamic> broDatassss;
   final String chapterID;
-  @override
-  State<AddBro> createState() => _AddBroState();
-}
-
-class _AddBroState extends State<AddBro> {
-  late Map chapterData;
-  late Map<String, dynamic> broData = {};
-
-  void initializeDataFields() async {
-    // db.Directory().chapterDataMap(widget.chapterID).then((val) {
-    //   chapterData = val;
-    //   broData = chapterData['brother'][widget.broLineNumber];
-    //   print('Chapter data: $chapterData');
-    //   // print('BroData: ${widget.broData}');
-    //   print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
-    //   print('Bro Map: $broData');
-    //   setState(() {});
-    // });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // initializeDataFields();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,15 +26,13 @@ class _AddBroState extends State<AddBro> {
           ),
         ],
       ),
-      body: EditBroData(broData: broData, chapterID: widget.chapterID, broLineNumber: widget.broLineNumber,),
+      body: EditBroData(chapterID: chapterID, broLineNumber: broLineNumber,),
     );
   }
 }
 
-
 class EditBroData extends StatefulWidget {
-  const EditBroData({super.key, required this.broData, required this.chapterID, required this.broLineNumber});
-  final Map<String, dynamic> broData;
+  const EditBroData({super.key, required this.chapterID, required this.broLineNumber});
   final String chapterID;
   final String broLineNumber;
   @override
@@ -80,10 +52,6 @@ class _EditBroDataState extends State<EditBroData> {
     db.Directory().chapterDataMap(widget.chapterID).then((val) {
       chapterData = val;
       broData = chapterData['brother'][widget.broLineNumber];
-      print('Chapter data: $chapterData');
-      // print('BroData: ${widget.broData}');
-      // print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
-      print('Bro Map: $broData');
       _nameCtl = TextEditingController(text: broData['name']);
       _classCtl = TextEditingController(text: broData['className']);
       _numberCtl = TextEditingController(text: broData['lineNumber']);
