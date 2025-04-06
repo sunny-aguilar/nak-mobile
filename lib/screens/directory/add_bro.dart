@@ -5,9 +5,9 @@ import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatefulWidget {
-  const AddBro({super.key, required this.broLineNumber, required this.broData, required this.chapterID});
+  const AddBro({super.key, required this.broLineNumber, required this.broDatassss, required this.chapterID});
   final String broLineNumber;
-  final Map<String, dynamic> broData;
+  final Map<String, dynamic> broDatassss;
   final String chapterID;
   @override
   State<AddBro> createState() => _AddBroState();
@@ -15,25 +15,24 @@ class AddBro extends StatefulWidget {
 
 class _AddBroState extends State<AddBro> {
   late Map chapterData;
-  late Map<String, dynamic> broMap = {};
+  late Map<String, dynamic> broData = {};
 
   void initializeDataFields() async {
-    db.Directory().chapterDataMap(widget.chapterID).then((val) {
-      chapterData = val;
-      broMap = chapterData['brother'][widget.broLineNumber];
-      print('Chapter data: $chapterData');
-      // print('BroData: ${widget.broData}');
-      print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
-      print('Bro Map: $broMap');
-      setState(() {});
-    });
-    setState(() {});
+    // db.Directory().chapterDataMap(widget.chapterID).then((val) {
+    //   chapterData = val;
+    //   broData = chapterData['brother'][widget.broLineNumber];
+    //   print('Chapter data: $chapterData');
+    //   // print('BroData: ${widget.broData}');
+    //   print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
+    //   print('Bro Map: $broData');
+    //   setState(() {});
+    // });
   }
 
   @override
   void initState() {
     super.initState();
-    initializeDataFields();
+    // initializeDataFields();
   }
 
   @override
@@ -53,16 +52,17 @@ class _AddBroState extends State<AddBro> {
           ),
         ],
       ),
-      body: EditBroData(broData: broMap, chapterID: widget.chapterID),
+      body: EditBroData(broData: broData, chapterID: widget.chapterID, broLineNumber: widget.broLineNumber,),
     );
   }
 }
 
 
 class EditBroData extends StatefulWidget {
-  const EditBroData({super.key, required this.broData, required this.chapterID});
+  const EditBroData({super.key, required this.broData, required this.chapterID, required this.broLineNumber});
   final Map<String, dynamic> broData;
   final String chapterID;
+  final String broLineNumber;
   @override
   State<EditBroData> createState() => _EditBroDataState();
 }
@@ -73,12 +73,28 @@ class _EditBroDataState extends State<EditBroData> {
   TextEditingController _classCtl = TextEditingController();
   TextEditingController _numberCtl = TextEditingController();
 
+  late Map chapterData = {};
+  late Map<String, dynamic> broData = {};
+
+  void initializeTextFields() async {
+    db.Directory().chapterDataMap(widget.chapterID).then((val) {
+      chapterData = val;
+      broData = chapterData['brother'][widget.broLineNumber];
+      print('Chapter data: $chapterData');
+      // print('BroData: ${widget.broData}');
+      // print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
+      print('Bro Map: $broData');
+      _nameCtl = TextEditingController(text: broData['name']);
+      _classCtl = TextEditingController(text: broData['className']);
+      _numberCtl = TextEditingController(text: broData['lineNumber']);
+      setState(() {});
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    _nameCtl = TextEditingController(text: widget.broData['name']);
-    _classCtl = TextEditingController(text: widget.broData['className']);
-    _numberCtl = TextEditingController(text: widget.broData['lineNumber']);
+    initializeTextFields();
   }
 
   @override

@@ -224,7 +224,7 @@ class _BroListScreenState extends State<BroListScreen> {
                     MaterialPageRoute<Widget>(
                       builder: (BuildContext context) => add_bro.AddBro(
                         broLineNumber: lineNumber,
-                        broData: bro,
+                        broDatassss: bro,
                         chapterID: widget.chapterID,
                       )
                     )
