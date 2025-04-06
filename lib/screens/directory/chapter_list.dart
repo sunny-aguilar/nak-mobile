@@ -165,10 +165,11 @@ class _BroListScreenState extends State<BroListScreen> {
             }
             index -= 1;
 
-            print('Data in List: $viewData');
+            // print('Data in List: $viewData');
             List<String> broNumber = lineNumbers(index);
             print('BroNumber: $broNumber');
-            // String name = widget.broList.bros[broNumber[index]]['name'];
+            String name = viewData[index.toString()].bros[broNumber[index]]['name'];
+            print('Name: $name');
             // String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
             // String chapClass = widget.broList.bros[broNumber[index]]['className'];
             // chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
@@ -197,7 +198,7 @@ class _BroListScreenState extends State<BroListScreen> {
                   );
                 }
               },
-              title: Text('name', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
               subtitle: Text('chapClass class #lineNumber'),
               trailing: Icon(Icons.arrow_forward_ios),
             );
