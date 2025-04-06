@@ -113,7 +113,7 @@ class _BroListScreenState extends State<BroListScreen> {
     List numberList = [];
     List<String> stringList = [];
     viewData[index.toString()].bros.forEach((key, val) {
-      print('Key to add: $key - val: $val');
+      // print('Key to add: $key - val: $val');
       numberList.add(int.parse(key));
     });
     numberList.sort();
@@ -167,44 +167,42 @@ class _BroListScreenState extends State<BroListScreen> {
             if (index == 0) {
               return Padding(
                 padding: const EdgeInsets.all(0.0),
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      SizedBox(height: 10,),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
-                        child: Align(
-                          alignment: Alignment.center,
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(child: Icon(Icons.arrow_circle_down, size: 17,)),
-                                TextSpan(
-                                  text:' refresh list',
-                                  style: theme.TextThemes.collegeText(context).copyWith(color: theme.darkGreyClr)
-                                ),
-                              ]
-                            ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SizedBox(height: 10,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              WidgetSpan(child: Icon(Icons.arrow_circle_down, size: 17,)),
+                              TextSpan(
+                                text:' refresh list',
+                                style: theme.TextThemes.collegeText(context).copyWith(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr)
+                              ),
+                            ]
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               );
             }
 
-            print('\n\nOG Index: $index');
+            // print('\n\nOG Index: $index');
             index -= 1;
-            print('Index: $index\n');
+            // print('Index: $index\n');
             // print('All Data******************\n: $viewData');
             // print('\n********\n');
-            print('Bros: ${viewData[widget.chapterNum].bros}');
+            // print('Bros: ${viewData[widget.chapterNum].bros}');
             List<String> broNumber = lineNumbers(widget.chapterNum);
-            print('BroNumber: $broNumber');
+            // print('BroNumber: $broNumber');
             String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
             // print('Name: $name');
             String lineNumber = viewData[widget.chapterNum].bros[broNumber[index]]['lineNumber'].toString();
