@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
+import 'package:nak_app/screens/directory/directory_model.dart' as db;
 import 'package:nak_app/screens/directory/view_bros.dart' as view_bros;
 import 'package:nak_app/screens/directory/add_bro.dart' as add_bro;
 
-class ChapterListScreen extends StatelessWidget {
+class ChapterListScreen extends StatefulWidget {
   const ChapterListScreen({super.key, /*required this.viewData,*/ required this.editBro});
   // final Map viewData;
   final bool editBro;
+  @override
+  State<ChapterListScreen> createState() => _ChapterListScreenState();
+}
+
+class _ChapterListScreenState extends State<ChapterListScreen> {
+  Map viewData = {};
 
   String chapterName(int index) {
     String chapter = viewData[index.toString()].chapterName;
@@ -19,6 +26,24 @@ class ChapterListScreen extends StatelessWidget {
   String greekLetter(int index) {
     String greekLetter = viewData[index.toString()].greek;
     return greekLetter;
+  }
+
+  Future<void> _handleRefresh() async {
+    intializeViewBroData();
+    setState(() {});
+  }
+
+  void intializeViewBroData() async {
+    db.Directory().broData().then((val) {
+      viewData = val;
+      setState((){});
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    intializeViewBroData();
   }
 
   @override
@@ -38,29 +63,32 @@ class ChapterListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: viewData.length,
-        itemBuilder: (context, index) {
-          return ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(
-                  broList: viewData[index.toString()],
-                  chapterID: viewData[index.toString()].chapterID,
-                  editBro: editBro,
-                ))
-              );
-            },
-            leading: CircleAvatar(
-              backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-              child: Text(greekLetter(index)),
-            ),
-            title: Text('${chapterName(index)} Chapter'),
-            subtitle: Text('${viewData[index.toString()].broCount.toString()} Brothers Listed'),
-            trailing: Icon(Icons.arrow_forward_ios),
-          );
-        },
+      body: RefreshIndicator(
+        onRefresh: _handleRefresh,
+        child: ListView.builder(
+          itemCount: viewData.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(
+                    broList: viewData[index.toString()],
+                    chapterID: viewData[index.toString()].chapterID,
+                    editBro: widget.editBro,
+                  ))
+                );
+              },
+              leading: CircleAvatar(
+                backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                child: Text(greekLetter(index)),
+              ),
+              title: Text('${chapterName(index)} Chapter'),
+              subtitle: Text('${viewData[index.toString()].broCount.toString()} Brothers Listed'),
+              trailing: Icon(Icons.arrow_forward_ios),
+            );
+          },
+        ),
       ),
     );
   }
@@ -72,12 +100,13 @@ class BroListScreen extends StatefulWidget {
   final broList;
   final String chapterID;
   final bool editBro;
-
   @override
   State<BroListScreen> createState() => _BroListScreenState();
 }
 
 class _BroListScreenState extends State<BroListScreen> {
+  Map viewData = {};
+
   List<String> lineNumbers(index) {
     List numberList = [];
     List<String> stringList = [];
@@ -92,6 +121,23 @@ class _BroListScreenState extends State<BroListScreen> {
     return stringList;
   }
 
+  Future<void> _handleRefresh() async {
+    intializeViewBroData();
+  }
+
+  void intializeViewBroData() async {
+    db.Directory().broData().then((val) {
+      viewData = val;
+      setState((){});
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    intializeViewBroData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,50 +155,55 @@ class _BroListScreenState extends State<BroListScreen> {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: widget.broList.bros.length + 1,
-        itemBuilder: (context, index) {
-          if (index == 0) {
+      body: RefreshIndicator(
+        onRefresh: _handleRefresh,
+        child: ListView.builder(
+          itemCount: widget.broList.bros.length + 1,
+          itemBuilder: (context, index) {
+            if (index == 0) {
+              return ListTile(
+                tileColor: theme.greyClr,
+                title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              );
+            }
+            index -= 1;
+        
+            // List<String> broNumber = lineNumbers(index);
+            String name = widget.broList.bros[broNumber[index]]['name'];
+            String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
+            String chapClass = widget.broList.bros[broNumber[index]]['className'];
+            chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
+
+            List<String> broNumber = lineNumbers(index);
+        
             return ListTile(
-              tileColor: theme.greyClr,
-              title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-            );
-          }
-          index -= 1;
-
-          List<String> broNumber = lineNumbers(index);
-          String name = widget.broList.bros[broNumber[index]]['name'];
-          String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
-          String chapClass = widget.broList.bros[broNumber[index]]['className'];
-          chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
-
-          return ListTile(
-            onTap: () {
-              if (widget.editBro) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => add_bro.AddBro(
-                      broData: widget.broList.bros[broNumber[index]],
-                      chapterID: widget.chapterID,
+              onTap: () {
+                if (widget.editBro) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<Widget>(
+                      builder: (BuildContext context) => add_bro.AddBro(
+                        broData: widget.broList.bros[broNumber[index]],
+                        chapterID: widget.chapterID,
+                      )
                     )
-                  )
-                );
-              }
-              else{
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<Widget>(
-                    builder: (BuildContext context) => view_bros.ViewBro(broData: widget.broList.bros[broNumber[index]], chapterID: widget.chapterID,)
-                  )
-                );
-              }
-            },
-            title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-            subtitle: Text('$chapClass class #$lineNumber'),
-            trailing: Icon(Icons.arrow_forward_ios),
-          );
-        },
+                  );
+                }
+                else{
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<Widget>(
+                      builder: (BuildContext context) => view_bros.ViewBro(broData: widget.broList.bros[broNumber[index]], chapterID: widget.chapterID,)
+                    )
+                  );
+                }
+              },
+              title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              subtitle: Text('$chapClass class #$lineNumber'),
+              trailing: Icon(Icons.arrow_forward_ios),
+            );
+          },
+        ),
       )
     );
   }
