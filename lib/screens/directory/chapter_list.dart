@@ -201,6 +201,7 @@ class _BroListScreenState extends State<BroListScreen> {
             // print('All Data******************\n: $viewData');
             // print('\n********\n');
             // print('Bros: ${viewData[widget.chapterNum].bros}');
+            // print('Bro list: ${widget.broList.bros}');
             List<String> broNumber = lineNumbers(widget.chapterNum);
             // print('BroNumber: $broNumber');
             String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
@@ -211,17 +212,18 @@ class _BroListScreenState extends State<BroListScreen> {
             // print('chapClass: $chapClass');
             chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
-
-            //TODO: add data to temporarily replace null viewData as widget initializes
+            Map<String, dynamic> bro = widget.broList.bros[broNumber[index]];
+            // print('Bro: $bro');
 
             return ListTile(
               onTap: () {
+                /* GO TO VIEW OR EDIT SCREEN */
                 if (widget.editBro) {
                   Navigator.push(
                     context,
                     MaterialPageRoute<Widget>(
                       builder: (BuildContext context) => add_bro.AddBro(
-                        broData: widget.broList.bros[broNumber[index]],
+                        broData: bro,
                         chapterID: widget.chapterID,
                       )
                     )

@@ -4,11 +4,30 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
-class AddBro extends StatelessWidget {
+class AddBro extends StatefulWidget {
   const AddBro({super.key, required this.broData, required this.chapterID});
   final Map<String, dynamic> broData;
   final String chapterID;
+  @override
+  State<AddBro> createState() => _AddBroState();
+}
 
+class _AddBroState extends State<AddBro> {
+  late Map chapterData;
+
+  void initializeDataFields() async {
+    db.Directory().chapterDataMap(widget.chapterID).then((val) {
+      chapterData = val;
+      print('Chapter data: $chapterData');
+    });
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDataFields();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +46,7 @@ class AddBro extends StatelessWidget {
           ),
         ],
       ),
-      body: EditBroData(broData: broData, chapterID: chapterID),
+      body: EditBroData(broData: widget.broData, chapterID: widget.chapterID),
     );
   }
 }

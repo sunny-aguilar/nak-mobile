@@ -125,10 +125,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
               style: theme.TextThemes.gabaritoSize40(context),
             ),
 
-            // Row for graph
-            //
-            //
-            //
+            // Row for graph *********************
             Stack(
               children: <Widget>[
                 SizedBox(
@@ -154,10 +151,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
             ),
             const SizedBox(height: 30,),
 
-            // Row for brother metrics
-            //
-            //
-            //
+            // Row for brother metrics *********************
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -199,10 +193,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
             ),
             const SizedBox(height: 30,),
 
-            // Row for viewing/adding brothers
-            //
-            //
-            //
+            // Row for viewing/adding brothers *********************
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
