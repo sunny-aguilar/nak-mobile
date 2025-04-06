@@ -74,6 +74,7 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
                   context,
                   MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(
                     broList: viewData[index.toString()],
+                    chapterNum: viewData[index.toString()].chapNum,
                     chapterID: viewData[index.toString()].chapterID,
                     editBro: widget.editBro,
                   ))
@@ -96,8 +97,9 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
 
 // FIX STATE SO THAT NAMES UPDATE
 class BroListScreen extends StatefulWidget {
-  const BroListScreen({super.key, required this.broList, required this.chapterID, required this.editBro});
+  const BroListScreen({super.key, required this.broList, required this.chapterNum, required this.chapterID, required this.editBro});
   final broList;
+  final String chapterNum;
   final String chapterID;
   final bool editBro;
   @override
@@ -153,29 +155,49 @@ class _BroListScreenState extends State<BroListScreen> {
         ],
       ),
       body: RefreshIndicator(
+        backgroundColor: theme.redClr,
         onRefresh: _handleRefresh,
         child: ListView.builder(
           itemCount: widget.broList.bros.length + 1,
+          // itemCount: widget.broList.bros.length,
           itemBuilder: (context, index) {
             if (index == 0) {
-              return ListTile(
-                tileColor: theme.greyClr,
-                title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              // return ListTile(
+              //   tileColor: theme.greyClr,
+              //   title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              // );
+              return Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+                    // ListTile(
+                    //   tileColor: theme.greyClr,
+                    //   title: Text('Chapter Brothers', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+                    // ),
+                    Align(alignment: Alignment.center, child: Text('Pull down to refresh list')),
+                    Align(alignment: Alignment.center, child: Icon(Icons.arrow_circle_down)),
+                  ],
+                ),
               );
             }
             index -= 1;
-
-            // print('Data in List: $viewData');
+            // print('Index: $index ******************\n');
+            // print('All Data******************\n: $viewData');
+            // print('\n********\n');
+            // print('Bros: ${viewData[widget.chapterNum].bros}');
             List<String> broNumber = lineNumbers(index);
-            print('BroNumber: $broNumber');
-            String name = viewData[index.toString()].bros[broNumber[index]]['name'];
-            print('Name: $name');
-            String lineNumber = viewData[index.toString()].bros[broNumber[index]]['lineNumber'].toString();
-            print('lineNumber: $lineNumber');
-            // String chapClass = widget.broList.bros[broNumber[index]]['className'];
-            // chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
+            // print('BroNumber: $broNumber');
+            String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
+            // print('Name: $name');
+            String lineNumber = viewData[widget.chapterNum].bros[broNumber[index]]['lineNumber'].toString();
+            // print('lineNumber: $lineNumber');
+            String chapClass = viewData[widget.chapterNum].bros[broNumber[index]]['className'];
+            // print('chapClass: $chapClass');
+            chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
-            // List<String> broNumber = lineNumbers(index);
+
+            //TODO: add data to temporarily replace null viewData as widget initializes
 
             return ListTile(
               onTap: () {
@@ -200,7 +222,7 @@ class _BroListScreenState extends State<BroListScreen> {
                 }
               },
               title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-              subtitle: Text('chapClass class #$lineNumber'),
+              subtitle: Text('$chapClass class #$lineNumber'),
               trailing: Icon(Icons.arrow_forward_ios),
             );
           },
