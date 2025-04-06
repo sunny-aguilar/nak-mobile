@@ -133,7 +133,7 @@ class Directory {
       String chapNum = bros['chapterNumber'].toString();
       String greek = bros['greekLtr'];
       String chapterID = bros['chapterID'];
-      print('DC data: $chapterID');
+      // print('DC data: $chapterID');
 
       // add info into data
       data[chapterNumber] = (

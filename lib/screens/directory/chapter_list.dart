@@ -15,7 +15,7 @@ class ChapterListScreen extends StatefulWidget {
 }
 
 class _ChapterListScreenState extends State<ChapterListScreen> {
-  Map viewData = {};
+  late Map viewData = {};
 
   String chapterName(int index) {
     String chapter = viewData[index.toString()].chapterName;
@@ -110,14 +110,11 @@ class _BroListScreenState extends State<BroListScreen> {
   List<String> lineNumbers(index) {
     List numberList = [];
     List<String> stringList = [];
-
-    widget.broList.bros.forEach((key, val) {
+    viewData[index.toString()].bros.forEach((key, val) {
       numberList.add(int.parse(key));
     });
     numberList.sort();
-
     stringList = numberList.map((val) => val.toString()).toList();
-
     return stringList;
   }
 
@@ -167,15 +164,17 @@ class _BroListScreenState extends State<BroListScreen> {
               );
             }
             index -= 1;
-        
-            // List<String> broNumber = lineNumbers(index);
-            String name = widget.broList.bros[broNumber[index]]['name'];
-            String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
-            String chapClass = widget.broList.bros[broNumber[index]]['className'];
-            chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
+            print('Data in List: $viewData');
             List<String> broNumber = lineNumbers(index);
-        
+            print('BroNumber: $broNumber');
+            // String name = widget.broList.bros[broNumber[index]]['name'];
+            // String lineNumber = widget.broList.bros[broNumber[index]]['lineNumber'].toString();
+            // String chapClass = widget.broList.bros[broNumber[index]]['className'];
+            // chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
+
+            // List<String> broNumber = lineNumbers(index);
+
             return ListTile(
               onTap: () {
                 if (widget.editBro) {
@@ -198,8 +197,8 @@ class _BroListScreenState extends State<BroListScreen> {
                   );
                 }
               },
-              title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
-              subtitle: Text('$chapClass class #$lineNumber'),
+              title: Text('name', style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
+              subtitle: Text('chapClass class #lineNumber'),
               trailing: Icon(Icons.arrow_forward_ios),
             );
           },
