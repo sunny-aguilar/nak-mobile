@@ -5,7 +5,8 @@ import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 class AddBro extends StatefulWidget {
-  const AddBro({super.key, required this.broData, required this.chapterID});
+  const AddBro({super.key, required this.broLineNumber, required this.broData, required this.chapterID});
+  final String broLineNumber;
   final Map<String, dynamic> broData;
   final String chapterID;
   @override
@@ -14,11 +15,17 @@ class AddBro extends StatefulWidget {
 
 class _AddBroState extends State<AddBro> {
   late Map chapterData;
+  late Map<String, dynamic> broMap = {};
 
   void initializeDataFields() async {
     db.Directory().chapterDataMap(widget.chapterID).then((val) {
       chapterData = val;
+      broMap = chapterData['brother'][widget.broLineNumber];
       print('Chapter data: $chapterData');
+      // print('BroData: ${widget.broData}');
+      print('Bro Data: ${chapterData['brother'][widget.broLineNumber]}');
+      print('Bro Map: $broMap');
+      setState(() {});
     });
     setState(() {});
   }
@@ -46,7 +53,7 @@ class _AddBroState extends State<AddBro> {
           ),
         ],
       ),
-      body: EditBroData(broData: widget.broData, chapterID: widget.chapterID),
+      body: EditBroData(broData: broMap, chapterID: widget.chapterID),
     );
   }
 }
