@@ -4,10 +4,10 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
-class AddBro extends StatelessWidget {
-  const AddBro({super.key, required this.broLineNumber, required this.broDatassss, required this.chapterID});
+class EditBro extends StatelessWidget {
+  const EditBro({super.key, required this.broLineNumber, required this.broData, required this.chapterID});
   final String broLineNumber;
-  final Map<String, dynamic> broDatassss;
+  final Map<String, dynamic> broData;
   final String chapterID;
   @override
   Widget build(BuildContext context) {
@@ -140,13 +140,6 @@ class _EditBroDataState extends State<EditBroData> {
                   style: Get.isDarkMode ? buttons.buttonStyleDark(context) : buttons.buttonStyleLight(context),
                   child: Text('Submit Edits'),
                   onPressed: () {
-                    // save edited bro data
-                    Map<String, dynamic> data = {};
-                    data['name'] = _nameCtl.text.trim();
-                    data['className'] = _classCtl.text.trim();
-                    data['lineNumber'] = _numberCtl.text.trim();
-                    db.Directory().editBrother(data, widget.chapterID);
-
                     // show snackbar
                     if (_editDirectoryFormKey.currentState!.validate()) {
                       ScaffoldMessenger.of(context).showSnackBar(
@@ -154,6 +147,13 @@ class _EditBroDataState extends State<EditBroData> {
                       );
                       // go back to previous screen
                       Navigator.pop(context);
+
+                      // save edited bro data
+                      Map<String, dynamic> data = {};
+                      data['name'] = _nameCtl.text.trim();
+                      data['className'] = _classCtl.text.trim();
+                      data['lineNumber'] = _numberCtl.text.trim();
+                      db.Directory().editBrother(data, widget.chapterID);
                     }
                   },
                 ),

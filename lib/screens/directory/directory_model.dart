@@ -172,7 +172,25 @@ class Directory {
   }
 
 
-  void addBrother() async {}
+  void addBrother(Map data, String chapterID) async {
+    final ref = FirebaseFirestore.instance.collection('directory').doc(chapterID);
+    String lineNumber = data['lineNumber'];
+
+    // create a map to send
+    Map<String, dynamic> dataToSend = {
+        'brother': {
+          lineNumber: {
+          'name': data['name'],
+          'className': data['className'],
+          'lineNumber': data['lineNumber'],
+        }
+      }
+    };
+
+    // add the data to Firestore
+    await ref.set(dataToSend, SetOptions(merge: true));
+  }
+
 
   void editBrother(Map broData, String chapterID) async {
     _instance = FirebaseFirestore.instance;

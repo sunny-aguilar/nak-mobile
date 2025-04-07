@@ -5,11 +5,11 @@ import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 import 'package:nak_app/screens/directory/view_bros.dart' as view_bros;
-import 'package:nak_app/screens/directory/edit_bro.dart' as add_bro;
+import 'package:nak_app/screens/directory/edit_bro.dart' as edit_bro;
+import 'package:nak_app/screens/directory/add_bro.dart' as add_bro;
 
 class ChapterListScreen extends StatefulWidget {
-  const ChapterListScreen({super.key, /*required this.viewData,*/ required this.editBro});
-  // final Map viewData;
+  const ChapterListScreen({super.key, required this.editBro});
   final bool editBro;
   @override
   State<ChapterListScreen> createState() => _ChapterListScreenState();
@@ -88,7 +88,7 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
   }
 }
 
-// FIX STATE SO THAT NAMES UPDATE
+
 class BroListScreen extends StatefulWidget {
   const BroListScreen({super.key, required this.broList, required this.chapterNum, required this.chapterID, required this.editBro});
   final broList;
@@ -155,9 +155,16 @@ class _BroListScreenState extends State<BroListScreen> {
           viewData.isEmpty  // prevent list from showing up as null
           ? Center(child: Text('Loading...'),)
           : ListView.builder(
-          itemCount: widget.broList.bros.length + 1 + 1,
+          // itemCount: widget.broList.bros.length + 1 + 1,
+          itemCount: viewData[widget.chapterNum].bros.length + 1 + 1,
           itemBuilder: (context, index) {
+
+            // print('widget.broList.bros.length + 2 LEN: ${widget.broList.bros.length + 1 + 1}');
+            // print('Length of Bro List LEN: ${viewData[widget.chapterNum].bros.length}');
+            // print('Bro List: ${viewData[widget.chapterNum].bros}\n\n');
             if (index == 0) {
+              print('* * * * * * * * * * * * * * * * *');
+              print('Index == 0: $index');
               return Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: Column(
@@ -188,12 +195,8 @@ class _BroListScreenState extends State<BroListScreen> {
               );
             }
 
-            // Return a widget after the chapter bro list
+            // Add button after bro list
             if (index > widget.broList.bros.length) {
-              // return ListTile(
-              //   title: Text('Add a Bro'),
-              // );
-
               return  Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -206,6 +209,14 @@ class _BroListScreenState extends State<BroListScreen> {
                         child: Text('Add a bro'),
                         onPressed: () {
                           // go to form screen to add bro
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<Widget>(
+                              builder: (BuildContext context) {
+                                return add_bro.AddBro(chapterID: widget.chapterID);
+                              }
+                            )
+                          );
                         },
                       ),
                   ],
@@ -213,17 +224,18 @@ class _BroListScreenState extends State<BroListScreen> {
               );
             }
 
-            // print('\n\nOG Index: $index');
+            print('* * * * * * * * * * * * * * * * *');
+            print('Index: $index');
             index -= 1;
-            // print('Index: $index\n');
+            print('Index-1: $index\n');
             // print('All Data******************\n: $viewData');
             // print('\n********\n');
             // print('Bros: ${viewData[widget.chapterNum].bros}');
             // print('Bro list: ${widget.broList.bros}');
             List<String> broNumber = lineNumbers(widget.chapterNum);
-            // print('BroNumber: $broNumber');
+            print('BroNumber: $broNumber');
             String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
-            // print('Name: $name');
+            print('Name: $name');
             String lineNumber = viewData[widget.chapterNum].bros[broNumber[index]]['lineNumber'].toString();
             // print('lineNumber: $lineNumber');
             String chapClass = viewData[widget.chapterNum].bros[broNumber[index]]['className'];
@@ -233,6 +245,7 @@ class _BroListScreenState extends State<BroListScreen> {
             Map<String, dynamic> bro = widget.broList.bros[broNumber[index]];
             // print('Bro: $bro');
 
+            // Bro list
             return ListTile(
               onTap: () {
                 /* GO TO VIEW OR EDIT SCREEN */
@@ -240,9 +253,9 @@ class _BroListScreenState extends State<BroListScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute<Widget>(
-                      builder: (BuildContext context) => add_bro.AddBro(
+                      builder: (BuildContext context) => edit_bro.EditBro(
                         broLineNumber: lineNumber,
-                        broDatassss: bro,
+                        broData: bro,
                         chapterID: widget.chapterID,
                       )
                     )
