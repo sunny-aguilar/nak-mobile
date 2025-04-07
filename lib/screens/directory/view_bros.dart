@@ -44,7 +44,7 @@ class BroProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    String chapterClass = '${broData['class']} class';
+    String chapterClass = '${broData['className']} class';
     String chapterNumber = 'line #${broData['lineNumber']}';
 
     return Padding(
@@ -73,7 +73,6 @@ class BroProfile extends StatelessWidget {
                 ),
               ),
               Align(
-                // alignment: Alignment.bottomCenter,
                 child: CircleAvatar(
                   radius: 90,
                   backgroundColor: theme.primaryClr,

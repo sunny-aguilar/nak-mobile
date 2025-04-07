@@ -159,7 +159,7 @@ class MyBarGraph extends StatelessWidget {
 
     return BarChart(
       BarChartData(
-        maxY: getLargest(chapterBrothers),   // increase this size as the chapter bro count grows...
+        maxY: getLargest(chapterBrothers)+15,   // increase this size as the chapter bro count grows...
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),

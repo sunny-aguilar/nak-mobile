@@ -175,7 +175,6 @@ class Directory {
   void addBrother() async {}
 
   void editBrother(Map broData, String chapterID) async {
-    // check if bro already exist before editing
     _instance = FirebaseFirestore.instance;
     String broNum = broData['lineNumber'];
     final data = {

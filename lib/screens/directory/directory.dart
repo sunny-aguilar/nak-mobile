@@ -20,16 +20,6 @@ class _DirectoryState extends State<Directory> {
   late int chapterCount = 0;
   late int broCount = 0;
   late List<double> graphData = List<double>.generate(28, (i) => i.toDouble());
-  // late Map viewData = {};
-
-  // TO DO: this function can be deleted
-  void initializeBroCount() async {
-    // Initialize bro count
-    db.Directory().getBroCount().then((val) {
-      broCount = val;
-      setState(() {});
-    });
-  }
 
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
@@ -63,13 +53,12 @@ class _DirectoryState extends State<Directory> {
           ),
         ],
       ),
-      // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
+
       body: DirectoryDashboard(
         onChange: _handleThemeChange,
         chapterCount: chapterCount,
         broCount:broCount,
         graphData: graphData,
-        // viewData: viewData,
       ),
     );
   }
@@ -79,30 +68,17 @@ class _DirectoryState extends State<Directory> {
 class DirectoryDashboard extends StatefulWidget {
   const DirectoryDashboard({
     super.key, required this.onChange, required this.chapterCount,
-    required this.broCount, required this.graphData, /*required this.viewData*/
+    required this.broCount, required this.graphData,
   });
   final Function onChange;
   final int chapterCount;
   final int broCount;
   final List<double> graphData;
-  // final Map viewData;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
 
 class _DirectoryDashboardState extends State<DirectoryDashboard> {
-
-
-  // ERROR WHEN LOADING GRAPH BUT GOES AWAY -> DO NULL CHECK FIRST?
-  // Graph data (replaced by widget.graphData)
-  List<double> chapterBrothers = [
-    100,120,90,150,110,70,
-    50,110,130,140,120,80,
-    90,60,100,130,70,60,
-    110,120,90,150,80,130,
-    60,100,120,20
-  ];
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
