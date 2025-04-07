@@ -38,20 +38,12 @@ class _DirectoryState extends State<Directory> {
       graphData = val.graphData;
       setState((){});
     });
-    // db.Directory().getChapterBroCount();
   }
-
-  // void intializeViewBroData() async {
-  //   db.Directory().broData().then((val) {
-  //     viewData = val;
-  //   });
-  // }
 
   @override
   void initState() {
     super.initState();
     initializeDirectory();
-    // intializeViewBroData();
   }
 
   @override
@@ -74,8 +66,8 @@ class _DirectoryState extends State<Directory> {
       // backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
       body: DirectoryDashboard(
         onChange: _handleThemeChange,
-        chapterCount: chapterCount, broCount:
-        broCount,
+        chapterCount: chapterCount,
+        broCount:broCount,
         graphData: graphData,
         // viewData: viewData,
       ),
