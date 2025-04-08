@@ -112,8 +112,6 @@ class _AddBroState extends State<AddBro> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Submitting the edits...'),),
                       );
-                      // go back to previous screen
-                      Navigator.pop(context);
 
                       // save edited bro data
                       Map<String, dynamic> data = {};
@@ -121,6 +119,9 @@ class _AddBroState extends State<AddBro> {
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
                       db.Directory().addBrother(data, widget.chapterID);
+
+                      // go back to previous screen
+                      Navigator.pop(context);
                     }
                   },
                 ),

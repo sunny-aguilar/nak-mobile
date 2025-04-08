@@ -186,7 +186,7 @@ class _BroListScreenState extends State<BroListScreen> {
                   children: <Widget>[
                     SizedBox(height: 10,),
                     Padding(
-                      padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                      padding: const EdgeInsets.only(left: 16, top: 10, right: 16,),
                       child: Align(
                         alignment: Alignment.center,
                         child: RichText(
