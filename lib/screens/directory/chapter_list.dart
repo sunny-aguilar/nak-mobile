@@ -64,16 +64,31 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<Widget>(builder: (BuildContext context) => BroListScreen(
-                  broList: viewData[index.toString()],
-                  chapterNum: viewData[index.toString()].chapNum,
-                  chapterID: viewData[index.toString()].chapterID,
-                  chapter: chapterName(index),
-                  editBro: widget.editBro,
-                ))
-              );
+
+              if (widget.editBro){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Widget>(builder: (BuildContext context) => EditBroListScreen(
+                    broList: viewData[index.toString()],
+                    chapterNum: viewData[index.toString()].chapNum,
+                    chapterID: viewData[index.toString()].chapterID,
+                    chapter: chapterName(index),
+                    editBro: widget.editBro,
+                  ))
+                );
+              }
+              else {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<Widget>(builder: (BuildContext context) => ViewBroListScreen(
+                    broList: viewData[index.toString()],
+                    chapterNum: viewData[index.toString()].chapNum,
+                    chapterID: viewData[index.toString()].chapterID,
+                    chapter: chapterName(index),
+                    editBro: widget.editBro,
+                  ))
+                );
+              }
             },
             leading: CircleAvatar(
               backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
@@ -90,8 +105,8 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
 }
 
 
-class BroListScreen extends StatefulWidget {
-  const BroListScreen({
+class EditBroListScreen extends StatefulWidget {
+  const EditBroListScreen({
     super.key, required this.broList,
     required this.chapterNum,
     required this.chapterID,
@@ -104,10 +119,10 @@ class BroListScreen extends StatefulWidget {
   final String chapter;
   final bool editBro;
   @override
-  State<BroListScreen> createState() => _BroListScreenState();
+  State<EditBroListScreen> createState() => _BroListScreenState();
 }
 
-class _BroListScreenState extends State<BroListScreen> {
+class _BroListScreenState extends State<EditBroListScreen> {
   Map viewData = {};
 
   List<String> lineNumbers(index) {
