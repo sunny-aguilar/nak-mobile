@@ -70,6 +70,7 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
                   broList: viewData[index.toString()],
                   chapterNum: viewData[index.toString()].chapNum,
                   chapterID: viewData[index.toString()].chapterID,
+                  chapter: chapterName(index),
                   editBro: widget.editBro,
                 ))
               );
@@ -90,10 +91,17 @@ class _ChapterListScreenState extends State<ChapterListScreen> {
 
 
 class BroListScreen extends StatefulWidget {
-  const BroListScreen({super.key, required this.broList, required this.chapterNum, required this.chapterID, required this.editBro});
+  const BroListScreen({
+    super.key, required this.broList,
+    required this.chapterNum,
+    required this.chapterID,
+    required this.chapter,
+    required this.editBro
+  });
   final broList;
   final String chapterNum;
   final String chapterID;
+  final String chapter;
   final bool editBro;
   @override
   State<BroListScreen> createState() => _BroListScreenState();
@@ -137,7 +145,8 @@ class _BroListScreenState extends State<BroListScreen> {
       appBar: AppBar(
         centerTitle: true,
         toolbarHeight: 38,
-        title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        // title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        title: Text('${widget.chapter} chapter', style: theme.TextThemes.collegeText(context)),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -158,6 +167,9 @@ class _BroListScreenState extends State<BroListScreen> {
           // itemCount: widget.broList.bros.length + 1 + 1,
           itemCount: viewData[widget.chapterNum].bros.length + 1 + 1,
           itemBuilder: (context, index) {
+
+            // Provides a map of the bros of the specified chapter (chapterNum)
+            Map<String, dynamic> broList = viewData[widget.chapterNum].bros;
 
             // print('widget.broList.bros.length + 2 LEN: ${widget.broList.bros.length + 1 + 1}');
             // print('Length of Bro List LEN: ${viewData[widget.chapterNum].bros.length}');
@@ -196,7 +208,7 @@ class _BroListScreenState extends State<BroListScreen> {
             }
 
             // Add button after bro list
-            if (index > viewData[widget.chapterNum].bros.length) {
+            if (index > broList.length) {
               return  Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -234,16 +246,16 @@ class _BroListScreenState extends State<BroListScreen> {
             // print('Bro list: ${widget.broList.bros}');
             List<String> broNumber = lineNumbers(widget.chapterNum);
             print('BroNumber: $broNumber');
-            String name = viewData[widget.chapterNum].bros[broNumber[index]]['name'];
+            String name = broList[broNumber[index]]['name'];
             print('Name: $name');
-            String lineNumber = viewData[widget.chapterNum].bros[broNumber[index]]['lineNumber'].toString();
+            String lineNumber = broList[broNumber[index]]['lineNumber'].toString();
             // print('lineNumber: $lineNumber');
-            String chapClass = viewData[widget.chapterNum].bros[broNumber[index]]['className'];
-            // print('chapClass: $chapClass');
+            String chapClass = broList[broNumber[index]]['className'];
+            print('chapClass: $chapClass');
             chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
-            Map<String, dynamic> bro = viewData[widget.chapterNum].bros[broNumber[index]];
-            // print('Bro: $bro');
+            Map<String, dynamic> bro = broList[broNumber[index]];
+            print('Bro: $bro');
 
             // Bro list
             return ListTile(
