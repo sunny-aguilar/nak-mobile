@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
+import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 
 class ViewBro extends StatelessWidget {
@@ -32,22 +33,41 @@ class ViewBro extends StatelessWidget {
 }
 
 
-class BroProfile extends StatelessWidget {
+class BroProfile extends StatefulWidget {
   const BroProfile({super.key, required this.broData});
   final Map<String, dynamic> broData;
+  @override
+  State<BroProfile> createState() => _BroProfileState();
+}
+
+class _BroProfileState extends State<BroProfile> {
+  late String userName = '';
 
   // capitalize a string
   String _capitalize(String text) {
     return '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
   }
 
+  void getUserName() async {
+    db.Directory().getUserData().then((val) {
+      userName = '${val['firstName']} ${val['lastName']}';
+      print('UserName: $userName');
+      setState(() {});
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserName();
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    String chapterClass = '${broData['className']} class';
-    String chapterNumber = 'line #${broData['lineNumber']}';
-    String editedBy = broData['name'];
-    String modifiedDate = broData['modifiedDate'];
+    String chapterClass = '${widget.broData['className']} class';
+    String chapterNumber = 'line #${widget.broData['lineNumber']}';
+    String modifiedDate = widget.broData['modifiedDate'];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -100,15 +120,15 @@ class BroProfile extends StatelessWidget {
             ],
           ),
           SizedBox(height: 10,),
-          Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+          Text(widget.broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
           Text(_capitalize(chapterClass)),
           Text(chapterNumber),
           SizedBox(height: 200,),
-          Text('Last modified by:'),
-          Text(editedBy),
+          Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
+          Text(userName),
           SizedBox(height: 10,),
-          Text('Modified Date:'),
-          Text('modifiedDate'),
+          Text('Modified Date:', style: theme.TextThemes.collegeText(context)),
+          Text(modifiedDate),
         ],
       ),
     );
