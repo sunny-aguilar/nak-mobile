@@ -101,6 +101,8 @@ class BroProfile extends StatelessWidget {
           Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
           Text(_capitalize(chapterClass)),
           Text(chapterNumber),
+          SizedBox(height: 20,),
+          Text('Last modified by: '),
         ],
       ),
     );

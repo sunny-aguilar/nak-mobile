@@ -47,6 +47,7 @@ class _EditBroDataState extends State<EditBroData> {
 
   late Map chapterData = {};
   late Map<String, dynamic> broData = {};
+  late String userName = '';
 
   void initializeTextFields() async {
     db.Directory().chapterDataMap(widget.chapterID).then((val) {
@@ -59,10 +60,17 @@ class _EditBroDataState extends State<EditBroData> {
     });
   }
 
+  void getUserName() async {
+    db.Directory().getUserData().then((val) {
+      userName = '${val['firstName']} ${val['lastName']}';
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     initializeTextFields();
+    getUserName();
   }
 
   @override
@@ -75,6 +83,7 @@ class _EditBroDataState extends State<EditBroData> {
 
   @override
   Widget build(BuildContext context) {
+    print('User: $userName');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -153,6 +162,7 @@ class _EditBroDataState extends State<EditBroData> {
                       data['name'] = _nameCtl.text.trim();
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
+                      data['modifiedBy'] = userName;
                       db.Directory().editBrother(data, widget.chapterID);
                     }
                   },

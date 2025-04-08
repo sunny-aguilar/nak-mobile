@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
@@ -19,12 +20,33 @@ class _AddBroState extends State<AddBro> {
   final TextEditingController _classCtl = TextEditingController();
   final TextEditingController _numberCtl = TextEditingController();
 
+  late String userName = '';
+
+  void getUserName() async {
+    db.Directory().getUserData().then((val) {
+      userName = '${val['firstName']} ${val['lastName']}';
+    });
+  }
+
+  String getTimeStamp() {
+    final now = DateTime.now();
+    String formatter = DateFormat('yMMMd').format(now);
+    print(formatter);
+    return formatter;
+  }
+
   @override
   void dispose() {
     _nameCtl.dispose();
     _classCtl.dispose();
     _numberCtl.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUserName();
   }
 
   @override
@@ -118,6 +140,8 @@ class _AddBroState extends State<AddBro> {
                       data['name'] = _nameCtl.text.trim();
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
+                      data['modifiedBy'] = userName;
+                      data['modifiedDate'] = getTimeStamp() ;
                       db.Directory().addBrother(data, widget.chapterID);
 
                       // go back to previous screen

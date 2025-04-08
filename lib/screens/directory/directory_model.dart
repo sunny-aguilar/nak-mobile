@@ -1,7 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
 
 class Directory {
   FirebaseFirestore? _instance;
+
+
+  Future<Map> getUserData() async {
+    _instance = FirebaseFirestore.instance;
+    String userUID = FirebaseAuth.instance.currentUser!.uid;
+    CollectionReference users = _instance!.collection('users');
+    DocumentSnapshot snapshot = await users.doc(userUID).get();
+    await Future.delayed(const Duration(milliseconds: 500));
+    return snapshot.data() as Map;
+  }
 
 
   void getChaptersTest() async {
@@ -183,6 +195,8 @@ class Directory {
           'name': data['name'],
           'className': data['className'],
           'lineNumber': data['lineNumber'],
+          'modifiedBy': data['modifiedBy'],
+          'modifiedDate': data['modifiedDate'],
         }
       }
     };
@@ -199,6 +213,7 @@ class Directory {
       'brother.$broNum.name': broData['name'],
       'brother.$broNum.className': broData['className'],
       'brother.$broNum.lineNumber': broData['lineNumber'],
+      'brother.$broNum.modifiedBy': broData['modifiedBy'],
     };
 
     final ref = _instance!.collection('directory').doc(chapterID);

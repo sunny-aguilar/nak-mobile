@@ -33,7 +33,6 @@ class _BroListScreenState extends State<EditBroListScreen> {
     List numberList = [];
     List<String> stringList = [];
     viewData[index.toString()].bros.forEach((key, val) {
-      // print('Key to add: $key - val: $val');
       numberList.add(int.parse(key));
     });
     numberList.sort();
@@ -83,16 +82,12 @@ class _BroListScreenState extends State<EditBroListScreen> {
           viewData.isEmpty  // prevent list from showing up as null
           ? Center(child: Text('Loading...'),)
           : ListView.builder(
-          // itemCount: widget.broList.bros.length + 1 + 1,
           itemCount: viewData[widget.chapterNum].bros.length + 1 + 1,
           itemBuilder: (context, index) {
 
             // Provides a map of the bros of the specified chapter (chapterNum)
             Map<String, dynamic> broList = viewData[widget.chapterNum].bros;
 
-            // print('widget.broList.bros.length + 2 LEN: ${widget.broList.bros.length + 1 + 1}');
-            // print('Length of Bro List LEN: ${viewData[widget.chapterNum].bros.length}');
-            // print('Bro List: ${viewData[widget.chapterNum].bros}\n\n');
             if (index == 0) {
               print('* * * * * * * * * * * * * * * * *');
               print('Index == 0: $index');
@@ -155,26 +150,20 @@ class _BroListScreenState extends State<EditBroListScreen> {
               );
             }
 
-            print('* * * * * * * * * * * * * * * * *');
-            print('Index: $index');
             index -= 1;
-            print('Index-1: $index\n');
-            // print('All Data******************\n: $viewData');
-            // print('\n********\n');
-            // print('Bros: ${viewData[widget.chapterNum].bros}');
-            // print('Bro list: ${widget.broList.bros}');
+
             List<String> broNumber = lineNumbers(widget.chapterNum);
-            print('BroNumber: $broNumber');
+            // print('BroNumber: $broNumber');
             String name = broList[broNumber[index]]['name'];
-            print('Name: $name');
+            // print('Name: $name');
             String lineNumber = broList[broNumber[index]]['lineNumber'].toString();
             // print('lineNumber: $lineNumber');
             String chapClass = broList[broNumber[index]]['className'];
-            print('chapClass: $chapClass');
+            // print('chapClass: $chapClass');
             chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
             Map<String, dynamic> bro = broList[broNumber[index]];
-            print('Bro: $bro');
+            // print('Bro: $bro');
 
             // Bro list
             return ListTile(
