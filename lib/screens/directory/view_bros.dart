@@ -46,6 +46,8 @@ class BroProfile extends StatelessWidget {
 
     String chapterClass = '${broData['className']} class';
     String chapterNumber = 'line #${broData['lineNumber']}';
+    String editedBy = broData['name'];
+    String modifiedDate = broData['modifiedDate'];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -101,8 +103,12 @@ class BroProfile extends StatelessWidget {
           Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
           Text(_capitalize(chapterClass)),
           Text(chapterNumber),
-          SizedBox(height: 20,),
-          Text('Last modified by: '),
+          SizedBox(height: 200,),
+          Text('Last modified by:'),
+          Text(editedBy),
+          SizedBox(height: 10,),
+          Text('Modified Date:'),
+          Text('modifiedDate'),
         ],
       ),
     );

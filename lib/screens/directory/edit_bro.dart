@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/components/buttons.dart' as buttons;
@@ -64,6 +65,12 @@ class _EditBroDataState extends State<EditBroData> {
     db.Directory().getUserData().then((val) {
       userName = '${val['firstName']} ${val['lastName']}';
     });
+  }
+
+  String getTimeStamp() {
+    final now = DateTime.now();
+    String formatter = DateFormat('yMMMd').format(now);
+    return formatter;
   }
 
   @override
@@ -163,6 +170,7 @@ class _EditBroDataState extends State<EditBroData> {
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
                       data['modifiedBy'] = userName;
+                      data['modifiedDate'] = getTimeStamp();
                       db.Directory().editBrother(data, widget.chapterID);
                     }
                   },

@@ -31,7 +31,6 @@ class _AddBroState extends State<AddBro> {
   String getTimeStamp() {
     final now = DateTime.now();
     String formatter = DateFormat('yMMMd').format(now);
-    print(formatter);
     return formatter;
   }
 
