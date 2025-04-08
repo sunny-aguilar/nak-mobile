@@ -196,7 +196,7 @@ class _BroListScreenState extends State<BroListScreen> {
             }
 
             // Add button after bro list
-            if (index > widget.broList.bros.length) {
+            if (index > viewData[widget.chapterNum].bros.length) {
               return  Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
@@ -242,7 +242,7 @@ class _BroListScreenState extends State<BroListScreen> {
             // print('chapClass: $chapClass');
             chapClass = chapClass[0].toUpperCase() + chapClass.substring(1);
 
-            Map<String, dynamic> bro = widget.broList.bros[broNumber[index]];
+            Map<String, dynamic> bro = viewData[widget.chapterNum].bros[broNumber[index]];
             // print('Bro: $bro');
 
             // Bro list
