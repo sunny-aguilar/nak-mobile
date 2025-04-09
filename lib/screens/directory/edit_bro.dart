@@ -48,7 +48,7 @@ class _EditBroDataState extends State<EditBroData> {
 
   late Map chapterData = {};
   late Map<String, dynamic> broData = {};
-  late String userName = '';
+  late Map userData = {};
 
   void initializeTextFields() async {
     db.Directory().chapterDataMap(widget.chapterID).then((val) {
@@ -63,7 +63,9 @@ class _EditBroDataState extends State<EditBroData> {
 
   void getUserName() async {
     db.Directory().getUserData().then((val) {
-      userName = '${val['firstName']} ${val['lastName']}';
+      userData['modifiedBy'] = '${val['firstName']} ${val['lastName']}';
+      userData['modifiedDate'] = getTimeStamp();
+      userData['uid'] = val['uid'];
     });
   }
 
@@ -90,7 +92,6 @@ class _EditBroDataState extends State<EditBroData> {
 
   @override
   Widget build(BuildContext context) {
-    print('User: $userName');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -169,8 +170,7 @@ class _EditBroDataState extends State<EditBroData> {
                       data['name'] = _nameCtl.text.trim();
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
-                      data['modifiedBy'] = userName;
-                      data['modifiedDate'] = getTimeStamp();
+                      data['modifiedBy'] = userData;
                       db.Directory().editBrother(data, widget.chapterID);
                     }
                   },

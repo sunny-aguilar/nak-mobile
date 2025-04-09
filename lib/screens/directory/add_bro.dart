@@ -24,7 +24,6 @@ class _AddBroState extends State<AddBro> {
 
   void getUserName() async {
     db.Directory().getUserData().then((val) {
-      // userName = '${val['firstName']} ${val['lastName']}';
       userData['modifiedBy'] = '${val['firstName']} ${val['lastName']}';
       userData['modifiedDate'] = getTimeStamp();
       userData['uid'] = val['uid'];
@@ -143,7 +142,6 @@ class _AddBroState extends State<AddBro> {
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
                       data['modifiedBy'] = userData;
-                      // data['modifiedDate'] = getTimeStamp() ;
                       db.Directory().addBrother(data, widget.chapterID);
 
                       // go back to previous screen

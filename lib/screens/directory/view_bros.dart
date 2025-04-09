@@ -51,7 +51,6 @@ class _BroProfileState extends State<BroProfile> {
   void getUserName() async {
     db.Directory().getUserData().then((val) {
       userName = '${val['firstName']} ${val['lastName']}';
-      print('UserName: $userName');
       setState(() {});
     });
   }
@@ -65,10 +64,10 @@ class _BroProfileState extends State<BroProfile> {
   @override
   Widget build(BuildContext context) {
 
-    String chapterClass = '${widget.broData['className']} class';
+    print('BroData: ${widget.broData}');
+    String chapterClass = '${widget.broData['className']}';
     String chapterNumber = 'line #${widget.broData['lineNumber']}';
-    print('Data: ${widget.broData}');
-    String modifiedDate = widget.broData['modifiedDate'];
+    String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
 
     return Padding(
       padding: const EdgeInsets.all(8.0),
@@ -122,7 +121,7 @@ class _BroProfileState extends State<BroProfile> {
           ),
           SizedBox(height: 10,),
           Text(widget.broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-          Text(_capitalize(chapterClass)),
+          Text(_capitalize('$chapterClass class')),
           Text(chapterNumber),
           SizedBox(height: 200,),
           Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
