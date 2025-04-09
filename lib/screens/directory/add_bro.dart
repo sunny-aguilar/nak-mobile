@@ -20,11 +20,14 @@ class _AddBroState extends State<AddBro> {
   final TextEditingController _classCtl = TextEditingController();
   final TextEditingController _numberCtl = TextEditingController();
 
-  late String userName = '';
+  late Map userData = {};
 
   void getUserName() async {
     db.Directory().getUserData().then((val) {
-      userName = '${val['firstName']} ${val['lastName']}';
+      // userName = '${val['firstName']} ${val['lastName']}';
+      userData['modifiedBy'] = '${val['firstName']} ${val['lastName']}';
+      userData['modifiedDate'] = getTimeStamp();
+      userData['uid'] = val['uid'];
     });
   }
 
@@ -139,8 +142,8 @@ class _AddBroState extends State<AddBro> {
                       data['name'] = _nameCtl.text.trim();
                       data['className'] = _classCtl.text.trim();
                       data['lineNumber'] = _numberCtl.text.trim();
-                      data['modifiedBy'] = userName;
-                      data['modifiedDate'] = getTimeStamp() ;
+                      data['modifiedBy'] = userData;
+                      // data['modifiedDate'] = getTimeStamp() ;
                       db.Directory().addBrother(data, widget.chapterID);
 
                       // go back to previous screen

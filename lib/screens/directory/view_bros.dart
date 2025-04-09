@@ -67,6 +67,7 @@ class _BroProfileState extends State<BroProfile> {
 
     String chapterClass = '${widget.broData['className']} class';
     String chapterNumber = 'line #${widget.broData['lineNumber']}';
+    print('Data: ${widget.broData}');
     String modifiedDate = widget.broData['modifiedDate'];
 
     return Padding(

@@ -196,7 +196,6 @@ class Directory {
           'className': data['className'],
           'lineNumber': data['lineNumber'],
           'modifiedBy': data['modifiedBy'],
-          'modifiedDate': data['modifiedDate'],
         }
       }
     };
