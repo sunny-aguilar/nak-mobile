@@ -64,7 +64,7 @@ class _BroProfileState extends State<BroProfile> {
   @override
   Widget build(BuildContext context) {
 
-    print('BroData: ${widget.broData}');
+    // print('BroData: ${widget.broData}');
     String chapterClass = '${widget.broData['className']}';
     String chapterNumber = 'line #${widget.broData['lineNumber']}';
     String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
@@ -89,7 +89,6 @@ class _BroProfileState extends State<BroProfile> {
                   width: MediaQuery.sizeOf(context).width,
                   decoration: BoxDecoration(
                     color: theme.greyUI,
-                    // borderRadius: BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12))
                   ),
                   child: IntrinsicWidth(child: Container()),
                 ),
