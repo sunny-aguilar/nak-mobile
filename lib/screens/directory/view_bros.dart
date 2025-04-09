@@ -66,7 +66,7 @@ class _BroProfileState extends State<BroProfile> {
 
     // print('BroData: ${widget.broData}');
     String chapterClass = '${widget.broData['className']}';
-    String chapterNumber = 'line #${widget.broData['lineNumber']}';
+    String chapterNumber = '${widget.broData['lineNumber']}';
     String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
 
     return Padding(
@@ -121,7 +121,7 @@ class _BroProfileState extends State<BroProfile> {
           SizedBox(height: 10,),
           Text(widget.broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
           Text(_capitalize('$chapterClass class')),
-          Text(chapterNumber),
+          Text('line #$chapterNumber'),
           SizedBox(height: 200,),
           Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
           Text(userName),
