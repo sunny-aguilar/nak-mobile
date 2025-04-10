@@ -188,18 +188,18 @@ class ProfileWidget extends StatelessWidget {
                           radius: 80,
                           backgroundColor: theme.redClr,
                           foregroundColor: theme.primaryClr,
-                          child: Stack(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: CircleAvatar(
-                                  radius: 20,
-                                  backgroundColor: theme.greyUI,
-                                  child: Icon(Icons.camera_alt, color: theme.primaryClr,),
-                                ),
-                              )
-                            ],
-                          ),
+                          // child: Stack(
+                          //   children: <Widget>[
+                          //     Align(
+                          //       alignment: Alignment.bottomRight,
+                          //       child: CircleAvatar(
+                          //         radius: 20,
+                          //         backgroundColor: theme.greyUI,
+                          //         child: Icon(Icons.camera_alt, color: theme.primaryClr,),
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
                         ),
                       ),
                     ),
