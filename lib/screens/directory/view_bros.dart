@@ -149,19 +149,19 @@ class ProfileWidget extends StatelessWidget {
         Center(
           child: CircleAvatar(
             radius: 161,
-            backgroundColor: theme.redClr,
+            backgroundColor: Color.fromARGB(40, 254, 58, 67),
             child: CircleAvatar(
               radius: 160,
               backgroundColor: theme.primaryClr,
               child: CircleAvatar(
                 radius: 135,
-                backgroundColor: redClr,
+                backgroundColor: Color.fromARGB(55, 254, 58, 67),
                 child: CircleAvatar(
                   radius: 133,
                   backgroundColor: theme.primaryClr,
                   child: CircleAvatar(
                     radius: 108,
-                    backgroundColor: theme.redClr,
+                    backgroundColor: Color.fromARGB(100, 254, 58, 67),
                     child: CircleAvatar(
                       radius: 105,
                       backgroundColor: theme.primaryClr,
