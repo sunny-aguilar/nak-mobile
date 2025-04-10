@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/services/theme_service.dart' as service;
-// import 'package:nak_app/components/buttons.dart' as buttons;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
 import 'package:nak_app/screens/directory/bro_lists.dart' as bro_list;
-// import 'package:nak_app/screens/directory/view_bros.dart' as view_bros;
-// import 'package:nak_app/screens/directory/edit_bro.dart' as edit_bro;
-// import 'package:nak_app/screens/directory/add_bro.dart' as add_bro;
+
 
 class ChapterListScreen extends StatefulWidget {
   const ChapterListScreen({super.key, required this.editBro});
