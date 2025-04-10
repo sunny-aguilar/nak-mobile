@@ -186,7 +186,8 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Image.asset('assets/img/ad_dues.webp'),
+                          // Image.asset('assets/img/bg/directory_bg.webp'),
+                          Container(height: 86, color: theme.uiRedClr,),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
                             child: Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
@@ -221,7 +222,8 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Image.asset('assets/img/ad_dues.webp'),
+                          // Image.asset('assets/img/bg/directory_bg.webp'),
+                          Container(height: 86, color: theme.uiRedClr,),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
                             child: Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),

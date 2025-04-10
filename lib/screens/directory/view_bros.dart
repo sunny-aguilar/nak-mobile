@@ -159,14 +159,6 @@ class ProfileWidget extends StatelessWidget {
   final String modifiedDate;
   final String userName;
 
-  void changeColor() async {
-    int txtColor = 45;
-    for (var i = 0; i < 20; i++) {
-      await Future.delayed(Duration(milliseconds: 1000));
-      txtColor = 45 + i;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
