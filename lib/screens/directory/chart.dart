@@ -166,13 +166,13 @@ class MyBarGraph extends StatelessWidget {
         backgroundColor: Get.isDarkMode ? theme.uiRedClr : theme.uiGrey,
         barTouchData: BarTouchData(
             touchTooltipData: BarTouchTooltipData(
-            getTooltipColor: (_) => theme.redClr,
+            getTooltipColor: (_) => Get.isDarkMode ? theme.primaryClr : theme.redClr,
             tooltipHorizontalAlignment: FLHorizontalAlignment.right,
             tooltipMargin: -10,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               return BarTooltipItem(
                 '${chapterBrothers[groupIndex]}',
-                TextStyle(fontSize: 16)
+                TextStyle(fontSize: 16, color: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr)
               );
             },
           ),
