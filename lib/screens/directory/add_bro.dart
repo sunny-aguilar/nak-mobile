@@ -118,7 +118,7 @@ class _AddBroState extends State<AddBro> {
                     controller: _numberCtl,
                     keyboardType: TextInputType.number,
                     validator: (val) {
-                      if ((val == null || val.isEmpty) && val.runtimeType != num) {
+                      if (int.tryParse(val!) == null) {
                         return 'Please enter a line number';
                       }
                       return null;

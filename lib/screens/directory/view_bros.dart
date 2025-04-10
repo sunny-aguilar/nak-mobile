@@ -159,6 +159,14 @@ class ProfileWidget extends StatelessWidget {
   final String modifiedDate;
   final String userName;
 
+  void changeColor() async {
+    int txtColor = 45;
+    for (var i = 0; i < 20; i++) {
+      await Future.delayed(Duration(milliseconds: 1000));
+      txtColor = 45 + i;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -183,7 +191,7 @@ class ProfileWidget extends StatelessWidget {
                       backgroundColor: Color.fromARGB(100, 254, 58, 67),
                       child: CircleAvatar(
                         radius: 105,
-                        backgroundColor: Get.isDarkMode ? theme.darkGreyClr : Color.fromARGB(255, 255, 241, 247),
+                        backgroundColor: Get.isDarkMode ? Color.fromARGB(255, 54, 45, 45) : Color.fromARGB(255, 255, 241, 247),
                         child: CircleAvatar(
                           radius: 80,
                           backgroundColor: theme.redClr,
