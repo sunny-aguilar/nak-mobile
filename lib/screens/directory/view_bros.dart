@@ -164,7 +164,7 @@ class ProfileWidget extends StatelessWidget {
                     backgroundColor: Color.fromARGB(100, 254, 58, 67),
                     child: CircleAvatar(
                       radius: 105,
-                      backgroundColor: theme.primaryClr,
+                      backgroundColor: Color.fromARGB(255, 255, 241, 247),
                       child: CircleAvatar(
                         radius: 80,
                         backgroundColor: theme.redClr,
