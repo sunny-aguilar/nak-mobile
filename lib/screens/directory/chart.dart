@@ -171,7 +171,7 @@ class MyBarGraph extends StatelessWidget {
             tooltipMargin: -10,
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               return BarTooltipItem(
-                'txt',
+                '${chapterBrothers[groupIndex]}',
                 TextStyle(fontSize: 16)
               );
             },

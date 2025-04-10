@@ -70,7 +70,13 @@ class _BroProfileState extends State<BroProfile> {
     String chapterNumber = '${widget.broData['lineNumber']}';
     String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
 
-    return ProfileWidget();
+    return ProfileWidget(
+      broData: widget.broData,
+      chapterClass: chapterClass,
+      chapterNumber: chapterNumber,
+      modifiedDate: modifiedDate,
+      userName: userName,
+    );
 
     // return Padding(
     //   padding: const EdgeInsets.all(8.0),
@@ -139,47 +145,61 @@ class _BroProfileState extends State<BroProfile> {
 
 
 class ProfileWidget extends StatelessWidget {
-  const ProfileWidget({super.key});
+  const ProfileWidget({
+    super.key,
+    required this.broData,
+    required this.chapterClass,
+    required this.chapterNumber,
+    required this.modifiedDate,
+    required this.userName,
+  });
+  final Map broData;
+  final String chapterClass;
+  final String chapterNumber;
+  final String modifiedDate;
+  final String userName;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 80,),
-        Center(
-          child: CircleAvatar(
-            radius: 161,
-            backgroundColor: Color.fromARGB(40, 254, 58, 67),
+    return SingleChildScrollView(
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.07,),
+          Center(
             child: CircleAvatar(
-              radius: 160,
-              backgroundColor: theme.primaryClr,
+              radius: 161,
+              backgroundColor: Color.fromARGB(40, 254, 58, 67),
               child: CircleAvatar(
-                radius: 135,
-                backgroundColor: Color.fromARGB(55, 254, 58, 67),
+                radius: 160,
+                backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                 child: CircleAvatar(
-                  radius: 133,
-                  backgroundColor: theme.primaryClr,
+                  radius: 135,
+                  backgroundColor: Color.fromARGB(55, 254, 58, 67),
                   child: CircleAvatar(
-                    radius: 108,
-                    backgroundColor: Color.fromARGB(100, 254, 58, 67),
+                    radius: 133,
+                    backgroundColor: Get.isDarkMode ? theme.darkGreyClr : theme.primaryClr,
                     child: CircleAvatar(
-                      radius: 105,
-                      backgroundColor: Color.fromARGB(255, 255, 241, 247),
+                      radius: 108,
+                      backgroundColor: Color.fromARGB(100, 254, 58, 67),
                       child: CircleAvatar(
-                        radius: 80,
-                        backgroundColor: theme.redClr,
-                        foregroundColor: theme.primaryClr,
-                        child: Stack(
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.bottomRight,
-                              child: CircleAvatar(
-                                radius: 20,
-                                backgroundColor: theme.greyUI,
-                                child: Icon(Icons.camera_alt, color: theme.primaryClr,),
-                              ),
-                            )
-                          ],
+                        radius: 105,
+                        backgroundColor: Get.isDarkMode ? theme.darkGreyClr : Color.fromARGB(255, 255, 241, 247),
+                        child: CircleAvatar(
+                          radius: 80,
+                          backgroundColor: theme.redClr,
+                          foregroundColor: theme.primaryClr,
+                          child: Stack(
+                            children: <Widget>[
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: theme.greyUI,
+                                  child: Icon(Icons.camera_alt, color: theme.primaryClr,),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -188,8 +208,19 @@ class ProfileWidget extends StatelessWidget {
               ),
             ),
           ),
-        ),
-      ],
+          SizedBox(height: 30,),
+            Text(broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+            Text('$chapterClass class'),
+            Text('line #$chapterNumber'),
+            SizedBox(height: 200,),
+            Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
+            Text(userName),
+            SizedBox(height: 10,),
+            Text('Modified Date:', style: theme.TextThemes.collegeText(context)),
+            Text(modifiedDate),
+            SizedBox(height: 20,),
+        ],
+      ),
     );
   }
 }

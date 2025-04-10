@@ -237,7 +237,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                 ),
               ],
             ),
-            Container(height: 400,)
+            Container(height: 100,)
           ],
         ),
       ),
