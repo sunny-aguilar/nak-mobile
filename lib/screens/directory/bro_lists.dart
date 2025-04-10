@@ -89,8 +89,8 @@ class _BroListScreenState extends State<EditBroListScreen> {
             Map<String, dynamic> broList = viewData[widget.chapterNum].bros;
 
             if (index == 0) {
-              print('* * * * * * * * * * * * * * * * *');
-              print('Index == 0: $index');
+              // print('* * * * * * * * * * * * * * * * *');
+              // print('Index == 0: $index');
               return Padding(
                 padding: const EdgeInsets.all(0.0),
                 child: Column(
