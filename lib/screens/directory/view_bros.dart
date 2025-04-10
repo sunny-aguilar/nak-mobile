@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
+import 'package:nak_app/ui/widget_export.dart';
 
 
 class ViewBro extends StatelessWidget {
@@ -69,67 +70,126 @@ class _BroProfileState extends State<BroProfile> {
     String chapterNumber = '${widget.broData['lineNumber']}';
     String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Stack(
-            alignment: Alignment(1, 1),
-            children: <Widget>[
-              Align(
-                child: Container(height: 260,),
-              ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: Container(
-                  height: 200,
-                  // width: 350,
-                  width: MediaQuery.sizeOf(context).width,
-                  decoration: BoxDecoration(
-                    color: theme.greyUI,
-                  ),
-                  child: IntrinsicWidth(child: Container()),
-                ),
-              ),
-              Align(
+    return ProfileWidget();
+
+    // return Padding(
+    //   padding: const EdgeInsets.all(8.0),
+    //   child: Column(
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //     children: <Widget>[
+    //       Stack(
+    //         alignment: Alignment(1, 1),
+    //         children: <Widget>[
+    //           Align(
+    //             child: Container(height: 260,),
+    //           ),
+    //           Positioned(
+    //             top: 0,
+    //             left: 0,
+    //             child: Container(
+    //               height: 200,
+    //               // width: 350,
+    //               width: MediaQuery.sizeOf(context).width,
+    //               decoration: BoxDecoration(
+    //                 color: theme.greyUI,
+    //               ),
+    //               child: IntrinsicWidth(child: Container()),
+    //             ),
+    //           ),
+    //           Align(
+    //             child: CircleAvatar(
+    //               radius: 90,
+    //               backgroundColor: theme.primaryClr,
+    //               child: CircleAvatar(
+    //                 radius: 80,
+    //                 backgroundColor: theme.redClr,
+    //                 foregroundColor: theme.primaryClr,
+    //                 child: Stack(
+    //                   children: <Widget>[
+    //                     Align(
+    //                       alignment: Alignment.bottomRight,
+    //                       child: CircleAvatar(
+    //                         radius: 20,
+    //                         backgroundColor: theme.greyUI,
+    //                         child: Icon(Icons.camera_alt, color: theme.primaryClr,),
+    //                       ),
+    //                     )
+    //                   ],
+    //                 ),
+    //               ),
+    //             ),
+    //           ),
+    //         ],
+    //       ),
+    //       SizedBox(height: 10,),
+    //       Text(widget.broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
+    //       Text(_capitalize('$chapterClass class')),
+    //       Text('line #$chapterNumber'),
+    //       SizedBox(height: 200,),
+    //       Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
+    //       Text(userName),
+    //       SizedBox(height: 10,),
+    //       Text('Modified Date:', style: theme.TextThemes.collegeText(context)),
+    //       Text(modifiedDate),
+    //     ],
+    //   ),
+    // );
+  }
+}
+
+
+class ProfileWidget extends StatelessWidget {
+  const ProfileWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 80,),
+        Center(
+          child: CircleAvatar(
+            radius: 161,
+            backgroundColor: theme.redClr,
+            child: CircleAvatar(
+              radius: 160,
+              backgroundColor: theme.primaryClr,
+              child: CircleAvatar(
+                radius: 135,
+                backgroundColor: redClr,
                 child: CircleAvatar(
-                  radius: 90,
+                  radius: 133,
                   backgroundColor: theme.primaryClr,
                   child: CircleAvatar(
-                    radius: 80,
+                    radius: 108,
                     backgroundColor: theme.redClr,
-                    foregroundColor: theme.primaryClr,
-                    child: Stack(
-                      children: <Widget>[
-                        Align(
-                          alignment: Alignment.bottomRight,
-                          child: CircleAvatar(
-                            radius: 20,
-                            backgroundColor: theme.greyUI,
-                            child: Icon(Icons.camera_alt, color: theme.primaryClr,),
-                          ),
-                        )
-                      ],
+                    child: CircleAvatar(
+                      radius: 105,
+                      backgroundColor: theme.primaryClr,
+                      child: CircleAvatar(
+                        radius: 80,
+                        backgroundColor: theme.redClr,
+                        foregroundColor: theme.primaryClr,
+                        child: Stack(
+                          children: <Widget>[
+                            Align(
+                              alignment: Alignment.bottomRight,
+                              child: CircleAvatar(
+                                radius: 20,
+                                backgroundColor: theme.greyUI,
+                                child: Icon(Icons.camera_alt, color: theme.primaryClr,),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
-            ],
+            ),
           ),
-          SizedBox(height: 10,),
-          Text(widget.broData['name'], style: theme.TextThemes.gabaritoText(context).copyWith(fontSize: 30, fontWeight: FontWeight.bold),),
-          Text(_capitalize('$chapterClass class')),
-          Text('line #$chapterNumber'),
-          SizedBox(height: 200,),
-          Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
-          Text(userName),
-          SizedBox(height: 10,),
-          Text('Modified Date:', style: theme.TextThemes.collegeText(context)),
-          Text(modifiedDate),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
