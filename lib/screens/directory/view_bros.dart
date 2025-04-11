@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/screens/directory/directory_model.dart' as db;
-import 'package:nak_app/ui/widget_export.dart';
 
 
 class ViewBro extends StatelessWidget {
@@ -43,11 +42,6 @@ class BroProfile extends StatefulWidget {
 
 class _BroProfileState extends State<BroProfile> {
   late String userName = '';
-
-  // capitalize a string
-  String _capitalize(String text) {
-    return '${text[0].toUpperCase()}${text.substring(1).toLowerCase()}';
-  }
 
   void getUserName() async {
     db.Directory().getUserData().then((val) {
