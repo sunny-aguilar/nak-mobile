@@ -6,7 +6,8 @@ import 'package:nak_app/components/featured_stories.dart' as featured;
 import 'package:nak_app/db/db_ops.dart' as db;
 import 'package:nak_app/components/scaffolds.dart' as scaffolds;
 import 'package:nak_app/components/bottom_nav_bar.dart' as nav;
-import 'package:nak_app/screens/chats/chat_rules.dart';
+import 'package:nak_app/screens/chats/chat_rules.dart' as chat;
+import 'package:nak_app/screens/directory/directory.dart' as directory;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -49,7 +50,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: <Widget>[
               const featured.HomeScreenChildren(),
-              const ChatRules(),
+              const directory.NavDirectory(),
+              const chat.ChatRules(),
             ][index],
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
