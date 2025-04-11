@@ -230,7 +230,7 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 16, right: 16),
-                            child: Text('Don\'t see a name? Add the bro to the directory.', style: theme.TextThemes.size11(context),),
+                            child: Text('Don\'t see a name? Add or edit the bro in the directory.', style: theme.TextThemes.size11(context),),
                           ),
                         ]
                       ),
