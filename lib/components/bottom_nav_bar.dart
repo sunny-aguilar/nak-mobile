@@ -24,19 +24,19 @@ class BottomNavBar extends StatelessWidget {
         selectedIndex: index,
         destinations: <Widget>[
           NavigationDestination(
-            icon: Icon(Icons.home, color: Get.isDarkMode ? theme.glowWhiteUI : theme.greyUI,),
-            selectedIcon: Icon(Icons.home, color: Get.isDarkMode ? theme.redClr : theme.redClr,),
+            icon: Icon(Icons.home, color: Get.isDarkMode ? theme.glowWhiteUI : theme.karmaGreyUI,),
+            selectedIcon: Icon(Icons.home, color: Get.isDarkMode ? theme.redOragenClr : theme.redOragenClr,),
             label: ''
           ),
           NavigationDestination(
             // icon: Icon(Icons.home, color: Get.isDarkMode ? theme.whiteClr : theme.redClr,),
-            icon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.glowWhiteUI : theme.greyUI,),
-            selectedIcon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.redClr : theme.redClr,),
+            icon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.glowWhiteUI : theme.karmaGreyUI,),
+            selectedIcon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.redOragenClr : theme.redOragenClr,),
             label: ''
           ),
           NavigationDestination(
-            icon: Icon(CupertinoIcons.bubble_left_bubble_right_fill, color: Get.isDarkMode ? theme.glowWhiteUI : theme.greyUI,),
-            selectedIcon: Icon(CupertinoIcons.bubble_left_bubble_right_fill, color: Get.isDarkMode ? theme.redClr : theme.redClr,),
+            icon: Icon(CupertinoIcons.bubble_left_bubble_right_fill, color: Get.isDarkMode ? theme.glowWhiteUI : theme.karmaGreyUI,),
+            selectedIcon: Icon(CupertinoIcons.bubble_left_bubble_right_fill, color: Get.isDarkMode ? theme.redOragenClr : theme.redOragenClr,),
             label: ''
           ),
         ],
