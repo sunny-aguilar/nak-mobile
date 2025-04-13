@@ -29,7 +29,6 @@ class BottomNavBar extends StatelessWidget {
             label: ''
           ),
           NavigationDestination(
-            // icon: Icon(Icons.home, color: Get.isDarkMode ? theme.whiteClr : theme.redClr,),
             icon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.glowWhiteUI : theme.karmaGreyUI,),
             selectedIcon: FaIcon(FontAwesomeIcons.solidAddressBook, color: Get.isDarkMode ? theme.redOragenClr : theme.redOragenClr,),
             label: ''
