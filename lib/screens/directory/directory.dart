@@ -57,7 +57,7 @@ class _DirectoryState extends State<Directory> {
         chapterCount: chapterCount,
         broCount:broCount,
         graphData: graphData,
-        reload: initializeDirectory,
+        initializeDirectory: initializeDirectory,
       ),
     );
   }
@@ -67,20 +67,20 @@ class _DirectoryState extends State<Directory> {
 class DirectoryDashboard extends StatefulWidget {
   const DirectoryDashboard({
     super.key, required this.onChange, required this.chapterCount,
-    required this.broCount, required this.graphData, required this.reload,
+    required this.broCount, required this.graphData, required this.initializeDirectory,
   });
   final Function onChange;
   final int chapterCount;
   final int broCount;
   final List<double> graphData;
-  final Function reload;
+  final Function initializeDirectory;
   @override
   State<DirectoryDashboard> createState() => _DirectoryDashboardState();
 }
 
 class _DirectoryDashboardState extends State<DirectoryDashboard> {
   Future<void> _handleRefresh() async {
-    widget.reload();
+    widget.initializeDirectory();
     setState((){});
   }
 
@@ -300,6 +300,20 @@ class _NavDirectoryState extends State<NavDirectory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        // centerTitle: true,
+        toolbarHeight: 0,
+        // title: Image.asset('assets/img/nak_letters_bw.png', height: 30.0,),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        // actions: <Widget>[
+        //   IconButton(
+        //     icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+        //     onPressed: () {
+        //       service.ThemeService().switchTheme();
+        //     },
+        //   ),
+        // ],
+      ),
       body: NavDirectoryDashboard(
         onChange: _handleThemeChange,
         chapterCount: chapterCount,
@@ -337,177 +351,183 @@ class _NavDirectoryDashboard extends State<NavDirectoryDashboard> {
     return RefreshIndicator(
       onRefresh: _handleRefresh,
       backgroundColor: theme.bronzeOfficial,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 20,),
-              Text(
-                'Brother Directory',
-                style: theme.TextThemes.gabaritoSize40(context),
-              ),
-              // Row for graph *********************
-              Stack(
-                children: <Widget>[
-                  SizedBox(
-                    height: 170,
-                    width: MediaQuery.sizeOf(context).width,
-                    child: Card(
-                      color: Get.isDarkMode ? theme.uiRedClr : theme.uiGrey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6)
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: chart.MyBarGraph(chapterBrothers: widget.graphData,),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 10,
-                    left: 12,
-                    child: Text('Brothers at each chapter', style: TextStyle(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr),)
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30,),
-              // Row for brother metrics *********************
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  SizedBox(
-                    height: 150,
-                    width: MediaQuery.sizeOf(context).width * .450,
-                    child: Card(
-                      color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(widget.broCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
-                          Text('Total Brothers')
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 150,
-                    width: MediaQuery.sizeOf(context).width * .450,
-                    child: Card(
-                      color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(widget.chapterCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
-                          Text('Total Chapters')
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 30,),
-              // Row for viewing/adding brothers *********************
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  SizedBox(
-                    height: 220,
-                    width: MediaQuery.sizeOf(context).width * .450,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                            return bros.ChapterListScreen(editBro: false,);
-                          })
-                        );
-                      },
+      child: GestureDetector(
+        onTap: () {
+            // setState(() {});
+            print('State set!');
+          },
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20,),
+                Text(
+                  'Brother Directory',
+                  style: theme.TextThemes.gabaritoSize40(context),
+                ),
+                // Row for graph *********************
+                Stack(
+                  children: <Widget>[
+                    SizedBox(
+                      height: 170,
+                      width: MediaQuery.sizeOf(context).width,
                       child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
+                        color: Get.isDarkMode ? theme.uiRedClr : theme.uiGrey,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)
+                          borderRadius: BorderRadius.circular(6)
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: chart.MyBarGraph(chapterBrothers: widget.graphData,),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      top: 10,
+                      left: 12,
+                      child: Text('Brothers at each chapter', style: TextStyle(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr),)
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30,),
+                // Row for brother metrics *********************
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 150,
+                      width: MediaQuery.sizeOf(context).width * .450,
+                      child: Card(
+                        color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12)
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            // Image.asset('assets/img/bg/directory_bg.webp'),
-                            Container(height: 86, color: theme.uiRedClr,),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
-                              child: Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, right: 16),
-                              child: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
-                            ),
-                          ]
+                            Text(widget.broCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
+                            Text('Total Brothers')
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 220,
-                    width: MediaQuery.sizeOf(context).width * .45,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<Widget>(builder: (BuildContext context) {
-                            return bros.ChapterListScreen(/*viewData: widget.viewData,*/ editBro: true,);
-                          })
-                        );
-                      },
+                    SizedBox(
+                      height: 150,
+                      width: MediaQuery.sizeOf(context).width * .450,
                       child: Card(
-                        clipBehavior: Clip.antiAlias,
-                        color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
+                        color: Get.isDarkMode ? theme.greyUI : theme.uiGrey,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)
+                          borderRadius: BorderRadius.circular(12)
                         ),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            // Image.asset('assets/img/bg/directory_bg.webp'),
-                            Container(height: 86, color: theme.uiRedClr,),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
-                              child: Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 16, right: 16),
-                              child: Text('Don\'t see a name? Add or edit the bro in the directory.', style: theme.TextThemes.size11(context),),
-                            ),
-                          ]
+                            Text(widget.chapterCount.toString(), style: theme.TextThemes.size36(context).copyWith(fontWeight: FontWeight.bold),),
+                            Text('Total Chapters')
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 15,),
-              Center(
-                child: RichText(
-                  text: TextSpan(
-                    children: [
-                      WidgetSpan(child: Icon(Icons.arrow_circle_down, size: 17,)),
-                      TextSpan(
-                        text:' refresh directory',
-                        style: theme.TextThemes.collegeText(context).copyWith(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr)
+                  ],
+                ),
+                const SizedBox(height: 30,),
+                // Row for viewing/adding brothers *********************
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    SizedBox(
+                      height: 220,
+                      width: MediaQuery.sizeOf(context).width * .450,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                              return bros.ChapterListScreen(editBro: false,);
+                            })
+                          );
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              // Image.asset('assets/img/bg/directory_bg.webp'),
+                              Container(height: 86, color: theme.uiRedClr,),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                                child: Text('View Brothers', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                child: Text('Find brothers listed by chapter.', style: theme.TextThemes.size11(context),),
+                              ),
+                            ]
+                          ),
+                        ),
                       ),
-                    ]
+                    ),
+                    SizedBox(
+                      height: 220,
+                      width: MediaQuery.sizeOf(context).width * .45,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<Widget>(builder: (BuildContext context) {
+                              return bros.ChapterListScreen(/*viewData: widget.viewData,*/ editBro: true,);
+                            })
+                          );
+                        },
+                        child: Card(
+                          clipBehavior: Clip.antiAlias,
+                          color: Get.isDarkMode ? theme.greyUI : theme.primaryClr,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8)
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              // Image.asset('assets/img/bg/directory_bg.webp'),
+                              Container(height: 86, color: theme.uiRedClr,),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16, top: 10, right: 16),
+                                child: Text('Add a Brother', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 16, right: 16),
+                                child: Text('Don\'t see a name? Add or edit the bro in the directory.', style: theme.TextThemes.size11(context),),
+                              ),
+                            ]
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 15,),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        WidgetSpan(child: Icon(Icons.arrow_circle_down, size: 17,)),
+                        TextSpan(
+                          text:' refresh directory',
+                          style: theme.TextThemes.collegeText(context).copyWith(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr)
+                        ),
+                      ]
+                    ),
                   ),
                 ),
-              ),
-              Container(height: 140,)
-            ],
+                Container(height: 140,)
+              ],
+            ),
           ),
         ),
       ),

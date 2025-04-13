@@ -75,7 +75,6 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                     child: CircularProgressIndicator(
                       strokeWidth: 10,
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        // theme.darkGreyClr.withOpacity(0.5),
                         theme.darkGreyClr.withAlpha(128),
                       ),
                     ),
