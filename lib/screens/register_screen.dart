@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:nak_app/services/create_id_number.dart' as id;
 import 'package:nak_app/ui/theme.dart' as theme;
@@ -22,24 +25,49 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _firstNameCtrl = TextEditingController();
   final TextEditingController _lastNameCtrl = TextEditingController();
   final TextEditingController _chapterCtrl = TextEditingController();
-  final TextEditingController _class = TextEditingController();
+  final TextEditingController _classCtrl = TextEditingController();
   final TextEditingController _lineNumberCtrl = TextEditingController();
   final TextEditingController _statusCtrl = TextEditingController();
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtrl = TextEditingController();
   final TextEditingController _confirmPwCtrl = TextEditingController();
+  final TextEditingController _invitationCtrl = TextEditingController();
 
   @override
   void dispose() {
-    _emailCtrl.dispose();
-    _passwordCtrl.dispose();
-    _confirmPwCtrl.dispose();
     _firstNameCtrl.dispose();
     _lastNameCtrl.dispose();
     _chapterCtrl.dispose();
+    _classCtrl.dispose();
     _lineNumberCtrl.dispose();
     _statusCtrl.dispose();
+    _emailCtrl.dispose();
+    _passwordCtrl.dispose();
+    _confirmPwCtrl.dispose();
+    _invitationCtrl.dispose();
     super.dispose();
+  }
+
+  // invitation code logic
+  String _invitationCode = '';
+
+  Future<String> _readJson() async {
+    String url = 'https://drive.google.com/uc?export=view&id=1wvkvFIa-hwH13zHs1D1300ib3nFTxtgW';
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      final parsedJson = jsonDecode(response.body);
+      setState(() => _invitationCode = parsedJson['code'] );
+    }
+    else {
+      throw Exception('Failed to load chapter data');
+    }
+    return 'Data fetched by _readJson';
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _readJson();
   }
 
   // create user
@@ -87,7 +115,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _firstNameCtrl.text.trim(),
           _lastNameCtrl.text.trim(),
           _chapterCtrl.text.trim(),
-          _class.text.trim(),
+          _classCtrl.text.trim(),
           _lineNumberCtrl.text.trim(),
           _emailCtrl.text.trim(),
           _statusCtrl.text.trim(),
@@ -141,8 +169,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
     // from this (this rule locks Firestore): allow read, write: if false;
 
     // Security Rules:
-    // lock Firestore: allow read, write: if request.auth != null;
+    // lock Firestore: allow read, write: if false;
     // open Firesetore: allow read, write: if request.auth != null;
+    // open Firestore to specific emails: allow read, write:if request.auth.token.email.matches('.*@nakinc[.]org');
 
     // get user UID
     final FirebaseAuth auth = FirebaseAuth.instance;
@@ -171,16 +200,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       'position': '',
       'isActive': false,
     });
-
-    // add() auto-creates a document name
-    // db.collection('users').add({
-    //   'firstName': firstName,
-    //   'lastName': lastName,
-    //   'chapter': chapter,
-    //   'lineNumber': lineNumber,
-    //   'email': email,
-    //   'status': status,
-    // });
   }
 
   @override
@@ -330,7 +349,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                   ),
                   onChanged: (val) {
-                    _class.text = val!;
+                    _classCtrl.text = val!;
                   },
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -339,7 +358,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     return null;
                   },
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.house_outlined),
+                    prefixIcon: Icon(Icons.hub_outlined),
                     labelText: 'Your class',
                     helperText: '*required',
                   ),
@@ -447,8 +466,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) {
-                    final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
-                    if (!emailValid) {
+                    // final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
+                    if (value == null || value.isEmpty) {
                       return 'Enter a valid @nakinc.org email.';
                     }
                     return null;
@@ -500,6 +519,27 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     }
                     else if (value != _passwordCtrl.text.trim()) {
                       return 'Make sure passwords match.';
+                    }
+                    return null;
+                  },
+                ),
+              ),
+              const SizedBox(height: 20,),
+
+              // invitation code text field
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.key,),
+                    labelText: 'Invitation Code',
+                    helperText: '*required',
+                  ),
+                  controller: _invitationCtrl,
+                  keyboardType: TextInputType.text,
+                  validator: (val) {
+                    if (val != _invitationCode) {
+                      return 'Please enter a valid invitation code.';
                     }
                     return null;
                   },
