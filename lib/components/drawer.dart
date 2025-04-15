@@ -6,6 +6,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
 
+const socialMediaLinks = {
+  'facebook': 'https://www.facebook.com/nualphakappa/',
+  'instagram': 'https://www.instagram.com/nualphakappa/',
+  'youtube': 'https://www.youtube.com/1988NAKOS',
+  'twitter': 'https://x.com/nualphakappa?s=21&t=FoEIq1vlgmsd5V20-ZQP1w',
+};
+
+
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({super.key});
   @override
@@ -177,7 +185,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                     onPressed: () {
                       // this method is used to launch app links
                       launchUrl(
-                        Uri.parse('https://www.instagram.com/nualphakappa/'),
+                        Uri.parse(socialMediaLinks['facebook']!),
                         mode: LaunchMode.externalApplication,
                       );
                     },
@@ -186,7 +194,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   IconButton(
                     onPressed: () {
                       launchUrl(
-                        Uri.parse('https://www.instagram.com/nualphakappa/'),
+                        Uri.parse(socialMediaLinks['instagram']!),
                         mode: LaunchMode.externalApplication,
                       );
                     },
@@ -195,7 +203,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   IconButton(
                     onPressed: () {
                       launchUrl(
-                        Uri.parse('https://www.youtube.com/1988NAKOS'),
+                        Uri.parse(socialMediaLinks['youtube']!),
                         mode: LaunchMode.externalApplication,
                       );
                     },
@@ -204,7 +212,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                   IconButton(
                     onPressed: () {
                       launchUrl(
-                        Uri.parse('https://x.com/nualphakappa?s=21&t=FoEIq1vlgmsd5V20-ZQP1w'),
+                        Uri.parse(socialMediaLinks['twitter']!),
                         mode: LaunchMode.externalApplication,
                       );
                     },
