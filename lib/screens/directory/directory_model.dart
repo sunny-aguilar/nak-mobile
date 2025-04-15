@@ -165,13 +165,12 @@ class Directory {
     _instance = FirebaseFirestore.instance;
     final directoryCollection = _instance!.collection('directory');
     DocumentSnapshot snapshot = await directoryCollection.doc(chapterID).get();
-    // print('Snapshot: ${snapshot.data()}');
     Map<dynamic, dynamic> data = snapshot.data() as Map;
     return data;
   }
 
 
-  // use to replace broData() eventually
+  // use to replace broData(), eventually
   Future<Map> broDataMap() async {
     _instance = FirebaseFirestore.instance;
     QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
