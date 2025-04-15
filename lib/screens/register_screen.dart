@@ -33,6 +33,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _confirmPwCtrl = TextEditingController();
   final TextEditingController _invitationCtrl = TextEditingController();
 
+  bool _isPasswordVisible = false;
+
   @override
   void dispose() {
     _firstNameCtrl.dispose();
@@ -470,13 +472,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.fingerprint),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.fingerprint),
                     labelText: 'Password',
-                    helperText: '*required'
+                    helperText: '*required',
+                    suffixIcon: IconButton(
+                      icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
                   ),
                   controller: _passwordCtrl,
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -495,13 +505,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.fingerprint),
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Icons.fingerprint),
                     labelText: 'Confirm Password',
-                    helperText: '*required'
+                    helperText: '*required',
+                    suffixIcon: IconButton(
+                      icon: Icon(_isPasswordVisible ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
                   ),
                   controller: _confirmPwCtrl,
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
