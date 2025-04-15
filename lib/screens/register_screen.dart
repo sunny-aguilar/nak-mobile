@@ -452,10 +452,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   ),
                   controller: _emailCtrl,
                   keyboardType: TextInputType.emailAddress,
-                  validator: (value) {
+                  validator: (val) {
                     // final bool emailValid = RegExp(r'^[a-zA-Z0-9.a-zA-Z0-9-_]+@nakinc\.org$').hasMatch(value!);
-                    if (value == null || value.isEmpty) {
-                      return 'Enter a valid @nakinc.org email.';
+                    if (val == null || val.isEmpty) {
+                      return 'Enter a valid email.';
+                    }
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(val)) {
+                      return 'Enter a valid email address';
                     }
                     return null;
                   },
