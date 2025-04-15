@@ -5,14 +5,12 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
-
 const socialMediaLinks = {
   'facebook': 'https://www.facebook.com/nualphakappa/',
   'instagram': 'https://www.instagram.com/nualphakappa/',
   'youtube': 'https://www.youtube.com/1988NAKOS',
   'twitter': 'https://x.com/nualphakappa?s=21&t=FoEIq1vlgmsd5V20-ZQP1w',
 };
-
 
 class DrawerComponent extends StatefulWidget {
   const DrawerComponent({super.key});
@@ -22,6 +20,18 @@ class DrawerComponent extends StatefulWidget {
 
 class _DrawerComponentState extends State<DrawerComponent> {
   final user = FirebaseAuth.instance.currentUser?.displayName;
+
+  Future<void> launchUrlSafe(String url) async {
+    try {
+      if (!await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication)) {
+        throw Exception('Could not launch $url');
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to open link: $url')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -182,40 +192,19 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
                   IconButton(
-                    onPressed: () {
-                      // this method is used to launch app links
-                      launchUrl(
-                        Uri.parse(socialMediaLinks['facebook']!),
-                        mode: LaunchMode.externalApplication,
-                      );
-                    },
+                    onPressed: () => launchUrlSafe(socialMediaLinks['facebook']!),
                     icon:  const FaIcon(FontAwesomeIcons.facebook, size: 38.0,),
                   ),
                   IconButton(
-                    onPressed: () {
-                      launchUrl(
-                        Uri.parse(socialMediaLinks['instagram']!),
-                        mode: LaunchMode.externalApplication,
-                      );
-                    },
-                    icon:  const FaIcon(FontAwesomeIcons.instagram, size: 38.0,),
+                    onPressed: () => launchUrlSafe(socialMediaLinks['instagram']!),
+                    icon: const FaIcon(FontAwesomeIcons.instagram, size: 38.0),
                   ),
                   IconButton(
-                    onPressed: () {
-                      launchUrl(
-                        Uri.parse(socialMediaLinks['youtube']!),
-                        mode: LaunchMode.externalApplication,
-                      );
-                    },
+                    onPressed: () => launchUrlSafe(socialMediaLinks['youtube']!),
                     icon:  const FaIcon(FontAwesomeIcons.youtube, size: 38.0,),
                   ),
                   IconButton(
-                    onPressed: () {
-                      launchUrl(
-                        Uri.parse(socialMediaLinks['twitter']!),
-                        mode: LaunchMode.externalApplication,
-                      );
-                    },
+                    onPressed: () => launchUrlSafe(socialMediaLinks['twitter']!),
                     icon:  const FaIcon(FontAwesomeIcons.xTwitter, size: 38.0,),
                   ),
                 ],
