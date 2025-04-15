@@ -29,7 +29,10 @@ class _DrawerComponentState extends State<DrawerComponent> {
               child: Image.asset(Get.isDarkMode ? 'assets/img/nak_letters_bw.png' : 'assets/img/nak_letters.png',),
             ),
             ListTile(
-              title: Text('Hello, $user.', style: theme.TextThemes.drawerSignInTxt(context)),
+              title: Text(
+                user != null ? 'Hello, $user.' : 'Hello, Guest.',
+                style: theme.TextThemes.drawerSignInTxt(context),
+              ),
             ),
             ListTile(
               leading: const Icon(Icons.holiday_village,),
