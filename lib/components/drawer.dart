@@ -180,10 +180,29 @@ class _DrawerComponentState extends State<DrawerComponent> {
             ListTile(
               leading: const Icon(Icons.logout),
               title: Text('Logout', style: theme.TextThemes.drawerMenuNT(context)),
-              onTap: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.pushReplacementNamed(context, '/auth');
-              }
+              onTap: () async {
+                final shouldLogout = await showDialog<bool>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text('Logout'),
+                    content: const Text('Are you sure you want to log out?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, false),
+                        child: Text('Cancel', style: theme.TextThemes.drawerMenuNT(context).copyWith(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr)),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, true),
+                        child: Text('Logout', style: theme.TextThemes.drawerMenuNT(context).copyWith(color: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr)),
+                      ),
+                    ],
+                  ),
+                );
+                if (shouldLogout == true) {
+                  FirebaseAuth.instance.signOut();
+                  Navigator.pushReplacementNamed(context, '/auth');
+                }
+              },
             ),
             const SizedBox(height: 35,),
             ListTile(

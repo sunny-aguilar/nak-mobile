@@ -17,6 +17,9 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKeyLogin = GlobalKey<FormState>();
 
+  // toggle password visibility
+  bool _isPasswordVisible = false;
+
   // text controllers
   final TextEditingController _emailCtrl = TextEditingController();
   final TextEditingController _passwordCtr = TextEditingController();
@@ -121,13 +124,23 @@ class _LoginScreenState extends State<LoginScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
-                  decoration: const InputDecoration(
+                  decoration: InputDecoration(
                     prefixIcon: Icon(Icons.fingerprint),
                     labelText: 'Password',
-                    helperText: '*required'
+                    helperText: '*required',
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                    ),
                   ),
                   controller: _passwordCtr,
-                  obscureText: true,
+                  obscureText: !_isPasswordVisible,
                   keyboardType: TextInputType.text,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
