@@ -61,7 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() => _invitationCode = parsedJson['code'] );
     }
     else {
-      throw Exception('Failed to load chapter data');
+      throw Exception('Failed to load invitation code');
     }
     return 'Data fetched by _readJson';
   }
