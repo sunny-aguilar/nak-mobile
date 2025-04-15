@@ -222,19 +222,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Text('Registration', textAlign: TextAlign.center, style: theme.TextThemes.loginTitle(context),),
               const SizedBox(height: 10,),
               Text('Now you can register with ANY email!', textAlign: TextAlign.center, style: theme.TextThemes.loginHeadline(context)),
-              // TextButton(
-              //   onPressed: () async {
-              //   Future<void> launchUrlStart({required String url}) async {
-              //     if (!await launchUrl(Uri.parse(url))) {
-              //       throw 'Could not launch $url';
-              //     }
-              //   }
-              //   launchUrlStart(url: 'https://naknet.org/newnakincaddress/');
-              // },
-              //   child: Text('Request a @nakinc.org email',
-              //   style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
-              // ),
-              // const SizedBox(height: 10,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Text('Why create an account? An account is needed to allow us to destinguish between users and to customize the app experience based on the role of each user. Members of the National Executive Board will be able to publish blogs. Undergrads will be able to access fraternity resources quickly and on the go. Our App Privacy Policy can be found at the bottom.', style: theme.TextThemes.loginDescription(context), textAlign: TextAlign.center,),
