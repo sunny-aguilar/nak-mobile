@@ -21,10 +21,11 @@ class _DirectoryState extends State<Directory> {
 
   void initializeDirectory() async {
     db.Directory().getDirectoryData().then((val) {
-      chapterCount = val.chapterCount;
-      broCount = val.broCount;
-      graphData = val.graphData;
-      setState((){});
+      setState((){
+        chapterCount = val.chapterCount;
+        broCount = val.broCount;
+        graphData = val.graphData;
+      });
     });
   }
 

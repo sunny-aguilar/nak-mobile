@@ -3,13 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 
 class Directory {
-  FirebaseFirestore? _instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
 
   Future<Map> getUserData() async {
-    _instance = FirebaseFirestore.instance;
     String userUID = FirebaseAuth.instance.currentUser!.uid;
-    CollectionReference users = _instance!.collection('users');
+    CollectionReference users = _firestore!.collection('users');
     DocumentSnapshot snapshot = await users.doc(userUID).get();
     await Future.delayed(const Duration(milliseconds: 500));
     return snapshot.data() as Map;
@@ -17,8 +16,7 @@ class Directory {
 
 
   void getChaptersTest() async {
-    _instance = FirebaseFirestore.instance;
-    await _instance!.collection('directory').get().then((event){
+    await _firestore.collection('directory').get().then((event){
       for (var doc in event.docs) {
         print('Doc ID: ${doc.id} => ${doc.data()}');
       }
@@ -28,8 +26,7 @@ class Directory {
 
   // Gets all chapter (docs) in collection (directory)
   Future<List> getChapters() async {
-    _instance = FirebaseFirestore.instance;
-    final chaptersRef = _instance!.collection('directory');
+    final chaptersRef = _firestore.collection('directory');
     final query = await chaptersRef.get();
     return query.docs;
   }
@@ -37,8 +34,7 @@ class Directory {
 
   // Gets a chapter (document) within the directory (collection)
   Future<Map> getChapter(String chapter) async {
-    _instance = FirebaseFirestore.instance;
-    final chapterRef = _instance!.collection('directory');
+    final chapterRef = _firestore.collection('directory');
     DocumentSnapshot snapshot = await chapterRef.doc(chapter).get();
     return snapshot.data() as Map;
   }
@@ -46,16 +42,14 @@ class Directory {
 
   // Gets the chapter count
   Future<int> getChapterCount() async {
-    _instance = FirebaseFirestore.instance;
-    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    QuerySnapshot directoryCollection = await _firestore.collection('directory').get();
     int chapterCount = directoryCollection.size;
     return chapterCount;
   }
 
 
   Future<int> getBroCount() async {
-    _instance = FirebaseFirestore.instance;
-    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    QuerySnapshot directoryCollection = await _firestore.collection('directory').get();
     // print('${directoryCollection.docs[0].data()}');
     int broCount = 0;
     for (final c in directoryCollection.docs) {
@@ -85,8 +79,7 @@ class Directory {
 
 
   Future<List<double>> getGraphCount() async {
-    _instance = FirebaseFirestore.instance;
-    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    QuerySnapshot directoryCollection = await _firestore.collection('directory').get();
 
     // hold list of chapters
     Map<String, dynamic> data = {};
@@ -132,8 +125,7 @@ class Directory {
 
 
   Future<Map> broData() async {
-    _instance = FirebaseFirestore.instance;
-    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    QuerySnapshot directoryCollection = await _firestore.collection('directory').get();
     Map<String, dynamic> data = {};
     for (final chapter in directoryCollection.docs) {
       Map<String, dynamic> bros = chapter.data() as Map<String, dynamic>;
@@ -162,8 +154,7 @@ class Directory {
 
 
   Future<Map> chapterDataMap(String chapterID) async {
-    _instance = FirebaseFirestore.instance;
-    final directoryCollection = _instance!.collection('directory');
+    final directoryCollection = _firestore.collection('directory');
     DocumentSnapshot snapshot = await directoryCollection.doc(chapterID).get();
     Map<dynamic, dynamic> data = snapshot.data() as Map;
     return data;
@@ -172,8 +163,7 @@ class Directory {
 
   // use to replace broData(), eventually
   Future<Map> broDataMap() async {
-    _instance = FirebaseFirestore.instance;
-    QuerySnapshot directoryCollection = await _instance!.collection('directory').get();
+    QuerySnapshot directoryCollection = await _firestore.collection('directory').get();
     Map<String, dynamic> data = {};
     for (final chapter in directoryCollection.docs) {
       Map<String, dynamic> bros = chapter.data() as Map<String, dynamic>;
@@ -184,7 +174,7 @@ class Directory {
 
 
   void addBrother(Map data, String chapterID) async {
-    final ref = FirebaseFirestore.instance.collection('directory').doc(chapterID);
+    final ref = _firestore.collection('directory').doc(chapterID);
     String lineNumber = data['lineNumber'];
 
     // create a map to send
@@ -205,7 +195,6 @@ class Directory {
 
 
   void editBrother(Map broData, String chapterID) async {
-    _instance = FirebaseFirestore.instance;
     String broNum = broData['lineNumber'];
     final data = {
       'brother.$broNum.name': broData['name'],
@@ -214,7 +203,7 @@ class Directory {
       'brother.$broNum.modifiedBy': broData['modifiedBy'],
     };
 
-    final ref = _instance!.collection('directory').doc(chapterID);
+    final ref = _firestore.collection('directory').doc(chapterID);
     await ref.update(data);
   }
 }
