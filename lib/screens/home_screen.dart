@@ -16,7 +16,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<String> isAdmin = db.AuthCheck().isAdminOrSuperAdmin('superAdmin');
+  // check if user is admin or super admin
+  // this is used to determine if the user can see the speed dial button
+  late Future<String> isAdmin;
+
+  @override
+  void initState() {
+    super.initState();
+    isAdmin = db.AuthCheck().isAdminOrSuperAdmin('superAdmin');
+  }
 
   // index to track which nav page to show
   int index = 0;
@@ -26,6 +34,34 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       index = val;
     });
+  }
+
+  Widget buildFloatingActionButton() {
+    return FutureBuilder<String>(
+      future: isAdmin,
+      builder: (context, AsyncSnapshot<String> snapshot) {
+        if (snapshot.hasError) {
+          return scaffolds.ScaffoldType().nonadminUser(context);
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const SizedBox(
+            height: 50,
+            width: 50,
+            child: CircularProgressIndicator(strokeWidth: 10),
+          );
+        }
+
+        switch (snapshot.data) {
+          case 'superAdmin':
+            return const scaffolds.SpeedDialButton();
+          case 'admin':
+            return scaffolds.ScaffoldType().adminUser(context);
+          default:
+            return scaffolds.ScaffoldType().nonadminUser(context);
+        }
+      },
+    );
   }
 
   @override
@@ -56,36 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       bottomNavigationBar: nav.BottomNavBar(index: index, updateIndex: updateIndex,),
 
-      floatingActionButton: FutureBuilder<String>(
-        future: isAdmin,
-        builder: (context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.hasError) {
-            return scaffolds.ScaffoldType().nonadminUser(context);
-          }
-          else if (snapshot.hasData) {
-            if (snapshot.data == 'superAdmin') {
-              //return superAdmin floating action button
-              return const scaffolds.SpeedDialButton();
-            }
-            else if (snapshot.data == 'admin') {
-              //return admin floating action button
-              return scaffolds.ScaffoldType().adminUser(context);
-            }
-            else {
-              return scaffolds.ScaffoldType().nonadminUser(context);
-            }
-          }
-          else {
-            return const SizedBox(
-              height: 50,
-              width: 50,
-              child: CircularProgressIndicator(
-                strokeWidth: 10,
-              ),
-            );
-          }
-        },
-      ),
+      floatingActionButton: buildFloatingActionButton(),
     );
   }
 }
