@@ -28,10 +28,6 @@ class _ChapterScreensState extends State<ChapterScreen> {
       throw Exception('Failed to load chapter data');
     }
     return 'Data fetched by _readJson()';
-    // json loaded from internally from asset bundle
-    // final String response = await rootBundle.loadString('assets/json/chapters.json');
-    // final data = await json.decode(response);
-    // setState( () => _chapters = data['chapters'] );
   }
 
   @override
