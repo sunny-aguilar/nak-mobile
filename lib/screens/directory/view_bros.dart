@@ -69,8 +69,8 @@ class _BroProfileState extends State<BroProfile> {
       broData: widget.broData,
       chapterClass: chapterClass,
       chapterNumber: chapterNumber,
-      modifiedDate: modifiedDate,
       modifiedBy: modifiedBy,
+      modifiedDate: modifiedDate,
     );
 
     // return Padding(
@@ -145,14 +145,14 @@ class ProfileWidget extends StatelessWidget {
     required this.broData,
     required this.chapterClass,
     required this.chapterNumber,
-    required this.modifiedDate,
     required this.modifiedBy,
+    required this.modifiedDate,
   });
   final Map broData;
   final String chapterClass;
   final String chapterNumber;
-  final String modifiedDate;
   final String modifiedBy;
+  final String modifiedDate;
 
   @override
   Widget build(BuildContext context) {
