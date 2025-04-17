@@ -119,7 +119,7 @@ class MyBarGraph extends StatelessWidget {
         largest = num;
       }
     }
-    return 10.0;
+    return largest;
   }
 
   @override
@@ -159,7 +159,7 @@ class MyBarGraph extends StatelessWidget {
 
     return BarChart(
       BarChartData(
-        maxY: getLargest(chapterBrothers)+110,   // increase this size as the chapter bro count grows...
+        maxY: getLargest(chapterBrothers)+25,   // increase this size as the chapter bro count grows...
         minY:0,
         gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
