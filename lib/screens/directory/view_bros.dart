@@ -62,6 +62,7 @@ class _BroProfileState extends State<BroProfile> {
     // print('BroData: ${widget.broData}');
     String chapterClass = '${widget.broData['className']}';
     String chapterNumber = '${widget.broData['lineNumber']}';
+    String modifiedBy = '${widget.broData['modifiedBy']['modifiedBy']}';
     String modifiedDate = widget.broData['modifiedBy']['modifiedDate'];
 
     return ProfileWidget(
@@ -69,7 +70,7 @@ class _BroProfileState extends State<BroProfile> {
       chapterClass: chapterClass,
       chapterNumber: chapterNumber,
       modifiedDate: modifiedDate,
-      userName: userName,
+      modifiedBy: modifiedBy,
     );
 
     // return Padding(
@@ -145,13 +146,13 @@ class ProfileWidget extends StatelessWidget {
     required this.chapterClass,
     required this.chapterNumber,
     required this.modifiedDate,
-    required this.userName,
+    required this.modifiedBy,
   });
   final Map broData;
   final String chapterClass;
   final String chapterNumber;
   final String modifiedDate;
-  final String userName;
+  final String modifiedBy;
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +209,7 @@ class ProfileWidget extends StatelessWidget {
           Text('line #$chapterNumber'),
           SizedBox(height: 200,),
           Text('Last modified by:', style: theme.TextThemes.collegeText(context),),
-          Text(userName),
+          Text(modifiedBy),
           SizedBox(height: 10,),
           Text('Modified Date:', style: theme.TextThemes.collegeText(context)),
           Text(modifiedDate),
