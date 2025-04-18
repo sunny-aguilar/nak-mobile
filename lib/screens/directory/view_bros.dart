@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nak_app/services/theme_service.dart' as service;
 import 'package:nak_app/ui/theme.dart' as theme;
-import 'package:nak_app/screens/directory/directory_model.dart' as db;
 
 
 class ViewBro extends StatelessWidget {
@@ -41,21 +40,6 @@ class BroProfile extends StatefulWidget {
 }
 
 class _BroProfileState extends State<BroProfile> {
-  late String userName = '';
-
-  void getUserName() async {
-    db.Directory().getUserData().then((val) {
-      userName = '${val['firstName']} ${val['lastName']}';
-      setState(() {});
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getUserName();
-  }
-
   @override
   Widget build(BuildContext context) {
 

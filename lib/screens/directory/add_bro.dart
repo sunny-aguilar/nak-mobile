@@ -22,6 +22,7 @@ class _AddBroState extends State<AddBro> {
 
   late Map userData = {};
 
+  // Get user name of person that modified the data
   void getUserName() async {
     db.Directory().getUserData().then((val) {
       userData['modifiedBy'] = '${val['firstName']} ${val['lastName']}';
