@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nak_app/screens/home_screen.dart';
 import 'package:nak_app/screens/login_screen.dart';
-import 'package:nak_app/screens/register_screen.dart';
+import 'package:nak_app/screens/register/register_screen.dart';
 import 'package:nak_app/screens/email_verification_screen.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
