@@ -27,9 +27,11 @@ class _DrawerComponentState extends State<DrawerComponent> {
         throw Exception('Could not launch $url');
       }
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to open link: $url')),
-      );
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Failed to open link: $url')),
+        );
+      }
     }
   }
 
