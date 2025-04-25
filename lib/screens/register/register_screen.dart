@@ -250,6 +250,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_outline),
                     labelText: 'First Name',
@@ -271,6 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: TextFormField(
+                  textCapitalization: TextCapitalization.words,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_outline),
                     labelText: 'Last Name',
