@@ -564,6 +564,25 @@ class FundraisingGuideScreen extends StatelessWidget {
 class FormsRequirementsScreen extends StatelessWidget {
   const FormsRequirementsScreen({super.key});
 
+  final String prep = 'Fundraising begins with making sure your chapter has the right forms and chapter EIN ready to go.';
+  final String einInfo = 'A chapter needs their own EIN. An EIN is like a social security number for your chapter. It is used to identify your chapter as a business entity. You can apply for an EIN through the IRS website. The EIN is needed to open a bank account and for fundraising.';
+  final String formInfo = 'Business will often request for chapters to complete a W-9 form. This form is used to provide the business with your chapter\'s EIN and other information. The business will use this information to report any payments made to your chapter to the IRS.';
+  final String einReq = 'An EIN can be obtained through the IRS website. The EIN is needed to open a bank account and for fundraising.\n You will need to provide the following information:';
+  final String einInfoNeeded = '\n- Officer Name\n- Chapter Address\n- Officer Phone Number\n- Officer Email Address\n- Officer SSN';
+  final String einLink = 'Once you are ready to apply for an EIN, you can do so through the IRS website. The link is below:';
+  final String formW9Info = 'An entity that requests a W-9 form is usually a business that will be making payments to your chapter. You can obtain form W-9 from the IRS website. The link is below:';
+  final String formW9Example = 'To complete the W-9 form, you will need to provide the chapter EIN information that was used to request the EIN. The link below provides you an example of a completed W-9 form. You can use this example to help you complete your own W-9 form (you must verify that the form is completed accurately since the National Organization is not responsible for the chapter\'s records).';
+
+  void showLink(String url) {
+    Future<void> launchInWebView({required String url}) async {
+      final Uri urlParsed = Uri.parse(url);
+      if (!await launchUrl(urlParsed, mode: LaunchMode.inAppWebView)) {
+        throw Exception('Could not launch $url');
+      }
+    }
+    launchInWebView(url: url);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -580,18 +599,55 @@ class FormsRequirementsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            const SizedBox(height: 20,),
-            Text('Fundraising Prep', style: theme.TextThemes.headlineMed(context),),
-            const SizedBox(height: 20,),
-            Text('Fundraising Forms', style: theme.TextThemes.headlineMed(context),),
-            const SizedBox(height: 20,),
-            Text('EIN Requirements', style: theme.TextThemes.headlineMed(context),),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              const SizedBox(height: 10,),
+              Text('Fundraising Prep', style: theme.TextThemes.headlineMed(context),),
+              const SizedBox(height: 6,),
+              Text(prep, style: theme.TextThemes.bodyLarge(context),),
+              const SizedBox(height: 20,),
+              Text('EIN', style: theme.TextThemes.bodyLargeBold(context),),
+              const SizedBox(height: 6,),
+              Text(einInfo, style: theme.TextThemes.bodyLarge(context),),
+              const SizedBox(height: 20,),
+              Text('Forms', style: theme.TextThemes.bodyLargeBold(context),),
+              const SizedBox(height: 6,),
+              Text(formInfo, style: theme.TextThemes.bodyLarge(context),),
+              const SizedBox(height: 20,),
+              Text('EIN - How to get one', style: theme.TextThemes.headlineMed(context),),
+              const SizedBox(height: 6,),
+              Text(einReq, style: theme.TextThemes.bodyLarge(context),),
+              Text(einInfoNeeded, style: theme.TextThemes.bodyLarge(context),),
+              const SizedBox(height: 6,),
+              Text(einLink, style: theme.TextThemes.bodyLarge(context),),
+              ListTile(
+                title: Text('Get an EIN Online', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () => showLink('https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number'),
+              ),
+              const SizedBox(height: 20,),
+              Text('Forms - Examples', style: theme.TextThemes.headlineMed(context),),
+              const SizedBox(height: 6,),
+              Text(formW9Info, style: theme.TextThemes.bodyLarge(context),),
+              ListTile(
+                title: Text('Download Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () => showLink('https://www.irs.gov/forms-pubs/about-form-w-9'),
+              ),
+              const SizedBox(height: 20,),
+              Text(formW9Example, style: theme.TextThemes.bodyLarge(context),),
+              ListTile(
+                title: Text('View Example Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () => showLink('https://drive.google.com/file/d/1bqj24pJfrTaFoyTmixLfcrCTN-AHotgr/view?usp=drive_link'),
+              ),
+              const SizedBox(height: 50,),
+            ],
+          ),
         ),
       ),
     );
