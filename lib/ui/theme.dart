@@ -54,7 +54,7 @@ class Themes{
       secondary: greyClr,
       onSecondary: greyClr,
       // background: primaryClr,        // main screen color
-      onBackground: greyClr,
+      // onBackground: greyClr,
       surface: primaryClr,            // card color
       onSurface: blackClr,            // font, icons color
       error: greyClr,
@@ -95,8 +95,8 @@ class Themes{
       onPrimary: greyClr,
       secondary: greyClr,
       onSecondary: greyClr,
-      background: darkGreyClr,              // main screen color
-      onBackground: greyClr,
+      // background: darkGreyClr,              // main screen color
+      // onBackground: greyClr,
       surface: darkGreyClr,                 // card color
       onSurface: primaryClr,            // font, icons color
       error: greyClr,
@@ -136,8 +136,8 @@ class Themes{
       onPrimary: primaryClr,
       secondary: greyClr,
       onSecondary: greyClr,
-      background: primaryClr,
-      onBackground: greyClr,
+      // background: primaryClr,
+      // onBackground: greyClr,
       surface: primaryClr,
       onSurface: Colors.black,
       error: greyClr,
@@ -152,8 +152,8 @@ class Themes{
       onPrimary: darkGreyClr,
       secondary: greyClr,
       onSecondary: greyClr,
-      background: darkGreyClr,
-      onBackground: greyClr,
+      // background: darkGreyClr,
+      // onBackground: greyClr,
       surface: darkGreyClr,
       onSurface: primaryClr,
       error: greyClr,
@@ -174,8 +174,8 @@ class CustomTheme {
         onPrimary: greyClr,
         secondary: greyClr,
         onSecondary: greyClr,
-        background: primaryClr,         // main screen color
-        onBackground: greyClr,
+        // background: primaryClr,         // main screen color
+        // onBackground: greyClr,
         surface: primaryClr,            // card color
         onSurface: blackClr,            // font, icons color
         error: greyClr,
@@ -213,8 +213,8 @@ class CustomTheme {
         onPrimary: greyClr,
         secondary: greyClr,
         onSecondary: greyClr,
-        background: darkGreyClr,              // main screen color
-        onBackground: greyClr,
+        // background: darkGreyClr,              // main screen color
+        // onBackground: greyClr,
         surface: darkGreyClr,                 // card color
         onSurface: primaryClr,            // font, icons color
         error: greyClr,

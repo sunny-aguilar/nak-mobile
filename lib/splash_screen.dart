@@ -18,10 +18,12 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
 
     Future.delayed(const Duration(milliseconds: 2800), () {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(
-        // check if user is logged in
-        builder: (_) => const AuthCheck(),
-      ));
+      if (mounted) {
+        Navigator.of(context).pushReplacement(MaterialPageRoute(
+          // check if user is logged in
+          builder: (_) => const AuthCheck(),
+        ));
+      }
     });
   }
 
@@ -42,6 +44,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             Stack(
               alignment: Alignment.topCenter,
               children: <Widget>[
+                Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [Color(0xFFC41230), Color(0xFFF1F1F1)],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                  ),
+                ),
                 ClipPath(
                   clipper: BronzeBannerClipper(),
                   child: Container(
