@@ -80,6 +80,7 @@ class _AddBroState extends State<AddBro> {
                 children: <Widget>[
                   const SizedBox(height: 20,),
                   TextFormField(
+                    textCapitalization: TextCapitalization.words,
                     decoration: const InputDecoration(
                       labelText: 'Name',
                       helperText: 'Enter the bro\'s name'
@@ -96,6 +97,7 @@ class _AddBroState extends State<AddBro> {
                   const SizedBox(height: 20,),
 
                   TextFormField(
+                    textCapitalization: TextCapitalization.words,
                     decoration: const InputDecoration(
                       labelText: 'Class',
                       helperText: 'Crossing class'
