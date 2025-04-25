@@ -43,6 +43,7 @@ class FinanceBody extends StatelessWidget {
   final String cdr = 'The chapter dues report comes out monthly to reflect the total dues owed by each chapter.';
   final String cdg = 'The chapter dues guide provide yearly guidance on the dues assessed by Nu Alpha Kappa including payment plans available and due dates.';
   final String fg = 'This fundraising guide is meant to provide chapters a background on fundraising including ideas on the types of fundraisers.';
+  final String fr = 'Fundraising forms and EIN requirements';
 
   @override
   Widget build(BuildContext context) {
@@ -78,6 +79,12 @@ class FinanceBody extends StatelessWidget {
           screen: ()=> const FundraisingGuideScreen(),
           desc: 'A guide for chapter fundraising',
           modalText: fg,),
+          cards.ChapterFinancesCard(
+            title: 'Forms Requirements',
+            cardIcon: FontAwesomeIcons.file,
+            screen: () => const FormsRequirementsScreen(),
+            desc: 'EIN and forms required for fundraising',
+            modalText: fr),
       ],
     );
   }
@@ -547,6 +554,33 @@ class FundraisingGuideScreen extends StatelessWidget {
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
         },
+      ),
+    );
+  }
+}
+
+
+class FormsRequirementsScreen extends StatelessWidget {
+  const FormsRequirementsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Dues Guide', style: theme.TextThemes.headlineMed(context),),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        actions: <Widget>[
+          IconButton(
+            icon: Get.isDarkMode ? const Icon(Icons.wb_sunny_outlined) : const Icon(Icons.dark_mode_outlined),
+            onPressed: () {
+              service.ThemeService().switchTheme();
+            },
+          ),
+        ],
+      ),
+      body: const Center(
+        child: Text('Forms Requirements'),
       ),
     );
   }

@@ -202,7 +202,12 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 );
                 if (shouldLogout == true) {
                   FirebaseAuth.instance.signOut();
-                  Navigator.pushReplacementNamed(context, '/auth');
+                  if (mounted) {
+                    Navigator.pushReplacementNamed(context, '/auth');
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('Logged out successfully')),
+                    );
+                  }
                 }
               },
             ),
