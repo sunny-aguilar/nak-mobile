@@ -10,6 +10,7 @@ import 'package:nak_app/db/db_chapters.dart' as db_chapters;
 import 'package:nak_app/ui/theme.dart' as theme;
 import 'package:nak_app/components/cards.dart' as cards;
 
+
 class ChapterFinances extends StatelessWidget {
   const ChapterFinances({super.key});
 
@@ -80,9 +81,9 @@ class FinanceBody extends StatelessWidget {
           desc: 'A guide for chapter fundraising',
           modalText: fg,),
           cards.ChapterFinancesCard(
-            title: 'Forms Requirements',
+            title: 'Form Requirements',
             cardIcon: FontAwesomeIcons.file,
-            screen: () => const FormsRequirementsScreen(),
+            screen: ()=> const FormsRequirementsScreen(),
             desc: 'EIN and forms required for fundraising',
             modalText: fr),
       ],
@@ -323,7 +324,7 @@ class TrackerScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
             // URL launcher
             const String httpsLink = 'https://docs.google.com/spreadsheets/d/11NPQHvmcKvtfFKW6bUhxoYde4KX2Sg1wynZNVLi_6ao/edit?usp=sharing';
-;           Future<void> launchInWebView({required String url}) async {
+            Future<void> launchInWebView({required String url}) async {
               final Uri urlParsed = Uri.parse(url);
               if (!await launchUrl(urlParsed, mode: LaunchMode.inAppWebView)) {
                 throw Exception('Could not launch $url');
@@ -579,8 +580,19 @@ class FormsRequirementsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Forms Requirements'),
+      body: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            const SizedBox(height: 20,),
+            Text('Fundraising Prep', style: theme.TextThemes.headlineMed(context),),
+            const SizedBox(height: 20,),
+            Text('Fundraising Forms', style: theme.TextThemes.headlineMed(context),),
+            const SizedBox(height: 20,),
+            Text('EIN Requirements', style: theme.TextThemes.headlineMed(context),),
+          ],
+        ),
       ),
     );
   }

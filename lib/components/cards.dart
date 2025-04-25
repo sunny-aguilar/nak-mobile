@@ -687,7 +687,6 @@ class ChapterFinancesCard extends StatelessWidget {
                 const SizedBox(width: 20,),
                 GestureDetector(
                   onTap: () {
-                    print('I was tapped1');
                     _dialogBuilder(context);
                     // add a bottom modal card
                   },
