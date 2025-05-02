@@ -564,6 +564,10 @@ class FundraisingGuideScreen extends StatelessWidget {
 class FormsRequirementsScreen extends StatelessWidget {
   const FormsRequirementsScreen({super.key});
 
+  final String einUrl = 'https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number';
+  final String w9Url = 'https://www.irs.gov/forms-pubs/about-form-w-9';
+  final String w9Example = 'https://drive.google.com/file/d/1bqj24pJfrTaFoyTmixLfcrCTN-AHotgr/view?usp=sharing';
+
   final String prep = 'Fundraising begins with making sure your chapter has the right forms and chapter EIN ready to go.';
   final String einInfo = 'A chapter needs their own EIN. An EIN is like a social security number for your chapter. It is used to identify your chapter as a business entity. You can apply for an EIN through the IRS website. The EIN is needed to open a bank account and for fundraising.';
   final String formInfo = 'Business will often request for chapters to complete a W-9 form. This form is used to provide the business with your chapter\'s EIN and other information. The business will use this information to report any payments made to your chapter to the IRS.';
@@ -627,7 +631,7 @@ class FormsRequirementsScreen extends StatelessWidget {
               ListTile(
                 title: Text('Get an EIN Online', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
                 trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink('https://www.irs.gov/businesses/small-businesses-self-employed/get-an-employer-identification-number'),
+                onTap: () => showLink(einUrl),
               ),
               const SizedBox(height: 20,),
               Text('Forms - Examples', style: theme.TextThemes.headlineMed(context),),
@@ -636,14 +640,14 @@ class FormsRequirementsScreen extends StatelessWidget {
               ListTile(
                 title: Text('Download Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
                 trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink('https://www.irs.gov/forms-pubs/about-form-w-9'),
+                onTap: () => showLink(w9Url),
               ),
               const SizedBox(height: 20,),
               Text(formW9Example, style: theme.TextThemes.bodyLarge(context),),
               ListTile(
                 title: Text('View Example Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
                 trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink('https://drive.google.com/file/d/1bqj24pJfrTaFoyTmixLfcrCTN-AHotgr/view?usp=drive_link'),
+                onTap: () => showLink(w9Example),
               ),
               const SizedBox(height: 50,),
             ],

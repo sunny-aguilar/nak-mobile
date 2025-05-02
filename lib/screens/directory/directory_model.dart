@@ -194,7 +194,9 @@ class Directory {
 
 
   void editBrother(Map broData, String chapterID) async {
+    final ref = _firestore.collection('directory').doc(chapterID);
     String broNum = broData['lineNumber'];
+
     final data = {
       'brother.$broNum.name': broData['name'],
       'brother.$broNum.className': broData['className'],
@@ -202,7 +204,6 @@ class Directory {
       'brother.$broNum.modifiedBy': broData['modifiedBy'],
     };
 
-    final ref = _firestore.collection('directory').doc(chapterID);
     await ref.update(data);
   }
 }
