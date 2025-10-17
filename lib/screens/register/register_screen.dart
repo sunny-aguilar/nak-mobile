@@ -616,7 +616,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     throw 'Could not launch $url';
                   }
                 }
-                launchUrlStart(url: 'https://www.naknet.org/nak-app-privacy-policy/');
+                launchUrlStart(url: 'https://nualphakappa.org/nak-app-privacy-policy/');
               },
                 child: Text('App Privacy Policy',
                 style: theme.TextThemes.linkBody(context), textAlign: TextAlign.center,),
