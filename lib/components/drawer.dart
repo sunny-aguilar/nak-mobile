@@ -139,7 +139,7 @@ class _DrawerComponentState extends State<DrawerComponent> {
                 // }
                 // launchUrlStart(url: 'https://www.naknet.org/');
                 // -------------
-                final Uri toLaunch = Uri(scheme: 'https', host: 'www.naknet.org', path: '/');
+                final Uri toLaunch = Uri(scheme: 'https', host: 'www.nualphakappa.org', path: '/');
                 Future<void> launchInWebView({required Uri url}) async {
                   if (!await launchUrl(url, mode: LaunchMode.inAppWebView)) {
                     throw Exception('Could not launch $url');
