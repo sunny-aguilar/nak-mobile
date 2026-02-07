@@ -194,17 +194,29 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Card(
               elevation: 2,
-              color: Colors.red.shade50,
+              color: Theme.of(context).brightness == Brightness.dark
+                  ? Colors.red.shade900
+                  : Colors.red.shade50,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
-                    const Icon(Icons.error_outline, color: theme.redClr, size: 24),
+                    Icon(
+                      Icons.error_outline,
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.red.shade200
+                          : theme.redClr,
+                      size: 24,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
                         'Failure to follow any of these rules will result in you getting banned from chat.',
-                        style: theme.TextThemes.chatWarning(context),
+                        style: theme.TextThemes.chatWarning(context).copyWith(
+                          color: Theme.of(context).brightness == Brightness.dark
+                              ? Colors.red.shade100
+                              : null,
+                        ),
                       ),
                     ),
                   ],
