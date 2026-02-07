@@ -153,10 +153,13 @@ class _EditBlogState extends State<EditBlog> {
   String parseURL(String url) {
     // String temp = 'https://firebasestorage.googleapis.com/v0/b/nak-app-a899e.appspot.com/o/blog%2Fblog_1713235082696.jpeg?alt=media&token=126858df-6cfa-4d87-a71a-64607e042268';
     String  parsedURL = '';
+    print('URL: $url');
     List splitted = url.split('?');
     parsedURL = splitted[0];
+    print('parsedURL: $parsedURL');
     splitted = parsedURL.split('..');
     parsedURL = splitted[1];
+    print('splitted: $parsedURL');
     return parsedURL.trim();
   }
 
@@ -268,6 +271,7 @@ class _EditBlogState extends State<EditBlog> {
                               onPressed: () {
 
                                 // parse the URL
+                                // print('url: ${widget.url}');
                                 String parsedURL = parseURL(widget.url);
 
                                 // delete the blog image
