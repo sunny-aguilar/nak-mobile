@@ -49,7 +49,31 @@ class FinanceBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: const EdgeInsets.only(top: 12, bottom: 20),
       children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                'Financial Resources',
+                style: theme.TextThemes.headlineSmall20(context).copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 6,),
+              Text(
+                'Access chapter financial information and guidance',
+                style: TextStyle(
+                  color: theme.charcoalClr,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 8,),
         cards.ChapterFinancesCard(
           title: 'Chapter Financial Status',
           cardIcon: Icons.monitor_heart_outlined,
@@ -80,12 +104,13 @@ class FinanceBody extends StatelessWidget {
           screen: ()=> const FundraisingGuideScreen(),
           desc: 'A guide for chapter fundraising',
           modalText: fg,),
-          cards.ChapterFinancesCard(
-            title: 'Form Requirements',
-            cardIcon: FontAwesomeIcons.file,
-            screen: ()=> const FormsRequirementsScreen(),
-            desc: 'EIN and forms required for fundraising',
-            modalText: fr),
+        cards.ChapterFinancesCard(
+          title: 'Form Requirements',
+          cardIcon: FontAwesomeIcons.file,
+          screen: ()=> const FormsRequirementsScreen(),
+          desc: 'EIN and forms required for fundraising',
+          modalText: fr),
+        const SizedBox(height: 12,),
       ],
     );
   }
@@ -154,6 +179,7 @@ class _StatusScreenState extends State<StatusScreen> {
                 final int count = snapshot.data![1].length;
 
                 return ListView.builder(
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
                   itemCount: count,
                   itemBuilder: (context, index) {
                     // compile chapter data
@@ -167,33 +193,95 @@ class _StatusScreenState extends State<StatusScreen> {
                     chapterData = snapshot.data![1][index].data();
                     // print('dat: ${chapterData}');
 
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
-                        child: Text('${chapterData['char']}', style: theme.TextThemes.headlineMed(context),), // store greek letter in db and pull into here?
-                      ),
-                      title: Row(
-                        children: <Widget>[
-                          Icon(
-                            chapterData['financialApproval'] ? Icons.verified : Icons.report_problem_sharp,
-                            color: chapterData['financialApproval'] ? theme.mintClr : theme.warningClr,
-                            size: iconSize
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [
+                          BoxShadow(
+                            color: theme.shawdowClr.withOpacity(0.08),
+                            blurRadius: 6,
+                            offset: const Offset(0, 2),
                           ),
-                          Text(' ${chapterData['chapter']} - ${chapterData['financialApproval'] ? 'approved' : 'not approved'}', style: theme.TextThemes.headlineSmall16(context))
                         ],
                       ),
-                      trailing: const Icon(Icons.arrow_forward_ios),
-                      enabled: isAdmin,
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute<Widget>(
-                            builder: (BuildContext context) {
-                              return FinancialStatusScreen(chapter: chapterData);
-                            }
-                          )
-                        );
-                      },
+                      child: Card(
+                        elevation: 0,
+                        clipBehavior: Clip.hardEdge,
+                        child: InkWell(
+                          onTap: isAdmin ? () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<Widget>(
+                                builder: (BuildContext context) {
+                                  return FinancialStatusScreen(chapter: chapterData);
+                                }
+                              )
+                            );
+                          } : null,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                            child: Row(
+                              children: <Widget>[
+                                Container(
+                                  width: 48,
+                                  height: 48,
+                                  decoration: BoxDecoration(
+                                    color: chapterData['financialApproval'] ? theme.mintClr.withOpacity(0.2) : theme.warningClr.withOpacity(0.15),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      '${chapterData['char']}',
+                                      style: theme.TextThemes.headlineMed(context),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 16,),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          Icon(
+                                            chapterData['financialApproval'] ? Icons.verified : Icons.report_problem_sharp,
+                                            color: chapterData['financialApproval'] ? theme.mintClr : theme.warningClr,
+                                            size: iconSize
+                                          ),
+                                          const SizedBox(width: 8,),
+                                          Expanded(
+                                            child: Text(
+                                              '${chapterData['chapter']}',
+                                              style: theme.TextThemes.headlineSmall16(context),
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 4,),
+                                      Text(
+                                        chapterData['financialApproval'] ? 'Approved' : 'Not Approved',
+                                        style: TextStyle(
+                                          color: chapterData['financialApproval'] ? theme.mintClr : theme.warningClr,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                if (isAdmin)
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 16,
+                                    color: theme.greyClr,
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     );
                   }
                 );
@@ -250,30 +338,87 @@ class _FinancialStatusScreenState extends State<FinancialStatusScreen> {
         ],
       ),
       body: Center(
-        child: ListView(
-          children: <Widget>[
-            ListTile(
-              title: const Text('Financial Approval:'),
-              trailing: Switch(
-                thumbIcon: thumbIcon,
-                value: enabledFinances,
-                activeColor: theme.mintClr,
-                onChanged: (bool val) {
-                  setState(() {
-                    enabledFinances = val;
-                  });
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Theme.of(context).colorScheme.surface,
+                  boxShadow: [
+                    BoxShadow(
+                      color: theme.shawdowClr.withOpacity(0.1),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      'Financial Approval Status',
+                      style: theme.TextThemes.headlineSmall20(context).copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 16,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Approval Status:',
+                              style: theme.TextThemes.bodyLarge(context),
+                            ),
+                            const SizedBox(height: 6,),
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: enabledFinances ? theme.mintClr.withOpacity(0.2) : theme.warningClr.withOpacity(0.15),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                enabledFinances ? 'Approved' : 'Not Approved',
+                                style: TextStyle(
+                                  color: enabledFinances ? theme.mintClr : theme.warningClr,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Switch(
+                          thumbIcon: thumbIcon,
+                          value: enabledFinances,
+                          activeColor: theme.mintClr,
+                          onChanged: (bool val) {
+                            setState(() {
+                              enabledFinances = val;
+                            });
 
-                  // approve ore revoke financial approval
-                  if (val) {
-                    db_chapters.ChapterStatus().approveFinances(widget.chapter['id']);
-                  }
-                  else if (!val) {
-                    db_chapters.ChapterStatus().revokeFinances(widget.chapter['id']);
-                  }
-                },
+                            // approve ore revoke financial approval
+                            if (val) {
+                              db_chapters.ChapterStatus().approveFinances(widget.chapter['id']);
+                            }
+                            else if (!val) {
+                              db_chapters.ChapterStatus().revokeFinances(widget.chapter['id']);
+                            }
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       )
     );
@@ -295,9 +440,19 @@ class TrackerScreen extends StatelessWidget {
 
   Center _circularProgress() {
     return Center(
-      child: SizedBox(
-        height: 60, width: 60,
-        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 60, width: 60,
+            child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+          ),
+          const SizedBox(height: 16,),
+          Text(
+            'Loading...',
+            style: theme.TextThemes.bodyLarge(Get.context!),
+          ),
+        ],
       ),
     );
   }
@@ -331,7 +486,16 @@ class TrackerScreen extends StatelessWidget {
               }
             }
             launchInWebView(url: httpsLink);
-            return const Center(child: Icon(Icons.trending_up, size: 150,));
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.trending_up, size: 80, color: theme.redOfficial.withOpacity(0.3),),
+                  const SizedBox(height: 16,),
+                  Text('Opening Tracker...', style: theme.TextThemes.bodyLarge(context),),
+                ],
+              ),
+            );
           }
           else if (snapshot.connectionState == ConnectionState.waiting) { return _circularProgress(); }
           return _circularProgress();
@@ -356,9 +520,19 @@ class DuesReportScreen extends StatelessWidget {
 
   Center _circularProgress() {
     return Center(
-      child: SizedBox(
-        height: 60, width: 60,
-        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 60, width: 60,
+            child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+          ),
+          const SizedBox(height: 16,),
+          Text(
+            'Loading...',
+            style: theme.TextThemes.bodyLarge(Get.context!),
+          ),
+        ],
       ),
     );
   }
@@ -396,11 +570,13 @@ class DuesReportScreen extends StatelessWidget {
               // return something else if URL link is not working
               return Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
-                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
-                    const Text('No Internet Connection!'),
+                    Icon(Icons.wifi_off, size: 80, color: theme.charcoalClr.withOpacity(0.3),),
+                    const SizedBox(height: 16,),
+                    Text('No Internet Connection!', style: theme.TextThemes.headlineSmall20(context),),
+                    const SizedBox(height: 8,),
+                    Text('Please check your connection and try again', style: theme.TextThemes.bodyLarge(context),),
                   ],
                 ),
               );
@@ -429,9 +605,19 @@ class DuesGuideScreen extends StatelessWidget {
 
   Center _circularProgress() {
     return Center(
-      child: SizedBox(
-        height: 60, width: 60,
-        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 60, width: 60,
+            child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+          ),
+          const SizedBox(height: 16,),
+          Text(
+            'Loading...',
+            style: theme.TextThemes.bodyLarge(Get.context!),
+          ),
+        ],
       ),
     );
   }
@@ -469,11 +655,13 @@ class DuesGuideScreen extends StatelessWidget {
               // return something else if URL link is not working
               return Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
-                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
-                    const Text('No Internet Connection!'),
+                    Icon(Icons.wifi_off, size: 80, color: theme.charcoalClr.withOpacity(0.3),),
+                    const SizedBox(height: 16,),
+                    Text('No Internet Connection!', style: theme.TextThemes.headlineSmall20(context),),
+                    const SizedBox(height: 8,),
+                    Text('Please check your connection and try again', style: theme.TextThemes.bodyLarge(context),),
                   ],
                 ),
               );
@@ -502,9 +690,19 @@ class FundraisingGuideScreen extends StatelessWidget {
 
   Center _circularProgress() {
     return Center(
-      child: SizedBox(
-        height: 60, width: 60,
-        child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 60, width: 60,
+            child: CircularProgressIndicator(color: Get.isDarkMode ? theme.primaryClr : theme.redClr,)
+          ),
+          const SizedBox(height: 16,),
+          Text(
+            'Loading...',
+            style: theme.TextThemes.bodyLarge(Get.context!),
+          ),
+        ],
       ),
     );
   }
@@ -542,11 +740,13 @@ class FundraisingGuideScreen extends StatelessWidget {
               // return something else if URL link is not working
               return Center(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.sizeOf(context).height/6),
-                    const Icon(Icons.wifi_off, size: 150, color: theme.charcoalClr,),
-                    const Text('No Internet Connection!'),
+                    Icon(Icons.wifi_off, size: 80, color: theme.charcoalClr.withOpacity(0.3),),
+                    const SizedBox(height: 16,),
+                    Text('No Internet Connection!', style: theme.TextThemes.headlineSmall20(context),),
+                    const SizedBox(height: 8,),
+                    Text('Please check your connection and try again', style: theme.TextThemes.bodyLarge(context),),
                   ],
                 ),
               );
@@ -592,7 +792,7 @@ class FormsRequirementsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Dues Guide', style: theme.TextThemes.headlineMed(context),),
+        title: Text('Form Requirements', style: theme.TextThemes.headlineMed(context),),
         backgroundColor: Theme.of(context).colorScheme.primary,
         actions: <Widget>[
           IconButton(
@@ -605,51 +805,125 @@ class FormsRequirementsScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(height: 10,),
-              Text('Fundraising Prep', style: theme.TextThemes.headlineMed(context),),
-              const SizedBox(height: 6,),
-              Text(prep, style: theme.TextThemes.bodyLarge(context),),
-              const SizedBox(height: 20,),
-              Text('EIN', style: theme.TextThemes.bodyLargeBold(context),),
-              const SizedBox(height: 6,),
-              Text(einInfo, style: theme.TextThemes.bodyLarge(context),),
-              const SizedBox(height: 20,),
-              Text('Forms', style: theme.TextThemes.bodyLargeBold(context),),
-              const SizedBox(height: 6,),
-              Text(formInfo, style: theme.TextThemes.bodyLarge(context),),
-              const SizedBox(height: 20,),
-              Text('EIN - How to get one', style: theme.TextThemes.headlineMed(context),),
-              const SizedBox(height: 6,),
-              Text(einReq, style: theme.TextThemes.bodyLarge(context),),
-              Text(einInfoNeeded, style: theme.TextThemes.bodyLarge(context),),
-              const SizedBox(height: 6,),
-              Text(einLink, style: theme.TextThemes.bodyLarge(context),),
-              ListTile(
-                title: Text('Get an EIN Online', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink(einUrl),
+              // Fundraising Prep Section
+              _buildSectionHeader(context, 'Fundraising Prep'),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, prep),
+              const SizedBox(height: 28,),
+
+              // EIN Section
+              _buildSectionHeader(context, 'What is an EIN?'),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, einInfo),
+              const SizedBox(height: 28,),
+
+              // Forms Section
+              _buildSectionHeader(context, 'W-9 Forms'),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, formInfo),
+              const SizedBox(height: 28,),
+
+              // How to Get EIN Section
+              _buildSectionHeader(context, 'How to Get an EIN'),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, einReq),
+              _buildSectionContent(context, einInfoNeeded, isHighlighted: true),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, einLink),
+              const SizedBox(height: 16,),
+              _buildLinkTile(
+                context,
+                'Get an EIN Online',
+                Icons.open_in_new,
+                () => showLink(einUrl),
               ),
-              const SizedBox(height: 20,),
-              Text('Forms - Examples', style: theme.TextThemes.headlineMed(context),),
-              const SizedBox(height: 6,),
-              Text(formW9Info, style: theme.TextThemes.bodyLarge(context),),
-              ListTile(
-                title: Text('Download Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink(w9Url),
+              const SizedBox(height: 28,),
+
+              // Forms Examples Section
+              _buildSectionHeader(context, 'Form Examples'),
+              const SizedBox(height: 12,),
+              _buildSectionContent(context, formW9Info),
+              const SizedBox(height: 16,),
+              _buildLinkTile(
+                context,
+                'Download Form W-9',
+                Icons.download,
+                () => showLink(w9Url),
               ),
-              const SizedBox(height: 20,),
-              Text(formW9Example, style: theme.TextThemes.bodyLarge(context),),
-              ListTile(
-                title: Text('View Example Form W-9', style:  theme.TextThemes.colorBlue(context).copyWith(fontFamily: 'College', fontSize: 18),),
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () => showLink(w9Example),
+              const SizedBox(height: 24,),
+              _buildSectionContent(context, formW9Example),
+              const SizedBox(height: 16,),
+              _buildLinkTile(
+                context,
+                'View Example Form W-9',
+                Icons.description,
+                () => showLink(w9Example),
               ),
               const SizedBox(height: 50,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSectionHeader(BuildContext context, String title) {
+    return Text(
+      title,
+      style: theme.TextThemes.headlineSmall20(context).copyWith(
+        fontWeight: FontWeight.bold,
+        color: theme.redOfficial,
+      ),
+    );
+  }
+
+  Widget _buildSectionContent(BuildContext context, String content, {bool isHighlighted = false}) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: isHighlighted ? theme.redOfficial.withOpacity(0.08) : Colors.transparent,
+        borderRadius: BorderRadius.circular(8),
+        border: isHighlighted
+          ? Border.all(color: theme.redOfficial.withOpacity(0.2))
+          : null,
+      ),
+      child: Text(
+        content,
+        style: theme.TextThemes.bodyLarge(context).copyWith(
+          height: 1.6,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLinkTile(BuildContext context, String title, IconData icon, VoidCallback onTap) {
+    return Material(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(8),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: theme.redOfficial.withOpacity(0.3)),
+            color: theme.redOfficial.withOpacity(0.05),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Expanded(
+                child: Text(
+                  title,
+                  style: theme.TextThemes.bodyLargeBold(context).copyWith(
+                    color: theme.redOfficial,
+                  ),
+                ),
+              ),
+              Icon(icon, color: theme.redOfficial, size: 20,),
             ],
           ),
         ),

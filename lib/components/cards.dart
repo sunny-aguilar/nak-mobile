@@ -648,62 +648,99 @@ class ChapterFinancesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card.outlined(
-      clipBehavior: Clip.hardEdge,
-      child: InkWell(
-        splashColor: theme.redClr,
-        onTap: () {
-          // go to corresponding finance screen
-          Navigator.push(
-            context,
-            MaterialPageRoute<Widget>(
-              builder: (BuildContext context) {
-                return screen();
-              }
-            )
-          );
-        },
-        child: Column(
-          children: <Widget>[
-            const SizedBox(height: 10,),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                const SizedBox(width: 20,),
-                Icon(cardIcon, size: 50, color: theme.redOfficial,),
-                const SizedBox(width: 50,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: theme.shawdowClr.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Card(
+        elevation: 0,
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
+          splashColor: theme.redClr.withOpacity(0.15),
+          onTap: () {
+            // go to corresponding finance screen
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext context) {
+                  return screen();
+                }
+              )
+            );
+          },
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 12,),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(width: 16,),
+                  Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: theme.redOfficial.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Icon(cardIcon, size: 40, color: theme.redOfficial,),
+                  ),
+                  const SizedBox(width: 16,),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(title, style: theme.TextThemes.headlineSmall20(context),),
+                        const SizedBox(height: 4,),
+                        Text(desc, style: TextStyle(
+                          color: theme.charcoalClr,
+                          fontSize: 13,
+                        )),
+                        const SizedBox(height: 4,),
+                        Text('2024 - 2025 Academic Year', style: TextStyle(
+                          color: theme.greyClr,
+                          fontSize: 11,
+                          fontStyle: FontStyle.italic,
+                        )),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8,),
+                ],
+              ),
+              const SizedBox(height: 12,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text(title, style: theme.TextThemes.headlineSmall20(context),),
-                    Text(desc),
-                    const Text('2024 - 2025 Academic Year'),
+                    Expanded(child: Container()),
+                    GestureDetector(
+                      onTap: () {
+                        _dialogBuilder(context);
+                        // add a bottom modal card
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          color: theme.bronzeOfficial.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(6),
+                        ),
+                        child: const Icon(Icons.help_outline_outlined, size: 20, color: theme.bronzeOfficial,),
+                      ),
+                    ),
                   ],
                 ),
-              ],
-            ),
-            const SizedBox(height: 16,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                const SizedBox(width: 20,),
-                GestureDetector(
-                  onTap: () {
-                    _dialogBuilder(context);
-                    // add a bottom modal card
-                  },
-                  child: const Icon(Icons.help_outline_outlined, size: 30, color: theme.bronzeOfficial,)
-                ),
-                const SizedBox(width: 20,),
-                // const Text('Like'),
-                // const SizedBox(width: 50,),
-                // const Icon(Icons.mode_comment_outlined, size: 30,),
-                // const SizedBox(width: 10,),
-                // const Text('Comment'),
-              ],
-            ),
-            const SizedBox(height: 15,),
-          ],
+              ),
+              const SizedBox(height: 12,),
+            ],
+          ),
         ),
       ),
     );
