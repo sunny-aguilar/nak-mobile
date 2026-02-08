@@ -13,16 +13,16 @@ class _CarouselComponentState extends State<CarouselComponent> {
   int activePage = 0;
 
   List<String> imagesArr = [
-    'assets/img/carousel/nldc_2025.JPEG',
+    'assets/img/carousel/dog_2026.png',
     'assets/img/carousel/nakfest_carousel.jpg',
-    'assets/img/carousel/nldc_carousel.PNG',
+    // 'assets/img/carousel/nldc_carousel.PNG',
     'assets/img/carousel/email_carousel.webp',
     'assets/img/carousel/store_carousel.webp',
   ];
   List<String> urlArr = [
-    'https://naknet.org/programming/nldc2025/',
+    'https://nualphakappa.org/donate-to-nak/',
     'https://naknet.org/2025/04/11/nakfest-and-nu-member-symposium-2025/',
-    'https://naknet.org/store/#!/NLDC-2023/p/376065284/category=72126034',
+    // 'https://naknet.org/store/#!/NLDC-2023/p/376065284/category=72126034',
     'https://naknet.org/newnakincaddress/',
     'https://shopnualphakappa.com/',
   ];
