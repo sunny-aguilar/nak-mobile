@@ -319,6 +319,10 @@ class _ViewBroListScreen extends State<ViewBroListScreen> {
                   );
                 }
               },
+              leading: CircleAvatar(
+                backgroundColor: Get.isDarkMode ? theme.primaryClr : theme.darkGreyClr,
+                child: Text(lineNumber),
+              ),
               title: Text(name, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 22),),
               subtitle: Text('$chapClass class #$lineNumber'),
               trailing: Icon(Icons.arrow_forward_ios),
