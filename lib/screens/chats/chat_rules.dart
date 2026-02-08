@@ -154,7 +154,6 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                     ),
                     const SizedBox(height: 12),
                     _buildRuleItem('Be friendly. Be polite. Be considerate.'),
-                    _buildRuleItem('Do not type in all caps.'),
                     _buildRuleItem('Do not verbally abuse, harrass, attack, embarrass, or threaten anyone else in the chat room, no matter what they might say to you.'),
                     _buildRuleItem('Do not use obscene, offensive, or sexually explicit language.'),
                   ],
