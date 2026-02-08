@@ -392,6 +392,7 @@ Card chapterCard({required BuildContext context, required int index, required Li
   );
 }
 
+
 Card duesCard({required BuildContext context, required int index, required List dues}) {
   var cardImage = '${dues[index]["picURL"]}';
   var heading = '${dues[index]["name"]}';
