@@ -66,11 +66,11 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                   ),
                 );
               }
-              
+
               if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                 bool canChat = snapshot.data!;
                 chatEnabled = canChat;
-                
+
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Card(
@@ -112,7 +112,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                   ),
                 );
               }
-              
+
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Card(
@@ -126,7 +126,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             }
           ),
           const SizedBox(height: 24),
-          
+
           // Title
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -137,7 +137,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Core Rules Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -163,7 +163,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Status Information Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -188,7 +188,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-          
+
           // Warning Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -225,7 +225,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 24),
-          
+
           // Action Button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
