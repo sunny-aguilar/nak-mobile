@@ -66,11 +66,11 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                   ),
                 );
               }
-
+              
               if (snapshot.connectionState == ConnectionState.done && !snapshot.hasError) {
                 bool canChat = snapshot.data!;
                 chatEnabled = canChat;
-
+                
                 return Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Card(
@@ -112,7 +112,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                   ),
                 );
               }
-
+              
               return Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Card(
@@ -126,7 +126,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             }
           ),
           const SizedBox(height: 24),
-
+          
           // Title
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -137,7 +137,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-
+          
           // Core Rules Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -154,6 +154,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                     ),
                     const SizedBox(height: 12),
                     _buildRuleItem('Be friendly. Be polite. Be considerate.'),
+                    _buildRuleItem('Do not type in all caps.'),
                     _buildRuleItem('Do not verbally abuse, harrass, attack, embarrass, or threaten anyone else in the chat room, no matter what they might say to you.'),
                     _buildRuleItem('Do not use obscene, offensive, or sexually explicit language.'),
                   ],
@@ -162,7 +163,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-
+          
           // Status Information Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -187,7 +188,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 16),
-
+          
           // Warning Card
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -214,7 +215,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
                         style: theme.TextThemes.chatWarning(context).copyWith(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? Colors.red.shade100
-                              : null,
+                              : Colors.red.shade900,
                         ),
                       ),
                     ),
@@ -224,7 +225,7 @@ class _ChatRulesBodyState extends State<ChatRulesBody> {
             ),
           ),
           const SizedBox(height: 24),
-
+          
           // Action Button
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
