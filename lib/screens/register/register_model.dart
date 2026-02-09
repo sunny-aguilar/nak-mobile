@@ -21,7 +21,7 @@ class Registration {
         chapterNumber = '03.gamma';
         break;
       case 'Delta':
-        chapterNumber = '04.delya';
+        chapterNumber = '04.delta';
         break;
       case 'Epsilon':
         chapterNumber = '05.epsilon';
