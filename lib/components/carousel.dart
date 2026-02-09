@@ -16,14 +16,14 @@ class _CarouselComponentState extends State<CarouselComponent> {
     'assets/img/carousel/dog_2026.png',
     'assets/img/carousel/email_carousel.png',
     'assets/img/carousel/store_carousel.webp',
-    'assets/img/carousel/nakfest_carousel.jpg',
+    // 'assets/img/carousel/nakfest_carousel.jpg',
     // 'assets/img/carousel/nldc_carousel.PNG',
   ];
   List<String> urlArr = [
     'https://nualphakappa.org/donate-to-nak/',
     'https://nualphakappa.org/store-2/NAKinc-Email-Yearly-subscription-p728394132',
     'https://shopnualphakappa.com/',
-    'https://naknet.org/2025/04/11/nakfest-and-nu-member-symposium-2025/',
+    // 'https://naknet.org/2025/04/11/nakfest-and-nu-member-symposium-2025/',
     // 'https://naknet.org/store/#!/NLDC-2023/p/376065284/category=72126034',
   ];
 
