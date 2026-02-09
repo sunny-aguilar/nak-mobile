@@ -85,6 +85,24 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
     setState((){});
   }
 
+  void _showInfoDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Brother Directory', style: theme.TextThemes.headlineSmall20(context)),
+          content: const Text('This screen lets users view brothers listed by chapter. Use the "View Brothers" card to browse names and the "Add a Brother" card to add or edit entries in the directory.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Dismiss', style: TextStyle(color: Color(0xFFC41230))),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -100,6 +118,25 @@ class _DirectoryDashboardState extends State<DirectoryDashboard> {
               Text(
                 'Brother Directory',
                 style: theme.TextThemes.gabaritoSize40(context),
+              ),
+              const SizedBox(height: 12,),
+              const SizedBox(height: 12,),
+              // Info card explaining purpose of this screen
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Card(
+                  color: Get.isDarkMode ? theme.darkGreyClr : theme.offWhiteClr,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  child: ListTile(
+                    leading: Icon(Icons.info_outline, color: theme.redOfficial),
+                    title: Text('Directory Info', style: theme.TextThemes.bodyLargeBold(context)),
+                    subtitle: Text('View brothers by chapter, or add/edit brother entries.', style: theme.TextThemes.bodyLarge(context)),
+                    trailing: IconButton(
+                      icon: Icon(Icons.open_in_new, color: theme.redOfficial),
+                      onPressed: () => _showInfoDialog(context),
+                    ),
+                  ),
+                ),
               ),
               // Row for graph *********************
               Stack(
@@ -337,6 +374,24 @@ class _NavDirectoryDashboard extends State<NavDirectoryDashboard> {
     setState((){});
   }
 
+  void _showInfoDialog(BuildContext context) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Brother Directory', style: theme.TextThemes.headlineSmall20(context)),
+          content: const Text('This screen lets users view brothers listed by chapter. Use the "View Brothers" card to browse names and the "Add a Brother" card to add or edit entries in the directory.'),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Dismiss', style: TextStyle(color: Color(0xFFC41230))),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        );
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -352,6 +407,25 @@ class _NavDirectoryDashboard extends State<NavDirectoryDashboard> {
               Text(
                 'Brother Directory',
                 style: theme.TextThemes.gabaritoSize40(context),
+              ),
+              const SizedBox(height: 12,),
+              const SizedBox(height: 12,),
+              // Info card explaining purpose of this screen
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8.0),
+                child: Card(
+                  color: Get.isDarkMode ? theme.darkGreyClr : theme.offWhiteClr,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  child: ListTile(
+                    leading: Icon(Icons.info_outline, color: theme.redOfficial),
+                    title: Text('Directory Info', style: theme.TextThemes.bodyLargeBold(context)),
+                    subtitle: Text('View brothers by chapter, or add/edit brother entries.', style: theme.TextThemes.bodyLarge(context)),
+                    trailing: IconButton(
+                      icon: Icon(Icons.open_in_new, color: theme.redOfficial),
+                      onPressed: () => _showInfoDialog(context),
+                    ),
+                  ),
+                ),
               ),
               // Row for graph *********************
               Stack(
