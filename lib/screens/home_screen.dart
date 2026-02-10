@@ -86,7 +86,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
       body: <Widget>[
               const featured.HomeScreenChildren(),
-              const directory.NavDirectory(),
+              const directory.Directory(navAppBar: false,),
+              // const directory.NavDirectory(),
               const chat.ChatRules(),
             ][index],
 

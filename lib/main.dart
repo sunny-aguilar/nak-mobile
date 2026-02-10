@@ -55,7 +55,7 @@ class App extends StatelessWidget {
         '/home': (context) => const HomeScreen(),
         '/intro': (context) => const IntroScreen(),
         '/chapters': (context) => const ChapterScreen(),
-        '/directory': (context) => const Directory(),
+        '/directory': (context) => const Directory(navAppBar: true,),
         '/dues': (context) => const DuesScreen(),
         '/finances': (context) => const ChapterFinances(),
         '/compliance': (context) => const ComplianceScreen(),
