@@ -40,7 +40,6 @@ class _DirectoryState extends State<Directory> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.navAppBar ? FullAppBar() : null,
-
       body: DirectoryDashboard(
         onChange: _handleThemeChange,
         chapterCount: chapterCount,
