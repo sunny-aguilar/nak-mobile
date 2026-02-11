@@ -464,6 +464,7 @@ class VersionScreen extends StatelessWidget {
 
   /// Show contact form dialog
   void _showContactForm(BuildContext context) {
+    final _formKey = GlobalKey<FormState>();
     final nameCtl = TextEditingController();
     final emailCtl = TextEditingController();
     final subjectCtl = TextEditingController();
@@ -476,43 +477,113 @@ class VersionScreen extends StatelessWidget {
         return StatefulBuilder(
           builder: (context, setState) {
             return AlertDialog(
-              title: const Text('Contact the Team'),
-              content: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextField(
-                      controller: nameCtl,
-                      decoration: const InputDecoration(
-                        labelText: 'Your name',
-                        hintText: 'John Doe',
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              titlePadding: const EdgeInsets.fromLTRB(20,16,20,0),
+              contentPadding: const EdgeInsets.fromLTRB(20,12,20,20),
+              title: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 20,
+                    backgroundColor: theme.redClr.withValues(alpha: 0.12),
+                    child: Icon(Icons.mail_outline_rounded, color: theme.redClr, size: 20),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text('Contact the Team', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
+                  ),
+                ],
+              ),
+              content: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        controller: nameCtl,
+                        decoration: InputDecoration(
+                          labelText: 'Your name',
+                          hintText: 'John Doe',
+                          filled: true,
+                          fillColor: Theme.of(context).colorScheme.surfaceContainer.withValues(alpha: 0.04),
+                        ),
+                        validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter your name' : null,
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      controller: emailCtl,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'you@example.com',
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        controller: emailCtl,
+                        decoration: InputDecoration(
+                          labelText: 'Email',
+                          hintText: 'you@example.com',
+                          filled: true,
+                          fillColor: Theme.of(context).colorScheme.surfaceContainer.withValues(alpha: 0.04),
+                        ),
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (v) {
+                          if (v == null || v.trim().isEmpty) return 'Please enter your email';
+                          final emailReg = RegExp(r"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+                          return emailReg.hasMatch(v.trim()) ? null : 'Enter a valid email';
+                        },
                       ),
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      controller: subjectCtl,
-                      decoration: const InputDecoration(
-                        labelText: 'Subject',
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        controller: subjectCtl,
+                        decoration: InputDecoration(
+                          labelText: 'Subject',
+                          filled: true,
+                          fillColor: Theme.of(context).colorScheme.surfaceContainer.withValues(alpha: 0.02),
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      controller: messageCtl,
-                      decoration: const InputDecoration(
-                        labelText: 'Message',
+                      const SizedBox(height: 10),
+                      TextFormField(
+                        controller: messageCtl,
+                        decoration: InputDecoration(
+                          labelText: 'Message',
+                          alignLabelWithHint: true,
+                          filled: true,
+                          fillColor: Theme.of(context).colorScheme.surfaceContainer.withValues(alpha: 0.02),
+                        ),
+                        maxLines: 5,
+                        validator: (v) => (v == null || v.trim().isEmpty) ? 'Please enter a message' : null,
                       ),
-                      maxLines: 5,
-                    ),
-                  ],
+                      const SizedBox(height: 16),
+
+                      // Full width send button inside content for better touch target
+                      SizedBox(
+                        width: double.infinity,
+                        child: FilledButton.icon(
+                          onPressed: isSending
+                              ? null
+                              : () async {
+                                  if (!(_formKey.currentState?.validate() ?? false)) return;
+                                  final name = nameCtl.text.trim();
+                                  final email = emailCtl.text.trim();
+                                  final subject = subjectCtl.text.trim();
+                                  final message = messageCtl.text.trim();
+
+                                  setState(() => isSending = true);
+                                  await mailer.sendContactEmail(dialogContext, {
+                                    'name': name,
+                                    'email': email,
+                                    'subject': subject.isEmpty ? 'App Contact' : subject,
+                                    'message': message,
+                                  });
+                                  setState(() => isSending = false);
+                                  if (dialogContext.mounted) Navigator.of(dialogContext).pop();
+                                },
+                          icon: isSending
+                              ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: theme.whiteClr))
+                              : const Icon(Icons.send),
+                          label: const Text('Send'),
+                          style: FilledButton.styleFrom(
+                            backgroundColor: theme.redClr,
+                            foregroundColor: theme.whiteClr,
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               actions: <Widget>[
@@ -524,42 +595,6 @@ class VersionScreen extends StatelessWidget {
                     foregroundColor: Theme.of(context).colorScheme.onSurface,
                   ),
                   child: const Text('Cancel'),
-                ),
-                FilledButton(
-                  onPressed: isSending
-                      ? null
-                      : () async {
-                          final name = nameCtl.text.trim();
-                          final email = emailCtl.text.trim();
-                          final subject = subjectCtl.text.trim();
-                          final message = messageCtl.text.trim();
-
-                          if (name.isEmpty || email.isEmpty || message.isEmpty) {
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                              content: Text('Please complete name, email and message fields.'),
-                            ));
-                            return;
-                          }
-
-                          setState(() => isSending = true);
-                          await mailer.sendContactEmail(context, {
-                            'name': name,
-                            'email': email,
-                            'subject': subject.isEmpty ? 'App Contact' : subject,
-                            'message': message,
-                          });
-                          setState(() => isSending = false);
-                          if (context.mounted) Navigator.of(dialogContext).pop();
-                        },
-                  style: FilledButton.styleFrom(
-                    backgroundColor: theme.redClr,
-                    foregroundColor: theme.whiteClr,
-                    padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-                    minimumSize: const Size(100, 40),
-                  ),
-                  child: isSending
-                      ? const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(strokeWidth: 2, color: theme.whiteClr))
-                      : const Text('Send'),
                 ),
               ],
             );
