@@ -4,8 +4,10 @@ import 'package:mailer/smtp_server.dart';
 import 'package:mailer/smtp_server/gmail.dart';
 import 'package:nak_app/components/text.dart';
 
-// Google NAK-App Password
-// xrcr lrvs bthe olnw
+/// This mailer package requires that you enable "less secure app access" in the Gmail account settings for the email address you want to send from. This is not ideal, but it is a free and simple solution for sending emails from the app without setting up a backend server. For better security, consider using a backend service to handle email sending with proper authentication.
+
+// Google NAK-App Password for incidentreport@nakinc.org
+// safb ndlq kapy uiya
 sendEmail(BuildContext context, Map formCtl) async {
   String username = 'incidentreport@nakinc.org';
   String password = 'safb ndlq kapy uiya';
@@ -55,6 +57,45 @@ sendEmail(BuildContext context, Map formCtl) async {
       .showSnackBar(SnackBar(
         content: Text('Error: $msg',))
       );
+    }
+  }
+}
+
+// Sends an email using the form in the version screen.
+// Google NAK-App Password for developer@nakinc.org
+// qqsp njae ydbb ubcb
+sendContactEmail(BuildContext context, Map formCtl) async {
+  String username = 'developer@nakinc.org';
+  String password = 'qqsp njae ydbb ubcb';
+
+  final smtpServer = gmail(username, password);
+
+  final message = Message()
+    ..from = Address(username, '${formCtl['name']}')
+    ..recipients.add('developer@nakinc.org')
+    ..subject = 'NAK APP CONTACT: ${formCtl['subject'] ?? 'General Inquiry'}'
+    ..text = '${formCtl['message'] ?? ''}\n\nFrom: ${formCtl['name']} <${formCtl['email']}> '
+    ..html = '<h2>Contact Form Submission</h2>'
+      '<p><b>From:</b> ${formCtl['name']} &#60;${formCtl['email']}&#62;</p>'
+      '<p><b>Subject:</b> ${formCtl['subject'] ?? 'General Inquiry'}</p>'
+      '<p><b>Message:</b><br/> ${formCtl['message'] ?? ''}</p>';
+
+  try {
+    await send(message, smtpServer);
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Message sent successfully!'),
+      ));
+    }
+  } on MailerException catch (e) {
+    String msg = '';
+    for (var p in e.problems) {
+      msg += p.msg;
+    }
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text('Error sending message: $msg'),
+      ));
     }
   }
 }
