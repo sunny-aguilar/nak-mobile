@@ -428,12 +428,19 @@ class VersionScreen extends StatelessWidget {
             const SizedBox(height: 8),
             _buildSkillChip(context, '🧪 QA Testing'),
             const SizedBox(height: 16),
-            FilledButton.icon(
-              onPressed: () => _showContactForm(context),
-              icon: const Icon(Icons.mail_outline_rounded),
-              label: const Text('Get in Touch'),
-              style: FilledButton.styleFrom(
-                minimumSize: const Size(double.infinity, 48),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: () => _showContactForm(context),
+                icon: const Icon(Icons.mail_outline_rounded),
+                label: const Text('Get in Touch'),
+                style: FilledButton.styleFrom(
+                  backgroundColor: theme.redClr,
+                  foregroundColor: theme.whiteClr,
+                  padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+                  minimumSize: const Size(double.infinity, 48),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                ),
               ),
             ),
           ],
