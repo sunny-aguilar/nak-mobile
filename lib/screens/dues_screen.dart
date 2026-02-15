@@ -5,6 +5,10 @@ import 'package:get/get.dart';
 import 'package:nak_app/components/cards.dart';
 import 'package:nak_app/ui/theme.dart' as theme;
 
+
+/// Dues are currently hardcoded in a local JSON file (assets/json/dues.json), but this could be easily updated to fetch from an external source if needed. The dues data includes information about different membership levels, their associated costs, and benefits. This screen provides a clear and organized way for users to view the dues structure of the organization.
+
+
 class DuesScreen extends StatefulWidget {
   const DuesScreen({super.key});
   @override

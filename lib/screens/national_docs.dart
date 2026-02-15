@@ -50,7 +50,7 @@ class DocsScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Theme.of(context).colorScheme.onSurface.withOpacity(0.03),
+                    color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.03),
                     blurRadius: 8,
                     offset: const Offset(0, 4),
                   ),
@@ -61,7 +61,7 @@ class DocsScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: theme.redClr.withOpacity(0.12),
+                      color: theme.redClr.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(Icons.description, color: theme.redClr),
@@ -73,7 +73,7 @@ class DocsScreen extends StatelessWidget {
                       children: [
                         Text('Official Documents', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700)),
                         const SizedBox(height: 4),
-                        Text('Access constitutions, bylaws, and other national policies.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7))),
+                        Text('Access constitutions, bylaws, and other national policies.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7))),
                       ],
                     ),
                   ),
@@ -104,13 +104,13 @@ class DocsScreen extends StatelessWidget {
                           leading: Container(
                             padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
-                              color: theme.redClr.withOpacity(0.08),
+                              color: theme.redClr.withValues(alpha: 0.08),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Icon(item['icon'] as IconData, color: theme.redClr),
                           ),
                           title: Text(item['title'] as String, style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600)),
-                          subtitle: Text(item['subtitle'] as String, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7))),
+                          subtitle: Text(item['subtitle'] as String, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7))),
                           trailing: const Icon(Icons.chevron_right_rounded),
                         ),
                       ),
@@ -160,7 +160,7 @@ class ConstitutionScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: theme.redClr.withOpacity(0.12),
+                      color: theme.redClr.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(Icons.account_balance, color: theme.redClr),
@@ -172,7 +172,7 @@ class ConstitutionScreen extends StatelessWidget {
                       children: [
                         Text('National Constitution', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                         const SizedBox(height: 4),
-                        Text('View the official constitution document.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7))),
+                        Text('View the official constitution document.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7))),
                       ],
                     ),
                   ),
@@ -222,7 +222,7 @@ class BylawsScreen extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: theme.redClr.withOpacity(0.12),
+                      color: theme.redClr.withValues(alpha: 0.12),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(Icons.rule_folder, color: theme.redClr),
@@ -234,7 +234,7 @@ class BylawsScreen extends StatelessWidget {
                       children: [
                         Text('National Bylaws', style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
                         const SizedBox(height: 4),
-                        Text('Review bylaws and governance procedures.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withOpacity(0.7))),
+                        Text('Review bylaws and governance procedures.', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7))),
                       ],
                     ),
                   ),

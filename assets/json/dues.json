@@ -6,7 +6,7 @@
         "type": "CD",
         "picURL": "assets/img/cd_dues.webp",
         "url": "https://naknet.org/store/#!/Chapter-Dues/p/26634692/category=72126034",
-        "amount": "400.00"
+        "amount": "600.00"
       },
       {
         "name": "Active Dues",
@@ -14,7 +14,7 @@
         "type": "AD",
         "picURL": "assets/img/ad_dues.webp",
         "url": "https://naknet.org/store/#!/Active-Dues-2023-2024/p/377096030/category=72126034",
-        "amount": "200.00"
+        "amount": "300.00"
       },
       {
         "name": "Education Process Dues",
@@ -22,7 +22,7 @@
         "type": "EP",
         "picURL": "assets/img/ep_dues.webp",
         "url": "https://naknet.org/store/#!/Education-Process-Dues/p/28763881/category=72126034",
-        "amount": "200.00"
+        "amount": "300.00"
       }
     ]
   }

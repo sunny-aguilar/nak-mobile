@@ -58,6 +58,11 @@ class _PreviewBlogState extends State<PreviewBlog> {
     saveBlogtoFirestore(screenArgs);
   }
 
+  int currentTimeInSeconds() {
+    // this function is used to get the current time in seconds since epoch, which is used to sort the blogs in Firestore
+    var ms = DateTime.now().millisecondsSinceEpoch;
+    return (ms / 1000).round();
+  }
 
   void saveBlogtoFirestore(screenArgs) async {
     /* This function saves the blog data to the Firestore */
@@ -81,6 +86,7 @@ class _PreviewBlogState extends State<PreviewBlog> {
       'body': screenArgs.body,
       'date': screenArgs.date,
       'userUID': userUID,
+      'sortID': currentTimeInSeconds().toString(),
       // 'userSelfie':   // only add if absolutely necessary
     };
 
