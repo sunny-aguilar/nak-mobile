@@ -210,7 +210,7 @@ class _ChatRoomState extends State<ChatRoom> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10.0,),
                         child: SizedBox(
-                          height: 62,
+                          height: 44,
                           child: Form(
                             key: widget.formKey[widget.formKeyName],
                             child: TextFormField(
@@ -278,7 +278,7 @@ class _ChatRoomState extends State<ChatRoom> {
         opacity: _fabOpacity,
         duration: const Duration(milliseconds: 300),
         child: Padding(
-          padding: const EdgeInsets.only(bottom: 60.0, right: 0.0),
+          padding: const EdgeInsets.only(bottom: 50.0, right: 0.0),
           child: FloatingActionButton.small(
             onPressed: _fabOpacity > 0.5 ? scrollDown : null,
             backgroundColor: theme.charcoalClr,
