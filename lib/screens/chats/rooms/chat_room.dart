@@ -382,7 +382,7 @@ class ChatBubble extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: isSystem ? CrossAxisAlignment.center : isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: <Widget>[
-          Text(username),
+          Text(username, style: theme.TextThemes.collegeText(context).copyWith(fontSize: 14.0),),
           Container(
             decoration: BoxDecoration(
               borderRadius: chatShape(),

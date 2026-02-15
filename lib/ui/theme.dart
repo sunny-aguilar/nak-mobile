@@ -8,6 +8,7 @@ const Color purpleClr = Color(0xff6200ea);
 const Color violetColor = Color(0xff7C4DFF);
 const Color darkBlue = Color(0xFF17203A);
 const Color mintClr = Color(0xff9CFC97);
+const Color discordGreen = Color(0xff2ecc70);
 const Color pinkClr = Color(0xffFF4667);
 const Color redClr = Color.fromARGB(255, 254, 58, 67);
 const Color uiRedClr = Color.fromARGB(255, 237, 56, 73);
