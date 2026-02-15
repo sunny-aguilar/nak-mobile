@@ -37,18 +37,57 @@ class _ChatRoomState extends State<ChatRoom> {
   // scroll controller
   final ScrollController _scrollController = ScrollController();
 
-  // void scrollDown() {
-  //   _scrollController.animateTo(
-  //     _scrollController.position.maxScrollExtent,
-  //     duration: const Duration(milliseconds: 500),
-  //     curve: Curves.easeOut,
-  //   );
-  // }
+  double _fabOpacity = 1.0;
+
+  void scrollDown() {
+    if (_scrollController.hasClients) {
+      final max = _scrollController.position.maxScrollExtent;
+      _scrollController.animateTo(
+        max,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeOut,
+      );
+    } else {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_scrollController.hasClients) {
+          final max = _scrollController.position.maxScrollExtent;
+          _scrollController.animateTo(
+            max,
+            duration: const Duration(milliseconds: 400),
+            curve: Curves.easeOut,
+          );
+        }
+      });
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     widget.formKey[widget.formKeyName] = GlobalKey<FormState>();
+    _scrollController.addListener(_onScroll);
+  }
+
+  void _onScroll() {
+    if (!_scrollController.hasClients) return;
+
+    final position = _scrollController.position;
+    final isAtBottom = position.pixels >= position.maxScrollExtent - 200; // 50px threshold
+
+    final targetOpacity = isAtBottom ? 0.0 : 1.0;
+    if (_fabOpacity != targetOpacity) {
+      setState(() {
+        _fabOpacity = targetOpacity;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    _chatCtrl.dispose();
+    super.dispose();
   }
 
   Center _circularProgress() {
@@ -86,9 +125,8 @@ class _ChatRoomState extends State<ChatRoom> {
 
     // clear text controoler
     _chatCtrl.clear();
-
-    // scroll down
-    // scrollDown();
+    // scroll down after frame to ensure list updated
+    WidgetsBinding.instance.addPostFrameCallback((_) => scrollDown());
   }
 
   bool checkIfCurrentUser(String chatUID) {
@@ -115,64 +153,49 @@ class _ChatRoomState extends State<ChatRoom> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Expanded(
-            child: SingleChildScrollView(
-              child: StreamBuilder<QuerySnapshot>(
-                stream: _stream,
-                builder: (BuildContext context, AsyncSnapshot snapshot) {
+            child: StreamBuilder<QuerySnapshot>(
+              stream: _stream,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (snapshot.data == null) { return _circularProgress(); }
+                if (!snapshot.hasData) { return _circularProgress(); }
 
-                  if (snapshot.data == null) { return _circularProgress(); }
+                if (snapshot.hasData) {
+                  try {
+                    int chatLength = snapshot.data.docs.toList()[widget.roomNumber]['active'].length;
+                    List chatList = snapshot.data.docs.toList()[widget.roomNumber]['active'];
 
-                  if (!snapshot.hasData) { return _circularProgress(); }
-
-                  if (snapshot.hasData) {
-                    try {
-                      int chatLength = snapshot.data.docs.toList()[widget.roomNumber]['active'].length;
-                      List chatList = snapshot.data.docs.toList()[widget.roomNumber]['active'];
-
-                      return  Column(
-                        children: <Widget>[
-                          ListView.builder(
-                            padding: const EdgeInsets.symmetric(horizontal:  10.0),
-                            shrinkWrap: true,
-                            controller: _scrollController,
-                            reverse: false,
-                            itemCount: chatLength,
-                            itemBuilder: (BuildContext context, int index) {
-                              bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
-                              bool isSystem = chatList[index]['timestamp'] == 'system';
-                              return ListTile(
-                                title: ChatBubble(
-                                  msg: chatList[index]['msg'],
-                                  isCurrentUser: isCurrentUser,
-                                  isSystem: isSystem,
-                                  timestamp: chatList[index]['timestamp'],
-                                  username: chatList[index]['username'],
-                                ),
-                              );
-                            }
+                    return ListView.builder(
+                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                      controller: _scrollController,
+                      reverse: false,
+                      itemCount: chatLength,
+                      itemBuilder: (BuildContext context, int index) {
+                        bool isCurrentUser = checkIfCurrentUser(chatList[index]['uid']);
+                        bool isSystem = chatList[index]['timestamp'] == 'system';
+                        return ListTile(
+                          title: ChatBubble(
+                            msg: chatList[index]['msg'],
+                            isCurrentUser: isCurrentUser,
+                            isSystem: isSystem,
+                            timestamp: chatList[index]['timestamp'],
+                            username: chatList[index]['username'],
                           ),
-                        ],
-                      );
+                        );
+                      }
+                    );
 
-                    }
-                    catch (e) {
-                      return Column(
-                        children: <Widget>[
-                          ListView(
-                            shrinkWrap: true,
-                            children: const <Widget>[
-                              ListTile(
-                                title: Text('No chat messages yet...'),
-                              ),
-                            ],
-                          ),
-                        ]
-                      );
-                    }
+                  } catch (e) {
+                    return ListView(
+                      children: const <Widget>[
+                        ListTile(
+                          title: Text('No chat messages yet...'),
+                        ),
+                      ],
+                    );
                   }
-                  return _circularProgress();
                 }
-              ),
+                return _circularProgress();
+              }
             ),
           ),
           SafeArea(
@@ -187,14 +210,14 @@ class _ChatRoomState extends State<ChatRoom> {
                       child: Padding(
                         padding: const EdgeInsets.only(left: 10.0,),
                         child: SizedBox(
-                          height: 74,
+                          height: 62,
                           child: Form(
                             key: widget.formKey[widget.formKeyName],
                             child: TextFormField(
                               maxLines: 1,
                               decoration: const InputDecoration(
                                 prefixIcon: Icon(Icons.abc),
-                                hintText: 'Send a message',
+                                hintText: 'Message',
                                 contentPadding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                                 enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.all(Radius.circular(26.0)),
@@ -240,16 +263,29 @@ class _ChatRoomState extends State<ChatRoom> {
                     ),
                     // const SizedBox(width: 10,),
                     Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                      padding: const EdgeInsets.only(left: 8.0, right: 18.0),
                       child: GlowingActionButton(icon: Icons.send, onPressed: buttonStuff),
                     ),
                   ],
                 ),
-                const SizedBox(height: 10,),
+                const SizedBox(height: 0,),
               ],
             ),
           ),
         ],
+      ),
+      floatingActionButton: AnimatedOpacity(
+        opacity: _fabOpacity,
+        duration: const Duration(milliseconds: 300),
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 60.0, right: 0.0),
+          child: FloatingActionButton.small(
+            onPressed: _fabOpacity > 0.5 ? scrollDown : null,
+            backgroundColor: theme.charcoalClr,
+            shape: const CircleBorder(),
+            child: const Icon(Icons.keyboard_arrow_down_rounded, color: theme.primaryClr, size: 40,),
+          ),
+        ),
       ),
     );
   }
@@ -276,11 +312,11 @@ class GlowingActionButton extends StatelessWidget {
             splashColor: theme.lightRedClr,
             onTap: () { onPressed(); },
             child: const SizedBox(
-              width: 50,
-              height: 50,
+              width: 40,
+              height: 40,
               child: Icon(
                 Icons.send,
-                size: 26,
+                size: 24,
                 color: theme.primaryClr
               ),
             ),
